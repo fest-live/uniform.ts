@@ -3,8 +3,7 @@
     "exclude": ["./test/**/*", "./dist/**/*", "./fest/**/*", "./src/$polyfill$/*"],
     "compilerOptions": {
         "paths": {
-            "fest/*": ["./externals/modules/*"],
-            "fest-src/*": ["../*"],
+            "fest/*": ["../shared/fest/*"]
         },
         "target": "ESNext",
         "module": "ESNext",
