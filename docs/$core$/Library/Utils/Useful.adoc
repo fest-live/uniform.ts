@@ -1,0 +1,8 @@
+= Useful.ts
+:source_path: modules/uniform.ts/src/$core$/Library/Utils/Useful.ts
+
+Auto-generated documentation.
+
+== Exports
+- consts: getRandomValues, UUIDv4, Transferable, isSymbol, FORBIDDEN_KEYS, META_KEYS, wrapExChanger, isPromise, doOnlyAfterResolve, getContext, doTransfer, transfer
+- types: dT, rT, MPromise, IWrap, ExChanger

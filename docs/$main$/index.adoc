@@ -1,0 +1,8 @@
+= index.ts
+:source_path: modules/uniform.ts/src/$main$/index.ts
+
+Auto-generated documentation.
+
+== Exports
+- consts: moduleLoader, wrapChannel
+- star reexports from: ./utils

@@ -1,0 +1,6 @@
+= loader.ts
+:source_path: modules/uniform.ts/src/$main$/loader.ts
+
+Auto-generated documentation.
+
+== Exports

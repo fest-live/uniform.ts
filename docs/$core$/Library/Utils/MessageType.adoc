@@ -1,0 +1,6 @@
+= MessageType.ts
+:source_path: modules/uniform.ts/src/$core$/Library/Utils/MessageType.ts
+
+Auto-generated documentation.
+
+== Exports

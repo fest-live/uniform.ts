@@ -1,0 +1,26 @@
+= FLOW.ts
+:source_path: modules/uniform.ts/src/$core$/Library/FLOW/FLOW.ts
+
+Auto-generated documentation.
+
+== Exports
+- default: class FLOW
+- classes: FLOW
+
+=== FLOW
+[mermaid]
+....
+classDiagram
+class FLOW {
+  +if(!ev?.data)
+  +if(dir == "req")
+  +if(cmd == "ping")
+  +if(cmd == "import")
+  +if(cmd == "call")
+  +if(dir == "res")
+  +importToSelf(module: any)
+  +importToUnit(source: string, sync = false)
+  +sync(sync = false)
+  +callTask($args: any[] = [], transfer: unknown[] = [], sync = false)
+}
+....

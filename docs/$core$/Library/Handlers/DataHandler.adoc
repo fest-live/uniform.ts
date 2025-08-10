@@ -1,0 +1,21 @@
+= DataHandler.ts
+:source_path: modules/uniform.ts/src/$core$/Library/Handlers/DataHandler.ts
+
+Auto-generated documentation.
+
+== Exports
+- default: class DataHandler
+- classes: DataHandler
+
+=== DataHandler
+[mermaid]
+....
+classDiagram
+class DataHandler {
+  +if(cmd == "get")
+  +if(args[0] == ORG.data)
+  +if(args[0] == ORG.exc)
+  +if(cmd == "access")
+  +if(cmd == "transfer")
+}
+....

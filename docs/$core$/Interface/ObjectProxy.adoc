@@ -1,0 +1,24 @@
+= ObjectProxy.ts
+:source_path: modules/uniform.ts/src/$core$/Interface/ObjectProxy.ts
+
+Auto-generated documentation.
+
+== Exports
+- default: class ObjectProxy
+- classes: ObjectProxy
+
+=== ObjectProxy
+[mermaid]
+....
+classDiagram
+class ObjectProxy {
+  +access(target: T, ...args: unknown[])
+  +get(target: T, ...args: unknown[])
+  +set(target: T, ...args: unknown[])
+  +has(target: T, ...args: unknown[])
+  +call(target: T, ...args: unknown[])
+  +apply(target: T, ...args: unknown[])
+  +construct(target: T, ...args: unknown[])
+  +deleteProperty(target: T, ...args: unknown[])
+}
+....

@@ -1,0 +1,7 @@
+= InstructionType.ts
+:source_path: modules/uniform.ts/src/$core$/Library/Utils/InstructionType.ts
+
+Auto-generated documentation.
+
+== Exports
+- consts: MakeReference, bindCtx, wrapWeakMap, prepare, redirect, extract

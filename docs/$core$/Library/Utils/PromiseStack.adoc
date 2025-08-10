@@ -1,0 +1,18 @@
+= PromiseStack.ts
+:source_path: modules/uniform.ts/src/$core$/Library/Utils/PromiseStack.ts
+
+Auto-generated documentation.
+
+== Exports
+- default: class PromiseStack
+- classes: PromiseStack
+- consts: HANG_TIMEOUT
+
+=== PromiseStack
+[mermaid]
+....
+classDiagram
+class PromiseStack {
+  +get(name = "")
+}
+....

@@ -1,0 +1,22 @@
+= ExChanger.ts
+:source_path: modules/uniform.ts/src/$core$/Library/FLOW/ExChanger.ts
+
+Auto-generated documentation.
+
+== Exports
+- default: class ExChanger
+- classes: ExChanger
+
+=== ExChanger
+[mermaid]
+....
+classDiagram
+class ExChanger {
+  +if(typeof context != TS.udf && context != null)
+  +initialize()
+  +if(this.#handler)
+  +if(esm != null)
+  +if(meta != null)
+  +if(!result && real)
+}
+....

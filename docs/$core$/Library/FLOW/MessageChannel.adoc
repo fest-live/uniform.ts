@@ -1,0 +1,6 @@
+= MessageChannel.ts
+:source_path: modules/uniform.ts/src/$core$/Library/FLOW/MessageChannel.ts
+
+Auto-generated documentation.
+
+== Exports

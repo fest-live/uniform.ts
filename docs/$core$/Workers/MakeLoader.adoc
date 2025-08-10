@@ -1,0 +1,7 @@
+= MakeLoader.ts
+:source_path: modules/uniform.ts/src/$core$/Workers/MakeLoader.ts
+
+Auto-generated documentation.
+
+== Exports
+- consts: makeModuleLoader

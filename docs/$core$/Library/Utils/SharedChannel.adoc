@@ -1,0 +1,20 @@
+= SharedChannel.ts
+:source_path: modules/uniform.ts/src/$core$/Library/Utils/SharedChannel.ts
+
+Auto-generated documentation.
+
+== Exports
+- default: class SharedChannel
+- classes: SharedChannel
+- consts: doOnlyAfterResolve
+
+=== SharedChannel
+[mermaid]
+....
+classDiagram
+class SharedChannel {
+  +if(this.#sharedBuffer)
+  +if(promise.async)
+  +if(result == "ok")
+}
+....

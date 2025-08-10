@@ -1,0 +1,8 @@
+= OrganicType.ts
+:source_path: modules/uniform.ts/src/$core$/Library/Utils/OrganicType.ts
+
+Auto-generated documentation.
+
+== Exports
+- consts: ORG, bindWithContext
+- interfaces: IMeta

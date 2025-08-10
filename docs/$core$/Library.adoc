@@ -1,0 +1,6 @@
+= Library.ts
+:source_path: modules/uniform.ts/src/$core$/Library.ts
+
+Auto-generated documentation.
+
+== Exports
