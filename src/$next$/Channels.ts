@@ -1,5 +1,5 @@
 import { UUIDv4 } from "../$core$/Useful";
-import { readByPath, writeByPath } from "./DataBase";
+import { hasNoPath, readByPath, registeredInPath, removeByData, removeByPath, writeByPath } from "./DataBase";
 import type { WReflectAction, WReflectDescriptor, WReq, WResp } from "./Interface";
 import { makeRequestProxy } from "./RequestProxy";
 
@@ -82,6 +82,7 @@ export class SelfHostChannelHandler {
         this.forResolves.set(id, Promise.withResolvers<any>());
         this.broadcast.postMessage({
             channel: toChannel,
+            receiver: this.channel,
             type: "request",
             reqId: id,
             payload: {
@@ -108,11 +109,13 @@ export class SelfHostChannelHandler {
     }
 
     handleAndResponse(request: WReq){
-        const { channel, path, action, args, data } = request;
+        let { channel, path, action, args, data } = request;
 
+        //
         if (channel != this.channel && !RemoteChannels.has(channel)) { return; }
         if (path?.length <= 0) { return; }
 
+        //
         const obj = readByPath(path);
         if (obj == null) { return; }
 
@@ -128,15 +131,16 @@ export class SelfHostChannelHandler {
                 result = $got;
                 break;
             case "get": {
-                const $got = obj;
+                const $ctx = obj;
+                const $got = $ctx?.[args?.[0]]
                 if (typeof $got == "function") {
-                    const $ctx = readByPath(path.slice(0, -1));
                     result = $ctx != null ? $got?.bind?.($ctx) : $got;
                 }
+                path?.push?.(args?.[0]);
                 result = $got;
             }; break;
             case "set":
-                result = writeByPath(path, data);
+                result = writeByPath([...path, args?.[0]], data);
                 break;
             case "apply":
             case "call": {
@@ -150,7 +154,8 @@ export class SelfHostChannelHandler {
                 break;
             case "delete":
             case "deleteProperty":
-                result = delete obj[path?.at(-1) ?? ""];
+                result = path?.length > 0 ? removeByPath(path) : removeByData(obj);
+                if (result) { path = registeredInPath.get(obj) ?? []; }
                 break;
             case "has":
                 result = ((path?.at(-1) ?? "") in obj);
@@ -178,17 +183,26 @@ export class SelfHostChannelHandler {
                 break;
         }
 
+        //
+        const canBeReturn = ((isCanTransfer(result) && toTransfer?.includes(result)) || isCanJustReturn(result));
+
+        // generate new temp path is have no exists
+        if (!canBeReturn) {
+            if (hasNoPath(result)) { path = [UUIDv4()]; } else { path = registeredInPath.get(result) ?? []; }
+        }
+
         //this.resolveResponse(request.reqId, result);
         const $ctx = readByPath(path.slice(0, -1));
         const $ctxKey = path?.at(-1);
         this.broadcast.postMessage({
             channel: request.channel,
+            receiver: this.channel,
             reqId: request.reqId,
             action: request.action,
             type: "response",
             payload: {
                 // here may be result (if can be transferable, or descriptor (for proxied))
-                result: ((isCanTransfer(result) && toTransfer?.includes(result)) || isCanJustReturn(result)) ? result : null,
+                result: canBeReturn ? result : null,
                 type: typeof result,
                 descriptor: {
                     path: path,
