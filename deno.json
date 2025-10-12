@@ -1,0 +1,12 @@
+{
+    "allow": [
+        "node_modules/*",
+        "dist/*",
+        "src/*",
+        "test/*"
+    ],
+    "imports": {
+        "fest/*": "../shared/fest/*",
+        "fest/object": "../object.ts/src/index.ts"
+    }
+}

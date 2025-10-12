@@ -8,16 +8,18 @@
             "request": "launch",
             "name": "Debug Deno",
             "type": "node",
-            "program": "${workspaceFolder}/test/Host.ts",
+            "program": "${workspaceFolder}/test/index.ts",
             "cwd": "${workspaceFolder}",
             "runtimeExecutable": "deno",
             "runtimeArgs": [
                 "run",
                 "--unstable-sloppy-imports",
-                "--inspect-wait",
+                "--inspect-brk",
                 "--allow-all"
             ],
-            "attachSimplePort": 9229
+            "outputCapture": "std",
+            "attachSimplePort": 9229,
+            "sourceMaps": true
         },
         {
             "name": "Attach to Chrome",

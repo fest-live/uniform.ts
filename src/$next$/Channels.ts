@@ -1,6 +1,7 @@
+import { Promised } from "fest/object";
 import { UUIDv4 } from "../$core$/Useful";
 import { hasNoPath, readByPath, registeredInPath, removeByData, removeByPath, writeByPath } from "./DataBase";
-import type { WReflectAction, WReflectDescriptor, WReq, WResp } from "./Interface";
+import { WReflectAction, type WReflectDescriptor, type WReq, type WResp } from "./Interface";
 import { makeRequestProxy } from "./RequestProxy";
 
 // fallback feature for remote channels
@@ -9,10 +10,12 @@ export const RemoteChannels = new Map<string, any>();
 // despise of true channel name in BroadcastChannel, we use it for self-channel
 export const SELF_CHANNEL = {
     name: "unknown",
-    instance: null
+    instance: null,
+    messageChannel: null
 } as {
     name: string;
     instance: SelfHostChannelHandler|null;
+    messageChannel: MessageChannel|null;
 };
 
 //
@@ -20,14 +23,23 @@ const isPrimitive = (obj: any)=>{
     return obj == null || typeof obj == "string" || typeof obj == "number" || typeof obj == "boolean" || typeof obj == "bigint" || typeof obj == "symbol" || typeof obj == "undefined";
 }
 
-//
-const INSTANCE_OF_IF_EXISTS = (obj: any, constructor: any)=>{
-    return typeof constructor == "function" && obj instanceof constructor;
-}
 
 //
-const isCanTransfer = (obj: any)=>{ // @ts-ignore
-    return isPrimitive(obj) || INSTANCE_OF_IF_EXISTS(obj, ArrayBuffer) || INSTANCE_OF_IF_EXISTS(obj, MessagePort) || INSTANCE_OF_IF_EXISTS(obj, ReadableStream) || INSTANCE_OF_IF_EXISTS(obj, WritableStream) || INSTANCE_OF_IF_EXISTS(obj, TransformStream) || INSTANCE_OF_IF_EXISTS(obj, WebTransportReceiveStream) || INSTANCE_OF_IF_EXISTS(obj, WebTransportSendStream) || INSTANCE_OF_IF_EXISTS(obj, AudioData) || INSTANCE_OF_IF_EXISTS(obj, ImageBitmap) || INSTANCE_OF_IF_EXISTS(obj, VideoFrame) || INSTANCE_OF_IF_EXISTS(obj, OffscreenCanvas) || INSTANCE_OF_IF_EXISTS(obj, RTCDataChannel);
+const isCanTransfer = (obj: any)=>{
+    return isPrimitive(obj) ||
+        (typeof ArrayBuffer == "function" && obj instanceof ArrayBuffer) ||
+        (typeof MessagePort == "function" && obj instanceof MessagePort) ||
+        (typeof ReadableStream == "function" && obj instanceof ReadableStream) ||
+        (typeof WritableStream == "function" && obj instanceof WritableStream) ||
+        (typeof TransformStream == "function" && obj instanceof TransformStream) ||
+        (typeof ImageBitmap == "function" && obj instanceof ImageBitmap) ||
+        (typeof VideoFrame == "function" && obj instanceof VideoFrame) ||
+        (typeof OffscreenCanvas == "function" && obj instanceof OffscreenCanvas) ||
+        (typeof RTCDataChannel == "function" && obj instanceof RTCDataChannel) || // @ts-ignore
+        (typeof AudioData == "function" && obj instanceof AudioData) || // @ts-ignore
+        (typeof WebTransportReceiveStream == "function" && obj instanceof WebTransportReceiveStream) || // @ts-ignore
+        (typeof WebTransportSendStream == "function" && obj instanceof WebTransportSendStream) || // @ts-ignore
+        (typeof WebTransportReceiveStream == "function" && obj instanceof WebTransportReceiveStream); // @ts-ignore
 }
 
 //
@@ -37,33 +49,29 @@ const isTypedArray = (value: any)=>{
 
 //
 const isCanJustReturn = (obj: any)=>{
-    return isPrimitive(obj) || INSTANCE_OF_IF_EXISTS(obj, SharedArrayBuffer) || isTypedArray(obj);
+    return isPrimitive(obj) || (typeof SharedArrayBuffer == "function" && obj instanceof SharedArrayBuffer) || isTypedArray(obj) || Array.isArray(obj);
 }
 
 //
 export class SelfHostChannelHandler {
+    // @ts-ignore
     private forResolves = new Map<string, PromiseWithResolvers<any>>();
-    //private forRequests = new Map<string, WReq>();
 
     //
-    constructor(private broadcast: Worker|BroadcastChannel|MessagePort, private channel: string|null = SELF_CHANNEL?.name) {
-        this.channel ||= (broadcast as any).name;
-        SELF_CHANNEL.instance = this;
+    constructor(private broadcast: Worker|BroadcastChannel|MessagePort, private channel: string|null = SELF_CHANNEL?.name, private options: any = {}) {
+        this.channel ||= (broadcast as any).name; SELF_CHANNEL.instance = this;
         this.broadcast.addEventListener('message', (event) => {
-            if (event.data.channel == this.channel) {
-                if (event.data.type == "request") {
-                    //this.forRequests.set(event.data.request.reqId, event.data.request);
-                    this.handleAndResponse(event.data.request);
-                } else
-                if (event.data.type == "response") {
-                    this.resolveResponse(event.data.reqId, {
-                        result: event.data.result,
-                        descriptor: event.data.descriptor,
-                        type: event.data.type
-                    });
-                } else {
-                    console.error(event);
-                }
+            if (event.data.type == "request" && event.data.channel == this.channel) {
+                this.handleAndResponse(event.data.payload, event.data.reqId);
+            } else
+            if (event.data.type == "response") {
+                this.resolveResponse(event.data.reqId, {
+                    result: event.data.payload.result,
+                    descriptor: event.data.payload.descriptor,
+                    type: event.data.payload.type
+                });
+            } else {
+                console.error(event);
             }
         });
         this.broadcast.addEventListener('error', (event) => {
@@ -77,8 +85,8 @@ export class SelfHostChannelHandler {
         return this.channel;
     }
 
-    request(toChannel: string, path: string[], action: WReflectAction, args: any[], options: any): Promise<any>|null|undefined {
-        const id = UUIDv4();
+    request(toChannel: string, path: string[], action: WReflectAction, args: any[], options: any = {}): Promise<any>|null|undefined {
+        const id = UUIDv4(); // @ts-ignore
         this.forResolves.set(id, Promise.withResolvers<any>());
         this.broadcast.postMessage({
             channel: toChannel,
@@ -86,6 +94,8 @@ export class SelfHostChannelHandler {
             type: "request",
             reqId: id,
             payload: {
+                sender: this.channel,
+                channel: toChannel,
                 path: path,
                 action: action,
                 args: args
@@ -94,10 +104,8 @@ export class SelfHostChannelHandler {
 
         //
         return this.forResolves.get(id)?.promise?.then?.(result => {
-            if (result?.result != null) {
-                return result.result;
-            }
-            return makeRequestProxy(result.descriptor as WReflectDescriptor, options)
+            if (result?.result != undefined) { return result.result; }
+            return makeRequestProxy(result.descriptor as WReflectDescriptor, { channel: toChannel, ...options })
         });
     }
 
@@ -108,16 +116,12 @@ export class SelfHostChannelHandler {
         return promise;
     }
 
-    handleAndResponse(request: WReq){
+    handleAndResponse(request: WReq, reqId: string){ // TODO: options
         let { channel, sender, path, action, args, data } = request;
 
         //
-        if (channel != this.channel && !RemoteChannels.has(channel)) { return; }
-        if (path?.length <= 0) { return; }
-
-        //
+        if (channel != this.channel) { return; }
         const obj = readByPath(path);
-        if (obj == null) { return; }
 
         //! NOTE: if called ArrayBuffer?.transfer() from worker to host, it can be transferred, else use as descriptor for proxied result
         const toTransfer: any[] = [];
@@ -125,9 +129,13 @@ export class SelfHostChannelHandler {
         //
         let result: any = null;
         switch (action) {
+            case "import":
+                result = import(args?.[0]);
+                break;
             case "transfer":
                 const $got = obj;
 
+                // TODO! support in Promise wrapped ArrayBuffer
                 // if channel and sender is same, no sense to transfer by cross-channel (remote-channel)
                 if (isCanTransfer($got) && channel != sender) { toTransfer.push($got); }
 
@@ -143,19 +151,25 @@ export class SelfHostChannelHandler {
                 result = $got;
             }; break;
             case "set":
-                result = writeByPath([...path, args?.[0]], data);
+                result = writeByPath([...path, args?.[0]], args?.[1]);
                 break;
             case "apply":
             case "call": {
                 const $ctx = readByPath(path.slice(0, -1));
-                result = obj.apply?.($ctx, args);
+                if ((typeof obj == "function") && obj != null) {
+                    result = obj.apply?.($ctx, args?.[0]);
+                } else {
+                    result = undefined;
+                }
 
                 // if channel and sender is same, no sense to transfer by cross-channel (remote-channel), it just internal transfer
                 if (isCanTransfer(result) && path?.at(-1) == "transfer" && channel != sender) { toTransfer.push(result); }
                 break;
             }
             case "construct":
-                result = new obj(args, data);
+                if ((typeof obj == "function") && obj != null) {
+                    result = new obj(args?.[0]);
+                }
                 break;
             case "delete":
             case "deleteProperty":
@@ -163,62 +177,175 @@ export class SelfHostChannelHandler {
                 if (result) { path = registeredInPath.get(obj) ?? []; }
                 break;
             case "has":
-                result = ((path?.at(-1) ?? "") in obj);
+                if ((typeof obj == "object" || typeof obj == "function") && obj != null) {
+                    result = ((path?.at(-1) ?? "") in obj);
+                } else {
+                    result = false;
+                }
                 break;
             case "ownKeys":
-                result = Object.keys(obj);
+                if ((typeof obj == "object" || typeof obj == "function") && obj != null) {
+                    result = Array.from(Object.keys(obj));
+                } else {
+                    result = [];
+                }
                 break;
             case "getOwnPropertyDescriptor":
-                result = Object.getOwnPropertyDescriptor(obj, path?.at(-1) ?? "");
+                if ((typeof obj == "object" || typeof obj == "function") && obj != null) {
+                    result = Object.getOwnPropertyDescriptor(obj, path?.at(-1) ?? "");
+                } else {
+                    result = undefined;
+                }
                 break;
             case "getPropertyDescriptor":
-                result = Object.getOwnPropertyDescriptor(obj, path?.at(-1) ?? "");
+                if ((typeof obj == "object" || typeof obj == "function") && obj != null) {
+                    result = Object.getOwnPropertyDescriptor(obj, path?.at(-1) ?? "");
+                } else {
+                    result = undefined;
+                }
                 break;
             case "getPrototypeOf":
-                result = Object.getPrototypeOf(obj);
+                if ((typeof obj == "object" || typeof obj == "function") && obj != null) {
+                    result = Object.getPrototypeOf(obj);
+                } else {
+                    result = null;
+                }
                 break;
             case "setPrototypeOf":
-                result = Object.setPrototypeOf(obj, data);
+                if ((typeof obj == "object" || typeof obj == "function") && obj != null) {
+                    result = Object.setPrototypeOf(obj, args?.[0]);
+                } else {
+                    result = false;
+                }
                 break;
             case "isExtensible":
-                result = Object.isExtensible(obj);
+                if ((typeof obj == "object" || typeof obj == "function") && obj != null) {
+                    result = Object.isExtensible(obj);
+                } else {
+                    result = true;
+                }
                 break;
             case "preventExtensions":
-                result = Object.preventExtensions(obj);
+                if ((typeof obj == "object" || typeof obj == "function") && obj != null) {
+                    result = Object.preventExtensions(obj);
+                } else {
+                    result = false;
+                }
                 break;
         }
 
-        //
-        const canBeReturn = ((isCanTransfer(result) && toTransfer?.includes(result)) || isCanJustReturn(result));
+        // @ts-ignore
+        return Promise.try(async ()=>{
+            result = await result; //
+            const canBeReturn = ((isCanTransfer(result) && toTransfer?.includes(result)) || isCanJustReturn(result));
 
-        // generate new temp path is have no exists
-        if (!canBeReturn) {
-            if (hasNoPath(result)) { path = [UUIDv4()]; } else { path = registeredInPath.get(result) ?? []; }
-        }
+            // generate new temp path is have no exists
+            if (!canBeReturn && action != "get") {
+                if (hasNoPath(result)) { path = [UUIDv4()]; writeByPath(path, result); } else { path = registeredInPath.get(result) ?? []; }
+            }
 
-        //this.resolveResponse(request.reqId, result);
-        const $ctx = readByPath(path.slice(0, -1));
-        const $ctxKey = path?.at(-1);
-        this.broadcast.postMessage({
-            channel: request.channel,
-            sender: this.channel,
-            reqId: request.reqId,
-            action: request.action,
-            type: "response",
-            payload: {
-                // here may be result (if can be transferable, or descriptor (for proxied))
-                result: canBeReturn ? result : null,
-                type: typeof result,
-                descriptor: {
-                    path: path,
-                    primitive: isPrimitive(result),
-                    writable: true,
-                    enumerable: true,
-                    configurable: true,
-                    argumentCount: obj instanceof Function ? obj.length : -1, // TODO: maybe need to count
-                    ...(typeof $ctx == "object" && $ctxKey != null ? Object.getOwnPropertyDescriptor($ctx, $ctxKey) : {})
-                } as WReflectDescriptor<any>
-            } as unknown as WResp<any>
-        }, toTransfer);
+            //this.resolveResponse(request.reqId, result);
+            const $ctx = readByPath(path/*["get"].includes(action) ? path.slice(0, -1) : path*/);
+            const $ctxKey = ["get"].includes(action) ? path?.at(-1) : undefined;
+
+            //
+            this.broadcast.postMessage({
+                channel: channel,
+                sender: this.channel,
+                reqId: reqId,
+                action: action,
+                type: "response",
+                payload: {
+                    // here may be result (if can be transferable, or descriptor (for proxied))
+                    result: canBeReturn ? result : null,
+                    type: typeof result,
+                    channel: channel,
+                    sender: this.channel,
+                    descriptor: {
+                        path: path,
+                        channel: channel,
+                        primitive: isPrimitive(result),
+                        writable: true,
+                        enumerable: true,
+                        configurable: true,
+                        argumentCount: obj instanceof Function ? obj.length : -1, // TODO: maybe need to count
+                        ...((typeof $ctx == "object" || typeof $ctx == "function") && $ctx != null && $ctxKey != null ? Object.getOwnPropertyDescriptor($ctx, $ctxKey) : {})
+                    } as WReflectDescriptor<any>
+                } as unknown as WResp<any>
+            }, toTransfer);
+        })
     }
+}
+
+//
+export class RemoteChannelHelper {
+    private channel: string;
+
+    constructor(channel: string, options: any = {}) {
+        this.channel = channel;
+    }
+
+    request(path: string[], action: WReflectAction, args: any[], options: any = {}): Promise<any>|null|undefined {
+        return SELF_CHANNEL.instance?.request(this.channel, path, action, args, options);
+    }
+
+    doImportModule(url: string, options: any): Promise<any>|null|undefined {
+        return this.request([], WReflectAction.IMPORT, [url], options);
+    }
+}
+
+//
+export const initHostChannel = (channel: string = "$host$")=>{
+    const $channel: any = {};
+
+    //
+    if (!$channel.instance) {
+        const messageChannel = new MessageChannel();
+        $channel.instance = new SelfHostChannelHandler(messageChannel.port1, channel);
+        $channel.messageChannel = messageChannel;
+        $channel.name = channel;
+    }
+
+    //
+    Object.assign(SELF_CHANNEL, $channel);
+    return $channel;
+}
+
+//
+export const createOrUseExistingChannel = (channel: string|null = SELF_CHANNEL?.name, options: any = {}) => {
+    const $channel = SELF_CHANNEL;
+    if (!$channel?.instance) { initHostChannel(); }
+
+    //
+    if (channel != null && !RemoteChannels.has(channel as string)) {
+        const promise = new Promise((resolve, reject) => {
+            const worker = new Worker(new URL("../worker.ts", import.meta.url).href, {
+                type: "module",
+            })
+
+            worker.addEventListener('message', (event) => {
+                if (event.data.type == "channelCreated") {
+                    $channel?.messageChannel?.port1?.start?.();
+                    resolve(new RemoteChannelHelper(event.data.channel as string, options));
+                    RemoteChannels.set(event.data.channel as string, {
+                        channel: event.data.channel as string,
+                        instance: $channel?.instance,
+                        messageChannel: $channel?.messageChannel,
+                        remote: Promised(promise)
+                    });
+                }
+            });
+
+            worker.postMessage({
+                type: "createChannel",
+                channel: channel,
+                options: options,
+                messagePort: $channel?.messageChannel?.port2 // @ts-ignore
+            }, { transfer: [$channel?.messageChannel?.port2] });
+        });
+        return Promised(promise);
+    }
+
+    //
+    return RemoteChannels.get(channel as string)?.remote;
 }

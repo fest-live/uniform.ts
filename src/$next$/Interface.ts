@@ -39,6 +39,7 @@ export enum WReflectAction {
     IS_EXTENSIBLE = "isExtensible",
     PREVENT_EXTENSIONS = "preventExtensions",
     TRANSFER = "transfer",
+    IMPORT = "import",
 }
 
 export interface WReflectDescriptor<T = any> {

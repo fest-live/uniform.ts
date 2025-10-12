@@ -1,7 +1,6 @@
-import UUIDMap from "../$core$/UUIDMap";
 
 //
-export const storedData = new UUIDMap();
+export const storedData = new Map();
 export const registeredInPath = new WeakMap();
 
 //
@@ -21,23 +20,22 @@ export const traverseByPath = (obj: any, path: string[]) => {
 
 // TODO: async support
 export const readByPath = (path: string[]) => {
-    const root = storedData.get(path);
+    const root = storedData.get(path?.[0]);
     if (root == null) { return null; }
     return traverseByPath(root, path.slice(1));
 }
 
 // TODO: async support
 export const writeByPath = (path: string[], data: any) => {
-    const root = storedData.get(path);
-    if (!root && path?.length <= 1) { storedData.add(path, data); return data; } else { return null; }
-    traverseByPath(root, path.slice(1, -1))[path[path.length - 1]] = data;
+    const root = storedData.get(path?.[0]);
+    if (path?.length > 1) { traverseByPath(root, path.slice(1, -1))[path[path.length - 1]] = data; } else { storedData.set(path?.[0], data); }
     if (typeof data == "object" || typeof data == "function") { registeredInPath.set(data, path); }
     return data;
 }
 
 //
 export const removeByPath = (path: string[]) => {
-    const root = storedData.get(path);
+    const root = storedData.get(path?.[0]);
     if (!root && path?.length <= 1) { storedData.delete(path); return true; } else { return false; }
     delete traverseByPath(root, path.slice(1, -1))[path[path.length - 1]];
     if ((typeof root == "object" || typeof root == "function") && path?.length <= 1) { registeredInPath.delete(<any>root); }

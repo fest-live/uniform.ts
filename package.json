@@ -12,7 +12,7 @@
         "build": "vite build --config vite.config.js",
         "build-wp": "webpack build --mode=production",
         "preview": "vite preview",
-        "test": "deno run --unstable-sloppy-imports --allow-all ./test/Host.ts"
+        "test": "deno run --unstable-sloppy-imports --allow-all ./test/index.ts"
     },
     "browserslist": [
         "last 1 chrome version",
@@ -22,7 +22,7 @@
         "@danielx/civet": "^0.10.4",
         "@rollup/plugin-terser": "^0.4.4",
         "@rollup/plugin-typescript": "^12.1.0",
-        "@types/node": "^24.1.0",
+        "@types/node": "^24.7.2",
         "autoprefixer": "^10.4.16",
         "cssnano": "^7.0.7",
         "cssnano-preset-advanced": "^7.0.7",
@@ -31,7 +31,7 @@
         "eslint-config-prettier": "^10.0.1",
         "postcss-preset-env": "^10.2.3",
         "terser": "^5.34.1",
-        "typescript": "^5.9.2",
+        "typescript": "^5.9.3",
         "vite": ">=7.1.5",
         "vite-plugin-compression2": "^2.2.0",
         "vite-plugin-dynamic-import": "^1.6.0",
