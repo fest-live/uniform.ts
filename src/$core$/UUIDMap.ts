@@ -1,5 +1,7 @@
 // deno-lint-ignore-file no-explicit-any
-import { ORG, UUIDv4, type dT, type rT } from "./Useful";
+import { UUIDv4, type dT, type rT } from "./Useful";
+
+//
 const rg = "register";
 
 //
@@ -64,7 +66,7 @@ export default class UUIDMap<T = dT> {
     //
     count(obj?: dT): dT | undefined {
         obj = obj instanceof WeakRef ? obj?.deref?.() : obj;
-        if (!obj || obj?.[ORG.data]) return obj;
+        if (!obj) return obj;
         const hold = this.#linked.get(obj);
         if (!hold) { this.#linked.set(obj, 1); } else { this.#linked.set(obj, hold + 1); }
         return obj;

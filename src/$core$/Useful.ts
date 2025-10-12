@@ -1,8 +1,7 @@
 // deno-lint-ignore-file no-explicit-any ban-types
 import { PMS, TS } from "./Alias";
-import ORG, { $bindings$, type $ORG } from "./OrganicType";
 
-
+//
 export const getRandomValues = (array: Uint8Array) => { return crypto?.getRandomValues ? crypto?.getRandomValues?.(array) : (()=>{
     const values = new Uint8Array(array.length);
     for (let i = 0; i < array.length; i++) {
@@ -50,27 +49,6 @@ export const Transferable = [
 ].filter((E) => (E != null));
 export const isSymbol = (sym: unknown) => (typeof sym === 'symbol' || typeof sym == 'object' && Object.prototype.toString.call(sym) == '[object Symbol]');
 export const FORBIDDEN_KEYS = new Set(["bind", "toString", "then", "catch", "finally"]);
-export const META_KEYS = new Set(Array.from(Object.values(ORG)));
-export const wrapExChanger = (exChanger: ExChanger | null): any => {
-    if (!exChanger) return null;
-
-    //
-    return new Proxy(exChanger, {
-        get(target: ExChanger, prop: any): any {
-            if (prop == ORG.sync) { return target.sync; };
-            if (prop == ORG.exc) { return target; };
-            if ( // forbidden actions
-                isSymbol(prop) ||
-                FORBIDDEN_KEYS.has(prop as string) ||
-                META_KEYS?.has?.(prop as any)
-            ) { return null; };
-            return target?.access?.(prop);
-        },
-        set(target: ExChanger, prop: string, value: any): any {
-            target?.register?.(value, prop); return true;
-        }
-    });
-}
 
 export const isPromise = <T extends object | Function | unknown>(target: T | Promise<T>): boolean => {
     return target instanceof PMS || (target as any)?.then != null && typeof (target as any)?.then == "function";
@@ -84,25 +62,3 @@ export const doOnlyAfterResolve = <T extends unknown | any>(meta: MPromise<T>, c
     }
     return cb(meta as T);
 }
-
-export const getContext = (wModule: any) => {
-    return doOnlyAfterResolve(wModule, (mx) => {
-        return wrapExChanger(mx?.[ORG.exc] ?? $bindings$?.get?.(mx) ?? mx);
-    });
-}
-
-export const doTransfer = (wModule: any, name: any, node: any | null = null) => {
-    return doOnlyAfterResolve(wModule, (mx) => {
-        const exChanger = mx?.[ORG.exc] ?? $bindings$?.get?.(mx) ?? mx;
-        return exChanger?.doTransfer?.(name, node);
-    });
-}
-
-export const transfer = (wModule: any, node: any | null = null, name: any = "") => {
-    return doOnlyAfterResolve(wModule, (mx) => {
-        const exChanger = mx?.[ORG.exc] ?? $bindings$?.get?.(mx) ?? mx;
-        return exChanger?.transfer?.(node, name);
-    });
-}
-
-export { ORG };

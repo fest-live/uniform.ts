@@ -3,11 +3,13 @@
     "exclude": ["./test/**/*", "./dist/**/*", "./fest/**/*", "./src/$polyfill$/*"],
     "compilerOptions": {
         "paths": {
-            "fest/*": ["../shared/fest/*"]
+            "fest/*": ["../shared/fest/*"],
+            "fest/object": ["../object.ts/src/index.ts"]
         },
         "target": "ESNext",
         "module": "ESNext",
         "lib": ["ESNext", "DOM", "WebWorker"],
+        "moduleResolution": "bundler",
         "esModuleInterop": true,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
@@ -24,6 +26,9 @@
         "inlineSourceMap": true,
         "sourceMap": false,
         "experimentalDecorators": true,
+        "moduleDetection": "force",
+        "verbatimModuleSyntax": true,
+        "isolatedModules": true,
         "typeRoots": ["plugins/global.d.ts"]
     }
 }
