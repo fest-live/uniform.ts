@@ -10,12 +10,10 @@ export const RemoteChannels = new Map<string, any>();
 // despise of true channel name in BroadcastChannel, we use it for self-channel
 export const SELF_CHANNEL = {
     name: "unknown",
-    instance: null,
-    messageChannel: null
+    instance: null
 } as {
     name: string;
-    instance: SelfHostChannelHandler|null;
-    messageChannel: MessageChannel|null;
+    instance: ChannelHandler|null;
 };
 
 //
@@ -47,20 +45,114 @@ const isTypedArray = (value: any)=>{
     return ArrayBuffer.isView(value) && !(value instanceof DataView);
 }
 
-//
+// TODO: review cases when arrays isn't primitive
 const isCanJustReturn = (obj: any)=>{
     return isPrimitive(obj) || (typeof SharedArrayBuffer == "function" && obj instanceof SharedArrayBuffer) || isTypedArray(obj) || Array.isArray(obj);
 }
 
+
+
 //
-export class SelfHostChannelHandler {
-    // @ts-ignore
-    private forResolves = new Map<string, PromiseWithResolvers<any>>();
+export const initChannelHandler = (channel: string = "$host$")=>{
+    if (SELF_CHANNEL?.instance) { return SELF_CHANNEL; }
 
     //
-    constructor(private broadcast: Worker|BroadcastChannel|MessagePort, private channel: string|null = SELF_CHANNEL?.name, private options: any = {}) {
-        this.channel ||= (broadcast as any).name; SELF_CHANNEL.instance = this;
-        this.broadcast.addEventListener('message', (event) => {
+    const $channel: any = {};
+    if (!$channel.instance) {
+        $channel.instance = new ChannelHandler(channel);
+        $channel.name = channel;
+    }
+
+    //
+    Object.assign(SELF_CHANNEL, $channel);
+    return SELF_CHANNEL;
+}
+
+//
+export class RemoteChannelHelper {
+    private channel: string;
+
+    constructor(channel: string, options: any = {}) {
+        this.channel = channel;
+    }
+
+    request(path: string[], action: WReflectAction, args: any[], options: any = {}): Promise<any>|null|undefined {
+        return SELF_CHANNEL.instance?.request(this.channel, path, action, args, options);
+    }
+
+    doImportModule(url: string, options: any): Promise<any>|null|undefined {
+        return this.request([], WReflectAction.IMPORT, [url], options);
+    }
+}
+
+//
+export const $createOrUseExistingChannel = (channel: string, options: any = {}, broadcast?: Worker|BroadcastChannel|MessagePort|null) => {
+    if (channel != null && !broadcast) {
+        const $channel = SELF_CHANNEL;
+
+        // only for host pool channel...
+        if (RemoteChannels.has(channel)) {
+            return RemoteChannels.get(channel);
+        }
+
+        //
+        const msgChannel = new MessageChannel();
+        const promise = Promised(new Promise((resolve, reject) => {
+            const worker = new Worker(new URL("../worker.ts", import.meta.url).href, {
+                type: "module",
+            })
+
+            //
+            worker.addEventListener('message', (event) => {
+                if (event.data.type == "channelCreated") {
+                    msgChannel?.port1?.start?.();
+                    resolve(new RemoteChannelHelper(event.data.channel as string, options));
+                }
+            });
+
+            //
+            worker.postMessage({
+                type: "createChannel",
+                channel: channel,
+                sender: SELF_CHANNEL?.name,
+                options: options,
+                messagePort: msgChannel?.port2 // @ts-ignore
+            }, { transfer: [msgChannel?.port2] });
+        }));
+
+        //
+        RemoteChannels.set(channel, {
+            channel: channel,
+            instance: $channel?.instance,
+            messageChannel: msgChannel,
+            remote: promise
+        });
+
+        //
+        return RemoteChannels.get(channel as string);
+    }
+}
+
+//
+export class ChannelHandler {
+    // @ts-ignore
+    private forResolves = new Map<string, PromiseWithResolvers<any>>();
+    private broadcasts: Record<string, Worker|BroadcastChannel|MessagePort> = {};
+
+    //
+    constructor(private channel: string, private options: any = {}) {
+        this.channel ||= (SELF_CHANNEL.name = channel);
+        SELF_CHANNEL.instance = this;
+        this.broadcasts = {};
+    }
+
+    //
+    createRemoteChannel(channel: string, options: any = {}, broadcast?: Worker|BroadcastChannel|MessagePort|null) {
+        const $channel = $createOrUseExistingChannel(channel, options, broadcast);
+
+        //
+        broadcast ??= $channel?.messageChannel?.port1;
+        broadcast?.addEventListener('message', (event) => {
             if (event.data.type == "request" && event.data.channel == this.channel) {
                 this.handleAndResponse(event.data.payload, event.data.reqId);
             } else
@@ -74,11 +166,18 @@ export class SelfHostChannelHandler {
                 console.error(event);
             }
         });
-        this.broadcast.addEventListener('error', (event) => {
+
+        //
+        broadcast?.addEventListener('error', (event) => {
             console.error(event);
-            SELF_CHANNEL.instance = null;
-            (this.broadcast as any)?.close?.();
+            (broadcast as any)?.close?.();
         });
+
+        //
+        if (broadcast) { this.broadcasts[channel] = broadcast; };
+
+        //
+        return $channel?.remote;
     }
 
     getChannel(): string|null {
@@ -88,7 +187,7 @@ export class SelfHostChannelHandler {
     request(toChannel: string, path: string[], action: WReflectAction, args: any[], options: any = {}): Promise<any>|null|undefined {
         const id = UUIDv4(); // @ts-ignore
         this.forResolves.set(id, Promise.withResolvers<any>());
-        this.broadcast.postMessage({
+        this.broadcasts[toChannel].postMessage({
             channel: toChannel,
             sender: this.channel,
             type: "request",
@@ -117,7 +216,7 @@ export class SelfHostChannelHandler {
     }
 
     handleAndResponse(request: WReq, reqId: string){ // TODO: options
-        let { channel, sender, path, action, args, data } = request;
+        let { channel, sender, path, action, args } = request;
 
         //
         if (channel != this.channel) { return; }
@@ -249,8 +348,8 @@ export class SelfHostChannelHandler {
             const $ctxKey = ["get"].includes(action) ? path?.at(-1) : undefined;
 
             //
-            this.broadcast.postMessage({
-                channel: channel,
+            this.broadcasts[sender].postMessage({
+                channel: sender,
                 sender: this.channel,
                 reqId: reqId,
                 action: action,
@@ -259,7 +358,7 @@ export class SelfHostChannelHandler {
                     // here may be result (if can be transferable, or descriptor (for proxied))
                     result: canBeReturn ? result : null,
                     type: typeof result,
-                    channel: channel,
+                    channel: sender,
                     sender: this.channel,
                     descriptor: {
                         path: path,
@@ -278,74 +377,7 @@ export class SelfHostChannelHandler {
 }
 
 //
-export class RemoteChannelHelper {
-    private channel: string;
-
-    constructor(channel: string, options: any = {}) {
-        this.channel = channel;
-    }
-
-    request(path: string[], action: WReflectAction, args: any[], options: any = {}): Promise<any>|null|undefined {
-        return SELF_CHANNEL.instance?.request(this.channel, path, action, args, options);
-    }
-
-    doImportModule(url: string, options: any): Promise<any>|null|undefined {
-        return this.request([], WReflectAction.IMPORT, [url], options);
-    }
-}
-
-//
-export const initHostChannel = (channel: string = "$host$")=>{
-    const $channel: any = {};
-
-    //
-    if (!$channel.instance) {
-        const messageChannel = new MessageChannel();
-        $channel.instance = new SelfHostChannelHandler(messageChannel.port1, channel);
-        $channel.messageChannel = messageChannel;
-        $channel.name = channel;
-    }
-
-    //
-    Object.assign(SELF_CHANNEL, $channel);
-    return $channel;
-}
-
-//
-export const createOrUseExistingChannel = (channel: string|null = SELF_CHANNEL?.name, options: any = {}) => {
-    const $channel = SELF_CHANNEL;
-    if (!$channel?.instance) { initHostChannel(); }
-
-    //
-    if (channel != null && !RemoteChannels.has(channel as string)) {
-        const promise = new Promise((resolve, reject) => {
-            const worker = new Worker(new URL("../worker.ts", import.meta.url).href, {
-                type: "module",
-            })
-
-            worker.addEventListener('message', (event) => {
-                if (event.data.type == "channelCreated") {
-                    $channel?.messageChannel?.port1?.start?.();
-                    resolve(new RemoteChannelHelper(event.data.channel as string, options));
-                    RemoteChannels.set(event.data.channel as string, {
-                        channel: event.data.channel as string,
-                        instance: $channel?.instance,
-                        messageChannel: $channel?.messageChannel,
-                        remote: Promised(promise)
-                    });
-                }
-            });
-
-            worker.postMessage({
-                type: "createChannel",
-                channel: channel,
-                options: options,
-                messagePort: $channel?.messageChannel?.port2 // @ts-ignore
-            }, { transfer: [$channel?.messageChannel?.port2] });
-        });
-        return Promised(promise);
-    }
-
-    //
-    return RemoteChannels.get(channel as string)?.remote;
+export const createOrUseExistingChannel = (channel: string, options: any = {}, broadcast?: Worker|BroadcastChannel|MessagePort|null) => {
+    const $host = initChannelHandler();
+    return $host?.instance?.createRemoteChannel(channel, options, broadcast);;
 }
