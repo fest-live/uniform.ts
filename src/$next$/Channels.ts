@@ -272,6 +272,7 @@ export class ChannelHandler {
                 break;
             case "delete":
             case "deleteProperty":
+            case "dispose": // TODO: check if path is path
                 result = path?.length > 0 ? removeByPath(path) : removeByData(obj);
                 if (result) { path = registeredInPath.get(obj) ?? []; }
                 break;

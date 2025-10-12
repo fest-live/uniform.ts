@@ -40,6 +40,7 @@ export enum WReflectAction {
     PREVENT_EXTENSIONS = "preventExtensions",
     TRANSFER = "transfer",
     IMPORT = "import",
+    DISPOSE = "dispose",
 }
 
 export interface WReflectDescriptor<T = any> {
