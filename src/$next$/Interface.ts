@@ -53,6 +53,7 @@ export interface WReflectDescriptor<T = any> {
 
 export interface WReq<T = any> {
     channel: string;
+    sender: string;
     path: string[]; // path to class method
     action: WReflectAction;
     reqId: string;

@@ -82,7 +82,7 @@ export class SelfHostChannelHandler {
         this.forResolves.set(id, Promise.withResolvers<any>());
         this.broadcast.postMessage({
             channel: toChannel,
-            receiver: this.channel,
+            sender: this.channel,
             type: "request",
             reqId: id,
             payload: {
@@ -109,7 +109,7 @@ export class SelfHostChannelHandler {
     }
 
     handleAndResponse(request: WReq){
-        let { channel, path, action, args, data } = request;
+        let { channel, sender, path, action, args, data } = request;
 
         //
         if (channel != this.channel && !RemoteChannels.has(channel)) { return; }
@@ -127,7 +127,10 @@ export class SelfHostChannelHandler {
         switch (action) {
             case "transfer":
                 const $got = obj;
-                if (isCanTransfer($got) && path?.at(-1) == "transfer") { toTransfer.push($got); }
+
+                // if channel and sender is same, no sense to transfer by cross-channel (remote-channel)
+                if (isCanTransfer($got) && channel != sender) { toTransfer.push($got); }
+
                 result = $got;
                 break;
             case "get": {
@@ -146,7 +149,9 @@ export class SelfHostChannelHandler {
             case "call": {
                 const $ctx = readByPath(path.slice(0, -1));
                 result = obj.apply?.($ctx, args);
-                if (isCanTransfer(result) && path?.at(-1) == "transfer") { toTransfer.push(result); }
+
+                // if channel and sender is same, no sense to transfer by cross-channel (remote-channel), it just internal transfer
+                if (isCanTransfer(result) && path?.at(-1) == "transfer" && channel != sender) { toTransfer.push(result); }
                 break;
             }
             case "construct":
@@ -196,7 +201,7 @@ export class SelfHostChannelHandler {
         const $ctxKey = path?.at(-1);
         this.broadcast.postMessage({
             channel: request.channel,
-            receiver: this.channel,
+            sender: this.channel,
             reqId: request.reqId,
             action: request.action,
             type: "response",

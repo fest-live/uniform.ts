@@ -7,10 +7,8 @@ import { readByPath } from "./DataBase";
 
 //
 const READ = (target: any, key: string) => {
-    return descMap.get(target)?.[key];
+    return wrapMap.get(target)?.[key];
 }
-
-
 
 //
 const unwrapDescriptorFromProxy = (target: any)=>{
@@ -106,9 +104,9 @@ export const makeRequestProxy = <T = any>(descriptor: WReflectDescriptor, option
     if (descriptor?.channel == SELF_CHANNEL?.name) { return readByPath(descriptor?.path) ?? null; }
     if (descMap.has(descriptor)) { return descMap.get(descriptor) as T; }
     const $function: any = function(){};
-    $function["$descriptor$"] = descriptor;
+    //$function["$descriptor$"] = descriptor;
     const $proxy = new Proxy($function, new RequestProxyHandler(options));
-    descMap.set(descriptor, $function);
+    descMap.set(descriptor, $proxy);
     wrapMap.set($function, descriptor);
     return $proxy as T;
 }
