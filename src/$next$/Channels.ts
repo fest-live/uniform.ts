@@ -2,7 +2,7 @@ import { Promised } from "fest/object";
 import { UUIDv4 } from "../$core$/Useful";
 import { hasNoPath, readByPath, registeredInPath, removeByData, removeByPath, writeByPath } from "./DataBase";
 import { WReflectAction, type WReflectDescriptor, type WReq, type WResp } from "./Interface";
-import { makeRequestProxy } from "./RequestProxy";
+import { deepOperateAndClone, isCanJustReturn, makeRequestProxy, normalizeRef, objectToRef } from "./RequestProxy";
 
 // fallback feature for remote channels
 export const RemoteChannels = new Map<string, any>();
@@ -18,9 +18,21 @@ export const SELF_CHANNEL = {
 
 //
 const isPrimitive = (obj: any)=>{
-    return obj == null || typeof obj == "string" || typeof obj == "number" || typeof obj == "boolean" || typeof obj == "bigint" || typeof obj == "symbol" || typeof obj == "undefined";
+    return obj == null || typeof obj == "string" || typeof obj == "number" || typeof obj == "boolean" || typeof obj == "bigint" || /*typeof obj == "symbol" ||*/ typeof obj == "undefined";
 }
 
+//
+const unwrapArray = (arr: any[])=>{
+    return arr?.flatMap?.((el)=>{
+        if (Array.isArray(el)) return unwrapArray(el);
+        return el;
+    })
+}
+
+//
+const isNotComplexArray = (arr: any[])=>{
+    return unwrapArray(arr).every(isPrimitive);
+}
 
 //
 const isCanTransfer = (obj: any)=>{
@@ -38,16 +50,6 @@ const isCanTransfer = (obj: any)=>{
         (typeof WebTransportReceiveStream == "function" && obj instanceof WebTransportReceiveStream) || // @ts-ignore
         (typeof WebTransportSendStream == "function" && obj instanceof WebTransportSendStream) || // @ts-ignore
         (typeof WebTransportReceiveStream == "function" && obj instanceof WebTransportReceiveStream); // @ts-ignore
-}
-
-//
-const isTypedArray = (value: any)=>{
-    return ArrayBuffer.isView(value) && !(value instanceof DataView);
-}
-
-// TODO: review cases when arrays isn't primitive
-const isCanJustReturn = (obj: any)=>{
-    return isPrimitive(obj) || (typeof SharedArrayBuffer == "function" && obj instanceof SharedArrayBuffer) || isTypedArray(obj) || Array.isArray(obj);
 }
 
 
@@ -250,13 +252,13 @@ export class ChannelHandler {
                 result = $got;
             }; break;
             case "set":
-                result = writeByPath([...path, args?.[0]], args?.[1]);
+                result = writeByPath([...path, args?.[0]], deepOperateAndClone(args?.[1], (el)=>normalizeRef(el)));
                 break;
             case "apply":
             case "call": {
                 const $ctx = readByPath(path.slice(0, -1));
                 if ((typeof obj == "function") && obj != null) {
-                    result = obj.apply?.($ctx, args?.[0]);
+                    result = obj.apply?.($ctx, deepOperateAndClone(args?.[0], (el)=>normalizeRef(el)));
                 } else {
                     result = undefined;
                 }
@@ -267,7 +269,7 @@ export class ChannelHandler {
             }
             case "construct":
                 if ((typeof obj == "function") && obj != null) {
-                    result = new obj(args?.[0]);
+                    result = new obj(deepOperateAndClone(args?.[0], (el)=>normalizeRef(el)));
                 }
                 break;
             case "delete":
@@ -336,7 +338,9 @@ export class ChannelHandler {
 
         // @ts-ignore
         return Promise.try(async ()=>{
-            result = await result; //
+            result = await result;
+
+            //
             const canBeReturn = ((isCanTransfer(result) && toTransfer?.includes(result)) || isCanJustReturn(result));
 
             // generate new temp path is have no exists
@@ -347,6 +351,9 @@ export class ChannelHandler {
             //this.resolveResponse(request.reqId, result);
             const $ctx = readByPath(path/*["get"].includes(action) ? path.slice(0, -1) : path*/);
             const $ctxKey = ["get"].includes(action) ? path?.at(-1) : undefined;
+
+            //
+            result = deepOperateAndClone(result, (el)=>objectToRef(el, channel, toTransfer)) ?? result;
 
             //
             this.broadcasts[sender].postMessage({
@@ -362,6 +369,7 @@ export class ChannelHandler {
                     channel: sender,
                     sender: this.channel,
                     descriptor: {
+                        $isDescriptor: true,
                         path: path,
                         channel: channel,
                         primitive: isPrimitive(result),
