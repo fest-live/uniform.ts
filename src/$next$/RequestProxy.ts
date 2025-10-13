@@ -65,7 +65,7 @@ const isNotComplexArray = (arr: any[])=>{
 }
 
 //
-export const objectToRef = <T = any>(obj: any, channel: string, toTransfer?: any[]): WReflectDescriptor<T>|T|null|undefined =>{
+export const objectToRef = <T = any>(obj: any, channel: string = SELF_CHANNEL?.name, toTransfer?: any[]): WReflectDescriptor<T>|T|null|undefined =>{
     if ((typeof obj == "object" || typeof obj == "function") && obj != null) {
         if (wrapMap.has(obj)) return wrapMap.get(obj);
         if (handMap.has(obj)) return handMap.get(obj);
@@ -79,6 +79,7 @@ export const objectToRef = <T = any>(obj: any, channel: string, toTransfer?: any
                 writeByPath(path, obj);
                 return path;
             })(),
+            owner: SELF_CHANNEL?.name,
             channel: channel,
             primitive: isPrimitive(obj),
             writable: true,

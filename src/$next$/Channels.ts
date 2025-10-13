@@ -371,6 +371,7 @@ export class ChannelHandler {
                     descriptor: {
                         $isDescriptor: true,
                         path: path,
+                        owner: this.channel,
                         channel: channel,
                         primitive: isPrimitive(result),
                         writable: true,
