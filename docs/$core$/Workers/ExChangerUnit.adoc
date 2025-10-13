@@ -1,6 +1,0 @@
-= ExChangerUnit.ts
-:source_path: modules/uniform.ts/src/$core$/Workers/ExChangerUnit.ts
-
-Auto-generated documentation.
-
-== Exports

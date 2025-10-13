@@ -1,7 +1,0 @@
-= Alias.ts
-:source_path: modules/uniform.ts/src/$core$/Library/Utils/Alias.ts
-
-Auto-generated documentation.
-
-== Exports
-- consts: PMS, TS

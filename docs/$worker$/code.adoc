@@ -1,7 +1,0 @@
-= code.ts
-:source_path: modules/uniform.ts/src/$worker$/code.ts
-
-Auto-generated documentation.
-
-== Exports
-- consts: PRELOAD

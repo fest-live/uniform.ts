@@ -1,9 +1,10 @@
 {
-    "include": ["./src/**/*.ts", "./test/**/*.ts"],
-    "exclude": ["./test/**/*", "./dist/**/*", "./fest/**/*", "./src/$polyfill$/*"],
+    "include": ["./src/**/*.ts", "./test/**/*.ts", "./src/$core/*.ts", "./src/$wrap/*.ts"],
+    "exclude": ["./dist/**/*", "./externals/**/*"],
     "compilerOptions": {
+        "outDir": "./dist/",
         "paths": {
-            "fest/*": ["../shared/fest/*"],
+            "fest/*": ["../../shared/fest/*"],
             "fest/object": ["../object.ts/src/index.ts"]
         },
         "target": "ESNext",

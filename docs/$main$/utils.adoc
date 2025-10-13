@@ -1,8 +1,0 @@
-= utils.ts
-:source_path: modules/uniform.ts/src/$main$/utils.ts
-
-Auto-generated documentation.
-
-== Exports
-- consts: sync
-- reexports: getContext, transfer, doTransfer

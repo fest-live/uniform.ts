@@ -1,7 +1,0 @@
-= index.ts
-:source_path: modules/uniform.ts/src/$worker$/index.ts
-
-Auto-generated documentation.
-
-== Exports
-- consts: moduleLoader
