@@ -353,7 +353,7 @@ export class ChannelHandler {
             const $ctxKey = ["get"].includes(action) ? path?.at(-1) : undefined;
 
             //
-            result = deepOperateAndClone(result, (el)=>objectToRef(el, channel, toTransfer)) ?? result;
+            result = deepOperateAndClone(result, (el)=>objectToRef(el, this.channel, toTransfer)) ?? result;
 
             //
             this.broadcasts[sender].postMessage({

@@ -139,7 +139,6 @@ export const deepOperateAndClone = (obj: any, operation: (el: any, key: number|s
     return operation(obj, $prev?.[1] ?? "", $prev?.[0] ?? null);
 }
 
-
 //
 export const $requestHandler = Symbol.for("@requestHandler");
 export const $descriptor = Symbol.for("@descriptor");
@@ -213,7 +212,7 @@ export const wrapMap = new WeakMap<Function, WReflectDescriptor>();
 export const descMap = new WeakMap<WReflectDescriptor, Function>();
 export const makeRequestProxy = <T = any>(descriptor: WReflectDescriptor, options: any): T =>{
     if (typeof descriptor != "object" || descriptor == null) { return descriptor as T; }
-    if (descriptor?.channel == SELF_CHANNEL?.name) { return readByPath(descriptor?.path) ?? null; }
+    if (descriptor?.owner == SELF_CHANNEL?.name) { return readByPath(descriptor?.path) ?? null; }
     if (descMap.has(descriptor)) { return descMap.get(descriptor) as T; }
     const $function: any = function(){};
     //$function["$descriptor$"] = descriptor;

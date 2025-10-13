@@ -46,6 +46,7 @@ export enum WReflectAction {
 export interface WReflectDescriptor<T = any> {
     path: string[];
     channel: string;
+    owner: string;
     primitive: boolean;
     writable: boolean;
     enumerable: boolean;
