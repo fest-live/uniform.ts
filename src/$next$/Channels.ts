@@ -1,7 +1,7 @@
 import { hasNoPath, readByPath, registeredInPath, removeByData, removeByPath, writeByPath } from "./DataBase";
 import { WReflectAction, type WReflectDescriptor, type WReq, type WResp } from "./Interface";
-import { deepOperateAndClone, isCanJustReturn, makeRequestProxy, normalizeRef, objectToRef } from "./RequestProxy";
-import { Promised, UUIDv4, WRef } from "fest/core";
+import { makeRequestProxy, normalizeRef, objectToRef } from "./RequestProxy";
+import { deepOperateAndClone, isCanJustReturn, isPrimitive, Promised, UUIDv4, WRef } from "fest/core";
 
 // fallback feature for remote channels
 export const RemoteChannels = new Map<string, any>();
@@ -14,24 +14,6 @@ export const SELF_CHANNEL = {
     name: string;
     instance: ChannelHandler|null;
 };
-
-//
-const isPrimitive = (obj: any)=>{
-    return obj == null || typeof obj == "string" || typeof obj == "number" || typeof obj == "boolean" || typeof obj == "bigint" || /*typeof obj == "symbol" ||*/ typeof obj == "undefined";
-}
-
-//
-const unwrapArray = (arr: any[])=>{
-    return arr?.flatMap?.((el)=>{
-        if (Array.isArray(el)) return unwrapArray(el);
-        return el;
-    })
-}
-
-//
-const isNotComplexArray = (arr: any[])=>{
-    return unwrapArray(arr).every(isPrimitive);
-}
 
 //
 const isCanTransfer = (obj: any)=>{
