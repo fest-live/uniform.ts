@@ -1,0 +1,43 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "request": "launch",
+            "name": "Debug Deno",
+            "type": "node",
+            "program": "${workspaceFolder}/test/index.ts",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "deno",
+            "runtimeArgs": [
+                "run",
+                "--unstable-sloppy-imports",
+                "--inspect-brk",
+                "--allow-all"
+            ],
+            "outputCapture": "std",
+            "attachSimplePort": 9229,
+            "sourceMaps": true
+        },
+        {
+            "name": "Attach to Chrome",
+            "port": 9222,
+            "request": "attach",
+            "type": "chrome",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Debug in Chrome",
+            "url": "http://localhost:5173/",
+            "webRoot": "${workspaceFolder}",
+            "port": 9222,
+            //"runtimeExecutable": "/usr/bin/yandex-browser-stable",
+            "runtimeExecutable": "/usr/bin/google-chrome-stable",
+            "runtimeArgs": ["--headless", "--disable-gpu", "--remote-debugging-port=9222"]
+        }
+    ]
+}
