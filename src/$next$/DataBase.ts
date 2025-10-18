@@ -1,12 +1,8 @@
+import { isPrimitive } from "fest/core";
 
 //
 export const storedData = new Map();
 export const registeredInPath = new WeakMap();
-
-//
-const isPrimitive = (obj: any)=>{
-    return obj == null || typeof obj == "string" || typeof obj == "number" || typeof obj == "boolean" || typeof obj == "bigint" || typeof obj == "symbol" || typeof obj == "undefined";
-}
 
 //
 export const traverseByPath = (obj: any, path: string[]) => {

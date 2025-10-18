@@ -1,12 +1,9 @@
 import { SELF_CHANNEL } from "./Channels";
 
 // temporary resolution
-import { Promised, WRef } from "fest/object";
+import { Promised, WRef, UUIDv4 } from "fest/core";
 import { WReflectAction, type WReflectDescriptor } from "./Interface";
 import { readByPath, registeredInPath, writeByPath } from "./DataBase";
-import { UUIDv4 } from "../$core$/Useful";
-
-
 
 //
 const READ = (target: any, key: string) => {

@@ -1,14 +1,11 @@
 // deno-lint-ignore-file no-explicit-any
-import { UUIDv4, type dT, type rT } from "./Useful";
+import { type dT, type rT } from "./Useful";
+import { UUIDv4, deref } from "fest/core";
 
 //
 const rg = "register";
 
 //
-const deref = (obj) => {
-    return (obj instanceof WeakRef ? obj?.deref?.() : obj) as any;
-}
-
 // TODO: planned promised...
 export default class UUIDMap<T = dT> {
     #weakMap = new WeakMap<dT, string>();

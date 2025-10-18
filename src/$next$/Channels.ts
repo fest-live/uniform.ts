@@ -1,8 +1,7 @@
-import { Promised } from "fest/object";
-import { UUIDv4 } from "../$core$/Useful";
 import { hasNoPath, readByPath, registeredInPath, removeByData, removeByPath, writeByPath } from "./DataBase";
 import { WReflectAction, type WReflectDescriptor, type WReq, type WResp } from "./Interface";
 import { deepOperateAndClone, isCanJustReturn, makeRequestProxy, normalizeRef, objectToRef } from "./RequestProxy";
+import { Promised, UUIDv4, WRef } from "fest/core";
 
 // fallback feature for remote channels
 export const RemoteChannels = new Map<string, any>();
