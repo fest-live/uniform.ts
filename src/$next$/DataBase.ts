@@ -75,5 +75,6 @@ export const removeByData = (data: any) => {
 
 //
 export const hasNoPath = (data: any) => {
-    return registeredInPath?.get?.(data) == null;
+    const $desc = data?.[$descriptor] ?? (data?.$isDescriptor ? data : null);
+    return (registeredInPath?.get?.(data) ?? $desc?.path) == null;
 }
