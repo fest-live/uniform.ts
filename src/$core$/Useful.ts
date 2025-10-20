@@ -1,14 +1,6 @@
 // deno-lint-ignore-file no-explicit-any ban-types
-import { PMS, TS } from "./Alias";
-
-//
-export const getRandomValues = (array: Uint8Array) => { return crypto?.getRandomValues ? crypto?.getRandomValues?.(array) : (()=>{
-    const values = new Uint8Array(array.length);
-    for (let i = 0; i < array.length; i++) {
-        values[i] = Math.floor(Math.random() * 256);
-    }
-    return values;
-})(); };
+import { isPromise } from "fest/core";
+import { TS } from "./Alias";
 
 //
 export type dT = object | Function;
@@ -47,13 +39,9 @@ export const Transferable = [
     /* @ts-ignore "" */ typeof OffscreenCanvas != TS.udf ? OffscreenCanvas : null,
     /* @ts-ignore "" */ typeof RTCDataChannel != TS.udf ? RTCDataChannel : null
 ].filter((E) => (E != null));
-export const isSymbol = (sym: unknown) => (typeof sym === 'symbol' || typeof sym == 'object' && Object.prototype.toString.call(sym) == '[object Symbol]');
+
+//
 export const FORBIDDEN_KEYS = new Set(["bind", "toString", "then", "catch", "finally"]);
-
-export const isPromise = <T extends object | Function | unknown>(target: T | Promise<T>): boolean => {
-    return target instanceof PMS || (target as any)?.then != null && typeof (target as any)?.then == "function";
-}
-
 export const doOnlyAfterResolve = <T extends unknown | any>(meta: MPromise<T>, cb: (u: T) => MPromise<T> | null | void): MPromise<any> | null | void => {
     if (isPromise(meta)) {
         const chain = (meta as any)?.then?.(cb)?.catch?.(console.trace.bind(console)) ?? cb(meta as T);
