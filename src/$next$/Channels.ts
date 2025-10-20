@@ -1,7 +1,7 @@
 import { hasNoPath, readByPath, registeredInPath, removeByData, removeByPath, writeByPath } from "./DataBase";
 import { WReflectAction, type WReflectDescriptor, type WReq, type WResp } from "./Interface";
 import { makeRequestProxy, normalizeRef, objectToRef } from "./RequestProxy";
-import { deepOperateAndClone, isCanJustReturn, isPrimitive, Promised, UUIDv4, WRef } from "fest/core";
+import { deepOperateAndClone, isCanJustReturn, isCanTransfer, isPrimitive, Promised, UUIDv4, WRef } from "fest/core";
 
 // fallback feature for remote channels
 export const RemoteChannels = new Map<string, any>();
@@ -14,24 +14,6 @@ export const SELF_CHANNEL = {
     name: string;
     instance: ChannelHandler|null;
 };
-
-//
-const isCanTransfer = (obj: any)=>{
-    return isPrimitive(obj) ||
-        (typeof ArrayBuffer == "function" && obj instanceof ArrayBuffer) ||
-        (typeof MessagePort == "function" && obj instanceof MessagePort) ||
-        (typeof ReadableStream == "function" && obj instanceof ReadableStream) ||
-        (typeof WritableStream == "function" && obj instanceof WritableStream) ||
-        (typeof TransformStream == "function" && obj instanceof TransformStream) ||
-        (typeof ImageBitmap == "function" && obj instanceof ImageBitmap) ||
-        (typeof VideoFrame == "function" && obj instanceof VideoFrame) ||
-        (typeof OffscreenCanvas == "function" && obj instanceof OffscreenCanvas) ||
-        (typeof RTCDataChannel == "function" && obj instanceof RTCDataChannel) || // @ts-ignore
-        (typeof AudioData == "function" && obj instanceof AudioData) || // @ts-ignore
-        (typeof WebTransportReceiveStream == "function" && obj instanceof WebTransportReceiveStream) || // @ts-ignore
-        (typeof WebTransportSendStream == "function" && obj instanceof WebTransportSendStream) || // @ts-ignore
-        (typeof WebTransportReceiveStream == "function" && obj instanceof WebTransportReceiveStream); // @ts-ignore
-}
 
 
 

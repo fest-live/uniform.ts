@@ -46,7 +46,6 @@ export const objectToRef = (obj: any, channel: string = SELF_CHANNEL?.name, toTr
 export const $requestHandler = Symbol.for("@requestHandler");
 export const $descriptor = Symbol.for("@descriptor");
 
-
 // wrap back to usable proxies
 export const normalizeRef = (v: any)=>{
     if (isCanJustReturn(v)) return v;
