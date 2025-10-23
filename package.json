@@ -1,5 +1,5 @@
 {
-    "name": "@fest/uniform-ts",
+    "name": "@fest/uniform",
     "description": "Universal Worker helper library",
     "version": "1.0.0alpha",
     "private": false,
