@@ -3,6 +3,10 @@ import { WReflectAction, type WReflectDescriptor, type WReq, type WResp } from "
 import { makeRequestProxy, normalizeRef, objectToRef } from "./RequestProxy";
 import { deepOperateAndClone, isCanJustReturn, isCanTransfer, isPrimitive, Promised, UUIDv4, WRef } from "fest/core";
 
+//
+import workerCode from "./Worker?worker&inline"
+//const workerCode = "./Worker.ts";
+
 // fallback feature for remote channels
 export const RemoteChannels = new Map<string, any>();
 
@@ -51,6 +55,18 @@ export class RemoteChannelHelper {
 }
 
 //
+export const loadWorker = (WX: any): Worker | null => {
+    if (WX instanceof Worker) { return WX; } else
+    if (typeof WX == "function") { try { return new WX(); } catch (e) { return WX(); }; } else
+    if (typeof WX == "string") {
+        if (URL.canParse(WX)) { return new Worker(WX, { type: "module" }); };
+        return new Worker(URL.createObjectURL(new Blob([WX], { type: "application/javascript" })), { type: "module" });
+    } else
+    if (WX instanceof Blob || WX instanceof File) { return new Worker(URL.createObjectURL(WX), { type: "module" }); }
+    return WX ? WX : (typeof self != TS.udf ? self : null) as unknown as Worker;
+}
+
+//
 export const $createOrUseExistingChannel = (channel: string, options: any = {}, broadcast?: Worker|BroadcastChannel|MessagePort|null) => {
     if (channel != null && !broadcast) {
         const $channel = SELF_CHANNEL;
@@ -63,9 +79,7 @@ export const $createOrUseExistingChannel = (channel: string, options: any = {}, 
         //
         const msgChannel = new MessageChannel();
         const promise = Promised(new Promise((resolve, reject) => {
-            const worker = new Worker(new URL("../worker.ts", import.meta.url).href, {
-                type: "module",
-            })
+            const worker = loadWorker(workerCode);
 
             //
             worker.addEventListener('message', (event) => {

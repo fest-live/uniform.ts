@@ -1,4 +1,4 @@
-import { ChannelHandler } from "./$next$/Channels";
+import { ChannelHandler } from "./Channels";
 
 //
 addEventListener("message", (event) => {
