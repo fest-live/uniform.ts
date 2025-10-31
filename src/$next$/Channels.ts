@@ -4,8 +4,8 @@ import { makeRequestProxy, normalizeRef, objectToRef } from "./RequestProxy";
 import { deepOperateAndClone, isCanJustReturn, isCanTransfer, isPrimitive, Promised, UUIDv4, WRef } from "fest/core";
 
 //
-import workerCode from "./Worker?worker&inline"
-//const workerCode = "./Worker.ts";
+import workerCode from "./Worker?worker&url"
+//const workerCode = new URL("./Worker.ts", import.meta.url);
 
 // fallback feature for remote channels
 export const RemoteChannels = new Map<string, any>();
@@ -57,13 +57,15 @@ export class RemoteChannelHelper {
 //
 export const loadWorker = (WX: any): Worker | null => {
     if (WX instanceof Worker) { return WX; } else
-    if (typeof WX == "function") { try { return new WX(); } catch (e) { return WX(); }; } else
+    if (WX instanceof URL) { return new Worker(WX.href, { type: "module" }); } else
+    if (typeof WX == "function") { try { return new WX({ type: "module" }); } catch (e) { return WX({ type: "module" }); }; } else
     if (typeof WX == "string") {
-        if (URL.canParse(WX)) { return new Worker(WX, { type: "module" }); };
+        if (WX.startsWith("/")) { return new Worker(new URL(WX?.replace(/^\//, "./"), import.meta.url)?.href, { type: "module" }); } else
+        if (URL.canParse(WX) || WX.startsWith("./")) { return new Worker(new URL(WX, import.meta.url).href, { type: "module" }); } else
         return new Worker(URL.createObjectURL(new Blob([WX], { type: "application/javascript" })), { type: "module" });
     } else
     if (WX instanceof Blob || WX instanceof File) { return new Worker(URL.createObjectURL(WX), { type: "module" }); }
-    return WX ? WX : (typeof self != TS.udf ? self : null) as unknown as Worker;
+    return WX ? WX : (typeof self != "undefined" ? self : null) as unknown as Worker;
 }
 
 //

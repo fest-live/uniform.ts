@@ -7,7 +7,7 @@
     ],
     "imports": {
         "fest/*": "../shared/fest/*",
-        "fest/object": "../object.ts/src/index.ts",
-        "fest/core": "../core.ts/src/index.ts"
+        "fest/core": "../core.ts/dist/core.js",
+        "fest/uniform": "../uniform.ts/dist/uniform.js"
     }
 }

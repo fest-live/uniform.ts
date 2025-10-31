@@ -1,4 +1,4 @@
-import { importModuleInChannel } from "../src";
+import { importModuleInChannel } from "fest/uniform";
 
 //
 const module = await importModuleInChannel("test", new URL("./module.ts", import.meta.url).href);

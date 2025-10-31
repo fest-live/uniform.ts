@@ -5,8 +5,8 @@
         "outDir": "./dist/",
         "paths": {
             "fest/*": ["../../shared/fest/*"],
-            "fest/core": ["../core.ts/src/index.ts"],
-            "fest/object": ["../object.ts/src/index.ts"]
+            "fest/core": ["../core.ts/dist/core.js"],
+            "fest/uniform": ["./dist/uniform.js"]
         },
         "target": "ESNext",
         "module": "ESNext",
