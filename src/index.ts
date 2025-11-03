@@ -1,4 +1,4 @@
-import { createOrUseExistingChannel } from "./$next$/Channels";
+import { createOrUseExistingChannel } from "./next/Channels";
 
 //
 export const sync = async (channel: string, options: any = {}) => {

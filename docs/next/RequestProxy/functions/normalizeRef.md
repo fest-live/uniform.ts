@@ -1,0 +1,23 @@
+[**@fest/uniform v0.0.0**](../../../README.md)
+
+***
+
+[@fest/uniform](../../../README.md) / [next/RequestProxy](../README.md) / normalizeRef
+
+# Function: normalizeRef()
+
+```ts
+function normalizeRef(v): any;
+```
+
+Defined in: next/RequestProxy.ts:50
+
+## Parameters
+
+### v
+
+`any`
+
+## Returns
+
+`any`

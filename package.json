@@ -1,41 +1,40 @@
 {
     "name": "@fest/uniform",
-    "description": "Universal Worker helper library",
-    "version": "1.0.0alpha",
+    "description": "Universal Worker helper for JavaScript",
+    "version": "0.0.0",
     "private": false,
     "type": "module",
     "index": "./dist/uniform.js",
-    "scripts": {
-        "dev": "vite --host 0.0.0.0",
-        "worker": "vite build",
-        "watch": "vite build --watch",
-        "build": "vite build --config vite.config.js",
-        "build-wp": "webpack build --mode=production",
-        "preview": "vite preview",
-        "test": "npm run build && deno run --unstable-sloppy-imports --allow-all ./test/index.ts"
+    "exports": {
+        ".": {
+            "import": "./src/index.ts",
+            "require": "./dist/uniform.js"
+        }
     },
-    "browserslist": [
-        "last 1 chrome version",
-        "last 1 edge version"
-    ],
+    "scripts": {
+        "test": "vite --host 0.0.0.0",
+        "dev": "vite --host 0.0.0.0",
+        "watch": "vite build --watch",
+        "build": "vite build --config vite.config.js && npm run docs && npm run docs:md",
+        "preview": "vite preview",
+        "docs": "typedoc ./src/index.ts --options ./typedoc.json --out ./docs --tsconfig ./tsconfig.json --excludeExternals --excludePrivate --excludeProtected --skipErrorChecking",
+        "docs:clean": "rm -rf ./docs && typedoc --options ./typedoc.json",
+        "docs:md": "typedoc --options ./typedoc.md.json",
+        "docs:md:clean": "rm -rf ./docs-md && typedoc --options ./typedoc.md.json"
+    },
     "devDependencies": {
-        "@danielx/civet": "^0.10.4",
         "@rollup/plugin-terser": "^0.4.4",
         "@rollup/plugin-typescript": "^12.1.0",
         "@types/node": "^24.7.2",
-        "autoprefixer": "^10.4.16",
-        "cssnano": "^7.0.7",
-        "cssnano-preset-advanced": "^7.0.7",
         "esbuild": "^0.25.0",
         "eslint": "^9.13.0",
         "eslint-config-prettier": "^10.0.1",
         "postcss-preset-env": "^10.2.3",
-        "terser": "^5.44.0",
+        "typedoc-plugin-markdown": "^4.9.0",
         "typescript": "^5.9.3",
-        "vite": ">=7.1.11",
-        "vite-plugin-compression2": "^2.2.0",
+        "vite": ">=7.1.5",
         "vite-plugin-dynamic-import": "^1.6.0",
-        "vite-plugin-external": "^6.0.1",
+        "vite-plugin-external": "^6.2.2",
         "vite-plugin-optimizer": "^1.4.3"
     }
 }

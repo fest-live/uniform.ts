@@ -1,0 +1,19 @@
+[**@fest/uniform v0.0.0**](../../../README.md)
+
+***
+
+[@fest/uniform](../../../README.md) / [core/Useful](../README.md) / IWrap
+
+# Type Alias: IWrap\<T\>
+
+```ts
+type IWrap<T> = { [pT in keyof T]: MPromise<pT> | IWrap<pT> };
+```
+
+Defined in: core/Useful.ts:9
+
+## Type Parameters
+
+### T
+
+`T` *extends* `unknown`
