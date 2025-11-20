@@ -75,7 +75,7 @@ export const createArrayBuffer = (length: number) => {
 ## 📦 Installation
 
 ```bash
-npm install @fest/uniform
+npm install -D @fest/uniform
 # or
 yarn add @fest/uniform
 ```
