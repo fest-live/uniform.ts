@@ -6,7 +6,7 @@
 
 # Class: default\<T\>
 
-Defined in: core/UUIDMap.ts:10
+Defined in: [core/UUIDMap.ts:10](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/core/UUIDMap.ts#L10)
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: core/UUIDMap.ts:10
 new default<T>(): UUIDMap<T>;
 ```
 
-Defined in: core/UUIDMap.ts:17
+Defined in: [core/UUIDMap.ts:17](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/core/UUIDMap.ts#L17)
 
 #### Returns
 
@@ -36,10 +36,10 @@ Defined in: core/UUIDMap.ts:17
 add(
    obj, 
    id, 
-   force): undefined | string;
+   force): string | undefined;
 ```
 
-Defined in: core/UUIDMap.ts:35
+Defined in: [core/UUIDMap.ts:35](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/core/UUIDMap.ts#L35)
 
 #### Parameters
 
@@ -57,17 +57,17 @@ Defined in: core/UUIDMap.ts:35
 
 #### Returns
 
-`undefined` \| `string`
+`string` \| `undefined`
 
 ***
 
 ### count()
 
 ```ts
-count(obj?): undefined | dT;
+count(obj?): dT | undefined;
 ```
 
-Defined in: core/UUIDMap.ts:64
+Defined in: [core/UUIDMap.ts:64](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/core/UUIDMap.ts#L64)
 
 #### Parameters
 
@@ -77,7 +77,7 @@ Defined in: core/UUIDMap.ts:64
 
 #### Returns
 
-`undefined` \| [`dT`](../../Useful/type-aliases/dT.md)
+[`dT`](../../Useful/type-aliases/dT.md) \| `undefined`
 
 ***
 
@@ -87,7 +87,7 @@ Defined in: core/UUIDMap.ts:64
 delete<R>(key): unknown;
 ```
 
-Defined in: core/UUIDMap.ts:27
+Defined in: [core/UUIDMap.ts:27](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/core/UUIDMap.ts#L27)
 
 #### Type Parameters
 
@@ -110,10 +110,10 @@ Defined in: core/UUIDMap.ts:27
 ### discount()
 
 ```ts
-discount(obj?): undefined | dT;
+discount(obj?): dT | undefined;
 ```
 
-Defined in: core/UUIDMap.ts:53
+Defined in: [core/UUIDMap.ts:53](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/core/UUIDMap.ts#L53)
 
 #### Parameters
 
@@ -123,7 +123,7 @@ Defined in: core/UUIDMap.ts:53
 
 #### Returns
 
-`undefined` \| [`dT`](../../Useful/type-aliases/dT.md)
+[`dT`](../../Useful/type-aliases/dT.md) \| `undefined`
 
 ***
 
@@ -133,7 +133,7 @@ Defined in: core/UUIDMap.ts:53
 get<R>(key): unknown;
 ```
 
-Defined in: core/UUIDMap.ts:81
+Defined in: [core/UUIDMap.ts:81](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/core/UUIDMap.ts#L81)
 
 #### Type Parameters
 
@@ -159,7 +159,7 @@ Defined in: core/UUIDMap.ts:81
 has<R>(key): boolean;
 ```
 
-Defined in: core/UUIDMap.ts:73
+Defined in: [core/UUIDMap.ts:73](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/core/UUIDMap.ts#L73)
 
 #### Type Parameters
 

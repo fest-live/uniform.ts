@@ -6,7 +6,7 @@
 
 # Enumeration: WStatus
 
-Defined in: next/Interface.ts:1
+Defined in: [next/Interface.ts:1](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L1)
 
 ## Enumeration Members
 
@@ -16,7 +16,7 @@ Defined in: next/Interface.ts:1
 ERROR: "error";
 ```
 
-Defined in: next/Interface.ts:3
+Defined in: [next/Interface.ts:3](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L3)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: next/Interface.ts:3
 SUCCESS: "success";
 ```
 
-Defined in: next/Interface.ts:2
+Defined in: [next/Interface.ts:2](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L2)

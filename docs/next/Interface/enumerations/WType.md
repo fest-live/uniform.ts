@@ -6,7 +6,7 @@
 
 # Enumeration: WType
 
-Defined in: next/Interface.ts:6
+Defined in: [next/Interface.ts:6](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L6)
 
 ## Enumeration Members
 
@@ -16,7 +16,7 @@ Defined in: next/Interface.ts:6
 ARRAY: "array";
 ```
 
-Defined in: next/Interface.ts:16
+Defined in: [next/Interface.ts:16](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L16)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: next/Interface.ts:16
 BIGINT: "bigint";
 ```
 
-Defined in: next/Interface.ts:11
+Defined in: [next/Interface.ts:11](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L11)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: next/Interface.ts:11
 BOOLEAN: "boolean";
 ```
 
-Defined in: next/Interface.ts:10
+Defined in: [next/Interface.ts:10](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L10)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: next/Interface.ts:10
 FUNCTION: "function";
 ```
 
-Defined in: next/Interface.ts:15
+Defined in: [next/Interface.ts:15](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L15)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: next/Interface.ts:15
 MAP: "map";
 ```
 
-Defined in: next/Interface.ts:17
+Defined in: [next/Interface.ts:17](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L17)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: next/Interface.ts:17
 NULL: "null";
 ```
 
-Defined in: next/Interface.ts:13
+Defined in: [next/Interface.ts:13](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L13)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: next/Interface.ts:13
 NUMBER: "number";
 ```
 
-Defined in: next/Interface.ts:8
+Defined in: [next/Interface.ts:8](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L8)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: next/Interface.ts:8
 OBJECT: "object";
 ```
 
-Defined in: next/Interface.ts:14
+Defined in: [next/Interface.ts:14](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L14)
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: next/Interface.ts:14
 PRIMITIVE: "primitive";
 ```
 
-Defined in: next/Interface.ts:7
+Defined in: [next/Interface.ts:7](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L7)
 
 ***
 
@@ -106,7 +106,7 @@ Defined in: next/Interface.ts:7
 PROMISE: "promise";
 ```
 
-Defined in: next/Interface.ts:21
+Defined in: [next/Interface.ts:21](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L21)
 
 ***
 
@@ -116,7 +116,7 @@ Defined in: next/Interface.ts:21
 SET: "set";
 ```
 
-Defined in: next/Interface.ts:18
+Defined in: [next/Interface.ts:18](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L18)
 
 ***
 
@@ -126,7 +126,7 @@ Defined in: next/Interface.ts:18
 STRING: "string";
 ```
 
-Defined in: next/Interface.ts:9
+Defined in: [next/Interface.ts:9](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L9)
 
 ***
 
@@ -136,7 +136,7 @@ Defined in: next/Interface.ts:9
 SYMBOL: "symbol";
 ```
 
-Defined in: next/Interface.ts:19
+Defined in: [next/Interface.ts:19](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L19)
 
 ***
 
@@ -146,7 +146,7 @@ Defined in: next/Interface.ts:19
 UNDEFINED: "undefined";
 ```
 
-Defined in: next/Interface.ts:12
+Defined in: [next/Interface.ts:12](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L12)
 
 ***
 
@@ -156,7 +156,7 @@ Defined in: next/Interface.ts:12
 UNKNOWN: "unknown";
 ```
 
-Defined in: next/Interface.ts:22
+Defined in: [next/Interface.ts:22](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L22)
 
 ***
 
@@ -166,4 +166,4 @@ Defined in: next/Interface.ts:22
 WEAK_REF: "weakRef";
 ```
 
-Defined in: next/Interface.ts:20
+Defined in: [next/Interface.ts:20](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L20)

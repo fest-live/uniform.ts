@@ -6,7 +6,7 @@
 
 # Interface: WError\<T\>
 
-Defined in: next/Interface.ts:70
+Defined in: [next/Interface.ts:70](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L70)
 
 ## Type Parameters
 
@@ -22,4 +22,4 @@ Defined in: next/Interface.ts:70
 message: string;
 ```
 
-Defined in: next/Interface.ts:71
+Defined in: [next/Interface.ts:71](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L71)

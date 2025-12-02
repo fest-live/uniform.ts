@@ -6,7 +6,7 @@
 
 # Class: RemoteChannelHelper
 
-Defined in: next/Channels.ts:41
+Defined in: [next/Channels.ts:41](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L41)
 
 ## Constructors
 
@@ -16,7 +16,7 @@ Defined in: next/Channels.ts:41
 new RemoteChannelHelper(channel, options): RemoteChannelHelper;
 ```
 
-Defined in: next/Channels.ts:44
+Defined in: [next/Channels.ts:44](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L44)
 
 #### Parameters
 
@@ -37,10 +37,10 @@ Defined in: next/Channels.ts:44
 ### doImportModule()
 
 ```ts
-doImportModule(url, options): undefined | null | Promise<any>;
+doImportModule(url, options): Promise<any> | null | undefined;
 ```
 
-Defined in: next/Channels.ts:52
+Defined in: [next/Channels.ts:52](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L52)
 
 #### Parameters
 
@@ -54,7 +54,7 @@ Defined in: next/Channels.ts:52
 
 #### Returns
 
-`undefined` \| `null` \| `Promise`\<`any`\>
+`Promise`\<`any`\> \| `null` \| `undefined`
 
 ***
 
@@ -65,10 +65,10 @@ request(
    path, 
    action, 
    args, 
-options): undefined | null | Promise<any>;
+   options): Promise<any> | null | undefined;
 ```
 
-Defined in: next/Channels.ts:48
+Defined in: [next/Channels.ts:48](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L48)
 
 #### Parameters
 
@@ -90,4 +90,4 @@ Defined in: next/Channels.ts:48
 
 #### Returns
 
-`undefined` \| `null` \| `Promise`\<`any`\>
+`Promise`\<`any`\> \| `null` \| `undefined`

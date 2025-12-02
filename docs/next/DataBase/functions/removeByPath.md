@@ -10,7 +10,7 @@
 function removeByPath(path): boolean;
 ```
 
-Defined in: next/DataBase.ts:51
+Defined in: [next/DataBase.ts:51](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/DataBase.ts#L51)
 
 ## Parameters
 

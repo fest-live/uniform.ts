@@ -6,7 +6,7 @@
 
 # Interface: WResp\<T\>
 
-Defined in: next/Interface.ts:78
+Defined in: [next/Interface.ts:78](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L78)
 
 ## Type Parameters
 
@@ -19,10 +19,10 @@ Defined in: next/Interface.ts:78
 ### descriptor?
 
 ```ts
-optional descriptor: null | WReflectDescriptor<any>;
+optional descriptor: WReflectDescriptor<any> | null;
 ```
 
-Defined in: next/Interface.ts:83
+Defined in: [next/Interface.ts:83](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L83)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: next/Interface.ts:83
 message: string;
 ```
 
-Defined in: next/Interface.ts:81
+Defined in: [next/Interface.ts:81](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L81)
 
 ***
 
@@ -42,17 +42,17 @@ Defined in: next/Interface.ts:81
 reason: WError<T> | WSuccess<T>;
 ```
 
-Defined in: next/Interface.ts:80
+Defined in: [next/Interface.ts:80](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L80)
 
 ***
 
 ### received?
 
 ```ts
-optional received: null | T;
+optional received: T | null;
 ```
 
-Defined in: next/Interface.ts:82
+Defined in: [next/Interface.ts:82](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L82)
 
 ***
 
@@ -62,14 +62,14 @@ Defined in: next/Interface.ts:82
 status: number;
 ```
 
-Defined in: next/Interface.ts:79
+Defined in: [next/Interface.ts:79](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L79)
 
 ***
 
 ### type?
 
 ```ts
-optional type: null | WType;
+optional type: WType | null;
 ```
 
-Defined in: next/Interface.ts:84
+Defined in: [next/Interface.ts:84](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L84)

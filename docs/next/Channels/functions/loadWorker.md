@@ -7,10 +7,10 @@
 # Function: loadWorker()
 
 ```ts
-function loadWorker(WX): null | Worker;
+function loadWorker(WX): Worker | null;
 ```
 
-Defined in: next/Channels.ts:58
+Defined in: [next/Channels.ts:58](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L58)
 
 ## Parameters
 
@@ -20,4 +20,4 @@ Defined in: next/Channels.ts:58
 
 ## Returns
 
-`null` \| `Worker`
+`Worker` \| `null`

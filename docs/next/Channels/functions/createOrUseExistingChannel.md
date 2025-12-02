@@ -13,7 +13,7 @@ function createOrUseExistingChannel(
    broadcast?): any;
 ```
 
-Defined in: next/Channels.ts:369
+Defined in: [next/Channels.ts:369](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L369)
 
 ## Parameters
 
@@ -27,7 +27,7 @@ Defined in: next/Channels.ts:369
 
 ### broadcast?
 
-`null` | `MessagePort` | `Worker` | `BroadcastChannel`
+`MessagePort` | `Worker` | `BroadcastChannel` | `null`
 
 ## Returns
 

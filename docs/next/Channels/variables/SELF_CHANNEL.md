@@ -10,14 +10,14 @@
 const SELF_CHANNEL: object;
 ```
 
-Defined in: next/Channels.ts:14
+Defined in: [next/Channels.ts:14](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L14)
 
 ## Type Declaration
 
 ### instance
 
 ```ts
-instance: null | ChannelHandler;
+instance: ChannelHandler | null;
 ```
 
 ### name

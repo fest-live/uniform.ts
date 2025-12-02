@@ -6,7 +6,7 @@
 
 # Enumeration: WReflectAction
 
-Defined in: next/Interface.ts:25
+Defined in: [next/Interface.ts:25](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L25)
 
 ## Enumeration Members
 
@@ -16,7 +16,7 @@ Defined in: next/Interface.ts:25
 APPLY: "apply";
 ```
 
-Defined in: next/Interface.ts:29
+Defined in: [next/Interface.ts:29](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L29)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: next/Interface.ts:29
 CALL: "call";
 ```
 
-Defined in: next/Interface.ts:28
+Defined in: [next/Interface.ts:28](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L28)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: next/Interface.ts:28
 CONSTRUCT: "construct";
 ```
 
-Defined in: next/Interface.ts:30
+Defined in: [next/Interface.ts:30](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L30)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: next/Interface.ts:30
 DELETE: "delete";
 ```
 
-Defined in: next/Interface.ts:31
+Defined in: [next/Interface.ts:31](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L31)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: next/Interface.ts:31
 DELETE_PROPERTY: "deleteProperty";
 ```
 
-Defined in: next/Interface.ts:32
+Defined in: [next/Interface.ts:32](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L32)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: next/Interface.ts:32
 DISPOSE: "dispose";
 ```
 
-Defined in: next/Interface.ts:43
+Defined in: [next/Interface.ts:43](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L43)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: next/Interface.ts:43
 GET: "get";
 ```
 
-Defined in: next/Interface.ts:26
+Defined in: [next/Interface.ts:26](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L26)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: next/Interface.ts:26
 GET_OWN_PROPERTY_DESCRIPTOR: "getOwnPropertyDescriptor";
 ```
 
-Defined in: next/Interface.ts:35
+Defined in: [next/Interface.ts:35](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L35)
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: next/Interface.ts:35
 GET_PROPERTY_DESCRIPTOR: "getPropertyDescriptor";
 ```
 
-Defined in: next/Interface.ts:36
+Defined in: [next/Interface.ts:36](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L36)
 
 ***
 
@@ -106,7 +106,7 @@ Defined in: next/Interface.ts:36
 GET_PROTOTYPE_OF: "getPrototypeOf";
 ```
 
-Defined in: next/Interface.ts:37
+Defined in: [next/Interface.ts:37](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L37)
 
 ***
 
@@ -116,7 +116,7 @@ Defined in: next/Interface.ts:37
 HAS: "has";
 ```
 
-Defined in: next/Interface.ts:33
+Defined in: [next/Interface.ts:33](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L33)
 
 ***
 
@@ -126,7 +126,7 @@ Defined in: next/Interface.ts:33
 IMPORT: "import";
 ```
 
-Defined in: next/Interface.ts:42
+Defined in: [next/Interface.ts:42](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L42)
 
 ***
 
@@ -136,7 +136,7 @@ Defined in: next/Interface.ts:42
 IS_EXTENSIBLE: "isExtensible";
 ```
 
-Defined in: next/Interface.ts:39
+Defined in: [next/Interface.ts:39](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L39)
 
 ***
 
@@ -146,7 +146,7 @@ Defined in: next/Interface.ts:39
 OWN_KEYS: "ownKeys";
 ```
 
-Defined in: next/Interface.ts:34
+Defined in: [next/Interface.ts:34](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L34)
 
 ***
 
@@ -156,7 +156,7 @@ Defined in: next/Interface.ts:34
 PREVENT_EXTENSIONS: "preventExtensions";
 ```
 
-Defined in: next/Interface.ts:40
+Defined in: [next/Interface.ts:40](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L40)
 
 ***
 
@@ -166,7 +166,7 @@ Defined in: next/Interface.ts:40
 SET: "set";
 ```
 
-Defined in: next/Interface.ts:27
+Defined in: [next/Interface.ts:27](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L27)
 
 ***
 
@@ -176,7 +176,7 @@ Defined in: next/Interface.ts:27
 SET_PROTOTYPE_OF: "setPrototypeOf";
 ```
 
-Defined in: next/Interface.ts:38
+Defined in: [next/Interface.ts:38](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L38)
 
 ***
 
@@ -186,4 +186,4 @@ Defined in: next/Interface.ts:38
 TRANSFER: "transfer";
 ```
 
-Defined in: next/Interface.ts:41
+Defined in: [next/Interface.ts:41](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L41)

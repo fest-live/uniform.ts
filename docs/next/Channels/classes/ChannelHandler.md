@@ -6,7 +6,7 @@
 
 # Class: ChannelHandler
 
-Defined in: next/Channels.ts:118
+Defined in: [next/Channels.ts:118](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L118)
 
 ## Constructors
 
@@ -16,7 +16,7 @@ Defined in: next/Channels.ts:118
 new ChannelHandler(channel, options): ChannelHandler;
 ```
 
-Defined in: next/Channels.ts:124
+Defined in: [next/Channels.ts:124](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L124)
 
 #### Parameters
 
@@ -43,7 +43,7 @@ createRemoteChannel(
    broadcast?): any;
 ```
 
-Defined in: next/Channels.ts:131
+Defined in: [next/Channels.ts:131](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L131)
 
 #### Parameters
 
@@ -57,7 +57,7 @@ Defined in: next/Channels.ts:131
 
 ##### broadcast?
 
-`null` | `MessagePort` | `Worker` | `BroadcastChannel`
+`MessagePort` | `Worker` | `BroadcastChannel` | `null`
 
 #### Returns
 
@@ -68,24 +68,24 @@ Defined in: next/Channels.ts:131
 ### getChannel()
 
 ```ts
-getChannel(): null | string;
+getChannel(): string | null;
 ```
 
-Defined in: next/Channels.ts:164
+Defined in: [next/Channels.ts:164](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L164)
 
 #### Returns
 
-`null` \| `string`
+`string` \| `null`
 
 ***
 
 ### handleAndResponse()
 
 ```ts
-handleAndResponse(request, reqId): undefined | Promise<void>;
+handleAndResponse(request, reqId): Promise<void> | undefined;
 ```
 
-Defined in: next/Channels.ts:199
+Defined in: [next/Channels.ts:199](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L199)
 
 #### Parameters
 
@@ -99,7 +99,7 @@ Defined in: next/Channels.ts:199
 
 #### Returns
 
-`undefined` \| `Promise`\<`void`\>
+`Promise`\<`void`\> \| `undefined`
 
 ***
 
@@ -111,10 +111,10 @@ request(
    path, 
    action, 
    args, 
-options): undefined | null | Promise<any>;
+   options): Promise<any> | null | undefined;
 ```
 
-Defined in: next/Channels.ts:168
+Defined in: [next/Channels.ts:168](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L168)
 
 #### Parameters
 
@@ -140,17 +140,17 @@ Defined in: next/Channels.ts:168
 
 #### Returns
 
-`undefined` \| `null` \| `Promise`\<`any`\>
+`Promise`\<`any`\> \| `null` \| `undefined`
 
 ***
 
 ### resolveResponse()
 
 ```ts
-resolveResponse(reqId, result): undefined | Promise<any>;
+resolveResponse(reqId, result): Promise<any> | undefined;
 ```
 
-Defined in: next/Channels.ts:192
+Defined in: [next/Channels.ts:192](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L192)
 
 #### Parameters
 
@@ -164,4 +164,4 @@ Defined in: next/Channels.ts:192
 
 #### Returns
 
-`undefined` \| `Promise`\<`any`\>
+`Promise`\<`any`\> \| `undefined`

@@ -10,4 +10,4 @@
 type rT = WeakRef<dT>;
 ```
 
-Defined in: core/Useful.ts:7
+Defined in: [core/Useful.ts:7](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/core/Useful.ts#L7)

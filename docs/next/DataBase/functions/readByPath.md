@@ -10,7 +10,7 @@
 function readByPath(path): any;
 ```
 
-Defined in: next/DataBase.ts:26
+Defined in: [next/DataBase.ts:26](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/DataBase.ts#L26)
 
 ## Parameters
 

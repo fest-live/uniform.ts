@@ -10,4 +10,4 @@
 const TS: any;
 ```
 
-Defined in: core/Alias.ts:3
+Defined in: [core/Alias.ts:3](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/core/Alias.ts#L3)

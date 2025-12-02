@@ -10,7 +10,7 @@
 function initChannelHandler(channel): object;
 ```
 
-Defined in: next/Channels.ts:25
+Defined in: [next/Channels.ts:25](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L25)
 
 ## Parameters
 
@@ -25,7 +25,7 @@ Defined in: next/Channels.ts:25
 ### instance
 
 ```ts
-instance: null | ChannelHandler;
+instance: ChannelHandler | null;
 ```
 
 ### name
