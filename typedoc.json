@@ -12,7 +12,7 @@
   "skipErrorChecking": true,
   "plugin": ["typedoc-plugin-markdown"],
   "theme": "default",
-  "name": "@fest/uniform API Documentation",
+  "name": "@fest-lib/uniform API Documentation",
   "categorizeByGroup": true,
   "categoryOrder": [
     "Uniform API",

@@ -1,7 +1,7 @@
-[**@fest/uniform v0.0.0**](../../README.md)
+[**@fest-lib/uniform v0.0.0**](../../README.md)
 
 ***
 
-[@fest/uniform](../../README.md) / next/Worker
+[@fest-lib/uniform](../../README.md) / next/Worker
 
 # next/Worker

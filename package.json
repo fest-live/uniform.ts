@@ -1,5 +1,5 @@
 {
-    "name": "@fest/uniform",
+    "name": "@fest-lib/uniform",
     "description": "Universal Worker helper for JavaScript",
     "version": "0.0.0",
     "private": false,

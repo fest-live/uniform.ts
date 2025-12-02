@@ -1,8 +1,8 @@
-[**@fest/uniform v0.0.0**](../../../README.md)
+[**@fest-lib/uniform v0.0.0**](../../../README.md)
 
 ***
 
-[@fest/uniform](../../../README.md) / [core/UUIDMap](../README.md) / default
+[@fest-lib/uniform](../../../README.md) / [core/UUIDMap](../README.md) / default
 
 # Class: default\<T\>
 
