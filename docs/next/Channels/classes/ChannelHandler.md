@@ -6,7 +6,7 @@
 
 # Class: ChannelHandler
 
-Defined in: [next/Channels.ts:118](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L118)
+Defined in: [next/Channels.ts:118](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Channels.ts#L118)
 
 ## Constructors
 
@@ -16,7 +16,7 @@ Defined in: [next/Channels.ts:118](https://github.com/fest-live/uniform.ts/blob/
 new ChannelHandler(channel, options): ChannelHandler;
 ```
 
-Defined in: [next/Channels.ts:124](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L124)
+Defined in: [next/Channels.ts:124](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Channels.ts#L124)
 
 #### Parameters
 
@@ -43,7 +43,7 @@ createRemoteChannel(
    broadcast?): any;
 ```
 
-Defined in: [next/Channels.ts:131](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L131)
+Defined in: [next/Channels.ts:131](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Channels.ts#L131)
 
 #### Parameters
 
@@ -71,7 +71,7 @@ Defined in: [next/Channels.ts:131](https://github.com/fest-live/uniform.ts/blob/
 getChannel(): string | null;
 ```
 
-Defined in: [next/Channels.ts:164](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L164)
+Defined in: [next/Channels.ts:164](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Channels.ts#L164)
 
 #### Returns
 
@@ -85,7 +85,7 @@ Defined in: [next/Channels.ts:164](https://github.com/fest-live/uniform.ts/blob/
 handleAndResponse(request, reqId): Promise<void> | undefined;
 ```
 
-Defined in: [next/Channels.ts:199](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L199)
+Defined in: [next/Channels.ts:199](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Channels.ts#L199)
 
 #### Parameters
 
@@ -114,7 +114,7 @@ request(
    options): Promise<any> | null | undefined;
 ```
 
-Defined in: [next/Channels.ts:168](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L168)
+Defined in: [next/Channels.ts:168](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Channels.ts#L168)
 
 #### Parameters
 
@@ -150,7 +150,7 @@ Defined in: [next/Channels.ts:168](https://github.com/fest-live/uniform.ts/blob/
 resolveResponse(reqId, result): Promise<any> | undefined;
 ```
 
-Defined in: [next/Channels.ts:192](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Channels.ts#L192)
+Defined in: [next/Channels.ts:192](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Channels.ts#L192)
 
 #### Parameters
 

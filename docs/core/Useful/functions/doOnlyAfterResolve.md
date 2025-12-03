@@ -10,7 +10,7 @@
 function doOnlyAfterResolve<T>(meta, cb): any;
 ```
 
-Defined in: [core/Useful.ts:45](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/core/Useful.ts#L45)
+Defined in: [core/Useful.ts:45](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/core/Useful.ts#L45)
 
 ## Type Parameters
 

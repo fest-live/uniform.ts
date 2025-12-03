@@ -6,7 +6,7 @@
 
 # Enumeration: WType
 
-Defined in: [next/Interface.ts:6](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L6)
+Defined in: [next/Interface.ts:6](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L6)
 
 ## Enumeration Members
 
@@ -16,7 +16,7 @@ Defined in: [next/Interface.ts:6](https://github.com/fest-live/uniform.ts/blob/0
 ARRAY: "array";
 ```
 
-Defined in: [next/Interface.ts:16](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L16)
+Defined in: [next/Interface.ts:16](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L16)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [next/Interface.ts:16](https://github.com/fest-live/uniform.ts/blob/
 BIGINT: "bigint";
 ```
 
-Defined in: [next/Interface.ts:11](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L11)
+Defined in: [next/Interface.ts:11](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L11)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [next/Interface.ts:11](https://github.com/fest-live/uniform.ts/blob/
 BOOLEAN: "boolean";
 ```
 
-Defined in: [next/Interface.ts:10](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L10)
+Defined in: [next/Interface.ts:10](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L10)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [next/Interface.ts:10](https://github.com/fest-live/uniform.ts/blob/
 FUNCTION: "function";
 ```
 
-Defined in: [next/Interface.ts:15](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L15)
+Defined in: [next/Interface.ts:15](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L15)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: [next/Interface.ts:15](https://github.com/fest-live/uniform.ts/blob/
 MAP: "map";
 ```
 
-Defined in: [next/Interface.ts:17](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L17)
+Defined in: [next/Interface.ts:17](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L17)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [next/Interface.ts:17](https://github.com/fest-live/uniform.ts/blob/
 NULL: "null";
 ```
 
-Defined in: [next/Interface.ts:13](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L13)
+Defined in: [next/Interface.ts:13](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L13)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [next/Interface.ts:13](https://github.com/fest-live/uniform.ts/blob/
 NUMBER: "number";
 ```
 
-Defined in: [next/Interface.ts:8](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L8)
+Defined in: [next/Interface.ts:8](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L8)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: [next/Interface.ts:8](https://github.com/fest-live/uniform.ts/blob/0
 OBJECT: "object";
 ```
 
-Defined in: [next/Interface.ts:14](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L14)
+Defined in: [next/Interface.ts:14](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L14)
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: [next/Interface.ts:14](https://github.com/fest-live/uniform.ts/blob/
 PRIMITIVE: "primitive";
 ```
 
-Defined in: [next/Interface.ts:7](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L7)
+Defined in: [next/Interface.ts:7](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L7)
 
 ***
 
@@ -106,7 +106,7 @@ Defined in: [next/Interface.ts:7](https://github.com/fest-live/uniform.ts/blob/0
 PROMISE: "promise";
 ```
 
-Defined in: [next/Interface.ts:21](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L21)
+Defined in: [next/Interface.ts:21](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L21)
 
 ***
 
@@ -116,7 +116,7 @@ Defined in: [next/Interface.ts:21](https://github.com/fest-live/uniform.ts/blob/
 SET: "set";
 ```
 
-Defined in: [next/Interface.ts:18](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L18)
+Defined in: [next/Interface.ts:18](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L18)
 
 ***
 
@@ -126,7 +126,7 @@ Defined in: [next/Interface.ts:18](https://github.com/fest-live/uniform.ts/blob/
 STRING: "string";
 ```
 
-Defined in: [next/Interface.ts:9](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L9)
+Defined in: [next/Interface.ts:9](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L9)
 
 ***
 
@@ -136,7 +136,7 @@ Defined in: [next/Interface.ts:9](https://github.com/fest-live/uniform.ts/blob/0
 SYMBOL: "symbol";
 ```
 
-Defined in: [next/Interface.ts:19](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L19)
+Defined in: [next/Interface.ts:19](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L19)
 
 ***
 
@@ -146,7 +146,7 @@ Defined in: [next/Interface.ts:19](https://github.com/fest-live/uniform.ts/blob/
 UNDEFINED: "undefined";
 ```
 
-Defined in: [next/Interface.ts:12](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L12)
+Defined in: [next/Interface.ts:12](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L12)
 
 ***
 
@@ -156,7 +156,7 @@ Defined in: [next/Interface.ts:12](https://github.com/fest-live/uniform.ts/blob/
 UNKNOWN: "unknown";
 ```
 
-Defined in: [next/Interface.ts:22](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L22)
+Defined in: [next/Interface.ts:22](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L22)
 
 ***
 
@@ -166,4 +166,4 @@ Defined in: [next/Interface.ts:22](https://github.com/fest-live/uniform.ts/blob/
 WEAK_REF: "weakRef";
 ```
 
-Defined in: [next/Interface.ts:20](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L20)
+Defined in: [next/Interface.ts:20](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L20)

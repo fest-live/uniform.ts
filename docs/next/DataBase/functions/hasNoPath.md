@@ -10,7 +10,7 @@
 function hasNoPath(data): boolean;
 ```
 
-Defined in: [next/DataBase.ts:77](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/DataBase.ts#L77)
+Defined in: [next/DataBase.ts:77](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/DataBase.ts#L77)
 
 ## Parameters
 

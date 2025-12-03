@@ -6,7 +6,7 @@
 
 # Interface: WReq\<T\>
 
-Defined in: [next/Interface.ts:57](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L57)
+Defined in: [next/Interface.ts:57](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L57)
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: [next/Interface.ts:57](https://github.com/fest-live/uniform.ts/blob/
 action: WReflectAction;
 ```
 
-Defined in: [next/Interface.ts:61](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L61)
+Defined in: [next/Interface.ts:61](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L61)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [next/Interface.ts:61](https://github.com/fest-live/uniform.ts/blob/
 args: any;
 ```
 
-Defined in: [next/Interface.ts:63](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L63)
+Defined in: [next/Interface.ts:63](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L63)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [next/Interface.ts:63](https://github.com/fest-live/uniform.ts/blob/
 channel: string;
 ```
 
-Defined in: [next/Interface.ts:58](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L58)
+Defined in: [next/Interface.ts:58](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L58)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [next/Interface.ts:58](https://github.com/fest-live/uniform.ts/blob/
 data: any;
 ```
 
-Defined in: [next/Interface.ts:67](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L67)
+Defined in: [next/Interface.ts:67](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L67)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [next/Interface.ts:67](https://github.com/fest-live/uniform.ts/blob/
 params: Record<string, T>;
 ```
 
-Defined in: [next/Interface.ts:66](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L66)
+Defined in: [next/Interface.ts:66](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L66)
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: [next/Interface.ts:66](https://github.com/fest-live/uniform.ts/blob/
 path: string[];
 ```
 
-Defined in: [next/Interface.ts:60](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L60)
+Defined in: [next/Interface.ts:60](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L60)
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: [next/Interface.ts:60](https://github.com/fest-live/uniform.ts/blob/
 reqId: string;
 ```
 
-Defined in: [next/Interface.ts:62](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L62)
+Defined in: [next/Interface.ts:62](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L62)
 
 ***
 
@@ -92,4 +92,4 @@ Defined in: [next/Interface.ts:62](https://github.com/fest-live/uniform.ts/blob/
 sender: string;
 ```
 
-Defined in: [next/Interface.ts:59](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/Interface.ts#L59)
+Defined in: [next/Interface.ts:59](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/Interface.ts#L59)

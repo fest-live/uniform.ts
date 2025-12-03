@@ -6,7 +6,7 @@
 
 # Class: RequestProxyHandler
 
-Defined in: [next/RequestProxy.ts:88](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/RequestProxy.ts#L88)
+Defined in: [next/RequestProxy.ts:88](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/RequestProxy.ts#L88)
 
 ## Implements
 
@@ -20,7 +20,7 @@ Defined in: [next/RequestProxy.ts:88](https://github.com/fest-live/uniform.ts/bl
 new RequestProxyHandler(options): RequestProxyHandler;
 ```
 
-Defined in: [next/RequestProxy.ts:89](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/RequestProxy.ts#L89)
+Defined in: [next/RequestProxy.ts:89](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/RequestProxy.ts#L89)
 
 #### Parameters
 
@@ -43,7 +43,7 @@ apply(
    args): any;
 ```
 
-Defined in: [next/RequestProxy.ts:91](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/RequestProxy.ts#L91)
+Defined in: [next/RequestProxy.ts:91](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/RequestProxy.ts#L91)
 
 A trap method for a function call.
 
@@ -84,7 +84,7 @@ call(
    args): any;
 ```
 
-Defined in: [next/RequestProxy.ts:95](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/RequestProxy.ts#L95)
+Defined in: [next/RequestProxy.ts:95](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/RequestProxy.ts#L95)
 
 #### Parameters
 
@@ -112,7 +112,7 @@ Defined in: [next/RequestProxy.ts:95](https://github.com/fest-live/uniform.ts/bl
 construct(target, args): any;
 ```
 
-Defined in: [next/RequestProxy.ts:99](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/RequestProxy.ts#L99)
+Defined in: [next/RequestProxy.ts:99](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/RequestProxy.ts#L99)
 
 A trap for the `new` operator.
 
@@ -146,7 +146,7 @@ ProxyHandler.construct
 deleteProperty(target, prop): any;
 ```
 
-Defined in: [next/RequestProxy.ts:120](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/RequestProxy.ts#L120)
+Defined in: [next/RequestProxy.ts:120](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/RequestProxy.ts#L120)
 
 A trap for the `delete` operator.
 
@@ -185,7 +185,7 @@ get(
    receiver): any;
 ```
 
-Defined in: [next/RequestProxy.ts:103](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/RequestProxy.ts#L103)
+Defined in: [next/RequestProxy.ts:103](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/RequestProxy.ts#L103)
 
 A trap for getting a property value.
 
@@ -225,7 +225,7 @@ ProxyHandler.get
 getOwnPropertyDescriptor(target, prop): any;
 ```
 
-Defined in: [next/RequestProxy.ts:124](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/RequestProxy.ts#L124)
+Defined in: [next/RequestProxy.ts:124](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/RequestProxy.ts#L124)
 
 A trap for `Object.getOwnPropertyDescriptor()`.
 
@@ -259,7 +259,7 @@ ProxyHandler.getOwnPropertyDescriptor
 getPrototypeOf(target): any;
 ```
 
-Defined in: [next/RequestProxy.ts:128](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/RequestProxy.ts#L128)
+Defined in: [next/RequestProxy.ts:128](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/RequestProxy.ts#L128)
 
 A trap for the `[[GetPrototypeOf]]` internal method.
 
@@ -289,7 +289,7 @@ ProxyHandler.getPrototypeOf
 has(target, prop): any;
 ```
 
-Defined in: [next/RequestProxy.ts:115](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/RequestProxy.ts#L115)
+Defined in: [next/RequestProxy.ts:115](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/RequestProxy.ts#L115)
 
 A trap for the `in` operator.
 
@@ -323,7 +323,7 @@ ProxyHandler.has
 isExtensible(target): any;
 ```
 
-Defined in: [next/RequestProxy.ts:136](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/RequestProxy.ts#L136)
+Defined in: [next/RequestProxy.ts:136](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/RequestProxy.ts#L136)
 
 A trap for `Object.isExtensible()`.
 
@@ -353,7 +353,7 @@ ProxyHandler.isExtensible
 ownKeys(target): any;
 ```
 
-Defined in: [next/RequestProxy.ts:144](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/RequestProxy.ts#L144)
+Defined in: [next/RequestProxy.ts:144](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/RequestProxy.ts#L144)
 
 A trap for `Reflect.ownKeys()`.
 
@@ -383,7 +383,7 @@ ProxyHandler.ownKeys
 preventExtensions(target): any;
 ```
 
-Defined in: [next/RequestProxy.ts:140](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/RequestProxy.ts#L140)
+Defined in: [next/RequestProxy.ts:140](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/RequestProxy.ts#L140)
 
 A trap for `Object.preventExtensions()`.
 
@@ -417,7 +417,7 @@ set(
    receiver): any;
 ```
 
-Defined in: [next/RequestProxy.ts:110](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/RequestProxy.ts#L110)
+Defined in: [next/RequestProxy.ts:110](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/RequestProxy.ts#L110)
 
 A trap for setting a property value.
 
@@ -463,7 +463,7 @@ ProxyHandler.set
 setPrototypeOf(target, proto): any;
 ```
 
-Defined in: [next/RequestProxy.ts:132](https://github.com/fest-live/uniform.ts/blob/00a72c2f9c17cc452a19ebfa9e811d574034488e/src/next/RequestProxy.ts#L132)
+Defined in: [next/RequestProxy.ts:132](https://github.com/fest-live/uniform.ts/blob/37b3e597feae16da872afd10a6f2319a4c1b210a/src/next/RequestProxy.ts#L132)
 
 A trap for `Object.setPrototypeOf()`.
 
