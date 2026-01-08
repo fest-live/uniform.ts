@@ -13,6 +13,13 @@ export interface WorkerConfig {
     script: string | (() => Worker) | Worker;
     options?: WorkerOptions;
     context?: 'main' | 'service-worker' | 'chrome-extension';
+    tabsChannel?: boolean;
+    tabsOptions?: { tabFilter?: (tab: chrome.tabs.Tab) => boolean };
+    currentTabChannel?: boolean;
+    currentTabOptions?: {
+        tabIdGetter?: () => Promise<number> | number;
+        useVisibleTab?: boolean;
+    };
 }
 
 export interface QueuedRequest {

@@ -84,7 +84,7 @@ export const $createOrUseExistingChannel = (channel: string, options: any = {}, 
             const worker = loadWorker(workerCode);
 
             //
-            worker.addEventListener('message', (event) => {
+            worker.addEventListener('message', (event, _sender, _response) => {
                 if (event.data.type == "channelCreated") {
                     msgChannel?.port1?.start?.();
                     resolve(new RemoteChannelHelper(event.data.channel as string, options));
@@ -133,9 +133,9 @@ export class ChannelHandler {
 
         //
         broadcast ??= $channel?.messageChannel?.port1;
-        broadcast?.addEventListener('message', (event) => {
+        broadcast?.addEventListener('message', (event, _sender, _response) => {
             if (event.data.type == "request" && event.data.channel == this.channel) {
-                this.handleAndResponse(event.data.payload, event.data.reqId);
+                this.handleAndResponse(event.data.payload, event.data.reqId, _response);
             } else
             if (event.data.type == "response") {
                 this.resolveResponse(event.data.reqId, {
@@ -196,7 +196,7 @@ export class ChannelHandler {
         return promise;
     }
 
-    handleAndResponse(request: WReq, reqId: string){ // TODO: options
+    handleAndResponse(request: WReq, reqId: string, response: ((result: any, _: any) => void)|null = null){ // TODO: options
         let { channel, sender, path, action, args } = request;
 
         //
@@ -335,7 +335,8 @@ export class ChannelHandler {
             result = deepOperateAndClone(result, (el)=>objectToRef(el, this.channel, toTransfer)) ?? result;
 
             //
-            this.broadcasts[sender].postMessage({
+            response ??= this.broadcasts[sender].postMessage?.bind(this.broadcasts[sender]);
+            response({
                 channel: sender,
                 sender: this.channel,
                 reqId: reqId,
