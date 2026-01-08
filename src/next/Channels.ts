@@ -1,10 +1,11 @@
 import { hasNoPath, readByPath, registeredInPath, removeByData, removeByPath, writeByPath } from "./DataBase";
 import { WReflectAction, type WReflectDescriptor, type WReq, type WResp } from "./Interface";
-import { makeRequestProxy, normalizeRef, objectToRef } from "./RequestProxy";
+import { makeRequestProxy } from "./RequestProxy";
 import { deepOperateAndClone, isCanJustReturn, isCanTransfer, isPrimitive, Promised, UUIDv4, WRef } from "fest/core";
 
-//
+// @ts-ignore
 import workerCode from "./Worker?worker&url"
+import { normalizeRef, objectToRef } from "./DataBase";
 //const workerCode = new URL("./Worker.ts", import.meta.url);
 
 // fallback feature for remote channels
@@ -18,8 +19,6 @@ export const SELF_CHANNEL = {
     name: string;
     instance: ChannelHandler|null;
 };
-
-
 
 //
 export const initChannelHandler = (channel: string = "$host$")=>{
@@ -38,6 +37,11 @@ export const initChannelHandler = (channel: string = "$host$")=>{
 }
 
 //
+const isReflectAction = (action: any): action is WReflectAction => {
+    return [...Object.values(WReflectAction)].includes(action);
+}
+
+//
 export class RemoteChannelHelper {
     private channel: string;
 
@@ -45,8 +49,20 @@ export class RemoteChannelHelper {
         this.channel = channel;
     }
 
-    request(path: string[], action: WReflectAction, args: any[], options: any = {}): Promise<any>|null|undefined {
-        return SELF_CHANNEL.instance?.request(this.channel, path, action, args, options);
+    request(path: string[]|WReflectDescriptor, action: WReflectAction|any[], args: any[]|any, options: any = {}): Promise<any>|null|undefined {
+        // normalize path and action
+        if (typeof path == "string") { path = [path]; }
+
+        // shift arguments if action is array and path is reflect action
+        if (Array.isArray(action) && isReflectAction(path)) {
+            options = args;
+            args = action;
+            action = path as unknown as WReflectAction;
+            path = [];
+        }
+
+        //
+        return SELF_CHANNEL.instance?.request(path as string[], action as WReflectAction, args as any[], options, this.channel);
     }
 
     doImportModule(url: string, options: any): Promise<any>|null|undefined {
@@ -83,8 +99,8 @@ export const $createOrUseExistingChannel = (channel: string, options: any = {}, 
         const promise = Promised(new Promise((resolve, reject) => {
             const worker = loadWorker(workerCode);
 
-            //
-            worker.addEventListener('message', (event, _sender, _response) => {
+            // @ts-ignore
+            worker?.addEventListener?.('message', (event, _sender, _response) => {
                 if (event.data.type == "channelCreated") {
                     msgChannel?.port1?.start?.();
                     resolve(new RemoteChannelHelper(event.data.channel as string, options));
@@ -92,7 +108,7 @@ export const $createOrUseExistingChannel = (channel: string, options: any = {}, 
             });
 
             //
-            worker.postMessage({
+            worker?.postMessage?.({
                 type: "createChannel",
                 channel: channel,
                 sender: SELF_CHANNEL?.name,
@@ -132,8 +148,8 @@ export class ChannelHandler {
         const $channel = $createOrUseExistingChannel(channel, options, broadcast);
 
         //
-        broadcast ??= $channel?.messageChannel?.port1;
-        broadcast?.addEventListener('message', (event, _sender, _response) => {
+        broadcast ??= $channel?.messageChannel?.port1; // @ts-ignore
+        broadcast?.addEventListener?.('message', (event, _sender, _response) => {
             if (event.data.type == "request" && event.data.channel == this.channel) {
                 this.handleAndResponse(event.data.payload, event.data.reqId, _response);
             } else
@@ -165,7 +181,19 @@ export class ChannelHandler {
         return this.channel;
     }
 
-    request(toChannel: string, path: string[], action: WReflectAction, args: any[], options: any = {}): Promise<any>|null|undefined {
+    request(path: string[]|WReflectAction, action: WReflectAction|any[], args: any[]|any, options: any|string = {}, toChannel: string = this.channel): Promise<any>|null|undefined {
+        // normalize path and action
+        if (typeof path == "string") { path = [path]; }
+
+        // shift arguments if action is array and path is reflect action
+        if (Array.isArray(action) && isReflectAction(path)) {
+            toChannel = options as unknown as string;
+            options = args;
+            args = action;
+            action = path as unknown as WReflectAction;
+            path = [];
+        }
+
         const id = UUIDv4(); // @ts-ignore
         this.forResolves.set(id, Promise.withResolvers<any>());
         this.broadcasts[toChannel].postMessage({
@@ -323,8 +351,10 @@ export class ChannelHandler {
             const canBeReturn = ((isCanTransfer(result) && toTransfer?.includes(result)) || isCanJustReturn(result));
 
             // generate new temp path is have no exists
-            if (!canBeReturn && action != "get") {
-                if (hasNoPath(result)) { path = [UUIDv4()]; writeByPath(path, result); } else { path = registeredInPath.get(result) ?? []; }
+            if (!canBeReturn && action != "get" && (typeof result == "object" || typeof result == "function")) {
+                if (hasNoPath(result))
+                    { path = [UUIDv4()]; writeByPath(path, result); } else
+                    { path = registeredInPath.get(result) ?? []; }
             }
 
             //this.resolveResponse(request.reqId, result);

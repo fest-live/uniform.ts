@@ -13,11 +13,9 @@ export const importModuleInChannel = async (channel: string, url: string, option
     return module;
 };
 
-// Export types
-export * from "./types";
-
-// Export app-specific adapter
-export * from "./app-adapter";
-
-// Export optimized protocol
-export * from "./optimized-protocol";
+//
+export const connectToChannelAsModule = async (channel: string, url: string, options: any = {}) => {
+    const remote = await createOrUseExistingChannel(channel, options?.channelOptions);
+    const module = await remote?.request?.([]);
+    return module;
+};

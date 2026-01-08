@@ -1,149 +1,96 @@
-import { SELF_CHANNEL } from "./Channels";
+import { SELF_CHANNEL, type ChannelHandler } from "./Channels";
 
 // temporary resolution
-import { Promised, UUIDv4, isPrimitive, isNotComplexArray, isCanJustReturn, deepOperateAndClone } from "fest/core";
+import { Promised } from "fest/core";
 import { WReflectAction, type WReflectDescriptor } from "./Interface";
-import { readByPath, registeredInPath, writeByPath } from "./DataBase";
+import { readByPath } from "./DataBase";
+import { $descriptor, $requestHandler, descMap, handMap, READ, wrapMap } from "./DataBase";
 
 //
-export const handMap = new WeakMap<Function, WReflectDescriptor>();
-export const wrapMap = new WeakMap<Function, WReflectDescriptor>();
-export const descMap = new WeakMap<WReflectDescriptor, Function>();
+export class RequestProxyHandlerV2 {
+    constructor(public hostChannelInstance: ChannelHandler | null = SELF_CHANNEL?.instance, public options: any = {}) {
 
-//
-const READ = (target: any, key: string) => {
-    return handMap.get(target)?.[key];
-}
-
-//
-export const objectToRef = (obj: any, channel: string = SELF_CHANNEL?.name, toTransfer?: any[]): WReflectDescriptor|any|null|undefined =>{
-    if ((typeof obj == "object" && obj != null) || typeof obj == "function" && obj != null) {
-        if (wrapMap.has(obj)) return wrapMap.get(obj);
-        if (handMap.has(obj)) return handMap.get(obj);
-        if (isNotComplexArray(obj)) return obj;
-        if (toTransfer?.includes?.(obj)) return obj;
-        if (channel == SELF_CHANNEL?.name) return obj;
-        return {
-            $isDescriptor: true,
-            path: registeredInPath.get(obj) ?? (()=>{
-                const path: string[] = [UUIDv4()];
-                writeByPath(path, obj);
-                return path;
-            })(),
-            owner: SELF_CHANNEL?.name,
-            channel: channel,
-            primitive: isPrimitive(obj),
-            writable: true,
-            enumerable: true,
-            configurable: true,
-            argumentCount: obj instanceof Function ? obj.length : -1
-        } as WReflectDescriptor;
     }
-    return isCanJustReturn(obj) ? obj : null;
-}
 
-//
-export const $requestHandler = Symbol.for("@requestHandler");
-export const $descriptor = Symbol.for("@descriptor");
-
-// wrap back to usable proxies
-export const normalizeRef = (v: any)=>{
-    if (isCanJustReturn(v)) return v;
-    if (v?.[$descriptor]) return v;
-    if (v?.$isDescriptor) return makeRequestProxy(v, {});
-    if (isNotComplexArray(v)) return v;
-    return null;
-}
-
-//
-export const unwrapDescriptorFromProxy = (target: any)=>{
-    if ((typeof target != "function" && typeof target != "object") || target == null) { return target; }
-    return wrapMap.get(target) ?? handMap.get(target) ?? target;
-}
-
-// unwrap in arrays, objects keys, values, etc. recursively
-export const unwrapDescriptorFromProxyRecursive = (target: any)=>{
-    if ((typeof target != "object" && typeof target != "function") || target == null) { return target; }
-    target = unwrapDescriptorFromProxy(target);
-    if ((typeof target != "object" && typeof target != "function") || target == null) { return target; }
-
-    if (Array.isArray(target)) {
-        return target.map(unwrapDescriptorFromProxyRecursive);
-    }
-    if (target instanceof Map) {
-        return new Map(Array.from(target.entries()).map(([key, value]) => [key, unwrapDescriptorFromProxyRecursive(value)]));
-    }
-    if (target instanceof Set) {
-        return new Set(Array.from(target.values()).map(unwrapDescriptorFromProxyRecursive));
-    }
-    if (typeof target == "object") {
-        for (const key of Object.keys(target)) {
-            target[key] = unwrapDescriptorFromProxyRecursive(target[key]);
+    dispatch(action: WReflectAction, args: any[]) {
+        const target = args.unshift?.();
+        if (!target) { return null; }
+        switch (action) {
+            case WReflectAction.GET: {
+                const prop = args?.[0] ?? null;
+                if (prop == $requestHandler) { return true; }
+                if (prop == $descriptor) { return target; }
+                if (["then", "catch", "finally"].includes(prop) || typeof prop == "symbol") { return target[prop]; }
+            };
+            case WReflectAction.SET: {
+                const prop = args?.[0] ?? null;
+                if (typeof prop == "symbol") { return true; }
+            };
+            case WReflectAction.HAS: {
+                const prop = args?.[0] ?? null;
+                if (typeof prop == "symbol") { return false; }
+            };
+            default: return Promised((this.hostChannelInstance ?? SELF_CHANNEL?.instance)?.request?.(READ(target, "path") ?? [], action, args ?? [], {}, this.options?.connectChannel ?? READ(target, "channel")));
         }
     }
-    return target;
 }
 
 //
-export class RequestProxyHandler implements ProxyHandler<Function>{
-    constructor(private options: any){}
+export class DispatchProxyHandler implements ProxyHandler<Function> {
+    constructor(public dispatcher: any) {
 
-    apply(target, thisArg, args) {
-        return Promised(SELF_CHANNEL?.instance?.request?.(READ(target, "channel"), READ(target, "path"), WReflectAction.APPLY, [deepOperateAndClone(args, (el)=>objectToRef(el, READ(target, "channel")))], {}));
     }
 
-    call(target, thisArg, args) {
-        return Promised(SELF_CHANNEL?.instance?.request?.(READ(target, "channel"), READ(target, "path"), WReflectAction.CALL, [deepOperateAndClone(args, (el)=>objectToRef(el, READ(target, "channel")))], {}));
+    get(...args: any[]) {
+        return this.dispatcher.dispatch(WReflectAction.GET, args);
     }
 
-    construct(target, args) {
-        return Promised(SELF_CHANNEL?.instance?.request?.(READ(target, "channel"), READ(target, "path"), WReflectAction.CONSTRUCT, [deepOperateAndClone(args, (el)=>objectToRef(el, READ(target, "channel")))], {}));
+    set(...args: any[]) {
+        return this.dispatcher.dispatch(WReflectAction.SET, args);
     }
 
-    get(target, prop, receiver) {
-        if (prop == $requestHandler) { return true; }
-        if (prop == $descriptor) { return target; }
-        if (["then", "catch", "finally"].includes(prop) || typeof prop == "symbol") { return target[prop]; }
-        return Promised(SELF_CHANNEL?.instance?.request?.(READ(target, "channel"), READ(target, "path"), WReflectAction.GET, [prop], {}));
+    has(...args: any[]) {
+        return this.dispatcher.dispatch(WReflectAction.HAS, args);
     }
 
-    set(target, prop, value, receiver) {
-        if (typeof prop == "symbol") { return true; }
-        return Promised(SELF_CHANNEL?.instance?.request?.(READ(target, "channel"), READ(target, "path"), WReflectAction.SET, [prop, objectToRef(value, READ(target, "channel"))], {}));
+    deleteProperty(...args: any[]) {
+        return this.dispatcher.dispatch(WReflectAction.DELETE_PROPERTY, args);
     }
 
-    has(target, prop) {
-        if (typeof prop == "symbol") { return false; }
-        return Promised(SELF_CHANNEL?.instance?.request?.(READ(target, "channel"), READ(target, "path"), WReflectAction.HAS, [prop], {}));
+    getOwnPropertyDescriptor(...args: any[]) {
+        return this.dispatcher.dispatch(WReflectAction.GET_OWN_PROPERTY_DESCRIPTOR, args);
     }
 
-    deleteProperty(target, prop) {
-        return Promised(SELF_CHANNEL?.instance?.request?.(READ(target, "channel"), READ(target, "path"), WReflectAction.DELETE_PROPERTY, [prop], {}));
+    getPrototypeOf(...args: any[]) {
+        return this.dispatcher.dispatch(WReflectAction.GET_PROTOTYPE_OF, args);
     }
 
-    getOwnPropertyDescriptor(target, prop) {
-        return Promised(SELF_CHANNEL?.instance?.request?.(READ(target, "channel"), READ(target, "path"), WReflectAction.GET_OWN_PROPERTY_DESCRIPTOR, [prop], {}));
+    setPrototypeOf(...args: any[]) {
+        return this.dispatcher.dispatch(WReflectAction.SET_PROTOTYPE_OF, args);
     }
 
-    getPrototypeOf(target) {
-        return Promised(SELF_CHANNEL?.instance?.request?.(READ(target, "channel"), READ(target, "path"), WReflectAction.GET_PROTOTYPE_OF, [], {}));
+    isExtensible(...args: any[]) {
+        return this.dispatcher.dispatch(WReflectAction.IS_EXTENSIBLE, args);
     }
 
-    setPrototypeOf(target, proto) {
-        return Promised(SELF_CHANNEL?.instance?.request?.(READ(target, "channel"), READ(target, "path"), WReflectAction.SET_PROTOTYPE_OF, [proto], {}));
+    preventExtensions(...args: any[]) {
+        return this.dispatcher.dispatch(WReflectAction.PREVENT_EXTENSIONS, args);
     }
 
-    isExtensible(target) {
-        return Promised(SELF_CHANNEL?.instance?.request?.(READ(target, "channel"), READ(target, "path"), WReflectAction.IS_EXTENSIBLE, [], {}));
+    ownKeys(...args: any[]) {
+        return this.dispatcher.dispatch(WReflectAction.OWN_KEYS, args) ?? [];
     }
 
-    preventExtensions(target) {
-        return Promised(SELF_CHANNEL?.instance?.request?.(READ(target, "channel"), READ(target, "path"), WReflectAction.PREVENT_EXTENSIONS, [], {}));
+    apply(...args: any[]) {
+        return this.dispatcher.dispatch(WReflectAction.APPLY, args);
     }
 
-    ownKeys(target) {
-        const rs = Promised(SELF_CHANNEL?.instance?.request?.(READ(target, "channel"), READ(target, "path"), WReflectAction.OWN_KEYS, [], {}));
-        return rs ?? [];
+    call(...args: any[]) {
+        return this.dispatcher.dispatch(WReflectAction.CALL, args);
+    }
+
+    construct(...args: any[]) {
+        return this.dispatcher.dispatch(WReflectAction.CONSTRUCT, args);
     }
 }
 
@@ -154,9 +101,18 @@ export const makeRequestProxy = (descriptor: WReflectDescriptor, options: any): 
     if (descMap.has(descriptor)) { return descMap.get(descriptor); }
     const $function: any = function(){};
     //$function["$descriptor$"] = descriptor;
-    const $proxy = new Proxy($function, new RequestProxyHandler(options));
+    const $proxy = new Proxy($function, new DispatchProxyHandler(new RequestProxyHandlerV2(SELF_CHANNEL?.instance, options)));
     descMap.set(descriptor, $proxy);
     wrapMap.set($proxy, descriptor);
     handMap.set($function, descriptor);
+    return $proxy;
+}
+
+//
+export const wrapChannel = (connectChannel: string, hostChannelInstance: ChannelHandler | null = SELF_CHANNEL?.instance): any => {
+    const $function: any = function(){};
+    const $proxy = new Proxy($function, new DispatchProxyHandler(new RequestProxyHandlerV2(hostChannelInstance ?? SELF_CHANNEL?.instance, {
+        connectChannel: connectChannel
+    })));
     return $proxy;
 }

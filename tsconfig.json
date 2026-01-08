@@ -11,6 +11,7 @@
         "target": "ESNext",
         "module": "ESNext",
         "lib": ["ESNext", "DOM", "WebWorker", "ESNext.Promise"],
+        "types": ["chrome", "chrome-extension"],
         "moduleResolution": "bundler",
         "esModuleInterop": true,
         "strict": true,
