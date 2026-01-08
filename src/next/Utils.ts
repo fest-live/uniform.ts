@@ -13,10 +13,19 @@ export const createChromeExtensionChannel = async (config: WorkerConfig): Promis
     let worker: Worker;
     try {
         // Try to use chrome.runtime.getURL for extension resources
+        if (typeof config.script !== "string") {
+            throw new Error("Chrome extension worker channel requires config.script to be a string path");
+        }
         worker = new Worker(chrome.runtime.getURL(config.script), config.options);
     } catch (error) {
         // Fallback for non-extension workers in extension context
-        worker = new Worker(new URL(config.script, import.meta.url), config.options);
+        if (typeof config.script === "string") {
+            worker = new Worker(new URL(config.script, import.meta.url), config.options);
+        } else if (typeof config.script === "function") {
+            worker = config.script();
+        } else {
+            worker = config.script;
+        }
     }
 
     const channel = await createOrUseExistingChannel(config.name, {}, worker);
@@ -24,11 +33,22 @@ export const createChromeExtensionChannel = async (config: WorkerConfig): Promis
 };
 
 /**
+ * Create a chrome extension broadcast channel
+ * Acts like BroadcastChannel but uses chrome.runtime messaging
+ */
+export const createChromeExtensionBroadcast = (channelName: string): BroadcastChannel => {
+    const worker = new ChromeExtensionBroadcastChannel(channelName) as any;
+    return worker as BroadcastChannel;
+};
+
+/**
  * Create a chrome extension broadcast-like channel
  * Acts like BroadcastChannel but uses chrome.runtime messaging
  */
-export const createChromeExtensionBroadcastChannel = (channelName: string): BroadcastChannel => {
-    return new ChromeExtensionBroadcastChannel(channelName) as any;
+export const createChromeExtensionBroadcastChannel = (channelName: string): WorkerChannel => {
+    const worker = new ChromeExtensionBroadcastChannel(channelName) as any;
+    const channel = createOrUseExistingChannel(channelName, {}, worker);
+    return channel?.remote ?? channel;
 };
 
 /**
@@ -48,8 +68,10 @@ export const createChromeExtensionTabsChannel = (
         tabFilter?: (tab: chrome.tabs.Tab) => boolean;
         tabIdGetter?: () => Promise<number> | number;
     }
-): BroadcastChannel => {
-    return new ChromeExtensionTabsChannel(channelName, options) as any;
+): WorkerChannel => {
+    const worker = new ChromeExtensionTabsChannel(channelName, options) as any;
+    const channel = createOrUseExistingChannel(channelName, {}, worker);
+    return channel?.remote ?? channel;
 };
 
 /**
@@ -66,11 +88,7 @@ export const createChromeExtensionTabsMessagingChannel = (
     }
 ): WorkerChannel => {
     // Create a tabs channel for chrome extension messaging
-    const tabsChannel = createChromeExtensionTabsChannel(channelName, options);
-
-    // Create a channel using the tabs mechanism
-    const channel = createOrUseExistingChannel(channelName, {}, tabsChannel);
-    return channel?.remote ?? channel;
+    return createChromeExtensionTabsChannel(channelName, options);
 };
 
 /**

@@ -408,11 +408,11 @@ export class ChannelHandler {
 //
 export const createHostChannel = (channel: string = "$host$") => {
     const $host = initChannelHandler(channel ?? "$host$");
-    return ($host?.instance ?? $host);
+    return $host;
 }
 
 //
 export const createOrUseExistingChannel = (channel: string, options: any = {}, broadcast: Worker|BroadcastChannel|MessagePort|null = (typeof self != "undefined" ? self : null) as any) => {
     const $host = createHostChannel(channel ?? "$host$");
-    return ($host?.instance ?? $host)?.createRemoteChannel?.(channel, options, broadcast) ?? ($host?.instance ?? $host);
+    return ($host)?.createRemoteChannel?.(channel, options, broadcast) ?? ($host);
 }

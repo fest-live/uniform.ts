@@ -10,8 +10,8 @@
         },
         "target": "ESNext",
         "module": "ESNext",
-        "lib": ["ESNext", "DOM", "WebWorker", "ESNext.Promise"],
-        "types": ["chrome", "chrome-extension"],
+        "lib": ["ESNext", "DOM", "ESNext.Promise"],
+        "types": ["chrome"],
         "moduleResolution": "bundler",
         "esModuleInterop": true,
         "strict": true,
@@ -31,7 +31,6 @@
         "experimentalDecorators": true,
         "moduleDetection": "force",
         "verbatimModuleSyntax": true,
-        "isolatedModules": true,
-        "typeRoots": ["plugins/global.d.ts"]
+        "isolatedModules": true
     }
 }

@@ -182,7 +182,7 @@ export const getVisibleTabId = async (): Promise<number> => {
     } catch {
         // Fallback to any visible tab
         const tabs = await chrome.tabs.query({ currentWindow: true });
-        const visibleTab = tabs.find(tab => tab.active || !tab.hidden);
+        const visibleTab = tabs.find(tab => tab.active);
         if (!visibleTab?.id) {
             throw new Error('No visible tab found');
         }
