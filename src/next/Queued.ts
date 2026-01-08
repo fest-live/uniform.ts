@@ -215,9 +215,9 @@ export interface CrxRuntimeModule {
 /**
  * Simplified worker registration for common patterns
  */
-export const registerWorkerAPI = (api: Record<string, Function>) => {
+export const registerWorkerAPI = (api: Record<string, Function>, channelName: string = "worker") => {
     // This will be called in worker context to register functions
-    const channelHandler = initChannelHandler("worker");
+    const channelHandler = initChannelHandler(channelName ?? "worker");
 
     // Register functions in the uniform data store
     Object.keys(api).forEach(methodName => {
@@ -445,8 +445,9 @@ export class OptimizedWorkerChannel {
             clearTimeout(timeout);
             reject(new Error("Channel closed"));
         }
-        this.pendingRequests.clear();
 
+        //
+        this.pendingRequests.clear();
         this.channel?.close?.();
     }
 }

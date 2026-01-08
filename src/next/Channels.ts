@@ -20,20 +20,29 @@ export const SELF_CHANNEL = {
     instance: ChannelHandler|null;
 };
 
+// host/origin channel map
+export const CHANNEL_MAP = new Map<string, ChannelHandler|null>();
+
 //
-export const initChannelHandler = (channel: string = "$host$")=>{
-    if (SELF_CHANNEL?.instance) { return SELF_CHANNEL; }
+export const initChannelHandler = (channel: string = "$host$"): ChannelHandler|null => {
+    if (SELF_CHANNEL?.instance && channel == "$host$") { return SELF_CHANNEL?.instance; }
 
     //
-    const $channel: any = {};
-    if (!$channel.instance) {
-        $channel.instance = new ChannelHandler(channel);
-        $channel.name = channel;
+    if (CHANNEL_MAP.has(channel)) { return CHANNEL_MAP.get(channel) ?? null; }
+
+    //
+    const $channel: ChannelHandler = new ChannelHandler(channel);
+
+    //
+    if (channel == "$host$") {
+        Object.assign(SELF_CHANNEL, {
+            name: channel,
+            instance: $channel
+        });
     }
 
-    //
-    Object.assign(SELF_CHANNEL, $channel);
-    return SELF_CHANNEL;
+    // @ts-ignore
+    return CHANNEL_MAP.getOrInsert(channel, $channel);
 }
 
 //
@@ -145,7 +154,7 @@ export class ChannelHandler {
 
     //
     createRemoteChannel(channel: string, options: any = {}, broadcast?: Worker|BroadcastChannel|MessagePort|null) {
-        const $channel = $createOrUseExistingChannel(channel, options, broadcast);
+        const $channel = $createOrUseExistingChannel(channel, options, broadcast ?? (typeof self != "undefined" ? self : null) as any);
 
         //
         broadcast ??= $channel?.messageChannel?.port1; // @ts-ignore
@@ -181,7 +190,7 @@ export class ChannelHandler {
         return this.channel;
     }
 
-    request(path: string[]|WReflectAction, action: WReflectAction|any[], args: any[]|any, options: any|string = {}, toChannel: string = this.channel): Promise<any>|null|undefined {
+    request(path: string[]|WReflectAction, action: WReflectAction|any[], args: any[]|any, options: any|string = {}, toChannel: string = "worker"): Promise<any>|null|undefined {
         // normalize path and action
         if (typeof path == "string") { path = [path]; }
 
@@ -397,7 +406,13 @@ export class ChannelHandler {
 }
 
 //
-export const createOrUseExistingChannel = (channel: string, options: any = {}, broadcast?: Worker|BroadcastChannel|MessagePort|null) => {
-    const $host = initChannelHandler();
-    return $host?.instance?.createRemoteChannel(channel, options, broadcast);;
+export const createHostChannel = (channel: string = "$host$") => {
+    const $host = initChannelHandler(channel ?? "$host$");
+    return ($host?.instance ?? $host);
+}
+
+//
+export const createOrUseExistingChannel = (channel: string, options: any = {}, broadcast: Worker|BroadcastChannel|MessagePort|null = (typeof self != "undefined" ? self : null) as any) => {
+    const $host = createHostChannel(channel ?? "$host$");
+    return ($host?.instance ?? $host)?.createRemoteChannel?.(channel, options, broadcast) ?? ($host?.instance ?? $host);
 }

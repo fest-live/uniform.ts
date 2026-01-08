@@ -79,7 +79,6 @@ export class ChromeExtensionBroadcastChannel {
     }
 }
 
-
 /**
  * Unified Chrome Extension Tabs Channel
  * Acts like a BroadcastChannel but uses chrome.tabs messaging to communicate with content scripts

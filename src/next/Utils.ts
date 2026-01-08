@@ -73,12 +73,11 @@ export const createChromeExtensionTabsMessagingChannel = (
     return channel?.remote ?? channel;
 };
 
-
 /**
  * Initialize the main thread channel handler
  */
-export const initMainChannel = (name: string = "main") => {
-    return initChannelHandler(name);
+export const initMainChannel = (name: string = "$host$") => {
+    return initChannelHandler(name ?? "$host$");
 };
 
 /**
