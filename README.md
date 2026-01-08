@@ -1,107 +1,384 @@
-<h1 align="center"> 🏬 Uniform.TS 🏬 </h1>
+# Fest/Uniform - Advanced Web Worker Communication Library
 
-<p align="center"><b>Uniform.TS</b> — A modern replacement for all my web workers libraries.</p>
+**Fest/Uniform** is an experimental web worker communication library that provides seamless, inline-like function calls across worker boundaries using advanced reflection and proxy techniques.
 
-<p align="center">
-<a href="https://github.com/fest-live/uniform.ts"><img src="https://img.shields.io/badge/repo-unite--2--re%2Funiform.ts-blue?logo=github&style=flat-square" alt="GitHub Repo"/></a>
-<a href="https://github.com/fest-live/uniform.ts/stargazers"><img src="https://img.shields.io/github/stars/fest-live/uniform.ts?style=flat-square" alt="GitHub stars"/></a>
-<a href="https://github.com/fest-live/uniform.ts/blob/main/LICENSE"><img src="https://img.shields.io/github/license/fest-live/uniform.ts?style=flat-square" alt="License"/></a>
-<a href="https://github.com/fest-live/uniform.ts/commits/main"><img src="https://img.shields.io/github/last-commit/fest-live/uniform.ts?style=flat-square" alt="Last Commit"/></a>
-<a href="https://www.npmjs.com/package/uniform.ts"><img src="https://img.shields.io/npm/v/uniform.ts?style=flat-square&logo=npm&color=orange" alt="npm version"/></a>
-<a href="https://github.com/fest-live/uniform.ts/actions"><img src="https://img.shields.io/github/actions/workflow/status/fest-live/uniform.ts/ci.yml?branch=main&style=flat-square" alt="Build Status"/></a>
-<a href="https://codecov.io/gh/fest-live/uniform.ts"><img src="https://img.shields.io/codecov/c/github/fest-live/uniform.ts?style=flat-square" alt="Coverage Status"/></a>
-<a href="https://github.com/fest-live/uniform.ts/issues"><img src="https://img.shields.io/github/issues/fest-live/uniform.ts?style=flat-square" alt="Issues"/></a>
-<a href="https://github.com/fest-live/uniform.ts/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"/></a>
-</p>
+## Features
 
----
+- **Seamless API**: Call worker functions as if they were local
+- **Automatic Serialization**: Handles complex data types and transferables
+- **Optimized Protocol**: Batching, timeouts, and error recovery
+- **Type Safety**: Full TypeScript support with reflection
+- **Performance**: Efficient message passing with minimal overhead
 
-## Key Links
+## Quick Start
 
-- [Repository](https://github.com/fest-live/uniform.ts)
-- [npm Package](https://www.npmjs.com/package/uniform.ts)
-- [Open Issues](https://github.com/fest-live/uniform.ts/issues)
-- [Pull Requests](https://github.com/fest-live/uniform.ts/pulls)
-- [License](https://github.com/fest-live/uniform.ts/blob/main/LICENSE)
-- [Actions / CI](https://github.com/fest-live/uniform.ts/actions)
-- [Coverage](https://codecov.io/gh/fest-live/uniform.ts)
+### Basic Usage
 
----
+```typescript
+import { createWorkerChannel } from 'fest/uniform';
 
-## 🚧 Project Status
+// Create a worker channel
+const worker = await createWorkerChannel({
+    name: 'my-worker',
+    script: './my-worker.uniform.worker.ts'
+});
 
-> **Note:** The project is being revived. There are no guarantees of stability yet, but new architectural ideas and sketches are in progress.
-
----
-
-## ✨ Key Concepts
-
-- Unified approach to working with web workers
-- New architectural patterns
-- Not based on any organic principles
-
----
-
-## Usage
-
-**Host:**
-
-```ts
-import { importModuleInChannel } from "fest/uniform";
-
-//
-const module = await importModuleInChannel("test", new URL("./module.ts", import.meta.url).href);
-console.log(await module?.remoteFunction(1, 2));
-
-//
-const r2 = await (await module?.createArrayBuffer(10))?.transfer?.();
-console.log(r2);
+// Call worker functions seamlessly
+const result = await worker.request('processData', { data: 'hello' });
 ```
 
-**Worker:**
+### Queued Channels (Recommended)
 
-```ts
-export const remoteFunction = (a: number, b: number) => {
-    return a + b;
+```typescript
+import { createQueuedWorkerChannel } from 'fest/uniform';
+
+// Create queued channel - operations queue until worker is ready
+const worker = new QueuedWorkerChannel({
+    name: 'my-worker',
+    script: './my-worker.uniform.worker.ts'
+}, (channel) => {
+    console.log('Worker channel ready!');
+});
+
+// Operations will queue until the channel connects
+const result = await worker.request('processData', { data: 'hello' });
+```
+
+### Optimized Protocol
+
+```typescript
+import { createOptimizedWorkerChannel } from 'fest/uniform';
+
+// Create optimized channel with advanced features
+const worker = await createOptimizedWorkerChannel({
+    name: 'my-worker',
+    script: './my-worker.uniform.worker.ts'
+}, {
+    timeout: 10000,
+    retries: 3,
+    batching: true,
+    compression: false
+});
+
+// Request with automatic batching and retry
+const result = await worker.request('processData', { data: 'hello' });
+
+// Fire-and-forget notifications
+worker.notify('logMessage', 'Processing complete');
+```
+
+### Queued Optimized Channels
+
+```typescript
+import { createQueuedOptimizedWorkerChannel } from 'fest/uniform';
+
+// Best of both worlds: queuing + optimization
+const worker = createQueuedOptimizedWorkerChannel({
+    name: 'my-worker',
+    script: './my-worker.uniform.worker.ts'
+}, {
+    timeout: 10000,
+    retries: 3,
+    batching: true
+}, (channel) => {
+    console.log('Optimized worker channel ready!');
+});
+
+// Operations queue until ready, then use optimized protocol
+const result = await worker.request('processData', { data: 'hello' });
+```
+
+### Context-Specific Usage
+
+#### Service Worker Context
+```typescript
+import { detectExecutionContext, createServiceWorkerChannel } from 'fest/uniform';
+
+if (detectExecutionContext() === 'service-worker') {
+    // In service worker, use BroadcastChannel communication
+    const channel = await createServiceWorkerChannel({
+        name: 'sw-cache-worker',
+        script: './cache-worker.js'
+    });
+
+    // Communicate through BroadcastChannel
+    const result = await channel.request('cacheData', { data: 'important' });
+}
+```
+
+#### Chrome Extension Context
+```typescript
+import { createChromeExtensionChannel } from 'fest/uniform';
+
+const worker = await createChromeExtensionChannel({
+    name: 'extension-worker',
+    script: 'workers/processor.js' // Will be resolved with chrome.runtime.getURL()
+});
+
+// Automatic extension URL resolution
+const result = await worker.request('processExtensionData', data);
+```
+
+## Worker Implementation
+
+### Basic Worker
+
+```typescript
+// my-worker.uniform.worker.ts
+import { registerWorkerAPI } from 'fest/uniform';
+
+const workerAPI = {
+    async processData(payload: { data: string }) {
+        // Process the data
+        return payload.data.toUpperCase();
+    },
+
+    async logMessage(message: string) {
+        console.log('[Worker]', message);
+    }
 };
 
-export const createArrayBuffer = (length: number) => {
-    return new ArrayBuffer(length);
+registerWorkerAPI(workerAPI);
+```
+
+### Advanced Worker with Optimized Protocol
+
+```typescript
+// my-worker.uniform.worker.ts
+import { registerWorkerAPI } from 'fest/uniform';
+import { MessageEnvelope } from 'fest/uniform/src/optimized-protocol';
+
+const workerAPI = {
+    async processData(payload: { data: string }) {
+        return payload.data.toUpperCase();
+    }
+};
+
+// Handle optimized protocol messages
+const processMessage = async (envelope: MessageEnvelope) => {
+    if (envelope.type === 'batch') {
+        const results = [];
+        for (const msg of envelope.payload) {
+            results.push(await processSingleMessage(msg));
+        }
+        return results;
+    }
+    return await processSingleMessage(envelope);
+};
+
+const processSingleMessage = async (envelope: MessageEnvelope) => {
+    const handler = workerAPI[envelope.type as keyof typeof workerAPI];
+    if (!handler) {
+        throw new Error(`Unknown message type: ${envelope.type}`);
+    }
+    return await handler(envelope.payload);
+};
+
+// Register API and message processor
+registerWorkerAPI(workerAPI);
+(globalThis as any).processMessage = processMessage;
+```
+
+## API Reference
+
+### Core Functions
+
+#### `createWorkerChannel(config: WorkerConfig): Promise<WorkerChannel>`
+
+Creates a basic worker channel.
+
+**Parameters:**
+- `config.name`: Unique channel name
+- `config.script`: Path to worker script
+- `config.options`: Worker options
+
+#### `createOptimizedWorkerChannel(config: WorkerConfig, options?: ProtocolOptions): Promise<OptimizedWorkerChannel>`
+
+Creates an optimized worker channel with advanced features.
+
+**Protocol Options:**
+- `timeout`: Request timeout in milliseconds (default: 30000)
+- `retries`: Number of retry attempts (default: 3)
+- `batching`: Enable message batching (default: true)
+- `compression`: Enable payload compression (default: false)
+
+### WorkerChannel Methods
+
+#### `request(method: string, args: any[]): Promise<any>`
+
+Call a worker method and wait for response.
+
+#### `close(): void`
+
+Close the worker channel.
+
+### OptimizedWorkerChannel Methods
+
+#### `request(type: string, payload: any, options?: Partial<ProtocolOptions>): Promise<any>`
+
+Send request with optimization features.
+
+#### `notify(type: string, payload: any): void`
+
+Send fire-and-forget message.
+
+#### `stream(type: string, data: any[]): AsyncGenerator<any>`
+
+Stream data with backpressure handling.
+
+## Advanced Features
+
+### Message Batching
+
+Automatically batches multiple messages to reduce overhead:
+
+```typescript
+const worker = await createOptimizedWorkerChannel(config, { batching: true });
+
+// These calls will be batched automatically
+await Promise.all([
+    worker.request('method1', data1),
+    worker.request('method2', data2),
+    worker.request('method3', data3)
+]);
+```
+
+### Error Handling and Retries
+
+```typescript
+const worker = await createOptimizedWorkerChannel(config, {
+    retries: 3,
+    timeout: 5000
+});
+
+try {
+    const result = await worker.request('unreliableMethod', data);
+} catch (error) {
+    console.error('All retries failed:', error);
+}
+```
+
+### Streaming Data
+
+```typescript
+const worker = await createOptimizedWorkerChannel(config);
+
+// Stream large datasets
+for await (const result of worker.stream('processChunk', largeDataArray)) {
+    console.log('Processed chunk:', result);
+}
+```
+
+## Integration Examples
+
+### OPFS Worker (Real Example)
+
+```typescript
+// From fest/lure OPFS implementation
+import { createOptimizedWorkerChannel } from 'fest/uniform';
+
+const workerChannel = await createOptimizedWorkerChannel({
+    name: "opfs-worker",
+    script: "./OPFS.uniform.worker.ts"
+}, {
+    timeout: 10000,
+    batching: true
+});
+
+// Use like a regular function call
+const result = await workerChannel.request('readFile', {
+    rootId: 'user',
+    path: '/data.json'
+});
+```
+
+## Performance Benefits
+
+- **Reduced Latency**: Message batching minimizes round trips
+- **Better Throughput**: Optimized serialization and transfer handling
+- **Automatic Retry**: Built-in error recovery
+- **Memory Efficient**: Proper transferable object handling
+- **Type Safe**: Full TypeScript support across worker boundaries
+
+## Migration from postMessage
+
+### Before (Traditional)
+
+```typescript
+const worker = new Worker('./worker.js');
+
+worker.postMessage({ type: 'process', data });
+
+worker.onmessage = (e) => {
+    const { result, error } = e.data;
+    if (error) handleError(error);
+    else handleResult(result);
 };
 ```
 
----
+### After (Uniform)
 
-## 📦 Installation
+```typescript
+const worker = await createWorkerChannel({
+    name: 'my-worker',
+    script: './worker.uniform.worker.ts'
+});
 
-```bash
-npm install -D @fest-lib/uniform
-# or
-yarn add @fest-lib/uniform
+try {
+    const result = await worker.request('process', data);
+    handleResult(result);
+} catch (error) {
+    handleError(error);
+}
 ```
 
----
+## Execution Context Support
 
----
+Fest/Uniform automatically adapts to different JavaScript execution contexts:
 
-## 📚 Documentation
+### Main Thread Context
+- Full dedicated worker support
+- MessageChannel communication
+- All optimization features available
 
-- [Uniform.TS Repository](https://github.com/fest-live/uniform.ts)
-- [Open Issues](https://github.com/fest-live/uniform.ts/issues)
-- [Pull Requests](https://github.com/fest-live/uniform.ts/pulls)
+### Service Worker Context
+- BroadcastChannel-based communication
+- No dedicated worker creation (not supported)
+- Queued operations with fallback handling
 
----
+### Chrome Extension Context
+- Dedicated worker support with extension URL resolution
+- Automatic detection of extension environment
+- Fallback communication patterns
 
-## 🤝 Contributing
+### Context Detection
+```typescript
+import { detectExecutionContext, supportsDedicatedWorkers } from 'fest/uniform';
 
-We welcome your [pull requests](https://github.com/fest-live/uniform.ts/pulls) and [issues](https://github.com/fest-live/uniform.ts/issues)!
+const context = detectExecutionContext(); // 'main' | 'service-worker' | 'chrome-extension' | 'unknown'
+const hasWorkers = supportsDedicatedWorkers(); // boolean
+```
 
----
+## Browser Support
 
-## 📝 License
+Requires modern browsers with:
+- ES2020 modules
+- MessageChannel API (main thread)
+- BroadcastChannel API (service workers)
+- Proxy API
+- WeakRef (optional)
 
-[MIT License](./LICENSE)
+Compatible with all Chromium-based browsers and modern Firefox/Safari.
 
----
+## Examples
 
-**_Uniform.TS — a modern approach to working with web workers!_**
+- [Service Worker Integration](./examples/service-worker-integration.ts) - Using uniform channels in service worker context
+- [Chrome Extension Integration](./examples/chrome-extension-integration.ts) - Chrome extension worker communication
+
+## Contributing
+
+This library is experimental and evolving. Contributions welcome!
+
+## License
+
+MIT License

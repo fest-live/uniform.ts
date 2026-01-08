@@ -1,4 +1,5 @@
 import { ChannelHandler } from "./Channels";
+import { initChannelHandler } from "./Channels";
 
 //
 addEventListener("message", (event) => {
@@ -11,3 +12,6 @@ addEventListener("message", (event) => {
         console.error(event);
     }
 });
+
+// Initialize channel handler for this worker context
+initChannelHandler("worker");

@@ -12,3 +12,12 @@ export const importModuleInChannel = async (channel: string, url: string, option
     const module = await remote?.doImportModule?.(url, options?.importOptions);
     return module;
 };
+
+// Export types
+export * from "./types";
+
+// Export app-specific adapter
+export * from "./app-adapter";
+
+// Export optimized protocol
+export * from "./optimized-protocol";
