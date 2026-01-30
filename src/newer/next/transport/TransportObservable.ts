@@ -10,7 +10,7 @@ import {
     createTransportSender,
     createTransportListener,
     type TransportTarget
-} from "../core/TransportCore";
+} from "../../core/TransportCore";
 import type { ChannelMessage, Observer, Subscription, Subscribable } from "../types/Interface";
 import { ChannelSubject } from "../observable/Observable";
 

@@ -13,8 +13,8 @@ import {
     createTransportListener,
     type TransportTarget,
     type SendFn
-} from "../core/TransportCore";
-import { handleRequest } from "../core/RequestHandler";
+} from "../../core/TransportCore";
+import { handleRequest } from "../../core/RequestHandler";
 import type { ChannelMessage } from "../observable/Observable";
 import type { WReq } from "../types/Interface";
 
