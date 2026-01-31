@@ -91,8 +91,27 @@ export {
     ChromeTabsTransport,
     ServiceWorkerTransport,
     SelfTransport,
-    TransportFactory
+    TransportFactory,
+    createConnectionObserver,
+    type TransportIncomingConnection,
+    type AcceptConnectionCallback
 } from "./next/transport/Transport";
+
+// ============================================================================
+// WORKER CONTEXT
+// ============================================================================
+
+export {
+    WorkerContext,
+    getWorkerContext,
+    initWorkerContext,
+    onWorkerConnection,
+    onWorkerChannelCreated,
+    workerContext,
+    type IncomingConnection,
+    type ChannelCreatedEvent,
+    type WorkerContextConfig
+} from "./next/transport/Worker";
 
 export {
     TransportObservable,
@@ -132,6 +151,39 @@ export {
     createObservableHostChannel,
     createOrUseExistingObservableChannel
 } from "./next/channel/ObservableChannels";
+
+// ============================================================================
+// MULTI-CHANNEL CONTEXT
+// ============================================================================
+
+export {
+    ChannelContext,
+    ChannelHandler as ContextChannelHandler,
+    RemoteChannelHelper as ContextRemoteChannelHelper,
+    createChannelContext,
+    getOrCreateContext,
+    getContext,
+    deleteContext,
+    getContextNames,
+    createChannelsInContext,
+    importModuleInContext,
+    // Default context functions
+    getDefaultContext,
+    addWorkerChannel,
+    addPortChannel,
+    addBroadcastChannel,
+    addSelfChannelToDefault,
+    deferChannel,
+    initDeferredChannel,
+    getChannelFromDefault,
+    createDefaultChannelPair,
+    // Types
+    type ChannelContextOptions,
+    type ChannelEndpoint,
+    type RemoteChannelInfo as ContextRemoteChannelInfo,
+    type DynamicTransportType,
+    type DynamicTransportConfig
+} from "./next/channel/ChannelContext";
 
 // ============================================================================
 // CONNECTION
@@ -322,6 +374,58 @@ export const importModuleInChannel = async (
     const remote = await createOrUseExistingChannel(channel, options?.channelOptions, broadcast as any);
     return remote?.doImportModule?.(url, options?.importOptions);
 };
+
+// ============================================================================
+// MULTI-CHANNEL HIGH-LEVEL API
+// ============================================================================
+
+import {
+    ChannelContext,
+    createChannelContext,
+    getOrCreateContext,
+    createChannelsInContext as _createChannelsInContext,
+    importModuleInContext as _importModuleInContext
+} from "./next/channel/ChannelContext";
+
+/**
+ * Create a new isolated channel context for a component or module
+ *
+ * @example
+ * // In a lazy-loaded component
+ * const ctx = createContext({ name: "my-component" });
+ * const workerModule = await ctx.importModuleInChannel("worker", "./module.ts");
+ *
+ * // Create multiple channels for different purposes
+ * const { channels } = ctx.createChannels(["ui", "data", "sync"]);
+ */
+export const createContext = createChannelContext;
+
+/**
+ * Get or create a shared context by name
+ *
+ * @example
+ * // Multiple components can share the same context
+ * const sharedCtx = getSharedContext("app-state");
+ */
+export const getSharedContext = getOrCreateContext;
+
+/**
+ * Create multiple channels at once in a new context
+ *
+ * @example
+ * const { context, channels } = createMultiChannel(["api", "ui", "events"]);
+ * channels.get("api")?.handler.request(...);
+ */
+export const createMultiChannel = _createChannelsInContext;
+
+/**
+ * Import a module with its own isolated context
+ *
+ * @example
+ * const { context, module } = await importIsolatedModule("worker-1", "./computation.ts");
+ * await module.compute(data);
+ */
+export const importIsolatedModule = _importModuleInContext;
 
 export const connectToChannelAsModule = async (
     channel: string, options: any = {},
