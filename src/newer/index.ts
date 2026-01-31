@@ -1,9 +1,16 @@
 /**
- * Uniform.ts - Unified exports
+ * Uniform.ts - Unified Channel Communication Library
+ *
+ * Provides a unified API for cross-context communication:
+ * - Workers, SharedWorkers, ServiceWorkers
+ * - BroadcastChannel, MessagePort, WebSocket
+ * - Chrome Extension messaging
+ * - SharedArrayBuffer + Atomics
+ * - WebRTC DataChannel
  */
 
 // ============================================================================
-// TYPES (from Interface.ts)
+// TYPES
 // ============================================================================
 
 export type {
@@ -12,7 +19,6 @@ export type {
     ChannelMessage, ChannelState, ChannelMeta,
     TransportType, TransportTarget, ConnectionOptions,
     ResponderFn, InvokerHandler, MessageHandler, SendFn, PendingRequest,
-    // Advanced transport types
     AtomicsConfig, RTCConfig, SharedWorkerConfig, PortConfig,
     TransferableConfig, TransportCapabilities
 } from "./next/types/Interface";
@@ -20,7 +26,7 @@ export type {
 export { WStatus, WType, WReflectAction } from "./next/types/Interface";
 
 // ============================================================================
-// CORE UTILITIES
+// CORE (Transport & Request Handling)
 // ============================================================================
 
 export {
@@ -39,29 +45,18 @@ export {
 export { executeAction, buildResponse, handleRequest } from "./core/RequestHandler";
 
 // ============================================================================
-// OBSERVABLE
+// OBSERVABLE (Core)
 // ============================================================================
 
 export {
+    // Core classes
     Observable,
     ChannelSubject,
     ReplayChannelSubject,
     ChannelObservable,
     MessageObservable,
-    createInvokerObservable,
-    createReflectHandler,
-    filter, map, take, takeUntil, debounce, throttle,
-    fromEvent, fromPromise, delay, interval, merge, createMessageId,
-    ObservableFactory
-} from "./next/observable/Observable";
 
-// ============================================================================
-// NATIVE OBSERVABLE
-// ============================================================================
-
-export {
-    ChannelNativeObservable,
-    ChannelSubscription,
+    // Invoker factories
     makeWorkerInvoker,
     makeMessagePortInvoker,
     makeBroadcastInvoker,
@@ -70,15 +65,111 @@ export {
     makeServiceWorkerClientInvoker,
     makeServiceWorkerHostInvoker,
     makeSelfInvoker,
-    createRequestHandler,
-    createSimpleRequestHandler,
-    createChannelObservable,
-    createBidirectionalChannelNative,
-    when
-} from "./next/observable/NativeObservable";
+
+    // Handlers
+    createInvokerObservable,
+    createReflectHandler,
+    createBidirectionalChannel,
+
+    // Operators
+    filter, map, take, takeUntil, debounce, throttle,
+
+    // Utilities
+    fromEvent, fromPromise, delay, interval, merge, when, createMessageId,
+
+    // Factory
+    ObservableFactory,
+
+    // Types
+    type BidirectionalChannel
+} from "./next/observable/Observable";
 
 // ============================================================================
-// TRANSPORT
+// UNIFIED CHANNEL (Primary API)
+// ============================================================================
+
+export {
+    UnifiedChannel,
+    createUnifiedChannel,
+    setupUnifiedChannel,
+    createUnifiedChannelPair,
+    getUnifiedChannel,
+    getUnifiedChannelNames,
+    closeUnifiedChannel,
+    getWorkerChannel,
+    exposeFromUnified,
+    remoteFromUnified,
+    type UnifiedChannelConfig,
+    type ConnectOptions
+} from "./next/channel/UnifiedChannel";
+
+// ============================================================================
+// INVOKER (Requestor/Responder Pattern)
+// ============================================================================
+
+export {
+    Requestor,
+    Responder,
+    BidirectionalInvoker,
+    DefaultReflect,
+    createRequestor,
+    createResponder,
+    createInvoker,
+    setupInvoker,
+    autoInvoker,
+    detectContextType,
+    detectTransportType as detectTransport,
+    detectIncomingContextType,
+    type InvokerConfig,
+    type ReflectLike,
+    type InvocationResponse,
+    type ContextType,
+    type IncomingInvocation
+} from "./next/channel/Invoker";
+
+// ============================================================================
+// MULTI-CHANNEL CONTEXT
+// ============================================================================
+
+export {
+    ChannelContext,
+    createChannelContext,
+    getOrCreateContext,
+    getContext,
+    deleteContext,
+    getContextNames,
+    createChannelsInContext,
+    importModuleInContext,
+    getDefaultContext,
+    addWorkerChannel,
+    addPortChannel,
+    addBroadcastChannel,
+    addSelfChannelToDefault,
+    deferChannel,
+    initDeferredChannel,
+    getChannelFromDefault,
+    createDefaultChannelPair,
+    type ChannelContextOptions,
+    type ChannelEndpoint,
+    type RemoteChannelInfo,
+    type DynamicTransportType,
+    type DynamicTransportConfig
+} from "./next/channel/ChannelContext";
+
+// ============================================================================
+// CONNECTION
+// ============================================================================
+
+export {
+    ChannelConnection,
+    ConnectionPool,
+    getConnection,
+    getHostConnection,
+    getConnectionPool
+} from "./next/channel/Connection";
+
+// ============================================================================
+// TRANSPORT ADAPTERS
 // ============================================================================
 
 export {
@@ -97,55 +188,6 @@ export {
     type AcceptConnectionCallback
 } from "./next/transport/Transport";
 
-// ============================================================================
-// WORKER CONTEXT
-// ============================================================================
-
-export {
-    WorkerContext,
-    getWorkerContext,
-    initWorkerContext,
-    onWorkerConnection,
-    onWorkerChannelCreated,
-    workerContext,
-    // Invoker integration
-    getWorkerResponder,
-    getWorkerInvoker,
-    exposeFromWorker,
-    onWorkerInvocation,
-    createHostProxy,
-    importInHost,
-    detectContextType,
-    detectTransportType,
-    type IncomingConnection,
-    type ChannelCreatedEvent,
-    type WorkerContextConfig,
-    type ContextType,
-    type IncomingInvocation
-} from "./next/transport/Worker";
-
-// ============================================================================
-// INVOKER (Requestor/Responder)
-// ============================================================================
-
-export {
-    Requestor,
-    Responder,
-    BidirectionalInvoker,
-    DefaultReflect,
-    createRequestor,
-    createResponder,
-    createInvoker,
-    setupInvoker,
-    autoInvoker,
-    detectContextType as detectContext,
-    detectTransportType as detectTransport,
-    detectIncomingContextType,
-    type InvokerConfig,
-    type ReflectLike,
-    type InvocationResponse
-} from "./next/channel/Invoker";
-
 export {
     TransportObservable,
     WorkerObservable,
@@ -158,106 +200,33 @@ export {
     ServiceWorkerHostObservable,
     SelfObservable,
     TransportObservableFactory,
-    createBidirectionalChannel
+    createBidirectionalChannel as createBidirectionalTransport
 } from "./next/transport/TransportObservable";
 
 // ============================================================================
-// CHANNEL HANDLERS
+// WORKER CONTEXT
 // ============================================================================
 
 export {
-    ChannelHandler,
-    RemoteChannelHelper,
-    RemoteChannels,
-    SELF_CHANNEL,
-    CHANNEL_MAP,
-    initChannelHandler,
-    loadWorker,
-    $createOrUseExistingChannel,
-    createHostChannel,
-    createOrUseExistingChannel
-} from "./next/channel/Channels";
-
-export {
-    ObservableChannelHandler,
-    initObservableChannelHandler,
-    createObservableHostChannel,
-    createOrUseExistingObservableChannel
-} from "./next/channel/ObservableChannels";
+    WorkerContext,
+    getWorkerContext,
+    initWorkerContext,
+    onWorkerConnection,
+    onWorkerChannelCreated,
+    workerContext,
+    getWorkerResponder,
+    getWorkerInvoker,
+    exposeFromWorker,
+    onWorkerInvocation,
+    createHostProxy,
+    importInHost,
+    type IncomingConnection,
+    type ChannelCreatedEvent,
+    type WorkerContextConfig
+} from "./next/transport/Worker";
 
 // ============================================================================
-// MULTI-CHANNEL CONTEXT
-// ============================================================================
-
-export {
-    ChannelContext,
-    ChannelHandler as ContextChannelHandler,
-    RemoteChannelHelper as ContextRemoteChannelHelper,
-    createChannelContext,
-    getOrCreateContext,
-    getContext,
-    deleteContext,
-    getContextNames,
-    createChannelsInContext,
-    importModuleInContext,
-    // Default context functions
-    getDefaultContext,
-    addWorkerChannel,
-    addPortChannel,
-    addBroadcastChannel,
-    addSelfChannelToDefault,
-    deferChannel,
-    initDeferredChannel,
-    getChannelFromDefault,
-    createDefaultChannelPair,
-    // Types
-    type ChannelContextOptions,
-    type ChannelEndpoint,
-    type RemoteChannelInfo as ContextRemoteChannelInfo,
-    type DynamicTransportType,
-    type DynamicTransportConfig
-} from "./next/channel/ChannelContext";
-
-// ============================================================================
-// CONNECTION
-// ============================================================================
-
-export {
-    ChannelConnection,
-    ConnectionPool,
-    getConnection,
-    getHostConnection,
-    getConnectionPool
-} from "./next/channel/Connection";
-
-// ============================================================================
-// MESSAGE HANDLER
-// ============================================================================
-
-export {
-    makeChannelMessageHandler,
-    ObservableRequestDispatcher,
-    ChannelMessageObservable,
-    createChannelRequestHandler
-} from "./next/channel/ChannelMessageHandler";
-
-// ============================================================================
-// REQUEST PROXY
-// ============================================================================
-
-export {
-    makeRequestProxy,
-    makeObservableRequestProxy,
-    wrapChannel,
-    wrapObservableChannel,
-    createObservableChannel,
-    ObservableRequestProxyHandler,
-    RequestProxyHandlerV2,
-    DispatchProxyHandler
-} from "./next/channel/RequestProxy";
-
-// ============================================================================
-// PLATFORM-SPECIFIC
+// CHROME EXTENSION
 // ============================================================================
 
 export {
@@ -272,6 +241,10 @@ export {
     type ChromeObservableOptions
 } from "./next/observable/ChromeObservable";
 
+// ============================================================================
+// SOCKET.IO
+// ============================================================================
+
 export {
     SocketIOObservable,
     SocketIORoomObservable,
@@ -282,9 +255,6 @@ export {
     type SocketMessage,
     type SocketObservableOptions
 } from "./next/observable/SocketIOObservable";
-
-export * from "./next/transport/ServiceWorkerHost";
-export * from "./next/storage/Storage";
 
 // ============================================================================
 // ADVANCED TRANSPORTS
@@ -302,7 +272,7 @@ export {
     type SharedWorkerPortInfo
 } from "./next/transport/SharedWorkerTransport";
 
-// SharedArrayBuffer + Atomics
+// Atomics (SharedArrayBuffer)
 export {
     AtomicsTransport,
     AtomicsBuffer,
@@ -346,20 +316,7 @@ export {
     type ProxyMethods
 } from "./next/transport/PortTransport";
 
-// Transferable Storage (IndexedDB)
-export {
-    TransferableStorage,
-    MessageQueueStorage,
-    TransferableStorageFactory,
-    type TransferableRecord,
-    type TransferableQuery,
-    type TransferableStorageConfig,
-    type StorageChange,
-    type ChangeType,
-    type QueuedMessage
-} from "./next/storage/TransferableStorage";
-
-// Unified Transport
+// Unified Transport Factory
 export {
     createTransport,
     getTransportRegistry,
@@ -371,23 +328,103 @@ export {
 } from "./next/transport/UnifiedTransport";
 
 // ============================================================================
+// STORAGE
+// ============================================================================
+
+export * from "./next/storage/Storage";
+export * from "./next/storage/TransferableStorage";
+export * from "./next/storage/Queued";
+export * from "./next/storage/DataBase";
+export * from "./next/transport/ServiceWorkerHost";
+
+// ============================================================================
 // UTILITIES
 // ============================================================================
 
 export * from "./next/utils/Env";
 export * from "./next/utils/Utils";
 export * from "./next/utils/Wrappers";
-export * from "./next/storage/Queued";
-export * from "./next/storage/DataBase";
 
 // ============================================================================
-// HIGH-LEVEL APIS
+// PROXY (Unified Proxy Creation)
 // ============================================================================
 
-import { createHostChannel, createOrUseExistingChannel, SELF_CHANNEL } from "./next/channel/Channels";
+export {
+    // Types
+    type ProxyInvoker,
+    type ProxyDescriptor,
+    type ProxyConfig,
+    type ProxyMethods as ProxyMethodsType,
+    type RemoteProxy,
+    type ExposeHandler,
+    type ProxySender,
+
+    // Symbols
+    PROXY_MARKER,
+    PROXY_INTERNALS,
+
+    // Classes
+    RemoteProxyHandler,
+    DispatchProxyHandler as DispatchHandler,
+    ProxyBuilder,
+
+    // Factory functions
+    createRemoteProxy,
+    wrapDescriptor,
+    isRemoteProxy,
+    getProxyDescriptor,
+    getProxyInternals,
+    createExposeHandler,
+    createSenderProxy,
+    proxyBuilder
+} from "./next/channel/Proxy";
+
+// ============================================================================
+// LEGACY (Backward Compatibility)
+// ============================================================================
+
+export {
+    ChannelHandler,
+    RemoteChannelHelper,
+    SELF_CHANNEL,
+    CHANNEL_MAP,
+    RemoteChannels,
+    initChannelHandler,
+    loadWorker,
+    $createOrUseExistingChannel,
+    createHostChannel,
+    createOrUseExistingChannel
+} from "./next/channel/Channels";
+
+export {
+    makeRequestProxy,
+    makeObservableRequestProxy,
+    wrapChannel,
+    wrapObservableChannel,
+    createObservableChannel,
+    DispatchProxyHandler
+} from "./next/channel/RequestProxy";
+
+export {
+    makeChannelMessageHandler,
+    ObservableRequestDispatcher,
+    ChannelMessageObservable,
+    createChannelRequestHandler
+} from "./next/channel/ChannelMessageHandler";
+
+// Aliases for legacy support
+export { ChannelHandler as ObservableChannelHandler } from "./next/channel/Channels";
+export { Observable as ChannelNativeObservable } from "./next/observable/Observable";
+
+// ============================================================================
+// HIGH-LEVEL API
+// ============================================================================
+
+import { createOrUseExistingChannel, createHostChannel, SELF_CHANNEL } from "./next/channel/Channels";
 import { wrapChannel } from "./next/channel/RequestProxy";
-import type { WorkerChannel } from "./next/storage/Queued";
+import { createChannelContext, getOrCreateContext, createChannelsInContext, importModuleInContext } from "./next/channel/ChannelContext";
 import { detectExecutionContext } from "./next/utils/Env";
+import type { WorkerChannel } from "./next/storage/Queued";
 
 export interface BroadcastLike {
     addEventListener: (type: "message" | "error", listener: (...args: any[]) => any) => void;
@@ -397,9 +434,11 @@ export interface BroadcastLike {
     start?: () => void;
 }
 
+/** Sync with a remote channel */
 export const sync = async (channel: string, options: any = {}, broadcast: BroadcastLike | Worker | BroadcastChannel | MessagePort | null = null) =>
     createOrUseExistingChannel(channel, options, (broadcast ?? (typeof self !== "undefined" ? (self as any) : null)) as any);
 
+/** Import a module in a remote channel */
 export const importModuleInChannel = async (
     channel: string, url: string, options: any = {},
     broadcast: BroadcastLike | Worker | BroadcastChannel | MessagePort | null = (typeof self !== "undefined" ? (self as any) : null)
@@ -408,58 +447,19 @@ export const importModuleInChannel = async (
     return remote?.doImportModule?.(url, options?.importOptions);
 };
 
-// ============================================================================
-// MULTI-CHANNEL HIGH-LEVEL API
-// ============================================================================
-
-import {
-    ChannelContext,
-    createChannelContext,
-    getOrCreateContext,
-    createChannelsInContext as _createChannelsInContext,
-    importModuleInContext as _importModuleInContext
-} from "./next/channel/ChannelContext";
-
-/**
- * Create a new isolated channel context for a component or module
- *
- * @example
- * // In a lazy-loaded component
- * const ctx = createContext({ name: "my-component" });
- * const workerModule = await ctx.importModuleInChannel("worker", "./module.ts");
- *
- * // Create multiple channels for different purposes
- * const { channels } = ctx.createChannels(["ui", "data", "sync"]);
- */
+/** Create a new isolated channel context */
 export const createContext = createChannelContext;
 
-/**
- * Get or create a shared context by name
- *
- * @example
- * // Multiple components can share the same context
- * const sharedCtx = getSharedContext("app-state");
- */
+/** Get or create a shared context by name */
 export const getSharedContext = getOrCreateContext;
 
-/**
- * Create multiple channels at once in a new context
- *
- * @example
- * const { context, channels } = createMultiChannel(["api", "ui", "events"]);
- * channels.get("api")?.handler.request(...);
- */
-export const createMultiChannel = _createChannelsInContext;
+/** Create multiple channels in a new context */
+export const createMultiChannel = createChannelsInContext;
 
-/**
- * Import a module with its own isolated context
- *
- * @example
- * const { context, module } = await importIsolatedModule("worker-1", "./computation.ts");
- * await module.compute(data);
- */
-export const importIsolatedModule = _importModuleInContext;
+/** Import a module with its own isolated context */
+export const importIsolatedModule = importModuleInContext;
 
+/** Connect to a channel as a module */
 export const connectToChannelAsModule = async (
     channel: string, options: any = {},
     broadcast: BroadcastLike | Worker | BroadcastChannel | MessagePort | null = (typeof self !== "undefined" ? (self as any) : null),
@@ -470,6 +470,7 @@ export const connectToChannelAsModule = async (
     return wrapChannel(channel, host ?? SELF_CHANNEL?.instance);
 };
 
+/** Create Chrome extension runtime channel */
 export const createChromeExtensionRuntimeChannel = (channelName: string, options: any = {}): WorkerChannel => {
     const context = detectExecutionContext();
     if (context !== "chrome-extension") {
@@ -480,10 +481,10 @@ export const createChromeExtensionRuntimeChannel = (channelName: string, options
             return new Promise((resolve, reject) => {
                 try {
                     chrome.runtime.sendMessage({
-                id: `crx_${Date.now()}_${Math.random().toString(36).slice(2)}`,
+                        id: `crx_${Date.now()}_${Math.random().toString(36).slice(2)}`,
                         type: method, source: context, target: channelName,
                         data: args?.length === 1 ? args[0] : args,
-                metadata: { timestamp: Date.now(), ...(options?.metadata ?? {}) }
+                        metadata: { timestamp: Date.now(), ...(options?.metadata ?? {}) }
                     }, (response) => {
                         if (chrome.runtime.lastError) reject(new Error(chrome.runtime.lastError.message));
                         else resolve(response);

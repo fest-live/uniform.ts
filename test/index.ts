@@ -76,8 +76,22 @@ function assert(condition: boolean, message: string): void {
     if (!condition) throw new Error(message);
 }
 
+function assertExists(value: any, message?: string): void {
+    if (value === undefined || value === null) {
+        throw new Error(`${message ?? ""}: value should exist but is ${value}`);
+    }
+}
+
 function assertEqual<T>(actual: T, expected: T, message?: string): void {
     if (actual !== expected) throw new Error(`${message ?? ""}: expected ${expected}, got ${actual}`);
+}
+
+function assertDeepEqual(actual: any, expected: any, message?: string): void {
+    const actualStr = JSON.stringify(actual);
+    const expectedStr = JSON.stringify(expected);
+    if (actualStr !== expectedStr) {
+        throw new Error(`${message ?? ""}: expected ${expectedStr}, got ${actualStr}`);
+    }
 }
 
 function assertArrayEqual<T>(actual: T[], expected: T[], message?: string): void {
@@ -1015,6 +1029,409 @@ async function runLevel6Tests(): Promise<number> {
 }
 
 // ============================================================================
+// LEVEL 7: Unified Channel tests
+// ============================================================================
+
+async function runLevel7Tests(): Promise<number> {
+    log("=== LEVEL 7: Unified Channel tests ===");
+    let passed = 0;
+
+    // Import UnifiedChannel features directly
+    const {
+        UnifiedChannel,
+        createUnifiedChannel,
+        setupUnifiedChannel,
+        createUnifiedChannelPair,
+        getUnifiedChannel,
+        getUnifiedChannelNames,
+        closeUnifiedChannel,
+        getWorkerChannel,
+        exposeFromUnified,
+        remoteFromUnified
+    } = await import("../src/newer/next/channel/UnifiedChannel.ts");
+
+    // Test 1: createUnifiedChannel creates channel
+    passed += await test("createUnifiedChannel creates UnifiedChannel instance", () => {
+        const channel = createUnifiedChannel("test-unified");
+        assert(channel instanceof UnifiedChannel, "Should be UnifiedChannel instance");
+        assertEqual(channel.name, "test-unified", "Should have correct name");
+        channel.close();
+    }) ? 1 : 0;
+
+    // Test 2: UnifiedChannel has contextType
+    passed += await test("UnifiedChannel detects context type", () => {
+        const channel = createUnifiedChannel("ctx-test");
+        assert(channel.contextType !== undefined, "Should have contextType");
+        const validTypes = [
+            "window", "worker", "shared-worker", "service-worker",
+            "chrome-content", "chrome-background", "chrome-popup", "chrome-devtools",
+            "node", "deno", "unknown"
+        ];
+        assert(validTypes.includes(channel.contextType), `Should be valid type, got: ${channel.contextType}`);
+        channel.close();
+    }) ? 1 : 0;
+
+    // Test 3: expose returns this for chaining
+    passed += await test("UnifiedChannel.expose returns this for chaining", () => {
+        const channel = createUnifiedChannel("chain-test");
+
+        const result = channel.expose("obj1", { a: 1 }).expose("obj2", { b: 2 });
+
+        assert(result === channel, "expose should return this");
+        assertEqual(channel.exposedModules.length, 2, "Should have 2 exposed modules");
+        channel.close();
+    }) ? 1 : 0;
+
+    // Test 4: exposeAll exposes multiple objects
+    passed += await test("UnifiedChannel.exposeAll exposes multiple objects", () => {
+        const channel = createUnifiedChannel("expose-all-test");
+
+        channel.exposeAll({
+            math: { add: (a: number, b: number) => a + b },
+            str: { concat: (a: string, b: string) => a + b }
+        });
+
+        assertEqual(channel.exposedModules.length, 2, "Should have 2 exposed modules");
+        assert(channel.exposedModules.includes("math"), "Should include math");
+        assert(channel.exposedModules.includes("str"), "Should include str");
+        channel.close();
+    }) ? 1 : 0;
+
+    // Test 5: proxy creates transparent proxy
+    passed += await test("UnifiedChannel.proxy creates proxy object", () => {
+        const channel = createUnifiedChannel("proxy-test");
+
+        const proxy = channel.proxy("remote-channel", ["moduleName"]);
+
+        assert(proxy !== null, "Proxy should be created");
+        assert(typeof proxy === "function", "Proxy should be callable");
+        assert(proxy.$path !== undefined, "Proxy should have $path");
+        assert(proxy.$channel !== undefined, "Proxy should have $channel");
+        assertArrayEqual(proxy.$path, ["moduleName"], "Should have correct path");
+        assertEqual(proxy.$channel, "remote-channel", "Should have correct channel");
+        channel.close();
+    }) ? 1 : 0;
+
+    // Test 6: proxy chaining creates nested path
+    passed += await test("UnifiedChannel.proxy supports property chaining", () => {
+        const channel = createUnifiedChannel("chain-proxy-test");
+
+        const proxy = channel.proxy("remote", []);
+        const nested = proxy.module.submodule.method;
+
+        assertArrayEqual(nested.$path, ["module", "submodule", "method"], "Should have nested path");
+        channel.close();
+    }) ? 1 : 0;
+
+    // Test 7: remote creates module proxy
+    passed += await test("UnifiedChannel.remote creates module proxy", () => {
+        const channel = createUnifiedChannel("remote-test");
+
+        const math = channel.remote("mathModule", "worker");
+
+        assertArrayEqual(math.$path, ["mathModule"], "Should have module path");
+        assertEqual(math.$channel, "worker", "Should target worker channel");
+        channel.close();
+    }) ? 1 : 0;
+
+    // Test 8: observable streams are available
+    passed += await test("UnifiedChannel has observable streams", () => {
+        const channel = createUnifiedChannel("obs-test");
+
+        assert(channel.onMessage !== null, "Should have onMessage");
+        assert(channel.onOutbound !== null, "Should have onOutbound");
+        assert(channel.onInvocation !== null, "Should have onInvocation");
+        assert(channel.onResponse !== null, "Should have onResponse");
+
+        assert(typeof channel.subscribe === "function", "Should have subscribe method");
+        channel.close();
+    }) ? 1 : 0;
+
+    // Test 9: createUnifiedChannelPair creates bidirectional channels
+    passed += await test("createUnifiedChannelPair creates bidirectional pair", () => {
+        const { channel1, channel2, messageChannel } = createUnifiedChannelPair("ch1", "ch2");
+
+        assert(channel1 instanceof UnifiedChannel, "channel1 should be UnifiedChannel");
+        assert(channel2 instanceof UnifiedChannel, "channel2 should be UnifiedChannel");
+        assert(messageChannel instanceof MessageChannel, "Should have MessageChannel");
+
+        assertEqual(channel1.name, "ch1", "channel1 should have correct name");
+        assertEqual(channel2.name, "ch2", "channel2 should have correct name");
+
+        channel1.close();
+        channel2.close();
+    }) ? 1 : 0;
+
+    // Test 10: getUnifiedChannel creates singleton
+    passed += await test("getUnifiedChannel returns singleton", () => {
+        const channel1 = getUnifiedChannel("singleton-test");
+        const channel2 = getUnifiedChannel("singleton-test");
+
+        assert(channel1 === channel2, "Should return same instance");
+
+        closeUnifiedChannel("singleton-test");
+    }) ? 1 : 0;
+
+    // Test 11: getUnifiedChannelNames returns registered names
+    passed += await test("getUnifiedChannelNames returns all names", () => {
+        getUnifiedChannel("named-1");
+        getUnifiedChannel("named-2");
+
+        const names = getUnifiedChannelNames();
+        assert(names.includes("named-1"), "Should include named-1");
+        assert(names.includes("named-2"), "Should include named-2");
+
+        closeUnifiedChannel("named-1");
+        closeUnifiedChannel("named-2");
+    }) ? 1 : 0;
+
+    // Test 12: closeUnifiedChannel removes channel
+    passed += await test("closeUnifiedChannel removes channel from registry", () => {
+        getUnifiedChannel("to-close");
+        assert(getUnifiedChannelNames().includes("to-close"), "Should exist before close");
+
+        closeUnifiedChannel("to-close");
+        assert(!getUnifiedChannelNames().includes("to-close"), "Should not exist after close");
+    }) ? 1 : 0;
+
+    // Test 13: getWorkerChannel returns channel
+    passed += await test("getWorkerChannel returns a channel", () => {
+        const channel = getWorkerChannel();
+        assert(channel instanceof UnifiedChannel, "Should be UnifiedChannel");
+    }) ? 1 : 0;
+
+    // Test 14: config is accessible
+    passed += await test("UnifiedChannel.config returns configuration", () => {
+        const channel = createUnifiedChannel({
+            name: "config-test",
+            timeout: 5000,
+            bufferSize: 50
+        });
+
+        assertEqual(channel.config.name, "config-test", "Should have correct name");
+        assertEqual(channel.config.timeout, 5000, "Should have correct timeout");
+        assertEqual(channel.config.bufferSize, 50, "Should have correct bufferSize");
+        channel.close();
+    }) ? 1 : 0;
+
+    // Test 15: connectedChannels tracks connections
+    passed += await test("UnifiedChannel tracks connected channels", () => {
+        const channel = createUnifiedChannel({ name: "track-test", autoListen: false });
+
+        // Initially empty
+        assertArrayEqual(channel.connectedChannels, [], "Should start empty");
+
+        channel.close();
+    }) ? 1 : 0;
+
+    log(`Level 7: ${passed}/15 passed`);
+    return passed;
+}
+
+// ============================================================================
+// LEVEL 8: Proxy Module tests
+// ============================================================================
+
+async function runLevel8Tests(): Promise<number> {
+    log("=== LEVEL 8: Proxy Module tests ===");
+    let passed = 0;
+
+    // Import Proxy module
+    const {
+        createRemoteProxy,
+        wrapDescriptor,
+        isRemoteProxy,
+        getProxyDescriptor,
+        getProxyInternals,
+        createExposeHandler,
+        createSenderProxy,
+        proxyBuilder,
+        ProxyBuilder,
+        RemoteProxyHandler,
+        DispatchProxyHandler: DispatchHandler,
+        PROXY_MARKER,
+        PROXY_INTERNALS
+    } = await import("../src/newer/next/channel/Proxy.ts");
+
+    // Test 1: createRemoteProxy creates proxy
+    passed += await test("createRemoteProxy creates proxy", () => {
+        const invoker = async (action: string, path: string[], args: any[]) => ({ action, path, args });
+        const proxy = createRemoteProxy(invoker, { channel: "test" });
+
+        assertExists(proxy, "Proxy should exist");
+        assertEqual(proxy.$channel, "test", "Should have channel");
+        assertArrayEqual(proxy.$path, [], "Should have empty path");
+    }) ? 1 : 0;
+
+    // Test 2: Proxy property access creates nested proxy
+    passed += await test("Proxy property access creates nested proxy", () => {
+        const invoker = async (action: string, path: string[], args: any[]) => ({ action, path, args });
+        const proxy = createRemoteProxy(invoker, { channel: "test" });
+
+        const nested = proxy.foo.bar.baz;
+        assertEqual(nested.$channel, "test", "Nested should have same channel");
+        assertArrayEqual(nested.$path, ["foo", "bar", "baz"], "Should have nested path");
+    }) ? 1 : 0;
+
+    // Test 3: isRemoteProxy identifies proxies
+    passed += await test("isRemoteProxy identifies proxies", () => {
+        const invoker = async () => {};
+        const proxy = createRemoteProxy(invoker, { channel: "test" });
+
+        assertEqual(isRemoteProxy(proxy), true, "Should identify proxy");
+        assertEqual(isRemoteProxy({}), false, "Should reject plain object");
+        assertEqual(isRemoteProxy(null), false, "Should reject null");
+        assertEqual(isRemoteProxy("string"), false, "Should reject string");
+    }) ? 1 : 0;
+
+    // Test 4: getProxyDescriptor returns descriptor
+    passed += await test("getProxyDescriptor returns descriptor", () => {
+        const invoker = async () => {};
+        const proxy = createRemoteProxy(invoker, { channel: "worker", basePath: ["module"] });
+
+        const desc = getProxyDescriptor(proxy);
+        assertExists(desc, "Should return descriptor");
+        assertEqual(desc?.channel, "worker", "Should have channel");
+        assertArrayEqual(desc?.path ?? [], ["module"], "Should have path");
+    }) ? 1 : 0;
+
+    // Test 5: getProxyInternals returns config
+    passed += await test("getProxyInternals returns config", () => {
+        const invoker = async () => {};
+        const proxy = createRemoteProxy(invoker, { channel: "test", timeout: 5000 });
+
+        const internals = getProxyInternals(proxy);
+        assertExists(internals, "Should return internals");
+        assertEqual(internals?.timeout, 5000, "Should have timeout");
+    }) ? 1 : 0;
+
+    // Test 6: createExposeHandler creates handler
+    passed += await test("createExposeHandler creates handler", async () => {
+        const target = {
+            math: { add: (a: number, b: number) => a + b },
+            getName: () => "test",
+            value: 42
+        };
+        const handler = createExposeHandler(target);
+
+        const sum = await handler("call", ["math", "add"], [[1, 2]]);
+        assertEqual(sum, 3, "Should call method");
+
+        const name = await handler("call", ["getName"], []);
+        assertEqual(name, "test", "Should call function");
+
+        const val = await handler("get", ["value"], []);
+        assertEqual(val, 42, "Should get property");
+    }) ? 1 : 0;
+
+    // Test 7: ProxyBuilder fluent API
+    passed += await test("ProxyBuilder fluent API", () => {
+        const invoker = async () => {};
+        const builder = proxyBuilder();
+
+        const proxy = builder
+            .channel("worker")
+            .path(["module"])
+            .timeout(10000)
+            .cache(false)
+            .invoker(invoker)
+            .build();
+
+        assertExists(proxy, "Should build proxy");
+        assertEqual(proxy.$channel, "worker", "Should have channel");
+        assertArrayEqual(proxy.$path, ["module"], "Should have path");
+    }) ? 1 : 0;
+
+    // Test 8: RemoteProxyHandler handles apply
+    passed += await test("RemoteProxyHandler handles apply", async () => {
+        let called = false;
+        let capturedAction = "";
+        let capturedArgs: any[] = [];
+
+        const invoker = async (action: string, path: string[], args: any[]) => {
+            called = true;
+            capturedAction = action;
+            capturedArgs = args;
+            return "result";
+        };
+
+        const proxy = createRemoteProxy(invoker, { channel: "test", basePath: ["func"] });
+        const result = await proxy("arg1", "arg2");
+
+        assertEqual(called, true, "Invoker should be called");
+        assertEqual(capturedAction, "apply", "Action should be apply");
+        assertDeepEqual(capturedArgs, [["arg1", "arg2"]], "Should pass args");
+    }) ? 1 : 0;
+
+    // Test 9: wrapDescriptor handles null/undefined
+    passed += await test("wrapDescriptor handles null/undefined", () => {
+        const invoker = async () => {};
+
+        // @ts-ignore - Testing null handling
+        const nullResult = wrapDescriptor(null, invoker);
+        assertEqual(nullResult, null, "Should return null for null");
+
+        // @ts-ignore - Testing undefined handling
+        const undefinedResult = wrapDescriptor(undefined, invoker);
+        assertEqual(undefinedResult, undefined, "Should return undefined for undefined");
+    }) ? 1 : 0;
+
+    // Test 10: wrapDescriptor handles primitives
+    passed += await test("wrapDescriptor handles primitives", () => {
+        const invoker = async () => {};
+
+        const primitiveDesc = {
+            $isDescriptor: true,
+            primitive: true,
+            path: ["value"],
+            channel: "test"
+        } as any;
+
+        const result = wrapDescriptor(primitiveDesc, invoker);
+        assertEqual(result, primitiveDesc, "Should return primitive descriptor as-is");
+    }) ? 1 : 0;
+
+    // Test 11: DispatchHandler delegates all actions
+    passed += await test("DispatchHandler delegates all actions", () => {
+        const actions: string[] = [];
+        const dispatch = (action: string, args: any[]) => {
+            actions.push(action);
+            return action;
+        };
+
+        const handler = new DispatchHandler(dispatch);
+        const fn = () => {};
+
+        handler.get(fn, "prop", {});
+        handler.set(fn, "prop", "value", {});
+        handler.has(fn, "prop");
+        handler.apply(fn, null, []);
+        handler.construct(fn, [], fn);
+
+        assertEqual(actions.includes("get"), true, "Should dispatch get");
+        assertEqual(actions.includes("set"), true, "Should dispatch set");
+        assertEqual(actions.includes("has"), true, "Should dispatch has");
+        assertEqual(actions.includes("apply"), true, "Should dispatch apply");
+        assertEqual(actions.includes("construct"), true, "Should dispatch construct");
+    }) ? 1 : 0;
+
+    // Test 12: Proxy set returns true
+    passed += await test("Proxy set returns true", () => {
+        const invoker = async () => {};
+        const proxy = createRemoteProxy(invoker, { channel: "test" });
+
+        const fn: any = function() {};
+        const handler = new RemoteProxyHandler(invoker, { channel: "test" });
+
+        const result = handler.set(fn, "prop", "value", {});
+        assertEqual(result, true, "Set should return true");
+    }) ? 1 : 0;
+
+    log(`Level 8: ${passed}/12 passed`);
+    return passed;
+}
+
+// ============================================================================
 // MAIN
 // ============================================================================
 
@@ -1032,10 +1449,14 @@ async function main() {
     const level5 = await runLevel5Tests();
     console.log("");
     const level6 = await runLevel6Tests();
+    console.log("");
+    const level7 = await runLevel7Tests();
+    console.log("");
+    const level8 = await runLevel8Tests();
 
     console.log("\n" + "=".repeat(40));
-    const total = level1 + level2 + level3 + level4 + level5 + level6;
-    const max = 4 + 15 + 12 + 12 + 12 + 15;
+    const total = level1 + level2 + level3 + level4 + level5 + level6 + level7 + level8;
+    const max = 4 + 15 + 12 + 12 + 12 + 15 + 15 + 12;
     log(`TOTAL: ${total}/${max} tests passed`);
 
     if (total === max) {

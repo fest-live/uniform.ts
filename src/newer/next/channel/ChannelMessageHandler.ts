@@ -1,11 +1,9 @@
 /**
  * Channel Message Handler - Unified message routing
  *
- * Uses core/TransportCore for transport handling.
- * Uses core/RequestHandler for request processing.
+ * Delegates to core/TransportCore and core/RequestHandler.
+ * Simplified wrapper providing Observable-style message handling.
  */
-
-/// <reference lib="webworker" />
 
 import { UUIDv4 } from "fest/core";
 import {
@@ -15,7 +13,7 @@ import {
     type SendFn
 } from "../../core/TransportCore";
 import { handleRequest } from "../../core/RequestHandler";
-import type { ChannelMessage } from "../observable/Observable";
+import type { ChannelMessage, Subscriber, Subscription, Observer } from "../observable/Observable";
 import type { WReq } from "../types/Interface";
 
 // ============================================================================
@@ -26,12 +24,8 @@ export type MessageType = "request" | "response" | "event" | "ping" | "pong";
 export type RespondFn<T = any> = (result: T, transfer?: Transferable[]) => void | Promise<void>;
 export type MessageHandlerCallback<T = ChannelMessage> = (data: T, respond: RespondFn<T>) => void | Promise<void>;
 
-export interface ChannelSubscriber<T = ChannelMessage> {
-    next(value: T): void;
-    error(err: Error): void;
-    complete(): void;
-    signal: AbortSignal;
-    readonly active: boolean;
+export interface ChannelSubscriber<T = ChannelMessage> extends Subscriber<T> {
+    request?(msg: T): Promise<any>;
 }
 
 interface PendingRequest {
@@ -40,10 +34,10 @@ interface PendingRequest {
     timestamp: number;
 }
 
-export { TransportTarget };
+export type { TransportTarget };
 
 // ============================================================================
-// CHANNEL MESSAGE HANDLER
+// MESSAGE HANDLER FACTORY
 // ============================================================================
 
 export function makeChannelMessageHandler(
@@ -51,15 +45,15 @@ export function makeChannelMessageHandler(
     channelName: string,
     handler?: MessageHandlerCallback<ChannelMessage>
 ): (subscriber: ChannelSubscriber<ChannelMessage>) => () => void {
-    const pendingRequests = new Map<string, PendingRequest>();
+    const pending = new Map<string, PendingRequest>();
     const send = createTransportSender(transport);
 
     return (subscriber) => {
-        const createResponder = (data: ChannelMessage): RespondFn<ChannelMessage> => {
+        const respond = (data: ChannelMessage): RespondFn<ChannelMessage> => {
             if (data.type === "response" && data.reqId) {
                 return (result) => {
-                    const p = pendingRequests.get(data.reqId!);
-                    if (p) { p.resolve(result); pendingRequests.delete(data.reqId!); }
+                    const p = pending.get(data.reqId!);
+                    if (p) { p.resolve(result); pending.delete(data.reqId!); }
                 };
             }
             if (data.type === "request") {
@@ -68,147 +62,91 @@ export function makeChannelMessageHandler(
             return send;
         };
 
-        const handleMessage = (data: ChannelMessage): void => {
+        const onMessage = (data: ChannelMessage): void => {
             if (!subscriber.active) return;
-
             if (data.type === "response" && data.reqId) {
-                const p = pendingRequests.get(data.reqId);
-                if (p) { p.resolve(data.payload); pendingRequests.delete(data.reqId); }
+                const p = pending.get(data.reqId);
+                if (p) { p.resolve(data.payload); pending.delete(data.reqId); }
             }
-
-            const respond = createResponder(data);
-            if (handler) handler(data, respond);
-            else subscriber.next(data);
+            handler ? handler(data, respond(data)) : subscriber.next(data);
         };
 
-        const cleanup = createTransportListener(transport, handleMessage, (e) => subscriber.error(e), () => subscriber.complete());
+        const cleanup = createTransportListener(transport, onMessage, (e) => subscriber.error(e), () => subscriber.complete());
 
-        // Enhance subscriber with request capability
-        const enhanced = subscriber as ChannelSubscriber<ChannelMessage> & {
-            request: (msg: ChannelMessage) => Promise<any>;
-            registerPending: (reqId: string) => Promise<any>;
-        };
-
-        enhanced.request = (msg) => {
+        // Add request capability
+        (subscriber as any).request = (msg: ChannelMessage) => {
             const reqId = msg.reqId ?? UUIDv4();
             msg.reqId = reqId;
             return new Promise((resolve, reject) => {
-                pendingRequests.set(reqId, { resolve, reject, timestamp: Date.now() });
+                pending.set(reqId, { resolve, reject, timestamp: Date.now() });
                 send(msg);
             });
         };
-
-        enhanced.registerPending = (reqId) => new Promise((resolve, reject) => {
-            pendingRequests.set(reqId, { resolve, reject, timestamp: Date.now() });
-        });
 
         return cleanup;
     };
 }
 
 // ============================================================================
-// OBSERVABLE REQUEST DISPATCHER
-// ============================================================================
-
-export class ObservableRequestDispatcher {
-    private pending = new Map<string, PendingRequest>();
-    private subscriber: ChannelSubscriber<ChannelMessage> | null = null;
-
-    constructor(private channelName: string, private targetChannel: string) {}
-
-    connect(subscriber: ChannelSubscriber<ChannelMessage>): void { this.subscriber = subscriber; }
-    disconnect(): void {
-        this.subscriber = null;
-        for (const p of this.pending.values()) p.reject(new Error("Disconnected"));
-        this.pending.clear();
-    }
-
-    handleMessage(data: ChannelMessage): void {
-        if (data.type === "response" && data.reqId) {
-            const p = this.pending.get(data.reqId);
-            if (p) { p.resolve(data.payload); this.pending.delete(data.reqId); }
-        }
-    }
-
-    dispatch(action: string, path: string[], args: any[]): Promise<any> {
-        if (!this.subscriber?.active) return Promise.reject(new Error("Not connected"));
-
-        const reqId = UUIDv4();
-        const msg: ChannelMessage = {
-            id: UUIDv4(), channel: this.targetChannel, sender: this.channelName,
-            type: "request", reqId, payload: { channel: this.targetChannel, sender: this.channelName, path, action, args },
-            timestamp: Date.now()
-        };
-
-        const promise = new Promise((resolve, reject) => {
-            this.pending.set(reqId, { resolve, reject, timestamp: Date.now() });
-        });
-
-        this.subscriber.next(msg);
-        return promise;
-    }
-}
-
-// ============================================================================
-// CHANNEL MESSAGE OBSERVABLE
+// MESSAGE OBSERVABLE
 // ============================================================================
 
 export class ChannelMessageObservable {
-    private pending = new Map<string, PendingRequest>();
-    private subs = new Set<ChannelSubscriber<ChannelMessage>>();
-    private cleanups = new Map<ChannelSubscriber<ChannelMessage>, () => void>();
-    private send: SendFn<ChannelMessage>;
+    private _pending = new Map<string, PendingRequest>();
+    private _subs = new Set<Observer<ChannelMessage>>();
+    private _cleanup: (() => void) | null = null;
+    private _send: SendFn<ChannelMessage>;
+    private _active = false;
 
-    constructor(private transport: TransportTarget, private channelName: string) {
-        this.send = createTransportSender(transport);
+    constructor(private _transport: TransportTarget, private _channelName: string) {
+        this._send = createTransportSender(_transport);
     }
 
     subscribe(observer: { next?: (v: ChannelMessage) => void; error?: (e: Error) => void; complete?: () => void }): { unsubscribe: () => void } {
-        const ctrl = new AbortController();
-        let active = true;
-
-        const sub: ChannelSubscriber<ChannelMessage> = {
-            next: (v) => {
-                if (!active) return;
-                if (v.type === "response" && v.reqId) {
-                    const p = this.pending.get(v.reqId);
-                    if (p) { p.resolve(v.payload); this.pending.delete(v.reqId); }
-                }
-                observer.next?.(v);
-            },
-            error: (e) => { if (active) { active = false; observer.error?.(e); ctrl.abort(); } },
-            complete: () => { if (active) { active = false; observer.complete?.(); ctrl.abort(); } },
-            signal: ctrl.signal,
-            get active() { return active && !ctrl.signal.aborted; }
-        };
-
-        this.subs.add(sub);
-        const cleanup = createTransportListener(this.transport, (d) => sub.next(d), (e) => sub.error(e), () => sub.complete());
-        this.cleanups.set(sub, cleanup);
-
+        this._subs.add(observer);
+        if (!this._active) this._activate();
         return {
             unsubscribe: () => {
-                active = false; ctrl.abort();
-                this.subs.delete(sub);
-                this.cleanups.get(sub)?.();
-                this.cleanups.delete(sub);
+                this._subs.delete(observer);
+                if (this._subs.size === 0) this._deactivate();
             }
         };
     }
 
-    next(msg: ChannelMessage, transfer?: Transferable[]): void { this.send(msg, transfer); }
+    next(msg: ChannelMessage, transfer?: Transferable[]): void { this._send(msg, transfer); }
 
     request(msg: Omit<ChannelMessage, "reqId"> & { reqId?: string }): Promise<any> {
         const reqId = msg.reqId ?? UUIDv4();
         return new Promise((resolve, reject) => {
-            this.pending.set(reqId, { resolve, reject, timestamp: Date.now() });
+            this._pending.set(reqId, { resolve, reject, timestamp: Date.now() });
             this.next({ ...msg, reqId } as ChannelMessage);
         });
+    }
+
+    private _activate(): void {
+        if (this._active) return;
+        this._cleanup = createTransportListener(
+            this._transport,
+            (data) => {
+                if (data.type === "response" && data.reqId) {
+                    const p = this._pending.get(data.reqId);
+                    if (p) { p.resolve(data.payload); this._pending.delete(data.reqId); }
+                }
+                for (const s of this._subs) { try { s.next?.(data); } catch (e) { s.error?.(e as Error); } }
+            },
+            (e) => this._subs.forEach((s) => s.error?.(e)),
+            () => this._subs.forEach((s) => s.complete?.())
+        );
+        this._active = true;
+    }
+
+    private _deactivate(): void {
+        this._cleanup?.(); this._cleanup = null; this._active = false;
     }
 }
 
 // ============================================================================
-// REQUEST HANDLER (using core)
+// REQUEST HANDLER FACTORY
 // ============================================================================
 
 export function createChannelRequestHandler(
@@ -217,15 +155,52 @@ export function createChannelRequestHandler(
 ): MessageHandlerCallback<ChannelMessage> {
     return async (data, respond) => {
         if (data.type !== "request" || data.channel !== channelName) return;
-
         options.onRequest?.(data.payload as WReq);
         const result = await handleRequest(data.payload as WReq, data.reqId!, channelName);
-
         if (result) {
             options.onResponse?.(result.response);
             respond({ ...result.response, id: UUIDv4(), timestamp: Date.now() } as ChannelMessage, result.transfer);
         }
     };
+}
+
+// ============================================================================
+// DISPATCHER (Simplified)
+// ============================================================================
+
+export class ObservableRequestDispatcher {
+    private _pending = new Map<string, PendingRequest>();
+    private _subscriber: ChannelSubscriber<ChannelMessage> | null = null;
+
+    constructor(private _channelName: string, private _targetChannel: string) {}
+
+    connect(subscriber: ChannelSubscriber<ChannelMessage>): void { this._subscriber = subscriber; }
+
+    disconnect(): void {
+        for (const p of this._pending.values()) p.reject(new Error("Disconnected"));
+        this._pending.clear();
+        this._subscriber = null;
+    }
+
+    handleMessage(data: ChannelMessage): void {
+        if (data.type === "response" && data.reqId) {
+            const p = this._pending.get(data.reqId);
+            if (p) { p.resolve(data.payload); this._pending.delete(data.reqId); }
+        }
+    }
+
+    dispatch(action: string, path: string[], args: any[]): Promise<any> {
+        if (!this._subscriber?.active) return Promise.reject(new Error("Not connected"));
+        const reqId = UUIDv4();
+        const msg: ChannelMessage = {
+            id: UUIDv4(), channel: this._targetChannel, sender: this._channelName,
+            type: "request", reqId, payload: { channel: this._targetChannel, sender: this._channelName, path, action, args },
+            timestamp: Date.now()
+        };
+        const promise = new Promise((resolve, reject) => this._pending.set(reqId, { resolve, reject, timestamp: Date.now() }));
+        this._subscriber.next(msg);
+        return promise;
+    }
 }
 
 export type { PendingRequest, MessageHandlerCallback as ChannelMessageCallback };

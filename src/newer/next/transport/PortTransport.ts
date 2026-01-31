@@ -457,57 +457,45 @@ export class WindowPortConnector {
 }
 
 // ============================================================================
-// COMLINK-LIKE PROXY OVER PORT
+// COMLINK-LIKE PROXY OVER PORT (using unified Proxy module)
 // ============================================================================
 
-export type ProxyMethods<T> = {
-    [K in keyof T]: T[K] extends (...args: infer A) => infer R
-        ? (...args: A) => Promise<Awaited<R>>
-        : Promise<T[K]>;
-};
+import {
+    createSenderProxy,
+    createExposeHandler,
+    type ProxyMethods
+} from "../channel/Proxy";
+
+// Re-export for backward compatibility
+export type { ProxyMethods };
 
 /**
- * Create proxy for remote object over MessagePort
+ * Create proxy for remote object over PortTransport
+ *
+ * Uses unified Proxy module for consistent behavior.
  */
 export function createPortProxy<T extends object>(
     transport: PortTransport,
     targetPath: string[] = []
 ): ProxyMethods<T> {
-    return new Proxy({} as ProxyMethods<T>, {
-        get(_, prop: string) {
-            const path = [...targetPath, prop];
-
-            if (prop === "then") return undefined; // Not a promise
-
-            return new Proxy(() => {}, {
-                get(_, innerProp: string) {
-                    return createPortProxy<any>(transport, [...path, innerProp]);
-                },
-                apply(_, __, args: any[]) {
-                    return transport.request({
-                        id: UUIDv4(),
-                        channel: transport.channelName,
-                        sender: transport.portId,
-                        type: "request",
-                        payload: {
-                            action: "call",
-                            path,
-                            args
-                        }
-                    });
-                }
-            });
-        }
-    });
+    return createSenderProxy<T>({
+        request: (msg) => transport.request(msg),
+        channelName: transport.channelName,
+        senderId: transport.portId
+    }, targetPath);
 }
 
 /**
- * Expose object methods over MessagePort
+ * Expose object methods over PortTransport
+ *
+ * Uses unified Proxy module's expose handler.
  */
 export function exposeOverPort<T extends object>(
     transport: PortTransport,
     target: T
 ): Subscription {
+    const handler = createExposeHandler(target);
+
     return transport.subscribe({
         next: async (msg) => {
             if (msg.type !== "request" || !msg.payload?.path) return;
@@ -517,20 +505,7 @@ export function exposeOverPort<T extends object>(
             let error: string | undefined;
 
             try {
-                let obj: any = target;
-                for (const key of path.slice(0, -1)) {
-                    obj = obj[key];
-                }
-                const method = path[path.length - 1];
-
-                if (action === "call" && typeof obj[method] === "function") {
-                    result = await obj[method](...(args ?? []));
-                } else if (action === "get") {
-                    result = obj[method];
-                } else if (action === "set" && args?.[0] !== undefined) {
-                    obj[method] = args[0];
-                    result = true;
-                }
+                result = await handler(action, path, args ?? []);
             } catch (e) {
                 error = e instanceof Error ? e.message : String(e);
             }

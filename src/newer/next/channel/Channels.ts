@@ -1,28 +1,25 @@
 /**
- * Channel Handler - Simplified
+ * Channel Handler - Legacy Re-exports
  *
- * Uses core RequestHandler for action processing.
+ * @deprecated Use UnifiedChannel instead.
+ * This file is kept for backward compatibility.
  */
 
-import { readByPath } from "../storage/DataBase";
+import { UUIDv4, Promised } from "fest/core";
 import { WReflectAction, type WReflectDescriptor, type WReq } from "../types/Interface";
-import { makeRequestProxy } from "./RequestProxy";
+import { UnifiedChannel, createUnifiedChannel, getWorkerChannel } from "./UnifiedChannel";
 import { handleRequest } from "../../core/RequestHandler";
-import { Promised, UUIDv4 } from "fest/core";
-
-// Worker code - use direct URL (works in both Vite and non-Vite)
-const workerCode: string | URL = new URL("../transport/Worker.ts", import.meta.url);
 
 // ============================================================================
-// GLOBALS
+// LEGACY GLOBALS (for backward compatibility)
 // ============================================================================
 
 export const RemoteChannels = new Map<string, any>();
 
 export const SELF_CHANNEL = {
     name: "unknown",
-    instance: null
-} as { name: string; instance: ChannelHandler | null };
+    instance: null as ChannelHandler | null
+};
 
 export const CHANNEL_MAP = new Map<string, ChannelHandler | null>();
 
@@ -50,179 +47,94 @@ export const loadWorker = (WX: any): Worker | null => {
 };
 
 // ============================================================================
-// INIT CHANNEL HANDLER
+// REMOTE CHANNEL HELPER (Legacy wrapper)
 // ============================================================================
 
-export const initChannelHandler = (channel: string = "$host$"): ChannelHandler | null => {
-    if (SELF_CHANNEL?.instance && channel === "$host$") return SELF_CHANNEL.instance;
-    if (CHANNEL_MAP.has(channel)) return CHANNEL_MAP.get(channel) ?? null;
-
-    const $channel = new ChannelHandler(channel);
-    if (channel === "$host$") {
-        SELF_CHANNEL.name = channel;
-        SELF_CHANNEL.instance = $channel;
-    }
-
-    // @ts-ignore
-    return CHANNEL_MAP.getOrInsert(channel, $channel);
-};
-
-// ============================================================================
-// REMOTE CHANNEL HELPER
-// ============================================================================
-
+/** @deprecated Use UnifiedChannel.remote() instead */
 export class RemoteChannelHelper {
-    constructor(private channel: string, private options: any = {}) {}
+    private _channel: UnifiedChannel;
+
+    constructor(private channelName: string, private options: any = {}) {
+        this._channel = getWorkerChannel();
+    }
 
     request(path: string[] | WReflectDescriptor, action: WReflectAction | any[], args: any[] | any, options: any = {}): Promise<any> | null {
         if (typeof path === "string") path = [path];
-
         if (Array.isArray(action) && isReflectAction(path)) {
-            options = args;
-            args = action;
-            action = path as unknown as WReflectAction;
-            path = [];
+            options = args; args = action;
+            action = path as unknown as WReflectAction; path = [];
         }
-
-        return SELF_CHANNEL.instance?.request(path as string[], action as WReflectAction, args, options, this.channel) ?? null;
+        return this._channel.invoke(this.channelName, action as WReflectAction, path as string[], args);
     }
 
     doImportModule(url: string, options: any): Promise<any> | null {
-        return this.request([], WReflectAction.IMPORT, [url], options);
+        return this._channel.import(url, this.channelName);
     }
 }
 
 // ============================================================================
-// CREATE OR USE EXISTING CHANNEL
+// CHANNEL HANDLER (Legacy wrapper)
 // ============================================================================
 
-export const $createOrUseExistingChannel = (channel: string, options: any = {}, broadcast?: Worker | BroadcastChannel | MessagePort | null) => {
-    if (channel == null || broadcast) return;
-    if (RemoteChannels.has(channel)) return RemoteChannels.get(channel);
-
-        const msgChannel = new MessageChannel();
-    const promise = Promised(new Promise((resolve) => {
-            const worker = loadWorker(workerCode);
-
-        worker?.addEventListener?.('message', (event: MessageEvent) => {
-            if (event.data.type === "channelCreated") {
-                msgChannel.port1?.start?.();
-                resolve(new RemoteChannelHelper(event.data.channel, options));
-                }
-            });
-
-            worker?.postMessage?.({
-                type: "createChannel",
-            channel,
-            sender: SELF_CHANNEL.name,
-            options,
-            messagePort: msgChannel.port2
-            // @ts-ignore
-        }, { transfer: [msgChannel.port2] });
-        }));
-
-        RemoteChannels.set(channel, {
-        channel,
-        instance: SELF_CHANNEL.instance,
-            messageChannel: msgChannel,
-            remote: promise
-        });
-
-    return RemoteChannels.get(channel);
-};
-
-// ============================================================================
-// CHANNEL HANDLER
-// ============================================================================
-
+/** @deprecated Use UnifiedChannel instead */
 export class ChannelHandler {
-    // @ts-ignore
-    private forResolves = new Map<string, PromiseWithResolvers<any>>();
+    private _unified: UnifiedChannel;
     private broadcasts: Record<string, Worker | BroadcastChannel | MessagePort> = {};
 
     constructor(private channel: string, private options: any = {}) {
-        this.channel ||= (SELF_CHANNEL.name = channel);
+        this._unified = createUnifiedChannel({ name: channel, autoListen: false });
+        SELF_CHANNEL.name = channel;
         SELF_CHANNEL.instance = this;
     }
 
     createRemoteChannel(channel: string, options: any = {}, broadcast?: Worker | BroadcastChannel | MessagePort | null) {
-        const $channel = $createOrUseExistingChannel(channel, options, broadcast ?? (typeof self !== "undefined" ? self : null) as any);
-        broadcast ??= $channel?.messageChannel?.port1;
-
-        broadcast?.addEventListener?.('message', (event: MessageEvent) => {
-            if (event.data.type === "request" && event.data.channel === this.channel) {
-                this.handleAndResponse(event.data.payload, event.data.reqId);
-            } else if (event.data.type === "response") {
-                this.resolveResponse(event.data.reqId, {
-                    result: event.data.payload.result,
-                    descriptor: event.data.payload.descriptor,
-                    type: event.data.payload.type
-                });
-            }
-        });
-
-        broadcast?.addEventListener('error', (event) => {
-            console.error(event);
-            (broadcast as any)?.close?.();
-        });
-
-        if (broadcast) this.broadcasts[channel] = broadcast;
-        return $channel?.remote;
+        if (broadcast) {
+            this._unified.attach(broadcast, { targetChannel: channel });
+            this.broadcasts[channel] = broadcast;
+        }
+        return Promise.resolve(new RemoteChannelHelper(channel, options));
     }
 
     getChannel(): string { return this.channel; }
 
     request(path: string[] | WReflectAction, action: WReflectAction | any[], args: any[] | any, options: any | string = {}, toChannel: string = "worker"): Promise<any> | null {
         if (typeof path === "string") path = [path];
-
         if (Array.isArray(action) && isReflectAction(path)) {
-            toChannel = options as string;
-            options = args;
-            args = action;
-            action = path as unknown as WReflectAction;
-            path = [];
+            toChannel = options as string; options = args;
+            args = action; action = path as unknown as WReflectAction; path = [];
         }
-
-        const id = UUIDv4();
-        // @ts-ignore
-        this.forResolves.set(id, Promise.withResolvers<any>());
-
-        this.broadcasts[toChannel]?.postMessage?.({
-            channel: toChannel,
-            sender: this.channel,
-            type: "request",
-            reqId: id,
-            payload: { sender: this.channel, channel: toChannel, path, action, args }
-        });
-
-        return this.forResolves.get(id)?.promise?.then?.((result) =>
-            result?.result != null ? result.result : makeRequestProxy(result.descriptor, { channel: toChannel, ...options })
-        ) ?? null;
+        return this._unified.invoke(toChannel, action as WReflectAction, path as string[], args);
     }
 
-    resolveResponse(reqId: string, result: any) {
-        this.forResolves.get(reqId)?.resolve?.(result);
-        const promise = this.forResolves.get(reqId)?.promise;
-        this.forResolves.delete(reqId);
-        return promise;
-    }
+    resolveResponse(reqId: string, result: any) { return Promise.resolve(result); }
 
     async handleAndResponse(request: WReq, reqId: string, responseFn?: (result: any, transfer: any[]) => void) {
         const result = await handleRequest(request, reqId, this.channel);
         if (!result) return;
-
-        const { response, transfer } = result;
-        const send = responseFn ?? this.broadcasts[request.sender]?.postMessage?.bind(this.broadcasts[request.sender]);
-        send?.(response, transfer);
+        responseFn?.(result.response, result.transfer);
     }
+
+    close(): void { this._unified.close(); }
 }
 
 // ============================================================================
-// FACTORY FUNCTIONS
+// FACTORY FUNCTIONS (Legacy)
 // ============================================================================
 
+/** @deprecated Use createUnifiedChannel instead */
+export const initChannelHandler = (channel: string = "$host$"): ChannelHandler | null => {
+    if (SELF_CHANNEL?.instance && channel === "$host$") return SELF_CHANNEL.instance;
+    if (CHANNEL_MAP.has(channel)) return CHANNEL_MAP.get(channel) ?? null;
+    const $channel = new ChannelHandler(channel);
+    if (channel === "$host$") { SELF_CHANNEL.name = channel; SELF_CHANNEL.instance = $channel; }
+    CHANNEL_MAP.set(channel, $channel);
+    return $channel;
+};
+
+/** @deprecated Use createUnifiedChannel instead */
 export const createHostChannel = (channel: string = "$host$") => initChannelHandler(channel);
 
+/** @deprecated Use UnifiedChannel.attach() instead */
 export const createOrUseExistingChannel = (
     channel: string,
     options: any = {},
@@ -230,4 +142,13 @@ export const createOrUseExistingChannel = (
 ) => {
     const $host = createHostChannel(channel ?? "$host$");
     return $host?.createRemoteChannel?.(channel, options, broadcast) ?? $host;
+};
+
+/** @deprecated Internal use */
+export const $createOrUseExistingChannel = (channel: string, options: any = {}, broadcast?: Worker | BroadcastChannel | MessagePort | null) => {
+    if (channel == null || broadcast) return;
+    if (RemoteChannels.has(channel)) return RemoteChannels.get(channel);
+    const result = { channel, instance: SELF_CHANNEL.instance, remote: Promise.resolve(new RemoteChannelHelper(channel, options)) };
+    RemoteChannels.set(channel, result);
+    return result;
 };

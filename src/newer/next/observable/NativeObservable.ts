@@ -1,108 +1,84 @@
 /**
- * Native Observable - WICG-aligned invoker pattern
+ * Native Observable - Re-exports from Observable.ts
  *
- * Extends Observable.ts with transport-specific invoker factories.
+ * @deprecated Import directly from "./Observable" instead.
+ * This file is kept for backward compatibility.
  */
 
-import { UUIDv4 } from "fest/core";
-import {
-    createTransportSender,
-    createTransportListener,
-    type TransportTarget
-} from "../../core/TransportCore";
-import { handleRequest } from "../../core/RequestHandler";
-import {
+// Import for local use
+import { ObservableFactory } from "./Observable";
+
+// Re-export everything from Observable.ts
+export {
+    // Core
     Observable,
-    type Subscriber,
+    Observable as ChannelNativeObservable,
+    ChannelSubject,
+    ChannelObservable,
+
+    // Types
+    type Observer,
     type Subscription,
+    type Subscriber,
     type ChannelMessage,
-    type Observer
+
+    // Invoker factories
+    makeWorkerInvoker,
+    makeMessagePortInvoker,
+    makeBroadcastInvoker,
+    makeWebSocketInvoker,
+    makeChromeRuntimeInvoker,
+    makeServiceWorkerClientInvoker,
+    makeServiceWorkerHostInvoker,
+    makeSelfInvoker,
+
+    // Request handlers
+    createInvokerObservable,
+    createReflectHandler,
+    createReflectHandler as createRequestHandler,
+
+    // Bidirectional
+    createBidirectionalChannel,
+    createBidirectionalChannel as createBidirectionalChannelNative,
+    type BidirectionalChannel,
+
+    // Utilities
+    when,
+
+    // Operators
+    filter,
+    map,
+    take,
+    takeUntil,
+    ObservableFactory
 } from "./Observable";
-import type { WReq, InvokerHandler, ResponderFn, TransportType } from "../types/Interface";
 
-// Re-export commonly used types
-export type { Subscriber, InvokerHandler, ResponderFn, TransportType };
-export { Observable };
+// Type aliases for backward compatibility
+import type { Subscription as ISubscription, InvokerHandler, ResponderFn, TransportType } from "../types/Interface";
+export type { InvokerHandler, ResponderFn, TransportType };
 
-// ============================================================================
-// SUBSCRIPTION
-// ============================================================================
-
-export class ChannelSubscription implements Subscription {
+// Subscription alias
+export class ChannelSubscription implements ISubscription {
     private _closed = false;
     constructor(private _unsubscribe: () => void) {}
     get closed(): boolean { return this._closed; }
     unsubscribe(): void { if (!this._closed) { this._closed = true; this._unsubscribe(); } }
 }
 
-// ============================================================================
-// NATIVE OBSERVABLE (alias for consistency)
-// ============================================================================
-
-export class ChannelNativeObservable<T = ChannelMessage> extends Observable<T> {}
-
-// ============================================================================
-// INVOKER FACTORIES
-// ============================================================================
-
-const makeInvoker = (transport: TransportTarget, handler?: InvokerHandler<ChannelMessage>) =>
-    (subscriber: Subscriber<ChannelMessage>): () => void => {
-        const send = createTransportSender(transport);
-        const respond: ResponderFn<ChannelMessage> = (result, transfer) => send(result, transfer);
-        return createTransportListener(
-            transport,
-            (data: ChannelMessage) => {
-                if (!subscriber.active) return;
-                handler ? handler(data, respond, subscriber) : subscriber.next(data);
-            },
-            (err) => subscriber.error(err),
-            () => subscriber.complete()
-        );
-    };
-
-export const makeWorkerInvoker = (worker: Worker, handler?: InvokerHandler<ChannelMessage>) => makeInvoker(worker, handler);
-export const makeMessagePortInvoker = (port: MessagePort, handler?: InvokerHandler<ChannelMessage>) => makeInvoker(port, handler);
-export const makeBroadcastInvoker = (name: string, handler?: InvokerHandler<ChannelMessage>) => makeInvoker(new BroadcastChannel(name), handler);
-export const makeWebSocketInvoker = (url: string | URL, protocols?: string | string[], handler?: InvokerHandler<ChannelMessage>) =>
-    makeInvoker(new WebSocket(typeof url === "string" ? url : url.href, protocols), handler);
-export const makeChromeRuntimeInvoker = (handler?: InvokerHandler<ChannelMessage>) => makeInvoker("chrome-runtime" as TransportTarget, handler);
-export const makeServiceWorkerClientInvoker = (handler?: InvokerHandler<ChannelMessage>) => makeInvoker("service-worker-client" as TransportTarget, handler);
-export const makeServiceWorkerHostInvoker = (handler?: InvokerHandler<ChannelMessage>) => makeInvoker("service-worker-host" as TransportTarget, handler);
-export const makeSelfInvoker = (handler?: InvokerHandler<ChannelMessage>) => makeInvoker("self" as TransportTarget, handler);
-
-// ============================================================================
-// REQUEST HANDLERS
-// ============================================================================
-
-export function createRequestHandler(
-    channelName: string,
-    options: { onRequest?: (req: WReq) => void; onResponse?: (res: any) => void } = {}
-): InvokerHandler<ChannelMessage> {
-    return async (data, respond, subscriber) => {
-        if (data.type !== "request") { subscriber.next(data); return; }
-        options.onRequest?.(data.payload as WReq);
-        const result = await handleRequest(data.payload as WReq, data.reqId!, channelName);
-        if (result) {
-            options.onResponse?.(result.response);
-            respond({ ...result.response, id: UUIDv4(), timestamp: Date.now() } as ChannelMessage, result.transfer);
-        }
-        subscriber.next(data);
-    };
-}
-
+// Handler factory (legacy)
 export function createSimpleRequestHandler(
     channelName: string,
-    handlers: Record<string, (args: any[], data: ChannelMessage) => any | Promise<any>>
-): InvokerHandler<ChannelMessage> {
+    handlers: Record<string, (args: any[], data: any) => any | Promise<any>>
+): InvokerHandler<any> {
     return async (data, respond, subscriber) => {
         if (data.type !== "request") { subscriber.next(data); return; }
         const action = data.payload?.action;
         if (action && handlers[action]) {
             try {
                 const result = await handlers[action](data.payload?.args ?? [], data);
-                respond({ id: UUIDv4(), channel: data.sender, sender: channelName, reqId: data.reqId, type: "response", payload: { result, error: null }, timestamp: Date.now() } as ChannelMessage);
+                respond({ id: crypto.randomUUID(), channel: data.sender, sender: channelName, reqId: data.reqId, type: "response", payload: { result, error: null }, timestamp: Date.now() });
             } catch (error) {
-                respond({ id: UUIDv4(), channel: data.sender, sender: channelName, reqId: data.reqId, type: "response", payload: { result: null, error: error instanceof Error ? error.message : String(error) }, timestamp: Date.now() } as ChannelMessage);
+                respond({ id: crypto.randomUUID(), channel: data.sender, sender: channelName, reqId: data.reqId, type: "response", payload: { result: null, error: error instanceof Error ? error.message : String(error) }, timestamp: Date.now() });
             }
         } else {
             subscriber.next(data);
@@ -110,79 +86,19 @@ export function createSimpleRequestHandler(
     };
 }
 
-// ============================================================================
-// FACTORY
-// ============================================================================
-
+// Factory for transport observables (legacy)
 export function createChannelObservable(
-    transport: TransportType,
+    transport: string,
     target: Worker | MessagePort | string | URL | null = null,
-    options?: { protocols?: string | string[]; handler?: InvokerHandler<ChannelMessage> }
-): ChannelNativeObservable<ChannelMessage> {
-    return new ChannelNativeObservable((subscriber) => {
-        const handler = options?.handler;
-        let invoker: (sub: Subscriber<ChannelMessage>) => () => void;
-        switch (transport) {
-            case "worker": invoker = makeWorkerInvoker(target as Worker, handler); break;
-            case "message-port": invoker = makeMessagePortInvoker(target as MessagePort, handler); break;
-            case "broadcast": invoker = makeBroadcastInvoker(target as string, handler); break;
-            case "websocket": invoker = makeWebSocketInvoker(target as string | URL, options?.protocols, handler); break;
-            case "chrome-runtime": invoker = makeChromeRuntimeInvoker(handler); break;
-            case "service-worker": invoker = makeServiceWorkerClientInvoker(handler); break;
-            case "self": invoker = makeSelfInvoker(handler); break;
-            default: throw new Error(`Unknown transport: ${transport}`);
-        }
-        return invoker(subscriber);
-    });
+    options?: { protocols?: string | string[]; handler?: InvokerHandler<any> }
+) {
+    const handler = options?.handler;
+
+    switch (transport) {
+        case "worker": return ObservableFactory.invoker(target as Worker, "channel", handler);
+        case "message-port": return ObservableFactory.invoker(target as MessagePort, "channel", handler);
+        case "broadcast": return ObservableFactory.channel(new BroadcastChannel(target as string), target as string);
+        case "websocket": return ObservableFactory.channel(new WebSocket(typeof target === "string" ? target : (target as URL).href, options?.protocols), "ws");
+        default: return ObservableFactory.invoker(target as any, "channel", handler);
+    }
 }
-
-// ============================================================================
-// BIDIRECTIONAL CHANNEL
-// ============================================================================
-
-export interface ChannelSender<T = ChannelMessage> { next(value: T, transfer?: Transferable[]): void; }
-
-export interface BidirectionalChannel<T = ChannelMessage> {
-    inbound: ChannelNativeObservable<T>;
-    outbound: ChannelSender<T>;
-    subscribe(observer: Observer<T>): ChannelSubscription;
-    send(value: T, transfer?: Transferable[]): void;
-}
-
-export function createBidirectionalChannelNative(
-    transport: TransportType,
-    target: Worker | MessagePort | string | URL | null = null,
-    options?: { protocols?: string | string[] }
-): BidirectionalChannel<ChannelMessage> {
-    let senderTarget: TransportTarget | null = null;
-    if (target instanceof Worker || target instanceof MessagePort) senderTarget = target;
-    else if (transport === "broadcast" && typeof target === "string") senderTarget = new BroadcastChannel(target);
-    else if (transport === "websocket") senderTarget = new WebSocket(typeof target === "string" ? target : (target as URL).href, options?.protocols);
-    else senderTarget = transport as unknown as TransportTarget;
-
-    const send = createTransportSender(senderTarget!);
-    const inbound = createChannelObservable(transport, target, options);
-    return {
-        inbound,
-        outbound: { next: send },
-        subscribe: (obs) => new ChannelSubscription(() => inbound.subscribe(obs).unsubscribe()),
-        send: (value, transfer) => send(value, transfer)
-    };
-}
-
-// ============================================================================
-// UTILITY
-// ============================================================================
-
-export function when<K extends keyof HTMLElementEventMap>(target: EventTarget, eventName: K): ChannelNativeObservable<HTMLElementEventMap[K]>;
-export function when(target: EventTarget, eventName: string): ChannelNativeObservable<Event>;
-export function when(target: EventTarget, eventName: string): ChannelNativeObservable<Event> {
-    return new ChannelNativeObservable((sub) => {
-        const h = (e: Event) => sub.active && sub.next(e);
-        target.addEventListener(eventName, h);
-        return () => target.removeEventListener(eventName, h);
-    });
-}
-
-// Operators re-exported for convenience
-export { filter, map, take, takeUntil } from "./Observable";

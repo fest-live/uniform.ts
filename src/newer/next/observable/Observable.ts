@@ -290,6 +290,75 @@ export const merge = <T>(...sources: Subscribable<T>[]): Observable<T> =>
 export const createMessageId = (): string => UUIDv4();
 
 // ============================================================================
+// TRANSPORT INVOKER FACTORIES
+// ============================================================================
+
+const makeInvoker = (transport: TransportTarget, handler?: InvokerHandler<ChannelMessage>) =>
+    (subscriber: Subscriber<ChannelMessage>): () => void => {
+        const send = createTransportSender(transport);
+        const respond: ResponderFn<ChannelMessage> = (result, transfer) => send(result, transfer);
+        return createTransportListener(
+            transport,
+            (data: ChannelMessage) => {
+                if (!subscriber.active) return;
+                handler ? handler(data, respond, subscriber) : subscriber.next(data);
+            },
+            (err) => subscriber.error(err),
+            () => subscriber.complete()
+        );
+    };
+
+export const makeWorkerInvoker = (worker: Worker, handler?: InvokerHandler<ChannelMessage>) => makeInvoker(worker, handler);
+export const makeMessagePortInvoker = (port: MessagePort, handler?: InvokerHandler<ChannelMessage>) => makeInvoker(port, handler);
+export const makeBroadcastInvoker = (name: string, handler?: InvokerHandler<ChannelMessage>) => makeInvoker(new BroadcastChannel(name), handler);
+export const makeWebSocketInvoker = (url: string | URL, protocols?: string | string[], handler?: InvokerHandler<ChannelMessage>) =>
+    makeInvoker(new WebSocket(typeof url === "string" ? url : url.href, protocols), handler);
+export const makeChromeRuntimeInvoker = (handler?: InvokerHandler<ChannelMessage>) => makeInvoker("chrome-runtime" as TransportTarget, handler);
+export const makeServiceWorkerClientInvoker = (handler?: InvokerHandler<ChannelMessage>) => makeInvoker("service-worker-client" as TransportTarget, handler);
+export const makeServiceWorkerHostInvoker = (handler?: InvokerHandler<ChannelMessage>) => makeInvoker("service-worker-host" as TransportTarget, handler);
+export const makeSelfInvoker = (handler?: InvokerHandler<ChannelMessage>) => makeInvoker("self" as TransportTarget, handler);
+
+// ============================================================================
+// BIDIRECTIONAL CHANNEL
+// ============================================================================
+
+export interface BidirectionalChannel<T = ChannelMessage> {
+    inbound: Observable<T>;
+    outbound: { next(value: T, transfer?: Transferable[]): void };
+    subscribe(observer: Observer<T>): Subscription;
+    send(value: T, transfer?: Transferable[]): void;
+}
+
+export function createBidirectionalChannel(
+    transport: TransportTarget,
+    channelName: string,
+    handler?: InvokerHandler<ChannelMessage>
+): BidirectionalChannel<ChannelMessage> {
+    const send = createTransportSender(transport);
+    const inbound = new Observable<ChannelMessage>((sub) => makeInvoker(transport, handler)(sub));
+    return {
+        inbound,
+        outbound: { next: send },
+        subscribe: (obs) => inbound.subscribe(obs),
+        send: (value, transfer) => send(value, transfer)
+    };
+}
+
+// ============================================================================
+// EVENT UTILITY
+// ============================================================================
+
+export function when<K extends keyof HTMLElementEventMap>(target: EventTarget, eventName: K): Observable<HTMLElementEventMap[K]>;
+export function when(target: EventTarget, eventName: string): Observable<Event>;
+export function when(target: EventTarget, eventName: string): Observable<Event> {
+    return new Observable((sub) => {
+        const h = (e: Event) => sub.active && sub.next(e);
+        target.addEventListener(eventName, h);
+        return () => target.removeEventListener(eventName, h);
+    });
+}
+
+// ============================================================================
 // FACTORY
 // ============================================================================
 
@@ -297,9 +366,11 @@ export const ObservableFactory = {
     channel: (transport: TransportTarget, name: string) => new ChannelObservable(transport, name),
     invoker: (transport: TransportTarget, name: string, handler?: InvokerHandler<ChannelMessage>) => createInvokerObservable(transport, name, handler),
     handler: (transport: TransportTarget, name: string) => createInvokerObservable(transport, name, createReflectHandler(name)),
+    bidirectional: createBidirectionalChannel,
     fromEvent,
     fromPromise,
     delay,
     interval,
-    merge
+    merge,
+    when
 };
