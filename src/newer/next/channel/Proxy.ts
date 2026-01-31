@@ -14,10 +14,9 @@ import {
     $descriptor,
     $requestHandler,
     descMap,
-    wrapMap,
-    handMap,
-    READ
+    wrapMap
 } from "../storage/DataBase";
+import { createObjectHandler, type ReflectLike as CoreReflectLike } from "../../core/RequestHandler";
 
 // ============================================================================
 // TYPES
@@ -331,10 +330,9 @@ export function wrapDescriptor<T = any>(
     if (!descriptor || typeof descriptor !== "object") return descriptor as T;
     if (descriptor.primitive) return descriptor as unknown as T;
 
-    // Check cache
-    if (descMap.has(descriptor)) {
-        return descMap.get(descriptor) as RemoteProxy<T>;
-    }
+    // Check cache (use any for map compatibility)
+    const cached = descMap.get(descriptor);
+    if (cached) return cached as unknown as RemoteProxy<T>;
 
     const proxy = createRemoteProxy<T>(invoker, {
         channel: targetChannel ?? descriptor.channel ?? "unknown",
@@ -342,8 +340,8 @@ export function wrapDescriptor<T = any>(
     });
 
     // Cache the proxy
-    descMap.set(descriptor, proxy);
-    wrapMap.set(proxy, descriptor);
+    (descMap as Map<any, any>).set(descriptor, proxy);
+    (wrapMap as Map<any, any>).set(proxy, descriptor);
 
     return proxy;
 }
@@ -352,7 +350,14 @@ export function wrapDescriptor<T = any>(
  * Check if value is a remote proxy
  */
 export function isRemoteProxy(value: any): value is RemoteProxy {
-    return value?.[PROXY_MARKER] === true;
+    if (!value) return false;
+    if (typeof value !== "object" && typeof value !== "function") return false;
+    try {
+        // Access via Reflect to trigger proxy trap
+        return Reflect.get(value, PROXY_MARKER) === true;
+    } catch {
+        return false;
+    }
 }
 
 /**
@@ -360,7 +365,7 @@ export function isRemoteProxy(value: any): value is RemoteProxy {
  */
 export function getProxyDescriptor(value: any): ProxyDescriptor | null {
     if (!isRemoteProxy(value)) return null;
-    return value.$descriptor;
+    return value.$descriptor ?? null;
 }
 
 /**
@@ -368,7 +373,14 @@ export function getProxyDescriptor(value: any): ProxyDescriptor | null {
  */
 export function getProxyInternals(value: any): ProxyConfig | null {
     if (!isRemoteProxy(value)) return null;
-    return value[PROXY_INTERNALS] as ProxyConfig;
+    try {
+        // Use Reflect to get symbol property
+        const internals = Reflect.get(value, PROXY_INTERNALS);
+        if (!internals || typeof internals !== "object") return null;
+        return internals as ProxyConfig;
+    } catch {
+        return null;
+    }
 }
 
 // ============================================================================
@@ -378,67 +390,17 @@ export function getProxyInternals(value: any): ProxyConfig | null {
 /**
  * Create an expose handler for an object
  *
- * Returns a handler function that processes incoming requests
- * and executes them on the target object.
+ * Uses the unified RequestHandler for consistent behavior.
  *
  * @param target - Object to expose
+ * @param reflect - Optional custom Reflect implementation
  * @returns Handler function for incoming requests
  */
-export function createExposeHandler<T extends object>(target: T): ExposeHandler {
-    return async (action, path, args) => {
-        // Navigate to the target property
-        let current: any = target;
-        for (let i = 0; i < path.length - 1; i++) {
-            current = current?.[path[i]];
-            if (current === undefined || current === null) {
-                throw new Error(`Path segment '${path[i]}' not found`);
-            }
-        }
-
-        const prop = path[path.length - 1];
-
-        switch (action) {
-            case "get":
-            case WReflectAction.GET:
-                return current?.[prop];
-
-            case "set":
-            case WReflectAction.SET:
-                current[prop] = args[0];
-                return true;
-
-            case "call":
-            case "apply":
-            case WReflectAction.APPLY:
-                if (typeof current[prop] === "function") {
-                    return await current[prop](...(args[0] ?? args));
-                }
-                throw new Error(`'${prop}' is not a function`);
-
-            case "construct":
-            case WReflectAction.CONSTRUCT:
-                if (typeof current[prop] === "function") {
-                    return new current[prop](...(args[0] ?? args));
-                }
-                throw new Error(`'${prop}' is not a constructor`);
-
-            case "has":
-            case WReflectAction.HAS:
-                return prop in current;
-
-            case "delete":
-            case "deleteProperty":
-            case WReflectAction.DELETE_PROPERTY:
-                return delete current[prop];
-
-            case "ownKeys":
-            case WReflectAction.OWN_KEYS:
-                return Object.keys(current);
-
-            default:
-                throw new Error(`Unknown action: ${action}`);
-        }
-    };
+export function createExposeHandler<T extends object>(
+    target: T,
+    reflect?: CoreReflectLike
+): ExposeHandler {
+    return createObjectHandler(target, reflect);
 }
 
 // ============================================================================

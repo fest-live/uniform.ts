@@ -9,7 +9,7 @@
  * - Component-level channel isolation
  */
 
-import { UUIDv4, Promised, deepOperateAndClone, isPrimitive, isCanJustReturn, isCanTransfer } from "fest/core";
+import { UUIDv4, Promised } from "fest/core";
 import {
     ChannelConnection,
     type ConnectionOptions,
@@ -34,16 +34,8 @@ import {
 import { getChannelStorage, type ChannelStorage } from "../storage/Storage";
 import { WReflectAction, type WReflectDescriptor, type WReq, type WResp } from "../types/Interface";
 import { makeRequestProxy } from "./RequestProxy";
-import {
-    hasNoPath,
-    readByPath,
-    registeredInPath,
-    removeByData,
-    removeByPath,
-    writeByPath,
-    normalizeRef,
-    objectToRef
-} from "../storage/DataBase";
+import { readByPath, registeredInPath } from "../storage/DataBase";
+import { handleRequest as coreHandleRequest } from "../../core/RequestHandler";
 
 // Worker code - use direct URL (works in both Vite and non-Vite)
 const workerCode: string | URL = new URL("../transport/Worker.ts", import.meta.url);
@@ -283,106 +275,13 @@ export class ChannelHandler {
         reqId: string,
         responseFn?: (result: any, transfer: any[]) => void
     ): Promise<void> {
-        const { channel, sender, path, action, args } = request;
-        if (channel !== this._channel) return;
+        // Use unified core handleRequest
+        const result = await coreHandleRequest(request, reqId, this._channel);
+        if (!result) return;
 
-        const obj = readByPath(path);
-        const toTransfer: any[] = [];
-        let result: any = null;
-        let newPath = path;
-
-        switch (action) {
-            case "import":
-                result = import(args?.[0]);
-                break;
-            case "transfer":
-                if (isCanTransfer(obj) && channel !== sender) toTransfer.push(obj);
-                result = obj;
-                break;
-            case "get": {
-                const got = obj?.[args?.[0]];
-                result = typeof got === "function" && obj != null ? got.bind(obj) : got;
-                newPath = [...path, args?.[0]];
-                break;
-            }
-            case "set":
-                result = writeByPath([...path, args?.[0]], deepOperateAndClone(args?.[1], normalizeRef));
-                break;
-            case "apply":
-            case "call":
-                if (typeof obj === "function") {
-                    const ctx = readByPath(path.slice(0, -1));
-                    result = obj.apply(ctx, deepOperateAndClone(args?.[0], normalizeRef));
-                    if (isCanTransfer(result) && path?.at(-1) === "transfer" && channel !== sender) {
-                        toTransfer.push(result);
-                    }
-                }
-                break;
-            case "construct":
-                if (typeof obj === "function") {
-                    result = new obj(deepOperateAndClone(args?.[0], normalizeRef));
-                }
-                break;
-            case "delete":
-            case "deleteProperty":
-            case "dispose":
-                result = path?.length > 0 ? removeByPath(path) : removeByData(obj);
-                if (result) newPath = registeredInPath.get(obj) ?? [];
-                break;
-            case "has":
-                result = typeof obj === "object" && obj != null ? (path?.at(-1) ?? "") in obj : false;
-                break;
-            case "ownKeys":
-                result = typeof obj === "object" && obj != null ? Object.keys(obj) : [];
-                break;
-        }
-
-        result = await result;
-        const canBeReturn = (isCanTransfer(result) && toTransfer.includes(result)) || isCanJustReturn(result);
-
-        if (!canBeReturn && action !== "get" && (typeof result === "object" || typeof result === "function")) {
-            if (hasNoPath(result)) {
-                newPath = [UUIDv4()];
-                writeByPath(newPath, result);
-            } else {
-                newPath = registeredInPath.get(result) ?? [];
-            }
-        }
-
-        const ctx = readByPath(newPath);
-        const ctxKey = action === "get" ? newPath?.at(-1) : undefined;
-        const payload = deepOperateAndClone(result, (el) => objectToRef(el, this._channel, toTransfer)) ?? result;
-
-        const response = {
-            channel: sender,
-            sender: this._channel,
-            reqId,
-            action,
-            type: "response",
-            payload: {
-                result: canBeReturn ? payload : null,
-                type: typeof result,
-                channel: sender,
-                sender: this._channel,
-                descriptor: {
-                    $isDescriptor: true,
-                    path: newPath,
-                    owner: this._channel,
-                    channel,
-                    primitive: isPrimitive(result),
-                    writable: true,
-                    enumerable: true,
-                    configurable: true,
-                    argumentCount: obj instanceof Function ? obj.length : -1,
-                    ...(typeof ctx === "object" && ctx != null && ctxKey != null
-                        ? Object.getOwnPropertyDescriptor(ctx, ctxKey)
-                        : {})
-                } as WReflectDescriptor<any>
-            } as WResp<any>
-        };
-
-        const send = responseFn ?? this._broadcasts[sender]?.postMessage?.bind(this._broadcasts[sender]);
-        send?.(response, toTransfer);
+        const { response, transfer } = result;
+        const send = responseFn ?? this._broadcasts[request.sender]?.postMessage?.bind(this._broadcasts[request.sender]);
+        send?.(response, transfer);
     }
 
     close(): void {

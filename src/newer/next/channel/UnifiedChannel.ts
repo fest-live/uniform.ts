@@ -27,13 +27,8 @@ import {
     hasNoPath,
     readByPath,
     registeredInPath,
-    removeByData,
-    removeByPath,
     writeByPath,
-    normalizeRef,
-    objectToRef,
-    descMap,
-    wrapMap
+    objectToRef
 } from "../storage/DataBase";
 import {
     detectContextType,
@@ -51,6 +46,11 @@ import {
     type ProxyInvoker,
     type RemoteProxy
 } from "./Proxy";
+import {
+    executeAction as coreExecuteAction,
+    buildResponse as coreBuildResponse,
+    type ExecuteOptions
+} from "../../core/RequestHandler";
 
 // ============================================================================
 // TYPES
@@ -576,106 +576,19 @@ export class UnifiedChannel {
         args: any[],
         sender: string
     ): Promise<{ result: any; toTransfer: any[]; newPath: string[] }> {
-        const reflect = this._config.reflect;
-        const obj = readByPath(path);
-        const toTransfer: any[] = [];
-        let result: any = null;
-        let newPath = path;
-
-        switch (action) {
-            case WReflectAction.IMPORT:
-                result = await import(args?.[0]);
-                break;
-
-            case WReflectAction.TRANSFER:
-                if (isCanTransfer(obj) && this._name !== sender) {
-                    toTransfer.push(obj);
-                }
-                result = obj;
-                break;
-
-            case WReflectAction.GET: {
-                const prop = args?.[0];
-                const got = reflect.get?.(obj, prop) ?? obj?.[prop];
-                result = typeof got === "function" && obj != null ? got.bind(obj) : got;
-                newPath = [...path, String(prop)];
-                break;
+        // Use unified core executeAction
+        const { result, toTransfer, path: newPath } = coreExecuteAction(
+            action,
+            path,
+            args,
+            {
+                channel: this._name,
+                sender,
+                reflect: this._config.reflect
             }
+        );
 
-            case WReflectAction.SET: {
-                const [prop, value] = args;
-                const normalizedValue = deepOperateAndClone(value, normalizeRef);
-                result = reflect.set?.(obj, prop, normalizedValue) ??
-                    writeByPath([...path, String(prop)], normalizedValue);
-                break;
-            }
-
-            case WReflectAction.APPLY:
-            case WReflectAction.CALL: {
-                if (typeof obj === "function") {
-                    const ctx = readByPath(path.slice(0, -1));
-                    const normalizedArgs = deepOperateAndClone(args?.[0] ?? [], normalizeRef);
-                    result = reflect.apply?.(obj, ctx, normalizedArgs) ?? obj.apply(ctx, normalizedArgs);
-
-                    if (isCanTransfer(result) && path?.at(-1) === "transfer" && this._name !== sender) {
-                        toTransfer.push(result);
-                    }
-                }
-                break;
-            }
-
-            case WReflectAction.CONSTRUCT: {
-                if (typeof obj === "function") {
-                    const normalizedArgs = deepOperateAndClone(args?.[0] ?? [], normalizeRef);
-                    result = reflect.construct?.(obj, normalizedArgs) ?? new obj(...normalizedArgs);
-                }
-                break;
-            }
-
-            case WReflectAction.DELETE:
-            case WReflectAction.DELETE_PROPERTY:
-            case WReflectAction.DISPOSE:
-                result = path?.length > 0 ? removeByPath(path) : removeByData(obj);
-                if (result) newPath = registeredInPath.get(obj) ?? [];
-                break;
-
-            case WReflectAction.HAS:
-                result = reflect.has?.(obj, args?.[0]) ?? (typeof obj === "object" && obj != null ? args?.[0] in obj : false);
-                break;
-
-            case WReflectAction.OWN_KEYS:
-                result = reflect.ownKeys?.(obj) ?? (typeof obj === "object" && obj != null ? Object.keys(obj) : []);
-                break;
-
-            case WReflectAction.GET_OWN_PROPERTY_DESCRIPTOR:
-            case WReflectAction.GET_PROPERTY_DESCRIPTOR:
-                result = reflect.getOwnPropertyDescriptor?.(obj, path?.at(-1) ?? "") ??
-                    (typeof obj === "object" && obj != null ? Object.getOwnPropertyDescriptor(obj, path?.at(-1) ?? "") : undefined);
-                break;
-
-            case WReflectAction.GET_PROTOTYPE_OF:
-                result = reflect.getPrototypeOf?.(obj) ??
-                    (typeof obj === "object" && obj != null ? Object.getPrototypeOf(obj) : null);
-                break;
-
-            case WReflectAction.SET_PROTOTYPE_OF:
-                result = reflect.setPrototypeOf?.(obj, args?.[0]) ??
-                    (typeof obj === "object" && obj != null ? Object.setPrototypeOf(obj, args?.[0]) : false);
-                break;
-
-            case WReflectAction.IS_EXTENSIBLE:
-                result = reflect.isExtensible?.(obj) ??
-                    (typeof obj === "object" && obj != null ? Object.isExtensible(obj) : true);
-                break;
-
-            case WReflectAction.PREVENT_EXTENSIONS:
-                result = reflect.preventExtensions?.(obj) ??
-                    (typeof obj === "object" && obj != null ? Object.preventExtensions(obj) : false);
-                break;
-        }
-
-        result = await result;
-        return { result, toTransfer, newPath };
+        return { result: await result, toTransfer, newPath };
     }
 
     private async _sendResponse(
@@ -686,56 +599,20 @@ export class UnifiedChannel {
         rawResult: any,
         toTransfer: any[]
     ): Promise<void> {
-        const result = await rawResult;
-        const canBeReturn = (isCanTransfer(result) && toTransfer.includes(result)) || isCanJustReturn(result);
+        // Use unified core buildResponse
+        const { response: coreResponse, transfer } = await coreBuildResponse(
+            reqId, action, this._name, sender, path, rawResult, toTransfer
+        );
 
-        let finalPath = path;
-        if (!canBeReturn && action !== "get" && (typeof result === "object" || typeof result === "function")) {
-            if (hasNoPath(result)) {
-                finalPath = [UUIDv4()];
-                writeByPath(finalPath, result);
-            } else {
-                finalPath = registeredInPath.get(result) ?? [];
-            }
-        }
-
-        const ctx = readByPath(finalPath);
-        const ctxKey = action === "get" ? finalPath?.at(-1) : undefined;
-        const obj = readByPath(path);
-
-        const payload = deepOperateAndClone(result, (el) => objectToRef(el, this._name, toTransfer)) ?? result;
-
+        // Wrap as ChannelMessage with extra fields
         const response: ChannelMessage = {
             id: reqId,
-            channel: sender,
-            sender: this._name,
-            type: "response",
-            reqId,
-            payload: {
-                result: canBeReturn ? payload : null,
-                type: typeof result,
-                channel: sender,
-                sender: this._name,
-                descriptor: {
-                    $isDescriptor: true,
-                    path: finalPath,
-                    owner: this._name,
-                    channel: this._name,
-                    primitive: isPrimitive(result),
-                    writable: true,
-                    enumerable: true,
-                    configurable: true,
-                    argumentCount: obj instanceof Function ? obj.length : -1,
-                    ...(typeof ctx === "object" && ctx != null && ctxKey != null
-                        ? Object.getOwnPropertyDescriptor(ctx, ctxKey)
-                        : {})
-                } as WReflectDescriptor
-            } as WResp,
+            ...coreResponse,
             timestamp: Date.now(),
-            transferable: toTransfer
+            transferable: transfer
         };
 
-        this._send(sender, response, toTransfer);
+        this._send(sender, response, transfer);
     }
 
     // ========================================================================
