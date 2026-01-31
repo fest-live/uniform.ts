@@ -458,6 +458,80 @@ export function onWorkerChannelCreated(
 }
 
 // ============================================================================
+// INVOKER INTEGRATION
+// ============================================================================
+
+import {
+    Responder,
+    BidirectionalInvoker,
+    createResponder,
+    createInvoker,
+    detectContextType,
+    detectTransportType,
+    type ContextType,
+    type IncomingInvocation
+} from "../channel/Invoker";
+
+let WORKER_RESPONDER: Responder | null = null;
+let WORKER_INVOKER: BidirectionalInvoker | null = null;
+
+/**
+ * Get the worker's Responder (for handling incoming invocations)
+ */
+export function getWorkerResponder(channel?: string): Responder {
+    if (!WORKER_RESPONDER) {
+        WORKER_RESPONDER = createResponder(channel ?? "worker");
+        WORKER_RESPONDER.listen(self);
+    }
+    return WORKER_RESPONDER;
+}
+
+/**
+ * Get the worker's bidirectional Invoker
+ */
+export function getWorkerInvoker(channel?: string): BidirectionalInvoker {
+    if (!WORKER_INVOKER) {
+        WORKER_INVOKER = createInvoker(channel ?? "worker");
+        WORKER_INVOKER.connect(self);
+    }
+    return WORKER_INVOKER;
+}
+
+/**
+ * Expose an object for remote invocation from the worker
+ */
+export function exposeFromWorker(name: string, obj: any): void {
+    getWorkerResponder().expose(name, obj);
+}
+
+/**
+ * Subscribe to incoming invocations in the worker
+ */
+export function onWorkerInvocation(
+    handler: (inv: IncomingInvocation) => void
+): Subscription {
+    return getWorkerResponder().subscribeInvocations(handler);
+}
+
+/**
+ * Create a proxy to invoke methods on the host from the worker
+ */
+export function createHostProxy<T = any>(hostChannel: string = "host", basePath: string[] = []): T {
+    return getWorkerInvoker().createProxy<T>(hostChannel, basePath);
+}
+
+/**
+ * Import a module in the host context from the worker
+ */
+export function importInHost<T = any>(url: string, hostChannel: string = "host"): Promise<T> {
+    return getWorkerInvoker().importModule<T>(hostChannel, url);
+}
+
+// Re-export detection utilities
+export { detectContextType, detectTransportType };
+export type { ContextType, IncomingInvocation };
+
+// ============================================================================
 // AUTO-INITIALIZE (Compatible with legacy usage)
 // ============================================================================
 

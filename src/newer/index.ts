@@ -108,10 +108,43 @@ export {
     onWorkerConnection,
     onWorkerChannelCreated,
     workerContext,
+    // Invoker integration
+    getWorkerResponder,
+    getWorkerInvoker,
+    exposeFromWorker,
+    onWorkerInvocation,
+    createHostProxy,
+    importInHost,
+    detectContextType,
+    detectTransportType,
     type IncomingConnection,
     type ChannelCreatedEvent,
-    type WorkerContextConfig
+    type WorkerContextConfig,
+    type ContextType,
+    type IncomingInvocation
 } from "./next/transport/Worker";
+
+// ============================================================================
+// INVOKER (Requestor/Responder)
+// ============================================================================
+
+export {
+    Requestor,
+    Responder,
+    BidirectionalInvoker,
+    DefaultReflect,
+    createRequestor,
+    createResponder,
+    createInvoker,
+    setupInvoker,
+    autoInvoker,
+    detectContextType as detectContext,
+    detectTransportType as detectTransport,
+    detectIncomingContextType,
+    type InvokerConfig,
+    type ReflectLike,
+    type InvocationResponse
+} from "./next/channel/Invoker";
 
 export {
     TransportObservable,

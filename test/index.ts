@@ -844,6 +844,177 @@ async function runLevel5Tests(): Promise<number> {
 }
 
 // ============================================================================
+// LEVEL 6: Invoker (Requestor/Responder) Tests
+// ============================================================================
+
+async function runLevel6Tests(): Promise<number> {
+    log("=== LEVEL 6: Invoker (Requestor/Responder) tests ===");
+    let passed = 0;
+
+    // Import Invoker features directly
+    const {
+        Requestor,
+        Responder,
+        BidirectionalInvoker,
+        DefaultReflect,
+        createRequestor,
+        createResponder,
+        createInvoker,
+        setupInvoker,
+        autoInvoker,
+        detectContextType,
+        detectTransportType,
+        detectIncomingContextType
+    } = await import("../src/newer/next/channel/Invoker.ts");
+
+    // Test 1: detectContextType returns valid type
+    passed += await test("detectContextType returns valid type", () => {
+        const ctxType = detectContextType();
+        const validTypes = [
+            "window", "worker", "shared-worker", "service-worker",
+            "chrome-content", "chrome-background", "chrome-popup", "chrome-devtools",
+            "node", "deno", "unknown"
+        ];
+        assert(validTypes.includes(ctxType), `Should return valid type, got: ${ctxType}`);
+    }) ? 1 : 0;
+
+    // Test 2: detectTransportType identifies Worker
+    passed += await test("detectTransportType identifies transports", () => {
+        assertEqual(detectTransportType(null), "internal", "null should be internal");
+        assertEqual(detectTransportType("self"), "self", "'self' string should be self");
+        assertEqual(detectTransportType(self), "self", "globalThis should be self");
+    }) ? 1 : 0;
+
+    // Test 3: detectIncomingContextType infers from data
+    passed += await test("detectIncomingContextType infers from message data", () => {
+        assertEqual(detectIncomingContextType(null), "unknown", "null returns unknown");
+        assertEqual(detectIncomingContextType({ contextType: "worker" }), "worker", "explicit contextType");
+        assertEqual(detectIncomingContextType({ sender: "my-worker" }), "worker", "sender with 'worker'");
+        assertEqual(detectIncomingContextType({ sender: "chrome-ext" }), "chrome-content", "sender with 'chrome'");
+    }) ? 1 : 0;
+
+    // Test 4: DefaultReflect implements all methods
+    passed += await test("DefaultReflect implements all Reflect methods", () => {
+        assert(typeof DefaultReflect.get === "function", "Should have get");
+        assert(typeof DefaultReflect.set === "function", "Should have set");
+        assert(typeof DefaultReflect.has === "function", "Should have has");
+        assert(typeof DefaultReflect.apply === "function", "Should have apply");
+        assert(typeof DefaultReflect.construct === "function", "Should have construct");
+        assert(typeof DefaultReflect.deleteProperty === "function", "Should have deleteProperty");
+        assert(typeof DefaultReflect.ownKeys === "function", "Should have ownKeys");
+        assert(typeof DefaultReflect.getOwnPropertyDescriptor === "function", "Should have getOwnPropertyDescriptor");
+        assert(typeof DefaultReflect.getPrototypeOf === "function", "Should have getPrototypeOf");
+        assert(typeof DefaultReflect.setPrototypeOf === "function", "Should have setPrototypeOf");
+        assert(typeof DefaultReflect.isExtensible === "function", "Should have isExtensible");
+        assert(typeof DefaultReflect.preventExtensions === "function", "Should have preventExtensions");
+    }) ? 1 : 0;
+
+    // Test 5: DefaultReflect.get works
+    passed += await test("DefaultReflect.get retrieves property", () => {
+        const obj = { foo: "bar", num: 42 };
+        assertEqual(DefaultReflect.get!(obj, "foo"), "bar", "Should get foo");
+        assertEqual(DefaultReflect.get!(obj, "num"), 42, "Should get num");
+    }) ? 1 : 0;
+
+    // Test 6: DefaultReflect.set works
+    passed += await test("DefaultReflect.set sets property", () => {
+        const obj: Record<string, any> = { foo: "bar" };
+        assertEqual(DefaultReflect.set!(obj, "foo", "baz"), true, "Should return true");
+        assertEqual(obj.foo, "baz", "Should update property");
+    }) ? 1 : 0;
+
+    // Test 7: DefaultReflect.apply works
+    passed += await test("DefaultReflect.apply calls function", () => {
+        const fn = (a: number, b: number) => a + b;
+        assertEqual(DefaultReflect.apply!(fn, null, [2, 3]), 5, "Should call function");
+    }) ? 1 : 0;
+
+    // Test 8: createRequestor creates Requestor
+    passed += await test("createRequestor creates Requestor instance", () => {
+        const req = createRequestor("test-channel");
+        assert(req instanceof Requestor, "Should be Requestor instance");
+        assertEqual(req.contextType !== undefined, true, "Should have contextType");
+        req.close();
+    }) ? 1 : 0;
+
+    // Test 9: createResponder creates Responder
+    passed += await test("createResponder creates Responder instance", () => {
+        const resp = createResponder("test-channel");
+        assert(resp instanceof Responder, "Should be Responder instance");
+        assertEqual(resp.contextType !== undefined, true, "Should have contextType");
+        resp.close();
+    }) ? 1 : 0;
+
+    // Test 10: createInvoker creates BidirectionalInvoker
+    passed += await test("createInvoker creates BidirectionalInvoker", () => {
+        const inv = createInvoker("test-channel");
+        assert(inv instanceof BidirectionalInvoker, "Should be BidirectionalInvoker instance");
+        assert(inv.requestor instanceof Requestor, "Should have Requestor");
+        assert(inv.responder instanceof Responder, "Should have Responder");
+        inv.close();
+    }) ? 1 : 0;
+
+    // Test 11: Responder can expose objects
+    passed += await test("Responder can expose objects", () => {
+        const resp = createResponder("expose-test");
+
+        const testObj = {
+            value: 42,
+            greet: (name: string) => `Hello, ${name}!`
+        };
+
+        resp.expose("myModule", testObj);
+
+        // The exposed object is registered in the storage
+        // (Would be invocable via Requestor)
+        resp.close();
+    }) ? 1 : 0;
+
+    // Test 12: Requestor has observable response stream
+    passed += await test("Requestor has observable response stream", () => {
+        const req = createRequestor("obs-test");
+
+        assert(req.onResponse !== null, "Should have onResponse observable");
+        assert(typeof req.onResponse.subscribe === "function", "Should have subscribe method");
+
+        req.close();
+    }) ? 1 : 0;
+
+    // Test 13: Responder has observable invocation stream
+    passed += await test("Responder has observable invocation stream", () => {
+        const resp = createResponder("obs-test");
+
+        assert(resp.onInvocation !== null, "Should have onInvocation observable");
+        assert(typeof resp.subscribeInvocations === "function", "Should have subscribeInvocations method");
+
+        resp.close();
+    }) ? 1 : 0;
+
+    // Test 14: BidirectionalInvoker expose chains
+    passed += await test("BidirectionalInvoker expose returns this for chaining", () => {
+        const inv = createInvoker("chain-test");
+
+        const result = inv.expose("obj1", { a: 1 }).expose("obj2", { b: 2 });
+
+        assert(result === inv, "expose should return this");
+        inv.close();
+    }) ? 1 : 0;
+
+    // Test 15: autoInvoker auto-detects context
+    passed += await test("autoInvoker auto-detects context", () => {
+        const inv = autoInvoker("auto-test");
+
+        // Should have detected context type
+        assert(inv.contextType !== undefined, "Should have contextType");
+
+        inv.close();
+    }) ? 1 : 0;
+
+    log(`Level 6: ${passed}/15 passed`);
+    return passed;
+}
+
+// ============================================================================
 // MAIN
 // ============================================================================
 
@@ -859,10 +1030,12 @@ async function main() {
     const level4 = await runLevel4Tests();
     console.log("");
     const level5 = await runLevel5Tests();
+    console.log("");
+    const level6 = await runLevel6Tests();
 
     console.log("\n" + "=".repeat(40));
-    const total = level1 + level2 + level3 + level4 + level5;
-    const max = 4 + 15 + 12 + 12 + 12;
+    const total = level1 + level2 + level3 + level4 + level5 + level6;
+    const max = 4 + 15 + 12 + 12 + 12 + 15;
     log(`TOTAL: ${total}/${max} tests passed`);
 
     if (total === max) {
