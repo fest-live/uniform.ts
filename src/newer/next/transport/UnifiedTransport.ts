@@ -28,7 +28,13 @@ import { RTCPeerTransport, RTCPeerManager, createBroadcastSignaling, type RTCTra
 import { PortTransport, PortPool, WindowPortConnector, createChannelPair, type PortTransportConfig } from "./PortTransport";
 import { TransferableStorage, MessageQueueStorage, type TransferableStorageConfig } from "../storage/TransferableStorage";
 import { SocketIOObservable, type SocketIOLike, type SocketObservableOptions } from "../observable/SocketIOObservable";
-import { ChromeRuntimeObservable, ChromeTabsObservable, ChromePortObservable, type ChromeObservableOptions } from "../observable/ChromeObservable";
+import {
+    ChromeRuntimeObservable,
+    ChromeTabsObservable,
+    ChromePortObservable,
+    ChromeExternalObservable,
+    type ChromeObservableOptions
+} from "../observable/ChromeObservable";
 import { ServiceWorkerHost, ServiceWorkerClient, type SWHostConfig } from "./ServiceWorkerHost";
 
 // ============================================================================
@@ -383,6 +389,18 @@ export function createTransport(
                 type: "chrome-port",
                 channelName,
                 isReady: obs.isConnected
+            };
+        }
+        if (options.chrome.mode === "external") {
+            const obs = new ChromeExternalObservable(options.chrome.options);
+            return {
+                send: (msg) => obs.send(msg),
+                request: () => Promise.reject("Not supported"),
+                subscribe: (o) => obs.subscribe(o as any),
+                close: () => obs.close(),
+                type: "chrome-external",
+                channelName,
+                isReady: true
             };
         }
     }

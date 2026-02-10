@@ -1,6 +1,6 @@
 // deno-lint-ignore-file no-explicit-any
 import { type WReflectDescriptor } from "../types/Interface";
-import { makeRequestProxy } from "../channel/RequestProxy";
+import { makeRequestProxy } from "../proxy/RequestProxy";
 import { type dT, type rT } from "../../core/Useful";
 import { UUIDv4, deref, isCanJustReturn, isNotComplexArray } from "fest/core";
 import { isPrimitive } from "fest/core";

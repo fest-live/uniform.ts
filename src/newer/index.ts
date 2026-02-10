@@ -100,7 +100,12 @@ export {
     exposeFromUnified,
     remoteFromUnified,
     type UnifiedChannelConfig,
-    type ConnectOptions
+    type ConnectOptions,
+    type UnifiedConnectionDirection,
+    type UnifiedConnectionStatus,
+    type UnifiedConnectionInfo,
+    type UnifiedConnectionEvent,
+    type UnifiedQueryConnectionsOptions
 } from "./next/channel/UnifiedChannel";
 
 // ============================================================================
@@ -125,11 +130,15 @@ export {
     type InvocationResponse,
     type ContextType,
     type IncomingInvocation
-} from "./next/channel/Invoker";
+} from "./next/proxy/Invoker";
 
 // ============================================================================
 // MULTI-CHANNEL CONTEXT
 // ============================================================================
+// vNext note:
+// - UnifiedChannel is the canonical runtime engine.
+// - ChannelContext remains as orchestration facade for multi-channel workflows
+//   and compatibility with legacy endpoint-style APIs.
 
 export {
     ChannelContext,
@@ -152,6 +161,11 @@ export {
     type ChannelContextOptions,
     type ChannelEndpoint,
     type RemoteChannelInfo,
+    type ContextConnectionDirection,
+    type ContextConnectionStatus,
+    type ContextConnectionInfo,
+    type ConnectionEvent,
+    type QueryConnectionsOptions,
     type DynamicTransportType,
     type DynamicTransportConfig
 } from "./next/channel/ChannelContext";
@@ -180,6 +194,8 @@ export {
     WebSocketTransport,
     ChromeRuntimeTransport,
     ChromeTabsTransport,
+    ChromePortTransport,
+    ChromeExternalTransport,
     ServiceWorkerTransport,
     SelfTransport,
     TransportFactory,
@@ -196,6 +212,7 @@ export {
     WebSocketObservable,
     ChromeRuntimeObservable as TransportChromeRuntimeObservable,
     ChromeTabsObservable as TransportChromeTabsObservable,
+    ChromePortObservable as TransportChromePortObservable,
     ServiceWorkerClientObservable,
     ServiceWorkerHostObservable,
     SelfObservable,
@@ -383,7 +400,7 @@ export {
     createExposeHandler,
     createSenderProxy,
     proxyBuilder
-} from "./next/channel/Proxy";
+} from "./next/proxy/Proxy";
 
 // ============================================================================
 // LEGACY (Backward Compatibility)
@@ -409,7 +426,7 @@ export {
     wrapObservableChannel,
     createObservableChannel,
     DispatchProxyHandler
-} from "./next/channel/RequestProxy";
+} from "./next/proxy/RequestProxy";
 
 export {
     makeChannelMessageHandler,
@@ -427,7 +444,7 @@ export { Observable as ChannelNativeObservable } from "./next/observable/Observa
 // ============================================================================
 
 import { createOrUseExistingChannel, createHostChannel, SELF_CHANNEL } from "./next/channel/Channels";
-import { wrapChannel } from "./next/channel/RequestProxy";
+import { wrapChannel } from "./next/proxy/RequestProxy";
 import { createChannelContext, getOrCreateContext, createChannelsInContext, importModuleInContext } from "./next/channel/ChannelContext";
 import { detectExecutionContext } from "./next/utils/Env";
 import type { WorkerChannel } from "./next/storage/Queued";

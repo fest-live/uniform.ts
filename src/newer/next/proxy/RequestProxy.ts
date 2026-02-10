@@ -7,7 +7,7 @@
 
 import { WReflectAction, type WReflectDescriptor } from "../types/Interface";
 import type { ChannelMessage, ChannelObservable } from "../observable/Observable";
-import { UnifiedChannel, createUnifiedChannel, getWorkerChannel } from "./UnifiedChannel";
+import { UnifiedChannel, createUnifiedChannel, getWorkerChannel } from "../channel/UnifiedChannel";
 
 // Re-export from unified Proxy module
 export {

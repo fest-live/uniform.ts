@@ -8,7 +8,7 @@
  */
 
 import { UUIDv4 } from "fest/core";
-import { UnifiedChannel, createUnifiedChannel, type UnifiedChannelConfig, type ConnectOptions } from "./UnifiedChannel";
+import { UnifiedChannel, createUnifiedChannel, type UnifiedChannelConfig, type ConnectOptions } from "../channel/UnifiedChannel";
 import type { Subscription, ChannelMessage } from "../observable/Observable";
 import { WReflectAction, type WReflectDescriptor, type TransportType } from "../types/Interface";
 
@@ -103,7 +103,18 @@ export function detectTransportType(source: Worker | MessagePort | BroadcastChan
     if (typeof BroadcastChannel !== "undefined" && source instanceof BroadcastChannel) return "broadcast";
     if (typeof WebSocket !== "undefined" && source instanceof WebSocket) return "websocket";
     if (typeof RTCDataChannel !== "undefined" && source instanceof RTCDataChannel) return "rtc-data";
-    if (source === "chrome-runtime" || source === "chrome-tabs") return source as TransportType;
+    if (source === "chrome-runtime" || source === "chrome-tabs" || source === "chrome-port" || source === "chrome-external") {
+        return source as TransportType;
+    }
+    if (
+        typeof chrome !== "undefined" &&
+        source &&
+        typeof source === "object" &&
+        typeof source.postMessage === "function" &&
+        source.onMessage?.addListener
+    ) {
+        return "chrome-port";
+    }
     if (source === self || source === globalThis || source === "self") return "self";
     return "internal";
 }

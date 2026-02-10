@@ -13,7 +13,9 @@ import {
     ChannelContext,
     createChannelContext,
     type ChannelEndpoint,
-    type ChannelContextOptions
+    type ChannelContextOptions,
+    type QueryConnectionsOptions,
+    type ContextConnectionInfo
 } from "../channel/ChannelContext";
 import { ChannelSubject, type Subscription } from "../observable/Observable";
 
@@ -211,6 +213,20 @@ export class WorkerContext {
      */
     getChannelNames(): string[] {
         return this._context.getChannelNames();
+    }
+
+    /**
+     * Query currently tracked channel connections in this worker.
+     */
+    queryConnections(query: QueryConnectionsOptions = {}): ContextConnectionInfo[] {
+        return this._context.queryConnections(query);
+    }
+
+    /**
+     * Notify active connections (useful for worker<->host sync).
+     */
+    notifyConnections(payload: any = {}, query: QueryConnectionsOptions = {}): number {
+        return this._context.notifyConnections(payload, query);
     }
 
     /**
@@ -470,7 +486,7 @@ import {
     detectTransportType,
     type ContextType,
     type IncomingInvocation
-} from "../channel/Invoker";
+} from "../proxy/Invoker";
 
 let WORKER_RESPONDER: Responder | null = null;
 let WORKER_INVOKER: BidirectionalInvoker | null = null;

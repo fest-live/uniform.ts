@@ -510,7 +510,73 @@ async function runLevel3Tests(): Promise<number> {
         ctx.close();
     }) ? 1 : 0;
 
-    log(`Level 3: ${passed}/12 passed`);
+    // Test 13: Context tracks connections for channel pairs
+    passed += await test("ChannelContext tracks active connections", async () => {
+        const ctx = createChannelContext({ name: "connection-track-test" });
+        ctx.createChannelPair("conn-a", "conn-b");
+
+        await new Promise((r) => setTimeout(r, 20));
+        const connections = ctx.queryConnections();
+
+        assert(connections.length >= 2, "Should track at least two active connections");
+        assert(connections.some((c) => c.localChannel === "conn-a"), "Should include conn-a as local channel");
+        assert(connections.some((c) => c.localChannel === "conn-b"), "Should include conn-b as local channel");
+
+        ctx.close();
+    }) ? 1 : 0;
+
+    // Test 14: Connection observer emits connected/notified events
+    passed += await test("ChannelContext emits connection observer events", async () => {
+        const ctx = createChannelContext({ name: "connection-observer-test" });
+        const events: string[] = [];
+        const sub = ctx.subscribeConnections((event) => events.push(event.type));
+
+        ctx.createChannelPair("observer-a", "observer-b");
+        await new Promise((r) => setTimeout(r, 20));
+
+        assert(events.includes("connected"), "Should emit connected event");
+        assert(events.includes("notified"), "Should emit notified event");
+
+        sub.unsubscribe();
+        ctx.close();
+    }) ? 1 : 0;
+
+    // Test 15: queryConnections supports filtering and closed status
+    passed += await test("queryConnections supports filters and closed records", async () => {
+        const ctx = createChannelContext({ name: "query-connections-test" });
+        ctx.createChannelPair("query-a", "query-b");
+        await new Promise((r) => setTimeout(r, 20));
+
+        const queryA = ctx.queryConnections({ localChannel: "query-a" });
+        assert(queryA.length > 0, "query-a should have active connections");
+        assert(queryA.every((c) => c.localChannel === "query-a"), "Filtered records should match local channel");
+
+        ctx.closeChannel("query-a");
+        const closed = ctx.queryConnections({ includeClosed: true, status: "closed", channel: "query-a" });
+        assert(closed.length > 0, "Closing a channel should mark related connections as closed");
+
+        ctx.close();
+    }) ? 1 : 0;
+
+    // Test 16: notifyConnections broadcasts signal to active links
+    passed += await test("notifyConnections emits notified events for active links", async () => {
+        const ctx = createChannelContext({ name: "notify-connections-test" });
+        ctx.createChannelPair("notify-a", "notify-b");
+        await new Promise((r) => setTimeout(r, 20));
+
+        const events: string[] = [];
+        const sub = ctx.subscribeConnections((event) => events.push(event.type));
+        const sent = ctx.notifyConnections({ reason: "healthcheck" });
+        await new Promise((r) => setTimeout(r, 20));
+
+        assert(sent >= 1, "notifyConnections should send to at least one active connection");
+        assert(events.includes("notified"), "notifyConnections should produce notified event");
+
+        sub.unsubscribe();
+        ctx.close();
+    }) ? 1 : 0;
+
+    log(`Level 3: ${passed}/16 passed`);
     return passed;
 }
 
@@ -879,7 +945,7 @@ async function runLevel6Tests(): Promise<number> {
         detectContextType,
         detectTransportType,
         detectIncomingContextType
-    } = await import("../src/newer/next/channel/Invoker.ts");
+    } = await import("../src/newer/next/proxy/Invoker.js");
 
     // Test 1: detectContextType returns valid type
     passed += await test("detectContextType returns valid type", () => {
@@ -1224,7 +1290,65 @@ async function runLevel7Tests(): Promise<number> {
         channel.close();
     }) ? 1 : 0;
 
-    log(`Level 7: ${passed}/15 passed`);
+    // Test 16: UnifiedChannel exposes connection observer
+    passed += await test("UnifiedChannel exposes connection observer API", () => {
+        const channel = createUnifiedChannel({ name: "conn-observer-test", autoListen: false });
+        const events: string[] = [];
+        const sub = channel.subscribeConnections((event) => events.push(event.type));
+
+        assert(channel.onConnection !== null, "onConnection should exist");
+        const records = channel.queryConnections();
+        assert(Array.isArray(records), "queryConnections should return array");
+        assertEqual(records.length, 0, "Should start with no records");
+
+        sub.unsubscribe();
+        channel.close();
+    }) ? 1 : 0;
+    // Test 17: attach triggers connect/notify records
+    passed += await test("UnifiedChannel attach tracks connection records", async () => {
+        const listeners = new Set<(event: MessageEvent) => void>();
+        const mockTransport = {
+            start: () => {},
+            addEventListener: (type: string, listener: EventListener) => {
+                if (type === "message") listeners.add(listener as (event: MessageEvent) => void);
+            },
+            removeEventListener: (type: string, listener: EventListener) => {
+                if (type === "message") listeners.delete(listener as (event: MessageEvent) => void);
+            },
+            postMessage: (_msg: any) => {}
+        };
+
+        const channel = createUnifiedChannel({ name: "uc-track-a", autoListen: false });
+        channel.attach(mockTransport, { targetChannel: "uc-track-b" });
+
+        const records = channel.queryConnections();
+        assert(records.length > 0, "Channel should track at least one connection after attach");
+        assert(records.some((c) => c.remoteChannel === "uc-track-b"), "Should include target channel record");
+
+        channel.close();
+    }) ? 1 : 0;
+
+    // Test 18: notifyConnections returns sent count
+    passed += await test("UnifiedChannel notifyConnections sends to active records", async () => {
+        const sentMessages: any[] = [];
+        const mockTransport = {
+            start: () => {},
+            addEventListener: (_type: string, _listener: EventListener) => {},
+            removeEventListener: (_type: string, _listener: EventListener) => {},
+            postMessage: (msg: any) => { sentMessages.push(msg); }
+        };
+
+        const channel = createUnifiedChannel({ name: "uc-notify-a", autoListen: false });
+        channel.attach(mockTransport, { targetChannel: "uc-notify-b" });
+
+        const sent = channel.notifyConnections({ reason: "test" });
+        assert(sent >= 1, "Should send notify to at least one connection");
+        assert(sentMessages.some((m) => m?.type === "signal"), "Should emit signal message(s)");
+
+        channel.close();
+    }) ? 1 : 0;
+
+    log(`Level 7: ${passed}/18 passed`);
     return passed;
 }
 
@@ -1251,7 +1375,7 @@ async function runLevel8Tests(): Promise<number> {
         DispatchProxyHandler: DispatchHandler,
         PROXY_MARKER,
         PROXY_INTERNALS
-    } = await import("../src/newer/next/channel/Proxy.ts");
+    } = await import("../src/newer/next/proxy/Proxy.js");
 
     // Test 1: createRemoteProxy creates proxy
     passed += await test("createRemoteProxy creates proxy", () => {
@@ -1456,7 +1580,7 @@ async function main() {
 
     console.log("\n" + "=".repeat(40));
     const total = level1 + level2 + level3 + level4 + level5 + level6 + level7 + level8;
-    const max = 4 + 15 + 12 + 12 + 12 + 15 + 15 + 12;
+    const max = 4 + 15 + 16 + 12 + 12 + 15 + 18 + 12;
     log(`TOTAL: ${total}/${max} tests passed`);
 
     if (total === max) {

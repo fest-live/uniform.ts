@@ -39,18 +39,26 @@ import {
     type ReflectLike,
     type IncomingInvocation,
     type InvocationResponse
-} from "./Invoker";
+} from "../proxy/Invoker";
 import {
     createRemoteProxy,
     wrapDescriptor as wrapProxyDescriptor,
     type ProxyInvoker,
     type RemoteProxy
-} from "./Proxy";
+} from "../proxy/Proxy";
 import {
     executeAction as coreExecuteAction,
     buildResponse as coreBuildResponse,
     type ExecuteOptions
 } from "../../core/RequestHandler";
+import {
+    ConnectionRegistry,
+    type ConnectionDirection,
+    type ConnectionStatus,
+    type ConnectionInfo,
+    type ConnectionEvent,
+    type QueryConnectionsOptions
+} from "./internal/ConnectionModel";
 
 // ============================================================================
 // TYPES
@@ -76,11 +84,23 @@ export interface UnifiedChannelConfig {
 export interface ConnectOptions {
     /** Target channel name for requests */
     targetChannel?: string;
+    /** Chrome tab id for chrome-tabs transport */
+    tabId?: number;
+    /** Chrome port name for chrome-port transport */
+    portName?: string;
+    /** External extension id for chrome-external transport */
+    externalId?: string;
     /** Custom message handler */
     onMessage?: (handler: (msg: any) => void) => (() => void);
     /** Auto-start MessagePort */
     autoStart?: boolean;
 }
+
+export type UnifiedConnectionDirection = ConnectionDirection;
+export type UnifiedConnectionStatus = ConnectionStatus;
+export type UnifiedConnectionInfo = ConnectionInfo<TransportType>;
+export type UnifiedConnectionEvent = ConnectionEvent<TransportType>;
+export type UnifiedQueryConnectionsOptions = QueryConnectionsOptions<TransportType>;
 
 /** Exposed module entry */
 interface ExposedEntry {
@@ -111,6 +131,11 @@ export class UnifiedChannel {
     // Transport management
     private _transports = new Map<string, TransportBinding>();
     private _defaultTransport: TransportBinding | null = null;
+    private _connectionEvents = new ChannelSubject<UnifiedConnectionEvent>({ bufferSize: 200 });
+    private _connectionRegistry = new ConnectionRegistry<TransportType>(
+        () => UUIDv4(),
+        (event) => this._connectionEvents.next(event)
+    );
 
     // Request/Response tracking
     // @ts-ignore
@@ -172,6 +197,19 @@ export class UnifiedChannel {
         if (!this._defaultTransport) {
             this._defaultTransport = binding;
         }
+        const connection = this._registerConnection({
+            localChannel: this._name,
+            remoteChannel: targetChannel,
+            sender: this._name,
+            transportType,
+            direction: "outgoing",
+            metadata: { phase: "connect" }
+        });
+        this._emitConnectionSignal(binding, "connect", {
+            connectionId: connection.id,
+            from: this._name,
+            to: targetChannel
+        });
 
         return this;
     }
@@ -187,7 +225,17 @@ export class UnifiedChannel {
         options: ConnectOptions = {}
     ): this {
         const transportType = detectTransportType(source);
+        const sourceChannel = options.targetChannel ?? this._inferTargetChannel(source, transportType);
         const handler = (data: any) => this._handleIncoming(data);
+
+        const connection = this._registerConnection({
+            localChannel: this._name,
+            remoteChannel: sourceChannel,
+            sender: sourceChannel,
+            transportType,
+            direction: "incoming",
+            metadata: { phase: "listen" }
+        });
 
         switch (transportType) {
             case "worker":
@@ -210,6 +258,27 @@ export class UnifiedChannel {
                 });
                 break;
 
+            case "chrome-tabs":
+                chrome.runtime.onMessage?.addListener?.((msg: any, sender: any) => {
+                    if (options.tabId != null && sender?.tab?.id !== options.tabId) return false;
+                    handler(msg);
+                    return true;
+                });
+                break;
+
+            case "chrome-port":
+                source?.onMessage?.addListener?.((msg: any) => {
+                    handler(msg);
+                });
+                break;
+
+            case "chrome-external":
+                chrome.runtime.onMessageExternal?.addListener?.((msg: any) => {
+                    handler(msg);
+                    return true;
+                });
+                break;
+
             case "self":
                 addEventListener?.("message", ((e: MessageEvent) => handler(e.data)) as EventListener);
                 break;
@@ -219,6 +288,14 @@ export class UnifiedChannel {
                     options.onMessage(handler);
                 }
         }
+
+        this._sendSignalToTarget(source, transportType, {
+            connectionId: connection.id,
+            from: this._name,
+            to: sourceChannel,
+            tabId: options.tabId,
+            externalId: options.externalId
+        }, "notify");
 
         return this;
     }
@@ -230,7 +307,9 @@ export class UnifiedChannel {
         target: Worker | MessagePort | BroadcastChannel | WebSocket | any,
         options: ConnectOptions = {}
     ): this {
-        return this.connect(target, options).listen(target, options);
+        // connect() already installs inbound listeners for response/request flow.
+        // Avoid duplicate listeners and duplicate notify storms in attach mode.
+        return this.connect(target, options);
     }
 
     // ========================================================================
@@ -445,6 +524,37 @@ export class UnifiedChannel {
     /** Observable: Outgoing responses */
     get onResponse() { return this._responses; }
 
+    /** Observable: Connection events (connected/notified/disconnected) */
+    get onConnection() { return this._connectionEvents; }
+
+    subscribeConnections(handler: (event: UnifiedConnectionEvent) => void): Subscription {
+        return this._connectionEvents.subscribe(handler);
+    }
+
+    queryConnections(query: UnifiedQueryConnectionsOptions = {}): UnifiedConnectionInfo[] {
+        return this._connectionRegistry.query(query);
+    }
+
+    notifyConnections(payload: any = {}, query: UnifiedQueryConnectionsOptions = {}): number {
+        let sent = 0;
+        const targets = this.queryConnections({ ...query, status: "active", includeClosed: false });
+
+        for (const connection of targets) {
+            const binding = this._transports.get(connection.remoteChannel);
+            if (!binding) continue;
+
+            this._emitConnectionSignal(binding, "notify", {
+                connectionId: connection.id,
+                from: this._name,
+                to: connection.remoteChannel,
+                ...payload
+            });
+            sent++;
+        }
+
+        return sent;
+    }
+
     // ========================================================================
     // PROPERTIES
     // ========================================================================
@@ -475,12 +585,22 @@ export class UnifiedChannel {
         this._subscriptions.forEach(s => s.unsubscribe());
         this._subscriptions = [];
         this._pending.clear();
+        this._markAllConnectionsClosed();
+        for (const binding of this._transports.values()) {
+            try { binding.cleanup?.(); } catch {}
+            // Release common channel-like transports so they do not keep event loop alive.
+            if (binding.transportType === "message-port" || binding.transportType === "broadcast") {
+                try { binding.target?.close?.(); } catch {}
+            }
+        }
         this._transports.clear();
         this._defaultTransport = null;
+        this._connectionRegistry.clear();
         this._inbound.complete();
         this._outbound.complete();
         this._invocations.complete();
         this._responses.complete();
+        this._connectionEvents.complete();
     }
 
     // ========================================================================
@@ -506,6 +626,10 @@ export class UnifiedChannel {
 
             case "event":
                 // Events are handled via subscribe
+                break;
+
+            case "signal":
+                this._handleSignal(data);
                 break;
         }
     }
@@ -619,6 +743,118 @@ export class UnifiedChannel {
     // PRIVATE: Transport Management
     // ========================================================================
 
+    private _handleSignal(data: any): void {
+        const payload = data?.payload ?? {};
+        const remoteChannel = payload.from ?? data.sender ?? "unknown";
+        const transportType = data.transportType ?? this._transports.get(data.channel)?.transportType ?? "internal";
+
+        const connection = this._registerConnection({
+            localChannel: this._name,
+            remoteChannel,
+            sender: data.sender ?? remoteChannel,
+            transportType,
+            direction: "incoming"
+        });
+
+        this._markConnectionNotified(connection, payload);
+    }
+
+    private _registerConnection(params: {
+        localChannel: string;
+        remoteChannel: string;
+        sender: string;
+        transportType: TransportType;
+        direction: UnifiedConnectionDirection;
+        metadata?: Record<string, any>;
+    }): UnifiedConnectionInfo {
+        return this._connectionRegistry.register(params);
+    }
+
+    private _markConnectionNotified(connection: UnifiedConnectionInfo, payload?: any): void {
+        this._connectionRegistry.markNotified(connection, payload);
+    }
+
+    private _emitConnectionSignal(
+        binding: TransportBinding,
+        signalType: "connect" | "notify",
+        payload: Record<string, any> = {}
+    ): void {
+        const message = {
+            id: UUIDv4(),
+            type: "signal",
+            channel: binding.targetChannel,
+            sender: this._name,
+            transportType: binding.transportType,
+            payload: {
+                type: signalType,
+                from: this._name,
+                to: binding.targetChannel,
+                ...payload
+            },
+            timestamp: Date.now()
+        };
+
+        binding.sender(message);
+
+        const connection = this._registerConnection({
+            localChannel: this._name,
+            remoteChannel: binding.targetChannel,
+            sender: this._name,
+            transportType: binding.transportType,
+            direction: "outgoing"
+        });
+        this._markConnectionNotified(connection, message.payload);
+    }
+
+    private _sendSignalToTarget(
+        target: any,
+        transportType: TransportType,
+        payload: Record<string, any>,
+        signalType: "connect" | "notify"
+    ): void {
+        const message = {
+            id: UUIDv4(),
+            type: "signal",
+            channel: payload.to ?? this._name,
+            sender: this._name,
+            transportType,
+            payload: {
+                type: signalType,
+                ...payload
+            },
+            timestamp: Date.now()
+        };
+
+        try {
+            if (transportType === "websocket") {
+                target?.send?.(JSON.stringify(message));
+                return;
+            }
+            if (transportType === "chrome-runtime") {
+                chrome.runtime?.sendMessage?.(message);
+                return;
+            }
+            if (transportType === "chrome-tabs") {
+                const tabId = payload.tabId;
+                if (tabId != null) chrome.tabs?.sendMessage?.(tabId, message);
+                return;
+            }
+            if (transportType === "chrome-port") {
+                target?.postMessage?.(message);
+                return;
+            }
+            if (transportType === "chrome-external") {
+                if (payload.externalId) chrome.runtime?.sendMessage?.(payload.externalId, message);
+                return;
+            }
+            target?.postMessage?.(message, { transfer: [] });
+        } catch {}
+    }
+
+    private _markAllConnectionsClosed(): void {
+        this._connectionRegistry.closeAll();
+    }
+
     private _createTransportBinding(
         target: any,
         transportType: TransportType,
@@ -626,6 +862,7 @@ export class UnifiedChannel {
         options: ConnectOptions
     ): TransportBinding {
         let sender: (msg: any, transfer?: Transferable[]) => void;
+        let cleanup: (() => void) | undefined;
 
         switch (transportType) {
             case "worker":
@@ -633,34 +870,103 @@ export class UnifiedChannel {
             case "broadcast":
                 if (options.autoStart !== false && target.start) target.start();
                 sender = (msg, transfer) => target.postMessage(msg, { transfer });
-                target.addEventListener?.("message", ((e: MessageEvent) => this._handleIncoming(e.data)) as EventListener);
+                {
+                    const listener = ((e: MessageEvent) => this._handleIncoming(e.data)) as EventListener;
+                    target.addEventListener?.("message", listener);
+                    cleanup = () => target.removeEventListener?.("message", listener);
+                }
                 break;
 
             case "websocket":
                 sender = (msg) => target.send(JSON.stringify(msg));
-                target.addEventListener?.("message", ((e: MessageEvent) => {
-                    try { this._handleIncoming(JSON.parse(e.data)); } catch {}
-                }) as EventListener);
+                {
+                    const listener = ((e: MessageEvent) => {
+                        try { this._handleIncoming(JSON.parse(e.data)); } catch {}
+                    }) as EventListener;
+                    target.addEventListener?.("message", listener);
+                    cleanup = () => target.removeEventListener?.("message", listener);
+                }
                 break;
 
             case "chrome-runtime":
                 sender = (msg) => chrome.runtime.sendMessage(msg);
-                chrome.runtime.onMessage?.addListener?.((msg: any) => this._handleIncoming(msg));
+                {
+                    const listener = (msg: any) => this._handleIncoming(msg);
+                    chrome.runtime.onMessage?.addListener?.(listener);
+                    cleanup = () => chrome.runtime.onMessage?.removeListener?.(listener);
+                }
+                break;
+
+            case "chrome-tabs":
+                sender = (msg) => {
+                    if (options.tabId != null) chrome.tabs?.sendMessage?.(options.tabId, msg);
+                };
+                {
+                    const listener = (msg: any, senderMeta: any) => {
+                        if (options.tabId != null && senderMeta?.tab?.id !== options.tabId) return false;
+                        this._handleIncoming(msg);
+                        return true;
+                    };
+                    chrome.runtime.onMessage?.addListener?.(listener);
+                    cleanup = () => chrome.runtime.onMessage?.removeListener?.(listener);
+                }
+                break;
+
+            case "chrome-port":
+                if (target?.postMessage && target?.onMessage?.addListener) {
+                    sender = (msg) => target.postMessage(msg);
+                    const listener = (msg: any) => this._handleIncoming(msg);
+                    target.onMessage.addListener(listener);
+                    cleanup = () => {
+                        try { target.onMessage.removeListener(listener); } catch {}
+                        try { target.disconnect?.(); } catch {}
+                    };
+                } else {
+                    const portName = options.portName ?? targetChannel;
+                    const port = options.tabId != null && chrome.tabs?.connect
+                        ? chrome.tabs.connect(options.tabId, { name: portName })
+                        : chrome.runtime.connect({ name: portName });
+                    sender = (msg) => port.postMessage(msg);
+                    const listener = (msg: any) => this._handleIncoming(msg);
+                    port.onMessage.addListener(listener);
+                    cleanup = () => {
+                        try { port.onMessage.removeListener(listener); } catch {}
+                        try { port.disconnect(); } catch {}
+                    };
+                }
+                break;
+
+            case "chrome-external":
+                sender = (msg) => {
+                    if (options.externalId) chrome.runtime.sendMessage(options.externalId, msg);
+                };
+                {
+                    const listener = (msg: any) => {
+                        this._handleIncoming(msg);
+                        return true;
+                    };
+                    chrome.runtime.onMessageExternal?.addListener?.(listener);
+                    cleanup = () => chrome.runtime.onMessageExternal?.removeListener?.(listener);
+                }
                 break;
 
             case "self":
                 sender = (msg, transfer) => postMessage(msg, { transfer: transfer ?? [] });
-                addEventListener?.("message", ((e: MessageEvent) => this._handleIncoming(e.data)) as EventListener);
+                {
+                    const listener = ((e: MessageEvent) => this._handleIncoming(e.data)) as EventListener;
+                    addEventListener?.("message", listener);
+                    cleanup = () => removeEventListener?.("message", listener);
+                }
                 break;
 
             default:
                 if (options.onMessage) {
-                    options.onMessage((msg) => this._handleIncoming(msg));
+                    cleanup = options.onMessage((msg) => this._handleIncoming(msg));
                 }
                 sender = (msg) => target?.postMessage?.(msg);
         }
 
-        return { target, targetChannel, transportType, sender };
+        return { target, targetChannel, transportType, sender, cleanup };
     }
 
     private _send(targetChannel: string, message: ChannelMessage, transfer?: Transferable[]): void {
@@ -714,6 +1020,7 @@ interface TransportBinding {
     targetChannel: string;
     transportType: TransportType;
     sender: (msg: any, transfer?: Transferable[]) => void;
+    cleanup?: () => void;
 }
 
 // ============================================================================

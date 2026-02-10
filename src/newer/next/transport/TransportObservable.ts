@@ -77,8 +77,12 @@ export abstract class TransportObservable<T = ChannelMessage> implements Subscri
 
 /** Worker Observable */
 export class WorkerObservable extends TransportObservable<ChannelMessage> {
-    private _send = createTransportSender(this._worker);
-    constructor(private _worker: Worker) { super(); }
+    private _send: ReturnType<typeof createTransportSender>;
+
+    constructor(private _worker: Worker) {
+        super();
+        this._send = createTransportSender(this._worker);
+    }
 
     next(value: ChannelMessage, transfer?: Transferable[]): void { this._send(value, transfer); }
 
@@ -94,8 +98,12 @@ export class WorkerObservable extends TransportObservable<ChannelMessage> {
 
 /** MessagePort Observable */
 export class MessagePortObservable extends TransportObservable<ChannelMessage> {
-    private _send = createTransportSender(this._port);
-    constructor(private _port: MessagePort) { super(); }
+    private _send: ReturnType<typeof createTransportSender>;
+
+    constructor(private _port: MessagePort) {
+        super();
+        this._send = createTransportSender(this._port);
+    }
 
     next(value: ChannelMessage, transfer?: Transferable[]): void { this._send(value, transfer); }
 
@@ -210,7 +218,39 @@ export class ChromeTabsObservable extends TransportObservable<ChannelMessage> {
 
     protected _activate(): void {
         if (this._listening) return;
-        this._cleanup = createTransportListener("chrome-runtime", (d) => this._dispatch(d));
+        this._cleanup = createTransportListener(
+            "chrome-tabs",
+            (d) => this._dispatch(d),
+            undefined,
+            undefined,
+            { tabId: this._tabId }
+        );
+        this._listening = true;
+    }
+}
+
+/** Chrome Port Observable */
+export class ChromePortObservable extends TransportObservable<ChannelMessage> {
+    private _send: ReturnType<typeof createTransportSender>;
+
+    constructor(private _portName: string, private _tabId?: number) {
+        super();
+        this._send = createTransportSender("chrome-port", { portName: _portName, tabId: _tabId });
+    }
+
+    next(value: ChannelMessage): void {
+        this._send(value);
+    }
+
+    protected _activate(): void {
+        if (this._listening) return;
+        this._cleanup = createTransportListener(
+            "chrome-port",
+            (d) => this._dispatch(d),
+            undefined,
+            undefined,
+            { portName: this._portName, tabId: this._tabId }
+        );
         this._listening = true;
     }
 }
@@ -273,6 +313,7 @@ export const TransportObservableFactory = {
     websocket: (url: string | URL, protocols?: string | string[]) => new WebSocketObservable(url, protocols),
     chromeRuntime: () => new ChromeRuntimeObservable(),
     chromeTabs: (tabId?: number) => new ChromeTabsObservable(tabId),
+    chromePort: (portName: string, tabId?: number) => new ChromePortObservable(portName, tabId),
     serviceWorkerClient: () => new ServiceWorkerClientObservable(),
     serviceWorkerHost: () => new ServiceWorkerHostObservable(),
     self: () => new SelfObservable()

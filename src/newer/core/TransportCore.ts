@@ -34,6 +34,7 @@ export type TransportTarget =
     | "chrome-runtime"
     | "chrome-tabs"
     | "chrome-port"
+    | "chrome-external"
     | "socket-io"
     | "service-worker-client"
     | "service-worker-host"
@@ -52,6 +53,7 @@ export type TransportType =
     | "chrome-runtime"
     | "chrome-tabs"
     | "chrome-port"
+    | "chrome-external"
     | "socket-io"
     | "rtc-data"
     | "atomics"
@@ -82,9 +84,19 @@ export function detectTransportType(transport: TransportTarget): TransportType {
     if (transport instanceof MessagePort) return "message-port";
     if (transport instanceof BroadcastChannel) return "broadcast";
     if (transport instanceof WebSocket) return "websocket";
+    if (
+        typeof chrome !== "undefined" &&
+        transport &&
+        typeof transport === "object" &&
+        typeof (transport as any).postMessage === "function" &&
+        (transport as any).onMessage?.addListener
+    ) {
+        return "chrome-port";
+    }
     if (transport === "chrome-runtime") return "chrome-runtime";
     if (transport === "chrome-tabs") return "chrome-tabs";
     if (transport === "chrome-port") return "chrome-port";
+    if (transport === "chrome-external") return "chrome-external";
     if (transport === "socket-io") return "socket-io";
     if (transport === "service-worker-client") return "service-worker";
     if (transport === "service-worker-host") return "service-worker";
@@ -108,6 +120,7 @@ export function getTransportMeta(transport: TransportTarget): TransportMeta {
         "chrome-runtime": { transfer: false, binary: false, bidirectional: true, broadcast: true, persistent: false },
         "chrome-tabs": { transfer: false, binary: false, bidirectional: true, broadcast: false, persistent: false },
         "chrome-port": { transfer: false, binary: false, bidirectional: true, broadcast: false, persistent: true },
+        "chrome-external": { transfer: false, binary: false, bidirectional: true, broadcast: false, persistent: false },
         "socket-io": { transfer: false, binary: true, bidirectional: true, broadcast: true, persistent: true },
         "rtc-data": { transfer: false, binary: true, bidirectional: true, broadcast: false, persistent: true },
         "atomics": { transfer: false, binary: true, bidirectional: true, broadcast: false, persistent: true },
@@ -131,6 +144,7 @@ export function createTransportSender(
         tabId?: number;
         clientId?: string;
         portName?: string;
+        externalId?: string;
         socketEvent?: string;
     }
 ): SendFn<ChannelMessage> {
@@ -197,9 +211,21 @@ export function createTransportSender(
             if (typeof chrome !== "undefined" && chrome.runtime) {
                 const portName = options?.portName ?? (msg as any)?._portName;
                 if (portName) {
-                    const port = chrome.runtime.connect({ name: portName });
+                    const tabId = options?.tabId ?? (msg as any)?._tabId;
+                    const port = tabId != null && chrome.tabs?.connect
+                        ? chrome.tabs.connect(tabId, { name: portName })
+                        : chrome.runtime.connect({ name: portName });
                     port.postMessage(data);
                 }
+            }
+            return;
+        }
+
+        // Chrome External (send to another extension/app)
+        if (transport === "chrome-external") {
+            if (typeof chrome !== "undefined" && chrome.runtime) {
+                const externalId = options?.externalId ?? (msg as any)?._externalId;
+                if (externalId) chrome.runtime.sendMessage(externalId, data);
             }
             return;
         }
@@ -254,6 +280,7 @@ export function createTransportListener(
     onClose?: () => void,
     options?: {
         portName?: string;
+        tabId?: number;
         socketEvents?: string[];
     }
 ): () => void {
@@ -339,6 +366,19 @@ export function createTransportListener(
         }
     }
 
+    // Chrome Tabs (tab-filtered runtime messages)
+    if (transport === "chrome-tabs") {
+        if (typeof chrome !== "undefined" && chrome.runtime) {
+            const tabId = options?.tabId;
+            if (tabId != null) {
+                return createChromeTabsListener(tabId, (msg) => onMessage(msg));
+            }
+            const listener = (msg: any) => { onMessage(msg); return false; };
+            chrome.runtime.onMessage.addListener(listener);
+            return () => chrome.runtime.onMessage.removeListener(listener);
+        }
+    }
+
     // Chrome Port
     if (transport === "chrome-port") {
         if (typeof chrome !== "undefined" && chrome.runtime) {
@@ -349,6 +389,15 @@ export function createTransportListener(
                 port.onDisconnect.addListener(closeHandler);
                 return () => port.disconnect();
             }
+        }
+    }
+
+    // Chrome External (messages from external extension/app)
+    if (transport === "chrome-external") {
+        if (typeof chrome !== "undefined" && chrome.runtime?.onMessageExternal) {
+            const listener = (msg: any) => { onMessage(msg); return false; };
+            chrome.runtime.onMessageExternal.addListener(listener);
+            return () => chrome.runtime.onMessageExternal.removeListener(listener);
         }
     }
 

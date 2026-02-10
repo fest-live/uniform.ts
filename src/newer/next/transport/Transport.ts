@@ -527,7 +527,13 @@ export class ChromeRuntimeTransport extends TransportAdapter {
         if (typeof chrome === "undefined" || !chrome.runtime) return;
 
         const send = createTransportSender("chrome-runtime");
-        this._cleanup = createTransportListener("chrome-runtime", (data) => this._inbound.next(data));
+        this._cleanup = createTransportListener(
+            "chrome-tabs",
+            (data) => this._inbound.next(data),
+            undefined,
+            undefined,
+            { tabId: this._tabId }
+        );
         this._subscriptions.push(this._outbound.subscribe((msg) => send(msg)));
         this._isAttached = true;
     }
@@ -564,6 +570,78 @@ export class ChromeTabsTransport extends TransportAdapter {
 
     detach(): void { this._cleanup?.(); super.detach(); }
     setTabId(tabId: number): void { this._tabId = tabId; }
+}
+
+// ============================================================================
+// CHROME PORT TRANSPORT
+// ============================================================================
+
+export class ChromePortTransport extends TransportAdapter {
+    private _cleanup: (() => void) | null = null;
+    private _port: chrome.runtime.Port | null = null;
+
+    constructor(
+        channelName: string,
+        private _portName: string,
+        private _tabId?: number,
+        options: ConnectionOptions = {}
+    ) {
+        super(channelName, "chrome-port", options);
+    }
+
+    attach(): void {
+        if (this._isAttached) return;
+        if (typeof chrome === "undefined" || !chrome.runtime) return;
+
+        this._port = this._tabId != null && chrome.tabs?.connect
+            ? chrome.tabs.connect(this._tabId, { name: this._portName })
+            : chrome.runtime.connect({ name: this._portName });
+
+        const send = (msg: ChannelMessage) => this._port?.postMessage(msg);
+        const onMessage = (msg: any) => this._inbound.next(msg);
+
+        this._port.onMessage.addListener(onMessage);
+        this._cleanup = () => {
+            try { this._port?.onMessage.removeListener(onMessage); } catch {}
+            try { this._port?.disconnect(); } catch {}
+            this._port = null;
+        };
+
+        this._subscriptions.push(this._outbound.subscribe((msg) => send(msg)));
+        this._isAttached = true;
+    }
+
+    detach(): void { this._cleanup?.(); super.detach(); }
+}
+
+// ============================================================================
+// CHROME EXTERNAL TRANSPORT
+// ============================================================================
+
+export class ChromeExternalTransport extends TransportAdapter {
+    private _cleanup: (() => void) | null = null;
+
+    constructor(channelName: string, private _externalId: string, options: ConnectionOptions = {}) {
+        super(channelName, "chrome-external", options);
+    }
+
+    attach(): void {
+        if (this._isAttached) return;
+        if (typeof chrome === "undefined" || !chrome.runtime) return;
+
+        const send = (msg: ChannelMessage) => chrome.runtime.sendMessage(this._externalId, msg);
+        const listener = (msg: any) => {
+            this._inbound.next(msg);
+            return false;
+        };
+
+        chrome.runtime.onMessageExternal?.addListener?.(listener);
+        this._cleanup = () => chrome.runtime.onMessageExternal?.removeListener?.(listener);
+        this._subscriptions.push(this._outbound.subscribe((msg) => send(msg)));
+        this._isAttached = true;
+    }
+
+    detach(): void { this._cleanup?.(); super.detach(); }
 }
 
 // ============================================================================
@@ -665,6 +743,12 @@ export const TransportFactory = {
 
     chromeTabs: (name: string, tabId?: number, opts?: ConnectionOptions) =>
         new ChromeTabsTransport(name, tabId, opts),
+
+    chromePort: (name: string, portName: string, tabId?: number, opts?: ConnectionOptions) =>
+        new ChromePortTransport(name, portName, tabId, opts),
+
+    chromeExternal: (name: string, externalId: string, opts?: ConnectionOptions) =>
+        new ChromeExternalTransport(name, externalId, opts),
 
     serviceWorker: (name: string, isHost?: boolean, opts?: ConnectionOptions) =>
         new ServiceWorkerTransport(name, isHost, opts),

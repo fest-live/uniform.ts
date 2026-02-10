@@ -464,7 +464,7 @@ import {
     createSenderProxy,
     createExposeHandler,
     type ProxyMethods
-} from "../channel/Proxy";
+} from "../proxy/Proxy";
 
 // Re-export for backward compatibility
 export type { ProxyMethods };
