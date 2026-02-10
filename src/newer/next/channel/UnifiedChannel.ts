@@ -59,6 +59,7 @@ import {
     type ConnectionEvent,
     type QueryConnectionsOptions
 } from "./internal/ConnectionModel";
+import type { NativeChannelTransport } from "./ChannelContext";
 
 // ============================================================================
 // TYPES
@@ -154,6 +155,14 @@ export class UnifiedChannel {
     // Proxy cache
     private _proxyCache = new WeakMap<object, any>();
 
+    public __getPrivate(key: string): any {
+        return this[key];
+    }
+    
+    public __setPrivate(key: string, value: any): void {
+        this[key] = value;
+    }
+
     constructor(config: UnifiedChannelConfig | string) {
         const cfg = typeof config === "string" ? { name: config } : config;
 
@@ -185,7 +194,7 @@ export class UnifiedChannel {
      * @param options - Connection options
      */
     connect(
-        target: Worker | MessagePort | BroadcastChannel | WebSocket | any,
+        target: TransportBinding<NativeChannelTransport>,
         options: ConnectOptions = {}
     ): this {
         const transportType = detectTransportType(target);
@@ -512,6 +521,25 @@ export class UnifiedChannel {
         this.next(message);
     }
 
+    /**
+     * Emit connection-level signal to a specific connected channel.
+     * This is the canonical notify/connect API for facade layers.
+     */
+    notify(
+        targetChannel: string,
+        payload: Record<string, any> = {},
+        type: "notify" | "connect" = "notify"
+    ): boolean {
+        const binding = this._transports.get(targetChannel);
+        if (!binding) return false;
+        this._emitConnectionSignal(binding, type, {
+            from: this._name,
+            to: targetChannel,
+            ...payload
+        });
+        return true;
+    }
+
     /** Observable: Incoming messages */
     get onMessage() { return this._inbound; }
 
@@ -590,7 +618,7 @@ export class UnifiedChannel {
             try { binding.cleanup?.(); } catch {}
             // Release common channel-like transports so they do not keep event loop alive.
             if (binding.transportType === "message-port" || binding.transportType === "broadcast") {
-                try { binding.target?.close?.(); } catch {}
+                try { (binding.target as MessagePort)?.close?.(); } catch {}
             }
         }
         this._transports.clear();
@@ -794,7 +822,7 @@ export class UnifiedChannel {
             timestamp: Date.now()
         };
 
-        binding.sender(message);
+        (binding?.sender ?? binding?.postMessage)?.call(binding, message);
 
         const connection = this._registerConnection({
             localChannel: this._name,
@@ -806,8 +834,8 @@ export class UnifiedChannel {
         this._markConnectionNotified(connection, message.payload);
     }
 
-    private _sendSignalToTarget(
-        target: any,
+    private _sendSignalToTarget<TTransport = NativeChannelTransport>(
+        target: TTransport,
         transportType: TransportType,
         payload: Record<string, any>,
         signalType: "connect" | "notify"
@@ -827,7 +855,7 @@ export class UnifiedChannel {
 
         try {
             if (transportType === "websocket") {
-                target?.send?.(JSON.stringify(message));
+                (target as WebSocket)?.send?.(JSON.stringify(message));
                 return;
             }
             if (transportType === "chrome-runtime") {
@@ -840,14 +868,14 @@ export class UnifiedChannel {
                 return;
             }
             if (transportType === "chrome-port") {
-                target?.postMessage?.(message);
+                (target as MessagePort)?.postMessage?.(message);
                 return;
             }
             if (transportType === "chrome-external") {
                 if (payload.externalId) chrome.runtime?.sendMessage?.(payload.externalId, message);
                 return;
             }
-            target?.postMessage?.(message, { transfer: [] });
+            (target as MessagePort)?.postMessage?.(message, { transfer: [] });
         } catch {}
     }
 
@@ -966,12 +994,17 @@ export class UnifiedChannel {
                 sender = (msg) => target?.postMessage?.(msg);
         }
 
-        return { target, targetChannel, transportType, sender, cleanup };
+        return {
+            target, targetChannel, transportType, sender, cleanup,
+            postMessage: (message: any, options?: any) => sender?.(message, options),
+            start: () => target?.start?.(),
+            close: () => target?.close?.()
+        };
     }
 
     private _send(targetChannel: string, message: ChannelMessage, transfer?: Transferable[]): void {
         const binding = this._transports.get(targetChannel) ?? this._defaultTransport;
-        binding?.sender(message, transfer);
+        (binding?.sender ?? binding?.postMessage)?.call(binding, message, transfer);
     }
 
     private _getDefaultTarget(): string {
@@ -1015,12 +1048,17 @@ export class UnifiedChannel {
 }
 
 /** Transport binding info */
-interface TransportBinding {
-    target: any;
+export interface TransportBinding<TTransport = NativeChannelTransport> {
+    target: TTransport;
     targetChannel: string;
     transportType: TransportType;
     sender: (msg: any, transfer?: Transferable[]) => void;
     cleanup?: () => void;
+    postMessage: (message: any, options?: any) => void;
+    addEventListener?: (type: string, listener: EventListener) => void;
+    removeEventListener?: (type: string, listener: EventListener) => void;
+    start?: () => void;
+    close?: () => void;
 }
 
 // ============================================================================

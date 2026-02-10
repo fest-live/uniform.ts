@@ -40,7 +40,7 @@ import { WReflectAction, type WReflectDescriptor, type WReq, type WResp } from "
 import { makeRequestProxy } from "../proxy/RequestProxy";
 import { readByPath, registeredInPath } from "../storage/DataBase";
 import { handleRequest as coreHandleRequest } from "../../core/RequestHandler";
-import { UnifiedChannel } from "./UnifiedChannel";
+import { UnifiedChannel, type TransportBinding } from "./UnifiedChannel";
 import {
     ConnectionRegistry,
     type ConnectionDirection,
@@ -144,16 +144,8 @@ export interface ConnectionEvent extends Omit<BaseConnectionEvent<DynamicTranspo
 
 export type QueryConnectionsOptions = BaseQueryConnectionsOptions<DynamicTransportType | TransportType | "internal">;
 
-export type NativeChannelTransport = Worker | BroadcastChannel | MessagePort;
+export type NativeChannelTransport = Worker | BroadcastChannel | MessagePort | WebSocket;
 
-export interface TransportBased<TTransport = NativeChannelTransport> {
-    target: TTransport;
-    postMessage: (message: any, options?: any) => void;
-    addEventListener?: (type: string, listener: EventListener) => void;
-    removeEventListener?: (type: string, listener: EventListener) => void;
-    start?: () => void;
-    close?: () => void;
-}
 
 // ============================================================================
 // REMOTE CHANNEL HELPER
@@ -227,11 +219,24 @@ export class RemoteChannelHelper {
 
 export class ChannelHandler {
     // @ts-ignore
-    private _forResolves = new Map<string, PromiseWithResolvers<any>>();
-    private _broadcasts: Record<string, TransportBased<NativeChannelTransport>> = {};
-    private _subscriptions: Subscription[] = [];
+    //private _forResolves = new Map<string, PromiseWithResolvers<any>>();
+    //private _broadcasts: Record<string, TransportBinding<NativeChannelTransport>> = {};
+    //private _subscriptions: Subscription[] = [];
     private _connection: ChannelConnection;
     private _unified: UnifiedChannel;
+
+    private get _forResolves(): Map<string, PromiseWithResolvers<any>> {
+        return this._unified.__getPrivate("_pending");
+    }
+
+    private get _subscriptions(): Subscription[] {
+        return this._unified.__getPrivate("_subscriptions");
+    }
+
+    private get _broadcasts(): Map<string, TransportBinding> {
+        return this._unified.__getPrivate("_transports");
+    }
+    
 
     constructor(
         private _channel: string,
@@ -249,12 +254,15 @@ export class ChannelHandler {
     createRemoteChannel(
         channel: string,
         options: ConnectionOptions = {},
-        broadcast?: TransportBased<NativeChannelTransport> | NativeChannelTransport | null
-    ): Promise<RemoteChannelHelper> {
-        const $channel = this._context.$createOrUseExistingRemote(channel, options, broadcast ?? null);
-        const transport = normalizeTransportBased((broadcast as any) ?? $channel?.messageChannel?.port1);
+        broadcast?: TransportBinding<NativeChannelTransport> | NativeChannelTransport | null
+    ): RemoteChannelHelper {
+        const transport = normalizeTransportBinding((broadcast as any) ?? (this._context.$createOrUseExistingRemote(channel, options, broadcast ?? null))?.messageChannel?.port1);
         const transportType = getDynamicTransportType(transport?.target ?? transport);
 
+        //
+        this._unified.listen(transport?.target, { targetChannel: channel });
+
+        /*
         transport?.addEventListener?.('message', ((event: MessageEvent) => {
             if (event.data.type === "request" && event.data.channel === this._channel) {
                 this.handleAndResponse(event.data.payload, event.data.reqId);
@@ -274,18 +282,19 @@ export class ChannelHandler {
                 });
             }
         }) as EventListener);
-
+        
         transport?.addEventListener?.('error', (event) => {
             console.error(event);
             transport?.close?.();
-        });
+        });*/
 
         if (transport) {
-            this._broadcasts[channel] = transport;
+            this._broadcasts?.set?.(channel, transport);
             const canAttachUnified = !(transportType === "self" && typeof postMessage === "undefined");
             if (canAttachUnified) {
-                this._unified.connect(transport.target, { targetChannel: channel });
+                this._unified.connect(transport, { targetChannel: channel });
             }
+
             this._context.$registerConnection({
                 localChannel: this._channel,
                 remoteChannel: channel,
@@ -293,12 +302,15 @@ export class ChannelHandler {
                 direction: "outgoing",
                 transportType
             });
+            
             this.notifyChannel(channel, {
                 contextId: this._context.id,
                 contextName: this._context.hostName
             }, "connect");
         }
-        return $channel?.remote ?? Promise.resolve(null as any);
+
+        //
+        return new RemoteChannelHelper(channel, this._context, options);
     }
 
     getChannel(): string { return this._channel; }
@@ -329,25 +341,25 @@ export class ChannelHandler {
         ) as Promise<any>;
     }
 
-    resolveResponse(reqId: string, result: any): Promise<any> | undefined {
+    private resolveResponse(reqId: string, result: any): Promise<any> | undefined {
         this._forResolves.get(reqId)?.resolve?.(result);
         const promise = this._forResolves.get(reqId)?.promise;
         this._forResolves.delete(reqId);
         return promise;
     }
 
-    async handleAndResponse(
+    private async handleAndResponse(
         request: WReq,
         reqId: string,
         responseFn?: (result: any, transfer: any[]) => void
     ): Promise<void> {
         // Use unified core handleRequest
-        const result = await coreHandleRequest(request, reqId, this._channel);
+        /*const result = await coreHandleRequest(request, reqId, this._channel);
         if (!result) return;
 
         const { response, transfer } = result;
-        const send = responseFn ?? this._broadcasts[request.sender]?.postMessage?.bind(this._broadcasts[request.sender]);
-        send?.(response, transfer);
+        const send = responseFn ?? this._broadcasts?.get(request.sender)?.postMessage?.bind(this._broadcasts?.get(request.sender));
+        send?.(response, transfer);*/
     }
 
     notifyChannel(
@@ -355,34 +367,12 @@ export class ChannelHandler {
         payload: any = {},
         type: "notify" | "connect" = "notify"
     ): boolean {
-        const sender = this._broadcasts[targetChannel];
-        if (!sender || typeof sender.postMessage !== "function") return false;
-
-        sender.postMessage?.({
-            id: UUIDv4(),
-            channel: targetChannel,
-            sender: this._channel,
-            transportType: getDynamicTransportType(sender),
-            type: "signal",
-            payload: {
-                type,
-                connectionId: UUIDv4(),
-                from: this._channel,
-                to: targetChannel,
-                ...payload
-            },
-            timestamp: Date.now()
-        });
-
-        this._context.$markNotified({
-            localChannel: this._channel,
-            remoteChannel: targetChannel,
-            sender: this._channel,
-            direction: "outgoing",
-            transportType: getDynamicTransportType(sender.target),
-            payload: { type, ...payload }
-        });
-        return true;
+        // Delegate notify/connect signaling to unified runtime.
+        return this._unified.notify(targetChannel, {
+            ...payload,
+            from: this._channel,
+            to: targetChannel
+        }, type);
     }
 
     getConnectedChannels(): string[] {
@@ -391,10 +381,9 @@ export class ChannelHandler {
 
     close(): void {
         this._subscriptions.forEach(s => s.unsubscribe());
-        this._subscriptions = [];
         this._forResolves.clear();
-        Object.values(this._broadcasts).forEach((transport) => transport.close?.());
-        this._broadcasts = {};
+        this._broadcasts?.values?.()?.forEach((transport) => transport.close?.());
+        this._broadcasts?.clear?.();
         this._unified.close();
     }
 
@@ -702,7 +691,6 @@ export class ChannelContext {
         if (!workerInstance) throw new Error(`Failed to create worker for channel: ${name}`);
 
         const handler = new ChannelHandler(name, this, { ...this._options.defaultOptions, ...options });
-
         const ready = handler.createRemoteChannel(name, options, workerInstance);
 
         const endpoint: ChannelEndpoint = {
@@ -711,7 +699,7 @@ export class ChannelContext {
             connection: handler.connection,
             subscriptions: [],
             transportType: "worker",
-            ready,
+            ready: Promise.resolve(ready),
             unified: handler.unified
         };
 
@@ -722,7 +710,7 @@ export class ChannelContext {
         this._remoteChannels.set(name, {
             channel: name,
             context: this,
-            remote: ready,
+            remote: Promise.resolve(ready),
             transport: workerInstance,
             transportType: "worker"
         });
@@ -753,7 +741,7 @@ export class ChannelContext {
             connection: handler.connection,
             subscriptions: [],
             transportType: "message-port",
-            ready,
+            ready: Promise.resolve(ready),
             unified: handler.unified
         };
 
@@ -762,7 +750,7 @@ export class ChannelContext {
         this._remoteChannels.set(name, {
             channel: name,
             context: this,
-            remote: ready,
+            remote: Promise.resolve(ready),
             transport: port,
             transportType: "message-port"
         });
@@ -793,7 +781,7 @@ export class ChannelContext {
             connection: handler.connection,
             subscriptions: [],
             transportType: "broadcast",
-            ready,
+            ready: Promise.resolve(ready),
             unified: handler.unified
         };
 
@@ -802,7 +790,7 @@ export class ChannelContext {
         this._remoteChannels.set(name, {
             channel: name,
             context: this,
-            remote: ready,
+            remote: Promise.resolve(ready),
             transport: bc,
             transportType: "broadcast"
         });
@@ -829,7 +817,7 @@ export class ChannelContext {
             connection: handler.connection,
             subscriptions: [],
             transportType: "self",
-            ready: selfTarget ? handler.createRemoteChannel(name, options, selfTarget as any) : Promise.resolve(null),
+            ready: Promise.resolve(selfTarget ? handler.createRemoteChannel(name, options, selfTarget as any) : null),
             unified: handler.unified
         };
 
@@ -940,7 +928,7 @@ export class ChannelContext {
     async connectRemote(
         channelName: string,
         options: ConnectionOptions = {},
-        broadcast?: TransportBased<NativeChannelTransport> | NativeChannelTransport | null
+        broadcast?: TransportBinding<NativeChannelTransport> | NativeChannelTransport | null
     ): Promise<RemoteChannelHelper> {
         this.initHost();
         return this._host!.createRemoteChannel(channelName, options, broadcast);
@@ -953,7 +941,7 @@ export class ChannelContext {
         channelName: string,
         url: string,
         options: { channelOptions?: ConnectionOptions; importOptions?: any } = {},
-        broadcast?: TransportBased<NativeChannelTransport> | NativeChannelTransport | null
+        broadcast?: TransportBinding<NativeChannelTransport> | NativeChannelTransport | null
     ): Promise<any> {
         const remote = await this.connectRemote(channelName, options.channelOptions, broadcast);
         return remote?.doImportModule?.(url, options.importOptions);
@@ -965,7 +953,7 @@ export class ChannelContext {
     $createOrUseExistingRemote(
         channel: string,
         options: ConnectionOptions = {},
-        broadcast: TransportBased<NativeChannelTransport> | NativeChannelTransport | null
+        broadcast: TransportBinding<NativeChannelTransport> | NativeChannelTransport | null
     ): RemoteChannelInfo | null {
         if (channel == null || broadcast) return null;
         if (this._remoteChannels.has(channel)) return this._remoteChannels.get(channel)!;
@@ -1153,11 +1141,11 @@ function isReflectAction(action: any): action is WReflectAction {
     return [...Object.values(WReflectAction)].includes(action);
 }
 
-function normalizeTransportBased(
-    target: TransportBased<NativeChannelTransport> | NativeChannelTransport | null | undefined
-): TransportBased<NativeChannelTransport> | null {
+function normalizeTransportBinding(
+    target: TransportBinding<NativeChannelTransport> | NativeChannelTransport | null | undefined
+): TransportBinding<NativeChannelTransport> | null {
     if (!target) return null;
-    if (isTransportBased(target)) return target;
+    if (isTransportBinding(target)) return target;
 
     const nativeTarget = target as NativeChannelTransport;
     return {
@@ -1172,14 +1160,14 @@ function normalizeTransportBased(
     };
 }
 
-function isTransportBased(value: any): value is TransportBased<NativeChannelTransport> {
+function isTransportBinding(value: any): value is TransportBinding<NativeChannelTransport> {
     return !!value && typeof value === "object" && "target" in value && typeof value.postMessage === "function";
 }
 
 function getDynamicTransportType(
-    target: TransportBased<NativeChannelTransport> | Worker | BroadcastChannel | MessagePort | WebSocket | typeof globalThis | string | null | undefined
+    target: TransportBinding<NativeChannelTransport> | Worker | BroadcastChannel | MessagePort | WebSocket | typeof globalThis | string | null | undefined
 ): DynamicTransportType | TransportType | "internal" {
-    const effectiveTarget = isTransportBased(target) ? target.target : target;
+    const effectiveTarget = isTransportBinding(target) ? target.target : target;
     if (!effectiveTarget) return "internal";
     if (effectiveTarget === "chrome-runtime") return "chrome-runtime";
     if (effectiveTarget === "chrome-tabs") return "chrome-tabs";
