@@ -70,6 +70,19 @@ export interface WResp<T = any> {
     error?: string | null;
 }
 
+/**
+ * Compact cross-transport binary/text payload descriptor.
+ * Designed for File/Blob/base64/data-url/url values normalized to hash-named data.
+ */
+export interface DataAssetEnvelope {
+    hash: string;
+    name: string;
+    mimeType: string;
+    size: number;
+    source?: "file" | "blob" | "data-url" | "base64" | "url" | "uri" | "text";
+    data?: string | ArrayBuffer;
+}
+
 // ============================================================================
 // OBSERVABLE TYPES
 // ============================================================================
