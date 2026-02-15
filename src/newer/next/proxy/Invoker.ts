@@ -84,14 +84,14 @@ export function detectContextType(): ContextType {
     if (typeof chrome !== "undefined" && chrome.runtime?.id) {
         if (typeof chrome.runtime.getBackgroundPage === "function" || (chrome.runtime.getManifest?.()?.background as any)?.service_worker) return "chrome-background";
         if (typeof (chrome as any).devtools !== "undefined") return "chrome-devtools";
-        if (typeof document !== "undefined" && window.location.protocol === "chrome-extension:") {
+        if (typeof document !== "undefined" && globalThis?.location?.protocol === "chrome-extension:") {
             const views = chrome.extension?.getViews?.({ type: "popup" }) ?? [];
-            if (views.includes(window)) return "chrome-popup";
+            if (views.includes(globalThis as any)) return "chrome-popup";
         }
-        if (typeof document !== "undefined" && window.location.protocol !== "chrome-extension:") return "chrome-content";
+        if (typeof document !== "undefined" && globalThis?.location?.protocol !== "chrome-extension:") return "chrome-content";
     }
 
-    if (typeof window !== "undefined" && typeof document !== "undefined") return "window";
+    if (typeof globalThis !== "undefined" && typeof document !== "undefined") return "window";
     return "unknown";
 }
 

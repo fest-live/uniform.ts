@@ -639,7 +639,7 @@ export class UnifiedMessagingManager {
      */
     private setupGlobalListeners(): void {
         if (typeof window !== 'undefined') {
-            window.addEventListener('message', (event) => {
+            globalThis.addEventListener('message', (event) => {
                 if (event.data && typeof event.data === 'object' && event.data.type) {
                     this.handleBroadcastMessage(event.data, 'window-message');
                 }

@@ -440,8 +440,8 @@ export class WindowPortConnector {
             handler(transport);
         };
 
-        window.addEventListener("message", msgHandler);
-        return () => window.removeEventListener("message", msgHandler);
+        globalThis.addEventListener("message", msgHandler);
+        return () => globalThis.removeEventListener("message", msgHandler);
     }
 
     disconnect(): void {
