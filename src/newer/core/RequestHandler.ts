@@ -134,7 +134,7 @@ export function executeAction(
     switch (act) {
         case "import":
         case WReflectAction.IMPORT:
-            result = import(args?.[0]);
+            result = import(/* @vite-ignore */ args?.[0]);
             break;
 
         case "transfer":

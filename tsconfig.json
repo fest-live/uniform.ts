@@ -1,17 +1,39 @@
 {
-    "include": ["./src/**/*.ts", "./test/**/*.ts", "./src/$core/*.ts", "./src/$wrap/*.ts"],
-    "exclude": ["./dist/**/*", "./externals/**/*"],
+    "include": [
+        "./src/**/*.ts",
+        "./test/**/*.ts",
+        "./src/$core/*.ts",
+        "./src/$wrap/*.ts"
+    ],
+    "exclude": [
+        "./dist/**/*",
+        "./externals/**/*",
+        "./src/**/*.js",
+        "./src/**/*.jsx"
+    ],
     "compilerOptions": {
         "outDir": "./dist/",
         "paths": {
-            "fest/*": ["../../shared/fest/*"],
-            "fest/core": ["../core.ts/dist/core.js"],
-            "fest/uniform": ["./dist/uniform.js"]
+            "fest/*": [
+                "../../shared/fest/*"
+            ],
+            "fest/core": [
+                "../core.ts/dist/core.js"
+            ],
+            "fest/uniform": [
+                "./dist/uniform.js"
+            ]
         },
         "target": "ESNext",
         "module": "ESNext",
-        "lib": ["ESNext", "DOM", "ESNext.Promise"],
-        "types": ["chrome"],
+        "lib": [
+            "ESNext",
+            "DOM",
+            "ESNext.Promise"
+        ],
+        "types": [
+            "chrome"
+        ],
         "moduleResolution": "bundler",
         "esModuleInterop": true,
         "strict": true,
@@ -31,6 +53,10 @@
         "experimentalDecorators": true,
         "moduleDetection": "force",
         "verbatimModuleSyntax": true,
-        "isolatedModules": true
-    }
+        "isolatedModules": true,
+        "noEmit": true,
+        "noEmitOnError": true,
+        "noEmitHelpers": true
+    },
+    "compileOnSave": false
 }
