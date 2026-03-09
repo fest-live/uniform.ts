@@ -569,6 +569,12 @@ export class UnifiedMessagingManager {
      */
     registerComponent(componentId: string, destination: string): void {
         this.componentRegistry.set(componentId, destination);
+        // Trigger queued delivery catch-up as soon as the destination is registered.
+        // This is especially important for cold-start transfers where pending
+        // localStorage payloads may not preserve rich objects like File.
+        void this.processQueuedMessages(destination).catch((error) => {
+            console.warn(`[UnifiedMessaging] Failed to process queued messages for ${destination}:`, error);
+        });
     }
 
     /**
@@ -577,6 +583,11 @@ export class UnifiedMessagingManager {
     initializeComponent(componentId: string): UnifiedMessage[] {
         const destination = this.componentRegistry.get(componentId);
         if (!destination) return [];
+        // Also trigger async queue replay on component init (in addition to pending drain)
+        // to deliver any IndexedDB-backed messages that were queued pre-mount.
+        void this.processQueuedMessages(destination).catch((error) => {
+            console.warn(`[UnifiedMessaging] Failed to replay queued messages for ${destination}:`, error);
+        });
         return this.pendingStore.drain(destination);
     }
 
