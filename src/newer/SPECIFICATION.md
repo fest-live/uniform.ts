@@ -21,7 +21,8 @@ That/this specification may/can be changed by AI
     destination: CHANNEL_NAME,
     payload: any | any[],
     transfer: (any | any[]) is Transferable,
-    extension: any | any[] # TODO
+    extension: any | any[], # TODO
+    defer: "none" | "idb" | "storage" | "promise" | "allowed"
 }
 ```
 
