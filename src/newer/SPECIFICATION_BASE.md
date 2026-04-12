@@ -10,7 +10,8 @@ This specification doesn't recommended to change by AI
     protocol: "worker" | "chrome" | "socket" | "service" | etc... # what protocol or channel types was used
     redirect: boolean,
     flags: {...},
-    type: "request" | "response" | "ack" | "act" | "ask", // act isn't require response
+    type: "request" | "response" | "ack" | "act" | "ask", ... # act isn't require response
+    path?: string | string[]  # path to remote class or object, if applicable (for access, get or act)
     result: any | any[], # REFLECT result
     args: any | any[],
     op: "get" | "set" | "apply" | "deleteProperty"... # etc... operation of REFLECT and PROXY, and some specific operations, such as "import"
