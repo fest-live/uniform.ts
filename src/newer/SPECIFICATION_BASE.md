@@ -23,7 +23,7 @@ This specification doesn't recommended to change by AI
     payload: any | any[],
     transfer: (any | any[]) is Transferable,
     extension: any | any[], # TODO
-    defer: "none" | "idb" | "storage" | "promise" | "allowed"
+    defer: "none" | "cache" | "idb" | "storage" | "promise" | "allowed"
 }
 ```
 
