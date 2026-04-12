@@ -6,8 +6,10 @@ This specification doesn't recommended to change by AI
 
 ```
 {
+    purpose: "invoke" | "mail" | "attach",
     protocol: "worker" | "chrome" | "socket" | etc... # what protocol or channel types was used
     redirect: boolean,
+    flags: {...},
     type: "request" | "response" | "ack",
     result: any | any[], # REFLECT result
     args: any | any[],
