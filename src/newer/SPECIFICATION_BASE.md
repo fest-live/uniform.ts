@@ -18,13 +18,15 @@ This specification doesn't recommended to change by AI
     error: errorType (string)
     timestamp: number,
     uuid: UUIDv4, # what UUID will be resolved by promises
-    sender: CHANNEL_NAME,
-    destination: CHANNEL_NAME,
     bridges: [CHANNEL_NAME...], # proxy channeling
     payload: any | any[],
-    transfer: (any | any[]) is Transferable,
-    extension: any | any[], # TODO
-    defer: "none" | "cache" | "idb" | "storage" | "promise" | "allowed"
+    transfer?: (any | any[]) is Transferable,
+    extension?: any | any[], # TODO
+    defer?: "none" | "cache" | "idb" | "storage" | "promise" | "allowed",
+    srcChannel: CHANNEL_NAME | string | UUIDv4,
+    dstChannel: CHANNEL_NAME | string | UUIDv4 or [...CHANNEL_NAME],
+    #sender?: CHANNEL_NAME,
+    #destination?: CHANNEL_NAME,
 }
 ```
 
@@ -32,7 +34,7 @@ This specification doesn't recommended to change by AI
 return/response types (in result):
 - void (none) if 'act' type
 - promise with object or primitive
-- promise with remote description (proxy class/object)
+- promise with remote description (proxy class/object/method wrapper)
 - promise with rejection/error
 ```
 
