@@ -6,18 +6,19 @@ That/this specification may/can be changed by AI
 
 ```
 {
-    purpose: "invoke" | "mail" | "attach",
+    purpose: "invoke" | "mail" | "attach" | "deliver" | "defer",  # can/may be array of them
     protocol: "worker" | "chrome" | "socket" | "service" | etc... # what protocol or channel types was used
     redirect: boolean,
     flags: {...},
-    type: "request" | "response" | "ack" | "act" | "ask", ... # act isn't require response
+    type: "request" | "response" | "invoke" | "ack" | "act" | "ask", ... # act isn't require response
     path?: string | string[]  # path to remote class or object, if applicable (for access, get or act)
     result: any | any[], # REFLECT result
-    args: any | any[],
-    op: "get" | "set" | "apply" | "deleteProperty"... # etc... operation of REFLECT and PROXY, and some specific operations, such as "import"
-    error: errorType (string)
+    args: any | any[],   # REFLECT arguments
+    op: "get" | "set" | "apply" | "deleteProperty"..., # etc... operation of REFLECT and PROXY, and some specific operations, such as "import", "attach", "write", "render"
+    error: errorType, (string)
     timestamp: number,
-    uuid: UUIDv4, # what UUID will be resolved by promises
+    where: string | PATH, # for example, for `viewer`, or `workspace`, CHANNEL or PATH
+    uuid: UUIDv4, # what UUID will be resolved for promises with results (not all requires it)
     bridges: [CHANNEL_NAME...], # proxy channeling
     payload: any | any[],
     transfer?: (any | any[]) is Transferable,
