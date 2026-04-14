@@ -33,8 +33,27 @@ export {
     type PipelineConfig,
     type PipelineStage,
     type ChannelMapping,
-    type UnifiedMessagingConfig
+    type UnifiedMessagingConfig,
+    type ProtocolMessage
 } from './UnifiedMessaging';
+
+export {
+    ProtocolReplayGuard,
+    createProtocolEnvelope,
+    isProtocolEnvelope,
+    normalizeProtocolEnvelope
+} from './Protocol';
+
+export type {
+    UniformPurpose,
+    UniformEnvelopeType,
+    UniformDeferMode,
+    UniformProtocolName,
+    UniformOperation,
+    LegacyUnifiedMessage,
+    UniformProtocolEnvelope,
+    CreateEnvelopeInput
+} from './Protocol';
 
 // ServiceChannelManager - BroadcastChannel-based service channels
 export {

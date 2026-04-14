@@ -52,6 +52,12 @@ import {
     type IncomingConnection,
     type ChannelCreatedEvent
 } from "../src/newer/next/transport/Worker.ts";
+import {
+    ProtocolReplayGuard,
+    createProtocolEnvelope,
+    normalizeProtocolEnvelope,
+    isProtocolEnvelope
+} from "../src/newer/messaging/Protocol.ts";
 
 // ============================================================================
 // UTILITIES
@@ -1556,6 +1562,65 @@ async function runLevel8Tests(): Promise<number> {
 }
 
 // ============================================================================
+// LEVEL 9: Unified protocol envelope tests
+// ============================================================================
+
+async function runLevel9Tests(): Promise<number> {
+    log("=== LEVEL 9: Unified protocol envelope tests ===");
+    let passed = 0;
+
+    passed += await test("createProtocolEnvelope maps legacy message fields", () => {
+        const envelope = createProtocolEnvelope({
+            type: "content-share",
+            source: "viewer",
+            destination: "workcenter",
+            data: { text: "hello" },
+            metadata: { priority: "high" }
+        });
+
+        assertEqual(envelope.source, "viewer", "Source should map");
+        assertEqual(envelope.destination, "workcenter", "Destination should map");
+        assertEqual(envelope.srcChannel, "viewer", "srcChannel should map");
+        assertEqual(envelope.dstChannel, "workcenter", "dstChannel should map");
+        assertDeepEqual(envelope.data, { text: "hello" }, "Payload should map");
+        assert(Array.isArray(envelope.purpose), "Purpose should be array");
+    }) ? 1 : 0;
+
+    passed += await test("normalizeProtocolEnvelope upgrades partial payload", () => {
+        const envelope = normalizeProtocolEnvelope({
+            type: "invoke",
+            op: "get",
+            path: "module.value",
+            source: "worker-a"
+        });
+
+        assertEqual(envelope.type, "invoke", "Type should be preserved");
+        assertEqual(envelope.op, "get", "Operation should be preserved");
+        assertArrayEqual(envelope.path ?? [], ["module.value"], "Path should normalize");
+        assertEqual(isProtocolEnvelope(envelope), true, "Should be valid protocol envelope");
+    }) ? 1 : 0;
+
+    passed += await test("ProtocolReplayGuard blocks duplicates in time window", async () => {
+        const guard = new ProtocolReplayGuard(50);
+        const envelope = createProtocolEnvelope({
+            id: "same-id",
+            type: "request",
+            source: "a",
+            destination: "b",
+            data: {}
+        });
+
+        assertEqual(guard.accept(envelope), true, "First message should pass");
+        assertEqual(guard.accept(envelope), false, "Second immediate message should be blocked");
+        await new Promise((resolve) => setTimeout(resolve, 60));
+        assertEqual(guard.accept(envelope), true, "Message should pass after window");
+    }) ? 1 : 0;
+
+    log(`Level 9: ${passed}/3 passed`);
+    return passed;
+}
+
+// ============================================================================
 // MAIN
 // ============================================================================
 
@@ -1577,10 +1642,12 @@ async function main() {
     const level7 = await runLevel7Tests();
     console.log("");
     const level8 = await runLevel8Tests();
+    console.log("");
+    const level9 = await runLevel9Tests();
 
     console.log("\n" + "=".repeat(40));
-    const total = level1 + level2 + level3 + level4 + level5 + level6 + level7 + level8;
-    const max = 4 + 15 + 16 + 12 + 12 + 15 + 18 + 12;
+    const total = level1 + level2 + level3 + level4 + level5 + level6 + level7 + level8 + level9;
+    const max = 4 + 15 + 16 + 12 + 12 + 15 + 18 + 12 + 3;
     log(`TOTAL: ${total}/${max} tests passed`);
 
     if (total === max) {

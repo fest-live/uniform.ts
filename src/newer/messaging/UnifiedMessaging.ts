@@ -16,6 +16,12 @@ import {
     type QueuedMessage,
     type MessagePriority
 } from './MessageQueue';
+import {
+    ProtocolReplayGuard,
+    createProtocolEnvelope,
+    normalizeProtocolEnvelope,
+    type UniformProtocolEnvelope
+} from './Protocol';
 
 // ============================================================================
 // TYPES AND INTERFACES
@@ -30,6 +36,8 @@ export interface UnifiedMessage<T = unknown> {
     data: T;
     metadata?: MessageMetadata;
 }
+
+export type ProtocolMessage<T = unknown> = UniformProtocolEnvelope<T>;
 
 export interface MessageMetadata {
     timestamp?: number;
@@ -218,9 +226,12 @@ export class UnifiedMessagingManager {
     private executionContext: ReturnType<typeof detectExecutionContext>;
     private channelMappings: Record<string, string>;
     private componentRegistry = new Map<string, string>();
+    private replayGuard = new ProtocolReplayGuard(300);
+    private localChannelId = '';
 
     constructor(config: UnifiedMessagingConfig = {}) {
         this.executionContext = detectExecutionContext();
+        this.localChannelId = `${this.executionContext}:${Math.random().toString(36).slice(2, 10)}`;
         this.channelMappings = config.channelMappings ?? {};
         this.messageQueue = getMessageQueue(config.queueOptions);
         this.pendingStore = new PendingMessageStore(config.pendingStoreOptions);
@@ -258,16 +269,7 @@ export class UnifiedMessagingManager {
      * Send a message to a destination
      */
     async sendMessage(message: Partial<UnifiedMessage> & { type: string; data: unknown }): Promise<boolean> {
-        // Ensure message has required fields
-        const fullMessage: UnifiedMessage = {
-            id: message.id ?? crypto.randomUUID(),
-            type: message.type,
-            source: message.source ?? 'unified-messaging',
-            destination: message.destination,
-            contentType: message.contentType,
-            data: message.data,
-            metadata: { timestamp: Date.now(), ...message.metadata }
-        };
+        const fullMessage = this.toProtocolMessage(message);
 
         // Try to deliver immediately
         if (await this.tryDeliverMessage(fullMessage)) {
@@ -280,8 +282,8 @@ export class UnifiedMessagingManager {
             this.pendingStore.enqueue(fullMessage.destination, fullMessage);
 
             await this.messageQueue.queueMessage(fullMessage.type, fullMessage, {
-                priority: fullMessage.metadata?.priority ?? 'normal',
-                maxRetries: fullMessage.metadata?.maxRetries ?? 3,
+                priority: (fullMessage.metadata?.priority as MessagePriority) ?? 'normal',
+                maxRetries: Number(fullMessage.metadata?.maxRetries ?? 3),
                 destination: fullMessage.destination
             });
         }
@@ -292,14 +294,17 @@ export class UnifiedMessagingManager {
     /**
      * Process a message through registered handlers
      */
-    async processMessage(message: UnifiedMessage): Promise<void> {
-        const destination = message.destination ?? 'general';
+    async processMessage(message: UnifiedMessage | ProtocolMessage): Promise<void> {
+        const normalized = normalizeProtocolEnvelope(message as any);
+        if (!this.replayGuard.accept(normalized)) return;
+
+        const destination = normalized.destination ?? 'general';
         const handlers = this.handlers.get(destination) ?? [];
 
         for (const handler of handlers) {
-            if (handler.canHandle(message)) {
+            if (handler.canHandle(normalized as UnifiedMessage)) {
                 try {
-                    await handler.handle(message);
+                    await handler.handle(normalized as UnifiedMessage);
                 } catch (error) {
                     console.error(`[UnifiedMessaging] Handler error for ${destination}:`, error);
                 }
@@ -310,27 +315,29 @@ export class UnifiedMessagingManager {
     /**
      * Try to deliver message immediately
      */
-    private async tryDeliverMessage(message: UnifiedMessage): Promise<boolean> {
+    private async tryDeliverMessage(message: UnifiedMessage | ProtocolMessage): Promise<boolean> {
+        const normalized = normalizeProtocolEnvelope(message as any);
+
         // Check if destination has handlers
-        if (message.destination && this.handlers.has(message.destination)) {
-            await this.processMessage(message);
+        if (normalized.destination && this.handlers.has(normalized.destination)) {
+            await this.processMessage(normalized);
             return true;
         }
 
         // Check if we have a broadcast channel for the destination
-        const channelName = this.getChannelForDestination(message.destination);
+        const channelName = this.getChannelForDestination(normalized.destination);
         if (channelName && this.channels.has(channelName)) {
             const channel = this.channels.get(channelName);
             if (channel instanceof BroadcastChannel) {
                 try {
-                    channel.postMessage(message);
+                    channel.postMessage(normalized);
                     return true;
                 } catch (error) {
                     console.warn(`[UnifiedMessaging] Failed to post to broadcast channel ${channelName}:`, error);
                 }
             } else if (channel && 'request' in channel) {
                 try {
-                    await (channel as OptimizedWorkerChannel).request(message.type, [message]);
+                    await (channel as OptimizedWorkerChannel).request(normalized.type, [normalized]);
                     return true;
                 } catch (error) {
                     console.warn(`[UnifiedMessaging] Failed to post to worker channel ${channelName}:`, error);
@@ -361,7 +368,7 @@ export class UnifiedMessagingManager {
                 name: config.name,
                 script: config.script,
                 options: config.options,
-                context: this.executionContext
+                context: this.resolveWorkerContext()
             }, config.protocolOptions, () => {
                 console.log(`[UnifiedMessaging] Channel '${config.name}' ready for view '${viewHash}'`);
             });
@@ -453,16 +460,9 @@ export class UnifiedMessagingManager {
      */
     private async handleBroadcastMessage(message: unknown, channelName: string): Promise<void> {
         try {
-            const msgObj = message as Record<string, unknown>;
-            const unifiedMessage: UnifiedMessage = msgObj?.id ? (message as UnifiedMessage) : {
-                id: crypto.randomUUID(),
-                type: String(msgObj?.type ?? 'unknown'),
-                source: channelName,
-                data: message,
-                metadata: { timestamp: Date.now() }
-            };
-
-            await this.processMessage(unifiedMessage);
+            const envelope = this.toProtocolMessage((message ?? {}) as any, channelName);
+            if (envelope.srcChannel === this.localChannelId) return;
+            await this.processMessage(envelope);
         } catch (error) {
             console.error(`[UnifiedMessaging] Error handling broadcast message on ${channelName}:`, error);
         }
@@ -533,25 +533,28 @@ export class UnifiedMessagingManager {
 
         for (const queuedMessage of queuedMessages) {
             const dataAsMessage = queuedMessage.data as Record<string, unknown>;
-            const message: UnifiedMessage = (
+            const message = (
                 dataAsMessage &&
                 typeof dataAsMessage === 'object' &&
                 typeof dataAsMessage.type === 'string' &&
                 typeof dataAsMessage.id === 'string'
             )
-                ? (dataAsMessage as unknown as UnifiedMessage)
+                ? this.toProtocolMessage(dataAsMessage as any)
                 : {
-                    id: queuedMessage.id,
+                    ...this.toProtocolMessage({
+                        id: queuedMessage.id,
+                        type: queuedMessage.type,
+                        source: 'queue',
+                        destination: queuedMessage.destination,
+                        data: queuedMessage.data,
+                        metadata: {
+                            timestamp: queuedMessage.timestamp,
+                            retryCount: queuedMessage.retryCount,
+                            maxRetries: queuedMessage.maxRetries,
+                            ...queuedMessage.metadata
+                        }
+                    }),
                     type: queuedMessage.type,
-                    source: 'queue',
-                    destination: queuedMessage.destination,
-                    data: queuedMessage.data,
-                    metadata: {
-                        timestamp: queuedMessage.timestamp,
-                        retryCount: queuedMessage.retryCount,
-                        maxRetries: queuedMessage.maxRetries,
-                        ...queuedMessage.metadata
-                    }
                 };
 
             if (await this.tryDeliverMessage(message)) {
@@ -624,6 +627,39 @@ export class UnifiedMessagingManager {
     private getChannelForDestination(destination?: string): string | null {
         if (!destination) return null;
         return this.channelMappings[destination] ?? null;
+    }
+
+    private detectProtocolName(): UniformProtocolEnvelope['protocol'] {
+        if (this.executionContext === 'chrome-extension') return 'chrome';
+        if (this.executionContext === 'service-worker') return 'service';
+        if (this.executionContext === 'main') return 'window';
+        return 'unknown';
+    }
+
+    private resolveWorkerContext(): 'main' | 'service-worker' | 'chrome-extension' | undefined {
+        if (this.executionContext === 'main') return 'main';
+        if (this.executionContext === 'service-worker') return 'service-worker';
+        if (this.executionContext === 'chrome-extension') return 'chrome-extension';
+        return undefined;
+    }
+
+    private toProtocolMessage(
+        message: Partial<UnifiedMessage> & { type?: string; data?: unknown },
+        fallbackSource?: string
+    ): ProtocolMessage {
+        return createProtocolEnvelope({
+            ...message,
+            id: message.id,
+            type: message.type ?? 'unknown',
+            source: message.source ?? fallbackSource ?? this.localChannelId,
+            destination: message.destination,
+            data: message.data,
+            metadata: { timestamp: Date.now(), ...(message.metadata ?? {}) },
+            protocol: this.detectProtocolName(),
+            purpose: 'mail',
+            srcChannel: message.source ?? this.localChannelId,
+            dstChannel: message.destination
+        });
     }
 
     // ========================================================================
