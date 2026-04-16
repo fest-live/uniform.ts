@@ -528,11 +528,9 @@ export class ChromeRuntimeTransport extends TransportAdapter {
 
         const send = createTransportSender("chrome-runtime");
         this._cleanup = createTransportListener(
-            "chrome-tabs",
+            "chrome-runtime",
             (data) => this._inbound.next(data),
-            undefined,
-            undefined,
-            { tabId: this._tabId }
+            undefined
         );
         this._subscriptions.push(this._outbound.subscribe((msg) => send(msg)));
         this._isAttached = true;

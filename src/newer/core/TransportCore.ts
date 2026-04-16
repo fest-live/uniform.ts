@@ -74,16 +74,34 @@ export interface TransportMeta {
     };
 }
 
+const TRANSPORT_TYPE_ALIASES: Record<string, TransportType> = {
+    "ws": "websocket",
+    "socket": "websocket",
+    "socketio": "socket-io",
+    "service": "service-worker",
+    "sw": "service-worker",
+    "service-worker-client": "service-worker",
+    "service-worker-host": "service-worker",
+    "ring-buffer": "atomics",
+};
+
 // ============================================================================
 // TRANSPORT DETECTION
 // ============================================================================
 
+export function normalizeTransportTypeAlias(transport: TransportTarget | TransportType | string): TransportType {
+    const raw = String(transport ?? "").trim().toLowerCase();
+    if (!raw) return "internal";
+    return TRANSPORT_TYPE_ALIASES[raw] ?? (raw as TransportType);
+}
+
 export function detectTransportType(transport: TransportTarget): TransportType {
-    if (transport instanceof Worker) return "worker";
+    if (typeof Worker !== "undefined" && transport instanceof Worker) return "worker";
     if (typeof SharedWorker !== "undefined" && transport instanceof SharedWorker) return "shared-worker";
-    if (transport instanceof MessagePort) return "message-port";
-    if (transport instanceof BroadcastChannel) return "broadcast";
-    if (transport instanceof WebSocket) return "websocket";
+    if (typeof MessagePort !== "undefined" && transport instanceof MessagePort) return "message-port";
+    if (typeof BroadcastChannel !== "undefined" && transport instanceof BroadcastChannel) return "broadcast";
+    if (typeof WebSocket !== "undefined" && transport instanceof WebSocket) return "websocket";
+    if (typeof RTCDataChannel !== "undefined" && transport instanceof RTCDataChannel) return "rtc-data";
     if (
         typeof chrome !== "undefined" &&
         transport &&
@@ -93,16 +111,7 @@ export function detectTransportType(transport: TransportTarget): TransportType {
     ) {
         return "chrome-port";
     }
-    if (transport === "chrome-runtime") return "chrome-runtime";
-    if (transport === "chrome-tabs") return "chrome-tabs";
-    if (transport === "chrome-port") return "chrome-port";
-    if (transport === "chrome-external") return "chrome-external";
-    if (transport === "socket-io") return "socket-io";
-    if (transport === "service-worker-client") return "service-worker";
-    if (transport === "service-worker-host") return "service-worker";
-    if (transport === "shared-worker") return "shared-worker";
-    if (transport === "rtc-data") return "rtc-data";
-    if (transport === "atomics") return "atomics";
+    if (typeof transport === "string") return normalizeTransportTypeAlias(transport);
     if (transport === "self") return "self";
     return "internal";
 }

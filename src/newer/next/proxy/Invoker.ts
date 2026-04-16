@@ -11,6 +11,7 @@ import { UUIDv4 } from "fest/core";
 import { UnifiedChannel, createUnifiedChannel, type UnifiedChannelConfig, type ConnectOptions } from "../channel/UnifiedChannel";
 import type { Subscription, ChannelMessage } from "../observable/Observable";
 import { WReflectAction, type WReflectDescriptor, type TransportType } from "../types/Interface";
+import { detectTransportType as detectCoreTransportType } from "../../core/TransportCore";
 
 // ============================================================================
 // TYPES
@@ -96,25 +97,9 @@ export function detectContextType(): ContextType {
 }
 
 export function detectTransportType(source: Worker | MessagePort | BroadcastChannel | WebSocket | any): TransportType {
-    if (!source) return "internal";
-    if (typeof Worker !== "undefined" && source instanceof Worker) return "worker";
-    if (typeof SharedWorker !== "undefined" && source instanceof SharedWorker) return "shared-worker";
-    if (typeof MessagePort !== "undefined" && source instanceof MessagePort) return "message-port";
-    if (typeof BroadcastChannel !== "undefined" && source instanceof BroadcastChannel) return "broadcast";
-    if (typeof WebSocket !== "undefined" && source instanceof WebSocket) return "websocket";
     if (typeof RTCDataChannel !== "undefined" && source instanceof RTCDataChannel) return "rtc-data";
-    if (source === "chrome-runtime" || source === "chrome-tabs" || source === "chrome-port" || source === "chrome-external") {
-        return source as TransportType;
-    }
-    if (
-        typeof chrome !== "undefined" &&
-        source &&
-        typeof source === "object" &&
-        typeof source.postMessage === "function" &&
-        source.onMessage?.addListener
-    ) {
-        return "chrome-port";
-    }
+    const detected = detectCoreTransportType(source as any);
+    if (detected && detected !== "internal") return detected as TransportType;
     if (source === self || source === globalThis || source === "self") return "self";
     return "internal";
 }

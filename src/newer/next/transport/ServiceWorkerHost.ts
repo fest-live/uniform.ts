@@ -774,3 +774,36 @@ export function createServiceWorkerHost(config: SWHostConfig): ServiceWorkerHost
 export function createServiceWorkerClient(channelName: string): ServiceWorkerClient {
     return new ServiceWorkerClient(channelName);
 }
+
+export interface ServiceWorkerHostBridgeHandle {
+    stop(): void;
+}
+
+/**
+ * Bind a ServiceWorkerHost to the ambient service-worker lifecycle.
+ *
+ * WHY: the host object manages routing and storage, but the SW still needs one
+ * bootstrap that forwards `message` events into `handleClientMessage()`.
+ */
+export function bindServiceWorkerHostBridge(
+    host: ServiceWorkerHost,
+    scope: ServiceWorkerGlobalScope = self as ServiceWorkerGlobalScope
+): ServiceWorkerHostBridgeHandle {
+    const onMessage = (event: MessageEvent) => {
+        const clientId = String((event.source as Client | null)?.id || "").trim();
+        if (!clientId) return;
+        void host.handleClientMessage(clientId, event.data);
+    };
+
+    scope.addEventListener("message", onMessage as EventListener);
+    void host.start().catch((error) => {
+        console.warn("[ServiceWorkerHost] Failed to start bound host:", error);
+    });
+
+    return {
+        stop() {
+            scope.removeEventListener("message", onMessage as EventListener);
+            host.stop();
+        }
+    };
+}

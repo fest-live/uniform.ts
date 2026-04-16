@@ -35,7 +35,7 @@ import {
     ChromeExternalObservable,
     type ChromeObservableOptions
 } from "../observable/ChromeObservable";
-import { ServiceWorkerHost, ServiceWorkerClient, type SWHostConfig } from "./ServiceWorkerHost";
+import { ServiceWorkerHost, ServiceWorkerClient, bindServiceWorkerHostBridge, type SWHostConfig } from "./ServiceWorkerHost";
 
 // ============================================================================
 // TYPES
@@ -421,6 +421,22 @@ export function createTransport(
 
     // Service Worker
     if (options.serviceWorker) {
+        if (options.serviceWorker.mode === "host") {
+            const host = new ServiceWorkerHost({
+                channelName,
+                ...(options.serviceWorker.config ?? {})
+            });
+            const bridge = bindServiceWorkerHostBridge(host);
+            return {
+                send: (msg) => host.emit(msg.type, msg.payload, msg.channel),
+                request: () => Promise.reject(new Error("ServiceWorkerHost transport does not support request(); use host APIs directly.")),
+                subscribe: (o) => host.onMessage(typeof o === "function" ? o : (m) => o.next?.(m)),
+                close: () => bridge.stop(),
+                type: "service-worker",
+                channelName,
+                isReady: true
+            };
+        }
         if (options.serviceWorker.mode === "client") {
             const client = new ServiceWorkerClient(channelName);
             client.connect();
