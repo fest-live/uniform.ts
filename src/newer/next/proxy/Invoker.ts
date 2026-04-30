@@ -78,9 +78,12 @@ export interface InvocationResponse {
 export function detectContextType(): ContextType {
     if (typeof (globalThis as any).Deno !== "undefined") return "deno";
     if (typeof (globalThis as any).process !== "undefined" && (globalThis as any).process?.versions?.node) return "node";
-    if (typeof ServiceWorkerGlobalScope !== "undefined" && self instanceof ServiceWorkerGlobalScope) return "service-worker";
-    if (typeof SharedWorkerGlobalScope !== "undefined" && self instanceof SharedWorkerGlobalScope) return "shared-worker";
-    if (typeof DedicatedWorkerGlobalScope !== "undefined" && self instanceof DedicatedWorkerGlobalScope) return "worker";
+    const serviceWorkerScope = (globalThis as any).ServiceWorkerGlobalScope;
+    const sharedWorkerScope = (globalThis as any).SharedWorkerGlobalScope;
+    const dedicatedWorkerScope = (globalThis as any).DedicatedWorkerGlobalScope;
+    if (serviceWorkerScope && self instanceof serviceWorkerScope) return "service-worker";
+    if (sharedWorkerScope && self instanceof sharedWorkerScope) return "shared-worker";
+    if (dedicatedWorkerScope && self instanceof dedicatedWorkerScope) return "worker";
 
     if (typeof chrome !== "undefined" && chrome.runtime?.id) {
         if (typeof chrome.runtime.getBackgroundPage === "function" || (chrome.runtime.getManifest?.()?.background as any)?.service_worker) return "chrome-background";

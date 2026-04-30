@@ -227,7 +227,7 @@ export class TransferableStorage<T = any> {
         };
 
         return this.put(id, data as any, {
-            buffers: options.transfer ? [array.buffer] : undefined,
+            buffers: options.transfer ? [array.buffer as ArrayBuffer] : undefined,
             ...options
         }) as Promise<TransferableRecord<{ type: string; data: number[] }>>;
     }
@@ -286,7 +286,7 @@ export class TransferableStorage<T = any> {
         const record = await this.get(id);
         if (!record || !record.data || typeof record.data !== "object") return null;
 
-        const { type, data } = record.data as { type: string; data: number[] };
+        const { type, data } = (record.data as unknown) as { type: string; data: number[] };
         const TypedArrayCtor = (globalThis as any)[type];
 
         if (!TypedArrayCtor) return null;

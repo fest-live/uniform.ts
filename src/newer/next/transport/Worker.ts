@@ -298,7 +298,7 @@ export class WorkerContext {
                 if (data.channel && this._context.hasChannel(data.channel)) {
                     // Route to specific channel
                     const endpoint = this._context.getChannel(data.channel);
-                    endpoint?.handler?.handleAndResponse?.(data.payload, data.reqId);
+                    (endpoint?.handler as any)?.handleAndResponse?.(data.payload, data.reqId);
                 }
         }
     }

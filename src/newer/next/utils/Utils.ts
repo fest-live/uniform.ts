@@ -29,7 +29,7 @@ export const createChromeExtensionChannel = async (config: WorkerConfig): Promis
     }
 
     const channel = await createOrUseExistingChannel(config.name, {}, worker);
-    return channel?.remote ?? channel;
+    return (channel as any)?.remote ?? channel;
 };
 
 /**
@@ -48,7 +48,7 @@ export const createChromeExtensionBroadcast = (channelName: string): BroadcastCh
 export const createChromeExtensionBroadcastChannel = (channelName: string): WorkerChannel => {
     const worker = new ChromeExtensionBroadcastChannel(channelName) as any;
     const channel = createOrUseExistingChannel(channelName, {}, worker);
-    return channel?.remote ?? channel;
+    return (channel as any)?.remote ?? channel;
 };
 
 /**
@@ -71,7 +71,7 @@ export const createChromeExtensionTabsChannel = (
 ): WorkerChannel => {
     const worker = new ChromeExtensionTabsChannel(channelName, options) as any;
     const channel = createOrUseExistingChannel(channelName, {}, worker);
-    return channel?.remote ?? channel;
+    return (channel as any)?.remote ?? channel;
 };
 
 /**
@@ -199,7 +199,7 @@ export const createWorkerChannel = async (config: WorkerConfig): Promise<WorkerC
     }
 
     const channel = await createOrUseExistingChannel(config.name, {}, worker);
-    return channel as WorkerChannel;
+    return (channel as unknown) as WorkerChannel;
 };
 
 /**

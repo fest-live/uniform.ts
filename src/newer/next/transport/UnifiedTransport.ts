@@ -392,7 +392,7 @@ export function createTransport(
             };
         }
         if (options.chrome.mode === "external") {
-            const obs = new ChromeExternalObservable(options.chrome.options);
+            const obs = new ChromeExternalObservable((options.chrome.options as any)?.extensionId);
             return {
                 send: (msg) => obs.send(msg),
                 request: () => Promise.reject("Not supported"),
@@ -428,7 +428,7 @@ export function createTransport(
             });
             const bridge = bindServiceWorkerHostBridge(host);
             return {
-                send: (msg) => host.emit(msg.type, msg.payload, msg.channel),
+                send: (msg) => { void host.broadcastToAll(msg); },
                 request: () => Promise.reject(new Error("ServiceWorkerHost transport does not support request(); use host APIs directly.")),
                 subscribe: (o) => host.onMessage(typeof o === "function" ? o : (m) => o.next?.(m)),
                 close: () => bridge.stop(),

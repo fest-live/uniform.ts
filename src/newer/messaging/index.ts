@@ -9,7 +9,7 @@ export {
     MessageQueue,
     getMessageQueue,
     createMessageQueue,
-    type QueuedMessage,
+    type QueuedMessage as MessagingQueuedMessage,
     type MessagePriority,
     type MessageQueueOptions,
     type QueueMessageOptions

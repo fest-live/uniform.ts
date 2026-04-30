@@ -136,7 +136,7 @@ export const $descriptor = Symbol.for("@descriptor");
 export const normalizeRef = (v: any)=>{
     if (isCanJustReturn(v)) return v;
     if (v?.[$descriptor]) return v;
-    if (v?.$isDescriptor) return makeRequestProxy(v, {});
+    if (v?.$isDescriptor) return makeRequestProxy(v, async () => undefined);
     if (isNotComplexArray(v)) return v;
     return null;
 }

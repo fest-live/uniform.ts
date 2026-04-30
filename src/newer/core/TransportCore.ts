@@ -15,9 +15,7 @@
  * - WebRTC DataChannel (via specialized transport)
  */
 
-/// <reference lib="webworker" />
-
-declare const clients: Clients | undefined;
+declare const clients: any;
 
 import type { ChannelMessage } from "../next/observable/Observable";
 
@@ -95,7 +93,8 @@ export function normalizeTransportTypeAlias(transport: TransportTarget | Transpo
     return TRANSPORT_TYPE_ALIASES[raw] ?? (raw as TransportType);
 }
 
-export function detectTransportType(transport: TransportTarget): TransportType {
+export function detectTransportType(transport: TransportTarget | TransportType | string | null | undefined): TransportType {
+    if (typeof transport === "string") return normalizeTransportTypeAlias(transport);
     if (typeof Worker !== "undefined" && transport instanceof Worker) return "worker";
     if (typeof SharedWorker !== "undefined" && transport instanceof SharedWorker) return "shared-worker";
     if (typeof MessagePort !== "undefined" && transport instanceof MessagePort) return "message-port";
@@ -111,12 +110,10 @@ export function detectTransportType(transport: TransportTarget): TransportType {
     ) {
         return "chrome-port";
     }
-    if (typeof transport === "string") return normalizeTransportTypeAlias(transport);
-    if (transport === "self") return "self";
     return "internal";
 }
 
-export function getTransportMeta(transport: TransportTarget): TransportMeta {
+export function getTransportMeta(transport: TransportTarget | TransportType | string | null | undefined): TransportMeta {
     const type = detectTransportType(transport);
 
     const meta: Record<TransportType, TransportMeta["supports"]> = {

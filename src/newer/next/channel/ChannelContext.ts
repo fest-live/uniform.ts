@@ -880,8 +880,8 @@ export class ChannelContext {
         mc.port1.start();
         mc.port2.start();
 
-        const ready1 = handler1.createRemoteChannel(name2, options, mc.port1);
-        const ready2 = handler2.createRemoteChannel(name1, options, mc.port2);
+        const ready1 = Promise.resolve(handler1.createRemoteChannel(name2, options, mc.port1));
+        const ready2 = Promise.resolve(handler2.createRemoteChannel(name1, options, mc.port2));
 
         const channel1: ChannelEndpoint = {
             name: name1,
@@ -1148,10 +1148,20 @@ function normalizeTransportBinding(
     if (isTransportBinding(target)) return target;
 
     const nativeTarget = target as NativeChannelTransport;
+    const transportType = getDynamicTransportType(nativeTarget);
     return {
         target: nativeTarget,
+        targetChannel: "unknown",
+        transportType: transportType === "internal" ? "self" : transportType as TransportType,
+        sender: (message: any, transfer?: Transferable[]) => {
+            if (typeof WebSocket !== "undefined" && nativeTarget instanceof WebSocket) {
+                nativeTarget.send(JSON.stringify(message));
+                return;
+            }
+            (nativeTarget as any).postMessage?.(message, transfer?.length ? { transfer } : undefined);
+        },
         postMessage: (message: any, options?: any) => {
-            nativeTarget.postMessage?.(message, options);
+            (nativeTarget as any).postMessage?.(message, options);
         },
         addEventListener: nativeTarget.addEventListener?.bind(nativeTarget),
         removeEventListener: nativeTarget.removeEventListener?.bind(nativeTarget),

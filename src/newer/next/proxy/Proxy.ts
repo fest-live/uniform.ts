@@ -377,7 +377,7 @@ export function getProxyInternals(value: any): ProxyConfig | null {
         // Use Reflect to get symbol property
         const internals = Reflect.get(value, PROXY_INTERNALS);
         if (!internals || typeof internals !== "object") return null;
-        return internals as ProxyConfig;
+        return (internals as unknown) as ProxyConfig;
     } catch {
         return null;
     }

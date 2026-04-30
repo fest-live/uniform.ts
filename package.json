@@ -43,7 +43,14 @@
         "@fest-lib/core": "^0.1.0"
     },
     "scripts": {
-        "test": "deno run --unstable-sloppy-imports --allow-all ./test/index.ts",
+        "typecheck": "tsc --noEmit --project ./tsconfig.typecheck.json",
+        "test:typecheck": "tsc --noEmit --project ./tsconfig.test.json",
+        "test": "npm run test:node && npm run test:deno && npm run test:browser",
+        "test:node": "node ./scripts/run-node-tests.mjs",
+        "test:deno": "deno test --unstable-sloppy-imports --allow-read --import-map=./test/deno.import_map.json ./test/Uniform.deno.test.ts",
+        "test:browser:install": "npx @puppeteer/browsers install chrome-headless-shell@stable --path ./chrome-headless-shell",
+        "test:browser": "node ./scripts/run-browser-tests.mjs",
+        "test:legacy": "deno run --unstable-sloppy-imports --allow-all ./test/index.ts",
         "dev": "vite --host 0.0.0.0",
         "watch": "vite build --watch",
         "build": "vite build --config vite.config.js && npm run docs && npm run docs:md",
@@ -56,9 +63,11 @@
         "docs:md:clean": "rm -rf ./docs-md && typedoc --options ./typedoc.md.json"
     },
     "devDependencies": {
+        "@puppeteer/browsers": "^2.13.0",
         "@types/chrome": ">=0.1.32",
         "@types/node": ">=24.7.2",
         "cbor-x": ">=1.6.0",
+        "puppeteer": "^24.42.0",
         "typescript": ">=6.0.0-beta",
         "vite": "^8.0.7",
         "vite-plugin-dynamic-import": ">=1.6.0",

@@ -357,7 +357,9 @@ export class ServiceWorkerHost {
         type: ChannelMessage["type"],
         handler: (msg: ChannelMessage) => void
     ): Subscription {
-        return this._connection.onMessageType(type, handler);
+        return this._connection.subscribe((msg) => {
+            if (msg.type === type) handler(msg);
+        });
     }
 
     // ========================================================================
@@ -716,10 +718,7 @@ export class ServiceWorkerClient {
      * Subscribe to specific event type
      */
     on(eventType: string, handler: (data: any) => void): Subscription {
-        return filter(
-            this._subject,
-            (m) => m.type === "event" && m.payload?.type === eventType
-        ).subscribe({
+        return filter<ChannelMessage>((m) => m.type === "event" && m.payload?.type === eventType)(this._subject).subscribe({
             next: (msg) => handler(msg.payload?.data)
         });
     }

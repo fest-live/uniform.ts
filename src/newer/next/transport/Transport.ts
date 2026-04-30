@@ -226,9 +226,10 @@ export class WorkerTransport extends TransportAdapter {
         return new Promise((resolve) => {
             const reqId = UUIDv4();
             const handler = (msg: ChannelMessage) => {
-                if (msg.type === "channelList" && (msg as any).reqId === reqId) {
+                const data = msg as any;
+                if (data.type === "channelList" && data.reqId === reqId) {
                     sub.unsubscribe();
-                    resolve((msg as any).channels ?? []);
+                    resolve(data.channels ?? []);
                 }
             };
             const sub = this._inbound.subscribe(handler);
@@ -475,7 +476,7 @@ export class WebSocketTransport extends TransportAdapter {
             channel,
             sender: this._channelName,
             timestamp: Date.now()
-        } as ChannelMessage);
+        } as unknown as ChannelMessage);
     }
 
     /**
@@ -489,7 +490,7 @@ export class WebSocketTransport extends TransportAdapter {
             channel,
             sender: this._channelName,
             timestamp: Date.now()
-        } as ChannelMessage);
+        } as unknown as ChannelMessage);
     }
 
     /**
@@ -785,5 +786,6 @@ export function createConnectionObserver(
     };
 }
 
-// Re-export types
-export type { TransportType, ConnectionOptions, TransportTarget, TransportIncomingConnection, AcceptConnectionCallback };
+// Re-export imported protocol-facing types; local connection interfaces are exported at declaration sites.
+export type { TransportType, ConnectionOptions } from "../types/Interface";
+export type { TransportTarget } from "../../core/TransportCore";

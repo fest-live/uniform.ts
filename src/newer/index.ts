@@ -467,7 +467,7 @@ export const importModuleInChannel = async (
     broadcast: BroadcastLike | Worker | BroadcastChannel | MessagePort | null = (typeof self !== "undefined" ? (self as any) : null)
 ) => {
     const remote = await createOrUseExistingChannel(channel, options?.channelOptions, broadcast as any);
-    return remote?.doImportModule?.(url, options?.importOptions);
+    return (remote as any)?.doImportModule?.(url, options?.importOptions);
 };
 
 /** Create a new isolated channel context */

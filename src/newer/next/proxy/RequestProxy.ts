@@ -124,7 +124,7 @@ export function createObservableChannel(
     channelName: string
 ) {
     const channel = createUnifiedChannel({ name: channelName, autoListen: false });
-    channel.connect(transport, { targetChannel: channelName });
+    channel.connect(transport as any, { targetChannel: channelName });
 
     return {
         observable: channel,

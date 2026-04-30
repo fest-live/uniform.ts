@@ -979,11 +979,11 @@ export class UnifiedChannel {
                 break;
 
             case "self":
-                sender = (msg, transfer) => postMessage(msg, { transfer: transfer ?? [] });
+                sender = (msg, transfer) => (globalThis as any).postMessage?.(msg, { transfer: transfer ?? [] });
                 {
                     const listener = ((e: MessageEvent) => this._handleIncoming(e.data)) as EventListener;
-                    addEventListener?.("message", listener);
-                    cleanup = () => removeEventListener?.("message", listener);
+                    globalThis.addEventListener?.("message", listener);
+                    cleanup = () => globalThis.removeEventListener?.("message", listener);
                 }
                 break;
 
