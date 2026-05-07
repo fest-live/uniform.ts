@@ -9,6 +9,7 @@ import { UUIDv4, Promised } from "fest/core";
 import { WReflectAction, type WReflectDescriptor, type WReq } from "../types/Interface";
 import { UnifiedChannel, createUnifiedChannel, getWorkerChannel } from "./UnifiedChannel";
 import { handleRequest } from "../../core/RequestHandler";
+import { resolveWorkerSpecifierHref } from "../utils/Env";
 
 // ============================================================================
 // LEGACY GLOBALS (for backward compatibility)
@@ -38,8 +39,10 @@ export const loadWorker = (WX: any): Worker | null => {
         catch { return WX({ type: "module" }); }
     }
     if (typeof WX === "string") {
-        if (WX.startsWith("/")) return new Worker(new URL(WX.replace(/^\//, "./"), import.meta.url).href, { type: "module" });
-        if (URL.canParse(WX) || WX.startsWith("./")) return new Worker(new URL(WX, import.meta.url).href, { type: "module" });
+        if (WX.startsWith("/"))
+            return new Worker(resolveWorkerSpecifierHref(WX.replace(/^\//, "./")), { type: "module" });
+        if (URL.canParse(WX) || WX.startsWith("./"))
+            return new Worker(resolveWorkerSpecifierHref(WX), { type: "module" });
         return new Worker(URL.createObjectURL(new Blob([WX], { type: "application/javascript" })), { type: "module" });
     }
     if (WX instanceof Blob || WX instanceof File) return new Worker(URL.createObjectURL(WX), { type: "module" });

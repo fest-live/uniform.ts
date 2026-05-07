@@ -49,10 +49,11 @@ import {
     type ConnectionEvent as BaseConnectionEvent,
     type QueryConnectionsOptions as BaseQueryConnectionsOptions
 } from "./internal/ConnectionModel";
+import { getWorkerResolveBaseUrl, resolveWorkerSpecifierHref } from "../utils/Env";
 
 // Worker code - use direct URL (works in both Vite and non-Vite)
-const workerCode: string | URL = new URL("../transport/Worker.ts", import.meta.url);
-
+const workerBase = getWorkerResolveBaseUrl();
+const workerCode: string | URL = workerBase.length > 0 ? new URL("../transport/Worker.ts", workerBase) : "";
 // ============================================================================
 // TYPES
 // ============================================================================
@@ -1206,8 +1207,8 @@ function loadWorker(WX: any): Worker | null {
         catch { return WX({ type: "module" }); }
     }
     if (typeof WX === "string") {
-        if (WX.startsWith("/")) return new Worker(new URL(WX.replace(/^\//, "./"), import.meta.url).href, { type: "module" });
-        if (URL.canParse(WX) || WX.startsWith("./")) return new Worker(new URL(WX, import.meta.url).href, { type: "module" });
+        if (WX.startsWith("/")) return new Worker(resolveWorkerSpecifierHref(WX.replace(/^\//, "./")), { type: "module" });
+        if (URL.canParse(WX) || WX.startsWith("./")) return new Worker(resolveWorkerSpecifierHref(WX), { type: "module" });
         return new Worker(URL.createObjectURL(new Blob([WX], { type: "application/javascript" })), { type: "module" });
     }
     if (WX instanceof Blob || WX instanceof File) return new Worker(URL.createObjectURL(WX), { type: "module" });

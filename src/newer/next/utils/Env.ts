@@ -51,3 +51,41 @@ export const supportsDedicatedWorkers = (): boolean => {
     }
 };
 
+/**
+ * Base URL for `new URL(workerPath, base)` when spawning workers from a string specifier.
+ *
+ * Prefer `WorkerGlobalScope` / `window` URLs so this module stays **`import.meta`-free**.
+ * Including `import.meta.url` anywhere in the uniform graph trips Rolldown's `EMPTY_IMPORT_META`
+ * when the PWA service worker is built as IIFE (`vite-plugin-pwa` injectManifest).
+ *
+ * Dedicated worker threads expose `globalThis.location` at the worker script URL; MV3 SW exposes the
+ */
+export function getWorkerResolveBaseUrl(): string {
+    try {
+        const href = globalThis.location?.href;
+        if (typeof href === "string" && href.length > 0) {
+            return href;
+        }
+    } catch {
+        /* uncommon: no location */
+    }
+    try {
+        if (typeof document !== "undefined" && typeof document.baseURI === "string" && document.baseURI.length > 0) {
+            return document.baseURI;
+        }
+    } catch {
+        /* no document */
+    }
+    return "";
+}
+
+/** Resolved absolute href for `./x`/`/x`/absolute worker specifiers (delegates trailing `/` normalization to callers). */
+export function resolveWorkerSpecifierHref(spec: string): string {
+    const base = getWorkerResolveBaseUrl();
+    if (!base.length) {
+        throw new TypeError("[uniform] No base URL for worker resolution (missing location / document.baseURI)");
+    }
+    const normalized = spec.startsWith("/") ? spec.replace(/^\//, "./") : spec;
+    return new URL(normalized, base).href;
+}
+

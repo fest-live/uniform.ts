@@ -20,6 +20,7 @@ import type {
     SendFn
 } from "../types/Interface";
 import { ChannelSubject, type Subscribable } from "../observable/Observable";
+import { resolveWorkerSpecifierHref } from "../utils/Env";
 
 // ============================================================================
 // INCOMING CONNECTION TYPES
@@ -266,9 +267,9 @@ export class WorkerTransport extends TransportAdapter {
 
         if (typeof this._workerSource === "string") {
             if (this._workerSource.startsWith("/"))
-                return new Worker(new URL(this._workerSource.replace(/^\//, "./"), import.meta.url).href, { type: "module" });
+                return new Worker(resolveWorkerSpecifierHref(this._workerSource.replace(/^\//, "./")), { type: "module" });
             if (URL.canParse(this._workerSource) || this._workerSource.startsWith("./"))
-                return new Worker(new URL(this._workerSource, import.meta.url).href, { type: "module" });
+                return new Worker(resolveWorkerSpecifierHref(this._workerSource), { type: "module" });
             return new Worker(URL.createObjectURL(new Blob([this._workerSource], { type: "application/javascript" })), { type: "module" });
         }
         throw new Error("Invalid worker source");

@@ -4,6 +4,7 @@ import { UUIDv4 } from "fest/core";
 import { ChromeExtensionBroadcastChannel } from "./Wrappers";
 import { ChromeExtensionTabsChannel } from "./Wrappers";
 import { initChannelHandler } from "../channel/Channels";
+import { resolveWorkerSpecifierHref } from "./Env";
 
 /**
  * Create a chrome extension worker channel
@@ -20,7 +21,7 @@ export const createChromeExtensionChannel = async (config: WorkerConfig): Promis
     } catch (error) {
         // Fallback for non-extension workers in extension context
         if (typeof config.script === "string") {
-            worker = new Worker(new URL(config.script, import.meta.url), config.options);
+            worker = new Worker(resolveWorkerSpecifierHref(config.script), config.options);
         } else if (typeof config.script === "function") {
             worker = config.script();
         } else {
@@ -191,10 +192,10 @@ export const createWorkerChannel = async (config: WorkerConfig): Promise<WorkerC
                 worker = new Worker(chrome.runtime.getURL(config.script), config.options);
             } catch (error) {
                 // Fallback to regular worker creation
-                worker = new Worker(new URL(config.script, import.meta.url), config.options);
+                worker = new Worker(resolveWorkerSpecifierHref(config.script), config.options);
             }
         } else {
-            worker = new Worker(new URL(config.script, import.meta.url), config.options);
+            worker = new Worker(resolveWorkerSpecifierHref(config.script), config.options);
         }
     }
 
