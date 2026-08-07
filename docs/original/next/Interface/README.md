@@ -1,0 +1,21 @@
+[**@fest-lib/uniform v0.1.2**](../../../README.md)
+
+***
+
+[@fest-lib/uniform](../../../README.md) / original/next/Interface
+
+# original/next/Interface
+
+## Enumerations
+
+- [WReflectAction](enumerations/WReflectAction.md)
+- [WStatus](enumerations/WStatus.md)
+- [WType](enumerations/WType.md)
+
+## Interfaces
+
+- [WError](interfaces/WError.md)
+- [WReflectDescriptor](interfaces/WReflectDescriptor.md)
+- [WReq](interfaces/WReq.md)
+- [WResp](interfaces/WResp.md)
+- [WSuccess](interfaces/WSuccess.md)
