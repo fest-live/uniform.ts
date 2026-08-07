@@ -7,7 +7,7 @@
  * - Supports custom Reflect implementations
  */
 
-import { UUIDv4, deepOperateAndClone, isPrimitive, isCanJustReturn, isCanTransfer } from "fest/core";
+import { UUIDv4, deepOperateAndClone, isPrimitive, isCanJustReturn, isCanTransfer } from "@fest-lib/core";
 import type { WReflectDescriptor, WReq, WResp } from "../next/types/Interface";
 import { WReflectAction } from "../next/types/Interface";
 import {

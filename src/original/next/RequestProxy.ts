@@ -1,7 +1,7 @@
 import { SELF_CHANNEL, type ChannelHandler } from "./Channels";
 
 // temporary resolution
-import { Promised } from "fest/core";
+import { Promised } from "@fest-lib/core";
 import { WReflectAction, type WReflectDescriptor } from "./Interface";
 import { readByPath } from "./DataBase";
 import { $descriptor, $requestHandler, descMap, handMap, READ, wrapMap } from "./DataBase";

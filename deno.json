@@ -6,8 +6,8 @@
         "test/*"
     ],
     "imports": {
-        "fest/*": "../shared/fest/*",
-        "fest/core": "../core.ts/dist/core.js",
-        "fest/uniform": "../uniform.ts/dist/uniform.js"
+        "@fest-lib/*": "../shared/fest/*",
+        "@fest-lib/core": "../core.ts/dist/core.js",
+        "@fest-lib/uniform": "../uniform.ts/dist/uniform.js"
     }
 }

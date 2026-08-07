@@ -15,7 +15,7 @@
  * - `channel.connect()` - Connect to transport
  */
 
-import { UUIDv4, Promised, deepOperateAndClone, isPrimitive, isCanJustReturn, isCanTransfer } from "fest/core";
+import { UUIDv4, Promised, deepOperateAndClone, isPrimitive, isCanJustReturn, isCanTransfer } from "@fest-lib/core";
 import {
     type ChannelMessage,
     type Subscription,

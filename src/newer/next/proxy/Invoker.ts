@@ -7,7 +7,7 @@
  * - Auto-detection of connection/transport type
  */
 
-import { UUIDv4 } from "fest/core";
+import { UUIDv4 } from "@fest-lib/core";
 import { UnifiedChannel, createUnifiedChannel, type UnifiedChannelConfig, type ConnectOptions } from "../channel/UnifiedChannel";
 import type { Subscription, ChannelMessage } from "../observable/Observable";
 import { WReflectAction, type WReflectDescriptor, type TransportType } from "../types/Interface";

@@ -1,6 +1,6 @@
 import { OptimizedWorkerChannel, QueuedWorkerChannel, type ProtocolOptions, type WorkerChannel, type WorkerConfig } from "../storage/Queued";
 import { createOrUseExistingChannel } from "../channel/Channels";
-import { UUIDv4 } from "fest/core";
+import { UUIDv4 } from "@fest-lib/core";
 import { ChromeExtensionBroadcastChannel } from "./Wrappers";
 import { ChromeExtensionTabsChannel } from "./Wrappers";
 import { initChannelHandler } from "../channel/Channels";

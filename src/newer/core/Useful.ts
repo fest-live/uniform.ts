@@ -1,5 +1,5 @@
 // deno-lint-ignore-file no-explicit-any ban-types
-import { isPromise } from "fest/core";
+import { isPromise } from "@fest-lib/core";
 import { TS } from "./Alias";
 
 //

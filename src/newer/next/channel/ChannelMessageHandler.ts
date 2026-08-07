@@ -5,7 +5,7 @@
  * Simplified wrapper providing Observable-style message handling.
  */
 
-import { UUIDv4 } from "fest/core";
+import { UUIDv4 } from "@fest-lib/core";
 import {
     createTransportSender,
     createTransportListener,

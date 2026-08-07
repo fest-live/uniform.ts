@@ -17,7 +17,7 @@ import {
 } from "../src/newer/next/observable/Observable.ts";
 
 // Import Level 1 features
-import { importModuleInChannel } from "fest/uniform";
+import { importModuleInChannel } from "@fest-lib/uniform";
 
 // Import Multi-Channel features
 import {

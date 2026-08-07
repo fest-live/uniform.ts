@@ -14,13 +14,13 @@
     "compilerOptions": {
         "outDir": "./dist/",
         "paths": {
-            "fest/*": [
+            "@fest-lib/*": [
                 "../../shared/fest/*"
             ],
-            "fest/core": [
+            "@fest-lib/core": [
                 "../core.ts/dist/core.js"
             ],
-            "fest/uniform": [
+            "@fest-lib/uniform": [
                 "./dist/uniform.js"
             ]
         },

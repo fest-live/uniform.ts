@@ -4,7 +4,7 @@
  * Provides connection pooling, state management, and message routing.
  */
 
-import { UUIDv4 } from "fest/core";
+import { UUIDv4 } from "@fest-lib/core";
 import { ChannelSubject, MessageObservable, filter } from "../observable/Observable";
 import type {
     ChannelMessage,

@@ -9,7 +9,7 @@
  * - Exchange: Coordinate data between contexts
  */
 
-import { UUIDv4, Promised } from "fest/core";
+import { UUIDv4, Promised } from "@fest-lib/core";
 import { type ChannelMessage, ChannelSubject, type Subscription } from "../observable/Observable";
 
 // ============================================================================

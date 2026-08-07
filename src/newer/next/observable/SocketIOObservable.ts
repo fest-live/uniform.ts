@@ -4,7 +4,7 @@
  * Observable wrapper for Socket.IO client.
  */
 
-import { UUIDv4 } from "fest/core";
+import { UUIDv4 } from "@fest-lib/core";
 import { Observable, ChannelSubject, type Subscription, type Observer } from "./Observable";
 import type { ChannelMessage, InvokerHandler, ResponderFn, Subscriber, PendingRequest } from "../types/Interface";
 

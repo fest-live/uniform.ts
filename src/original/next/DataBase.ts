@@ -2,8 +2,8 @@
 import { type WReflectDescriptor } from "./Interface";
 import { makeRequestProxy } from "./RequestProxy";
 import { type dT, type rT } from "../core/Useful";
-import { UUIDv4, deref, isCanJustReturn, isNotComplexArray } from "fest/core";
-import { isPrimitive } from "fest/core";
+import { UUIDv4, deref, isCanJustReturn, isNotComplexArray } from "@fest-lib/core";
+import { isPrimitive } from "@fest-lib/core";
 import { SELF_CHANNEL } from "./Channels";
 
 //

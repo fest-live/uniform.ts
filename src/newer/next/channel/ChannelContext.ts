@@ -13,7 +13,7 @@
  * - UnifiedChannel is the canonical transport/invocation runtime engine.
  */
 
-import { UUIDv4, Promised } from "fest/core";
+import { UUIDv4, Promised } from "@fest-lib/core";
 import {
     ChannelConnection,
     type ConnectionOptions,

@@ -1,4 +1,4 @@
-import { UUIDv4 } from "fest/core";
+import { UUIDv4 } from "@fest-lib/core";
 import { initChannelHandler } from "../channel/Channels";
 
 /**

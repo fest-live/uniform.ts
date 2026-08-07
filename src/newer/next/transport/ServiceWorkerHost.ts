@@ -15,7 +15,7 @@
  * - Handles offline queueing via IndexedDB storage
  */
 
-import { UUIDv4 } from "fest/core";
+import { UUIDv4 } from "@fest-lib/core";
 import {
     ChannelConnection,
     getConnectionPool,

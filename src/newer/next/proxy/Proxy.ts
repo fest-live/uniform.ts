@@ -8,7 +8,7 @@
  * - Expose/listen patterns
  */
 
-import { UUIDv4 } from "fest/core";
+import { UUIDv4 } from "@fest-lib/core";
 import { WReflectAction, type WReflectDescriptor } from "../types/Interface";
 import {
     $descriptor,

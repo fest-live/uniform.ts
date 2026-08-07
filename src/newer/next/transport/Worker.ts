@@ -8,7 +8,7 @@
  * - Connection from remote/host contexts
  */
 
-import { UUIDv4 } from "fest/core";
+import { UUIDv4 } from "@fest-lib/core";
 import {
     ChannelContext,
     createChannelContext,

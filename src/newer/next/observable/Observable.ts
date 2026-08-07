@@ -5,7 +5,7 @@
  * Reference: https://github.com/WICG/observable
  */
 
-import { UUIDv4 } from "fest/core";
+import { UUIDv4 } from "@fest-lib/core";
 import {
     createTransportSender,
     createTransportListener,

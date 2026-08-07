@@ -6,7 +6,7 @@
  * connected browsing contexts.
  */
 
-import { UUIDv4 } from "fest/core";
+import { UUIDv4 } from "@fest-lib/core";
 import { Observable, ChannelSubject, type Subscription, type Observer } from "../observable/Observable";
 import type { ChannelMessage, PendingRequest, Subscriber } from "../types/Interface";
 

@@ -9,7 +9,7 @@
  * - Observable change notifications
  */
 
-import { UUIDv4 } from "fest/core";
+import { UUIDv4 } from "@fest-lib/core";
 import { ChannelSubject, type Subscription, type Observer } from "../observable/Observable";
 
 // ============================================================================
