@@ -15,13 +15,24 @@
         "outDir": "./dist/",
         "paths": {
             "@fest-lib/*": [
-                "../../shared/fest/*"
+                "../../shared/fest/*",
+                "./node_modules/@fest-lib/*"
             ],
             "@fest-lib/core": [
-                "../core.ts/dist/core.js"
+                "../core.ts/src/index.ts",
+                "./node_modules/@fest-lib/core/src/index.ts"
             ],
             "@fest-lib/uniform": [
-                "./dist/uniform.js"
+                "./src/index.ts",
+                "./node_modules/@fest-lib/uniform/src/index.ts"
+            ],
+            "@fest-lib/polyfill/*": [
+                "../../shared/fest/polyfill/*",
+                "./node_modules/@fest-lib/polyfill/*/src/index.ts"
+            ],
+            "polyfill/*": [
+                "../../shared/fest/polyfill/*",
+                "./node_modules/polyfill/*/src/index.ts"
             ]
         },
         "target": "ESNext",
