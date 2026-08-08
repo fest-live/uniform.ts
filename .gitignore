@@ -91,7 +91,7 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+#dist
 
 # Gatsby files
 .cache/
@@ -145,12 +145,12 @@ deno.lock
 *.lock
 
 #
-dist/
-dist/*
+#dist/
+#dist/*
 dist-wp/
 dist-wp/*
-./dist/
-./dist/*
+#./dist/
+#./dist/*
 ./dist-wp/
 ./dist-wp/*
 
