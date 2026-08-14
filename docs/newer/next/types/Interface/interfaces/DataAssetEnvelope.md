@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.4**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.8**](../../../../../README.md)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: src/newer/next/types/Interface.ts:81
 ### source?
 
 ```ts
-optional source?: "blob" | "base64" | "url" | "file" | "data-url" | "uri" | "text";
+optional source?: "blob" | "url" | "file" | "data-url" | "base64" | "uri" | "text";
 ```
 
 Defined in: src/newer/next/types/Interface.ts:82

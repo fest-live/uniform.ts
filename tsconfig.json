@@ -15,24 +15,13 @@
         "outDir": "./dist/",
         "paths": {
             "@fest-lib/*": [
-                "../../shared/fest/*",
-                "./node_modules/@fest-lib/*"
+                "../../shared/fest/*"
             ],
             "@fest-lib/core": [
-                "../core.ts/src/index.ts",
-                "./node_modules/@fest-lib/core/src/index.ts"
+                "../core.ts/dist/core.js"
             ],
             "@fest-lib/uniform": [
-                "./src/index.ts",
-                "./node_modules/@fest-lib/uniform/src/index.ts"
-            ],
-            "@fest-lib/polyfill/*": [
-                "../../shared/fest/polyfill/*",
-                "./node_modules/@fest-lib/polyfill/*/src/index.ts"
-            ],
-            "polyfill/*": [
-                "../../shared/fest/polyfill/*",
-                "./node_modules/polyfill/*/src/index.ts"
+                "./dist/uniform.js"
             ]
         },
         "target": "ESNext",
@@ -56,11 +45,12 @@
         "allowUnreachableCode": true,
         "allowUnusedLabels": true,
         "noImplicitAny": false,
-        "declaration": false,
         "noImplicitThis": false,
+        "declaration": true,
+        "declarationMap": true,
         "inlineSources": true,
         "inlineSourceMap": true,
-        "sourceMap": false,
+        "sourceMap": true,
         "experimentalDecorators": true,
         "moduleDetection": "force",
         "verbatimModuleSyntax": true,
