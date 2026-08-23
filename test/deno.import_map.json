@@ -1,6 +1,0 @@
-{
-    "imports": {
-        "@fest-lib/core": "../../core.ts/src/index.ts",
-        "@fest-lib/uniform": "../src/index.ts"
-    }
-}
