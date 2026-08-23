@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <base href="./" />
+    <title>Test Page</title>
+
+    <!-- -->
+    <meta name="text-scale" content="scale" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, viewport-fit=cover, interactive-widget=overlays-content, shrink-to-fit=no">
+
+    <!-- -->
+    <link rel="icon" type="image/png" href="./favicon.png">
+
+    <!-- -->
+    <script type="importmap">{
+        "imports": {
+            "@fest-lib/": "fest-src/",
+            "@fest-lib/cdnImport": "@fest-lib/cdnImport.mjs",
+            "@fest-lib/dom": "fest-src/dom.ts/src/index.ts",
+            "@fest-lib/lure": "fest-src/BLU.E/src/index.ts",
+            "@fest-lib/object": "fest-src/object.ts/src/index.ts",
+            "@fest-lib/uniform": "fest-src/uniform.ts/src/index.ts",
+            "@fest-lib/theme": "fest-src/theme.core/src/index.ts"
+        }
+    }</script>
+
+    <!-- -->
+    <script data-owner="runtime" data-type="interact">
+        // avoid any dragging when no-needed...
+        document.documentElement.addEventListener("dragstart", (ev) => {
+            if (ev?.target?.matches?.("div, img, picture, canvas, video, svg")) {
+                ev.preventDefault();
+            }
+        }, {passive: false, capture: true});
+
+        // comment to enable native context menu
+        document.documentElement.addEventListener("contextmenu", (ev)=>{
+            ev.stopPropagation();
+            ev.preventDefault();
+        }, {capture: true});
+
+        //
+        if ("virtualKeyboard" in navigator && navigator?.virtualKeyboard) {
+            // @ts-ignore
+            navigator.virtualKeyboard.overlaysContent = true;
+        }
+    </script>
+
+</head>
+<body>
+
+    <script src="./test/Uniform.browser.ts" type="module"></script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+    "deno.codeLens.implementations": true,
+    "deno.codeLens.references": true,
+    "deno.codeLens.referencesAllFunctions": true,
+    "deno.codeLens.test": true,
+    "deno.defaultTaskCommand": "run",
+    "deno.enable": true,
+    "deno.enablePaths": [
+        "${workspaceFolder}",
+        "./"
+    ],
+    "deno.future": true,
+    "deno.internalDebug": true
+}

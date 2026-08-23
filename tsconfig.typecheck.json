@@ -1,0 +1,28 @@
+{
+    "extends": "./tsconfig.json",
+    "include": [
+        "./src/**/*.ts"
+    ],
+    "exclude": [
+        "./dist/**/*",
+        "./externals/**/*",
+        "./test/**/*",
+        "./examples/**/*"
+    ],
+    "compilerOptions": {
+        "noEmit": true,
+        "rootDir": "..",
+        "paths": {
+            "@fest-lib/*": [
+                "../../shared/fest/*"
+            ],
+            "@fest-lib/core": [
+                "../core.ts/dist/core.js"
+            ],
+            "@fest-lib/uniform": [
+                "./src/index.ts"
+            ]
+        },
+        "skipLibCheck": true
+    }
+}

@@ -1,0 +1,64 @@
+{
+    "include": [
+        "./src/**/*.ts",
+        "./test/**/*.ts",
+        "./src/$core/*.ts",
+        "./src/$wrap/*.ts"
+    ],
+    "exclude": [
+        "./dist/**/*",
+        "./externals/**/*",
+        "./src/**/*.js",
+        "./src/**/*.jsx"
+    ],
+    "compilerOptions": {
+        "rootDir": "../",
+        "outDir": "./dist/",
+        "paths": {
+            "@fest-lib/*": [
+                "../../shared/fest/*"
+            ],
+            "@fest-lib/core": [
+                "../core.ts/dist/core.js"
+            ],
+            "@fest-lib/uniform": [
+                "./dist/uniform.js"
+            ]
+        },
+        "target": "ESNext",
+        "module": "ESNext",
+        "lib": [
+            "ESNext",
+            "DOM",
+            "ESNext.Promise"
+        ],
+        "types": [
+            "chrome"
+        ],
+        "moduleResolution": "bundler",
+        "esModuleInterop": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "allowJs": true,
+        "allowArbitraryExtensions": true,
+        "allowSyntheticDefaultImports": true,
+        "allowUmdGlobalAccess": true,
+        "allowUnreachableCode": true,
+        "allowUnusedLabels": true,
+        "noImplicitAny": false,
+        "noImplicitThis": false,
+        "declaration": true,
+        "declarationMap": true,
+        "inlineSources": true,
+        "inlineSourceMap": true,
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "moduleDetection": "force",
+        "verbatimModuleSyntax": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "noEmitOnError": true,
+        "noEmitHelpers": true
+    },
+    "compileOnSave": false
+}

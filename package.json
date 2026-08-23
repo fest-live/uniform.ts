@@ -1,0 +1,83 @@
+{
+    "name": "@fest-lib/uniform",
+    "description": "fest-lib UnifiedChannel: workers, ports, BroadcastChannel, Chrome, Atomics, WebRTC",
+    "version": "0.1.13",
+    "license": "MIT",
+    "type": "module",
+    "sideEffects": true,
+    "engines": {
+        "node": ">=20"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fest-live/uniform.ts.git"
+    },
+    "bugs": {
+        "url": "https://github.com/fest-live/uniform.ts/issues"
+    },
+    "homepage": "https://github.com/fest-live/uniform.ts#readme",
+    "keywords": [
+        "fest",
+        "fest-lib",
+        "web-worker",
+        "rpc",
+        "typescript"
+    ],
+    "files": [
+        "dist",
+        "LICENSE"
+    ],
+    "main": "./dist/uniform.js",
+    "module": "./dist/uniform.js",
+    "exports": {
+        ".": {
+            "import": "./dist/uniform.js",
+            "default": "./dist/uniform.js"
+        },
+        "./package.json": "./package.json",
+        "./dist/index.js": "./dist/uniform.js",
+        "./index.js": "./dist/uniform.js"
+    },
+    "peerDependencies": {
+        "@fest-lib/core": ">=0.1.0"
+    },
+    "scripts": {
+        "typecheck": "tsc --noEmit --project ./tsconfig.typecheck.json",
+        "test:typecheck": "tsc --noEmit --project ./tsconfig.test.json",
+        "test": "npm run test:node && npm run test:deno && npm run test:browser",
+        "test:node": "node ./scripts/run-node-tests.mjs",
+        "test:deno": "deno test --unstable-sloppy-imports --allow-read --import-map=./test/deno.import_map.json ./test/Uniform.deno.test.ts",
+        "test:browser:install": "npx @puppeteer/browsers install chrome-headless-shell@stable --path ./chrome-headless-shell",
+        "test:browser": "node ./scripts/run-browser-tests.mjs",
+        "test:legacy": "deno run --unstable-sloppy-imports --allow-all ./test/index.ts",
+        "dev": "vite --host 0.0.0.0",
+        "watch": "vite build --watch",
+        "build": "vite build --config vite.config.js && npm run docs && npm run docs:md",
+        "build:publish": "FEST_NPM_IMPORTS=1 vite build --config vite.config.js",
+        "prepack": "npm run build:publish",
+        "preview": "vite preview",
+        "release": "PUPPETEER_SKIP_DOWNLOAD=1 npm run build:publish && npm publish --access public --ignore-scripts",
+        "publish": "npm run release",
+        "docs": "typedoc ./src/index.ts --options ./typedoc.json --out ./docs --tsconfig ./tsconfig.json --excludeExternals --excludePrivate --excludeProtected --skipErrorChecking",
+        "docs:clean": "rm -rf ./docs && typedoc --options ./typedoc.json",
+        "docs:md": "typedoc --options ./typedoc.md.json",
+        "docs:md:clean": "rm -rf ./docs-md && typedoc --options ./typedoc.md.json"
+    },
+    "devDependencies": {
+        "@puppeteer/browsers": "^3.2.0",
+        "@types/chrome": ">=0.1.32",
+        "@types/node": ">=24.7.2",
+        "cbor-x": ">=1.6.0",
+        "puppeteer": "^25.7.0",
+        "typedoc": "^0.28.20",
+        "typedoc-plugin-markdown": "^4.12.0",
+        "typescript": ">=6.0.0-beta",
+        "vite": "^8.0.7",
+        "vite-plugin-dynamic-import": ">=1.6.0",
+        "vite-plugin-external": ">=6.2.2",
+        "vite-plugin-optimizer": ">=1.4.3"
+    }
+}
