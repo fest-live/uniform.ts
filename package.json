@@ -1,7 +1,7 @@
 {
     "name": "@fest-lib/uniform",
     "description": "fest-lib UnifiedChannel: workers, ports, BroadcastChannel, Chrome, Atomics, WebRTC",
-    "version": "0.1.19",
+    "version": "0.1.20",
     "license": "MIT",
     "type": "module",
     "sideEffects": true,
