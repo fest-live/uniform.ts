@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function getOrCreateContext(name, options?): ChannelContext;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:1261
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:1261
 
 Get or create a named context (shared across components)
 

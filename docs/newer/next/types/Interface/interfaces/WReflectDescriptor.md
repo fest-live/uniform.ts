@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: WReflectDescriptor\<T\>
 
-Defined in: src/newer/next/types/Interface.ts:36
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:36
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: src/newer/next/types/Interface.ts:36
 optional $isDescriptor?: boolean;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:37
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:37
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: src/newer/next/types/Interface.ts:37
 argumentCount: number;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:45
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:45
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: src/newer/next/types/Interface.ts:45
 channel: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:39
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:39
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: src/newer/next/types/Interface.ts:39
 configurable: boolean;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:44
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:44
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: src/newer/next/types/Interface.ts:44
 enumerable: boolean;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:43
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:43
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: src/newer/next/types/Interface.ts:43
 owner: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:40
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:40
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: src/newer/next/types/Interface.ts:40
 path: string[];
 ```
 
-Defined in: src/newer/next/types/Interface.ts:38
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:38
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: src/newer/next/types/Interface.ts:38
 primitive: boolean;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:41
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:41
 
 ***
 
@@ -102,4 +102,4 @@ Defined in: src/newer/next/types/Interface.ts:41
 writable: boolean;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:42
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:42

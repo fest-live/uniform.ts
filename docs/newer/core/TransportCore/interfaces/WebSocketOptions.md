@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: WebSocketOptions
 
-Defined in: src/newer/core/TransportCore.ts:480
+Defined in: uniform.ts/src/newer/core/TransportCore.ts:480
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/core/TransportCore.ts:480
 optional binaryType?: BinaryType;
 ```
 
-Defined in: src/newer/core/TransportCore.ts:482
+Defined in: uniform.ts/src/newer/core/TransportCore.ts:482
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: src/newer/core/TransportCore.ts:482
 optional maxReconnectAttempts?: number;
 ```
 
-Defined in: src/newer/core/TransportCore.ts:485
+Defined in: uniform.ts/src/newer/core/TransportCore.ts:485
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/newer/core/TransportCore.ts:485
 optional protocols?: string | string[];
 ```
 
-Defined in: src/newer/core/TransportCore.ts:481
+Defined in: uniform.ts/src/newer/core/TransportCore.ts:481
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: src/newer/core/TransportCore.ts:481
 optional reconnect?: boolean;
 ```
 
-Defined in: src/newer/core/TransportCore.ts:483
+Defined in: uniform.ts/src/newer/core/TransportCore.ts:483
 
 ***
 
@@ -56,4 +56,4 @@ Defined in: src/newer/core/TransportCore.ts:483
 optional reconnectInterval?: number;
 ```
 
-Defined in: src/newer/core/TransportCore.ts:484
+Defined in: uniform.ts/src/newer/core/TransportCore.ts:484

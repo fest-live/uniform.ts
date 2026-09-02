@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: WindowPortConnector
 
-Defined in: src/newer/next/transport/PortTransport.ts:361
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:361
 
 Connect to window/iframe via MessageChannel
 
@@ -21,7 +21,7 @@ new WindowPortConnector(
    _config?): WindowPortConnector;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:366
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:366
 
 #### Parameters
 
@@ -51,7 +51,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:366
 get isConnected(): boolean;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:454
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:454
 
 ##### Returns
 
@@ -67,7 +67,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:454
 get state(): ChannelSubject<"error" | "connected" | "disconnected" | "connecting">;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:455
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:455
 
 ##### Returns
 
@@ -83,7 +83,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:455
 get transport(): PortTransport | null;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:456
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:456
 
 ##### Returns
 
@@ -97,7 +97,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:456
 connect(): Promise<PortTransport>;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:375
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:375
 
 Initiate connection to target window
 
@@ -113,7 +113,7 @@ Initiate connection to target window
 disconnect(): void;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:447
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:447
 
 #### Returns
 
@@ -130,7 +130,7 @@ static listen(
    config?): () => void;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:420
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:420
 
 Listen for incoming connections (target side)
 

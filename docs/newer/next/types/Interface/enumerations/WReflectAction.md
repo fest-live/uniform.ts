@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Enumeration: WReflectAction
 
-Defined in: src/newer/next/types/Interface.ts:21
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:21
 
 ## Enumeration Members
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/types/Interface.ts:21
 APPLY: "apply";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:22
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:22
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: src/newer/next/types/Interface.ts:22
 CALL: "call";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:22
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:22
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/newer/next/types/Interface.ts:22
 CONSTRUCT: "construct";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:23
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:23
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: src/newer/next/types/Interface.ts:23
 DELETE: "delete";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:23
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:23
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: src/newer/next/types/Interface.ts:23
 DELETE_PROPERTY: "deleteProperty";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:23
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:23
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: src/newer/next/types/Interface.ts:23
 DISPOSE: "dispose";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:29
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:29
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: src/newer/next/types/Interface.ts:29
 GET: "get";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:22
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:22
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: src/newer/next/types/Interface.ts:22
 GET_OWN_PROPERTY_DESCRIPTOR: "getOwnPropertyDescriptor";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:25
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:25
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: src/newer/next/types/Interface.ts:25
 GET_PROPERTY_DESCRIPTOR: "getPropertyDescriptor";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:26
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:26
 
 ***
 
@@ -106,7 +106,7 @@ Defined in: src/newer/next/types/Interface.ts:26
 GET_PROTOTYPE_OF: "getPrototypeOf";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:27
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:27
 
 ***
 
@@ -116,7 +116,7 @@ Defined in: src/newer/next/types/Interface.ts:27
 HAS: "has";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:24
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:24
 
 ***
 
@@ -126,7 +126,7 @@ Defined in: src/newer/next/types/Interface.ts:24
 IMPORT: "import";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:29
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:29
 
 ***
 
@@ -136,7 +136,7 @@ Defined in: src/newer/next/types/Interface.ts:29
 IS_EXTENSIBLE: "isExtensible";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:28
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:28
 
 ***
 
@@ -146,7 +146,7 @@ Defined in: src/newer/next/types/Interface.ts:28
 OWN_KEYS: "ownKeys";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:24
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:24
 
 ***
 
@@ -156,7 +156,7 @@ Defined in: src/newer/next/types/Interface.ts:24
 PREVENT_EXTENSIONS: "preventExtensions";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:28
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:28
 
 ***
 
@@ -166,7 +166,7 @@ Defined in: src/newer/next/types/Interface.ts:28
 SET: "set";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:22
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:22
 
 ***
 
@@ -176,7 +176,7 @@ Defined in: src/newer/next/types/Interface.ts:22
 SET_PROTOTYPE_OF: "setPrototypeOf";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:27
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:27
 
 ***
 
@@ -186,4 +186,4 @@ Defined in: src/newer/next/types/Interface.ts:27
 TRANSFER: "transfer";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:29
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:29

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: SWHostConfig
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:61
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:61
 
 SW host configuration
 
@@ -18,7 +18,7 @@ SW host configuration
 optional autoCleanup?: boolean;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:71
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:71
 
 Enable automatic cleanup of stale clients
 
@@ -30,7 +30,7 @@ Enable automatic cleanup of stale clients
 channelName: string;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:63
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:63
 
 Channel name for this host
 
@@ -42,7 +42,7 @@ Channel name for this host
 optional cleanupInterval?: number;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:73
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:73
 
 Cleanup interval in milliseconds
 
@@ -54,7 +54,7 @@ Cleanup interval in milliseconds
 optional enableOfflineQueue?: boolean;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:65
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:65
 
 Enable message buffering for offline clients
 
@@ -66,7 +66,7 @@ Enable message buffering for offline clients
 optional maxOfflineQueueSize?: number;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:67
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:67
 
 Maximum messages per client in offline queue
 
@@ -78,6 +78,6 @@ Maximum messages per client in offline queue
 optional messageTTL?: number;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:69
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:69
 
 Message TTL in milliseconds

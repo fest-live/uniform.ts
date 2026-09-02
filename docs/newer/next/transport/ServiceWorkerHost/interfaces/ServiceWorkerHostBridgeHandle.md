@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: ServiceWorkerHostBridgeHandle
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:777
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:777
 
 ## Methods
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/transport/ServiceWorkerHost.ts:777
 stop(): void;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:778
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:778
 
 #### Returns
 

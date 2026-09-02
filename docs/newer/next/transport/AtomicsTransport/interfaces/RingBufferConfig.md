@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: RingBufferConfig
 
-Defined in: src/newer/next/transport/AtomicsTransport.ts:455
+Defined in: uniform.ts/src/newer/next/transport/AtomicsTransport.ts:455
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/transport/AtomicsTransport.ts:455
 optional bufferSize?: number;
 ```
 
-Defined in: src/newer/next/transport/AtomicsTransport.ts:457
+Defined in: uniform.ts/src/newer/next/transport/AtomicsTransport.ts:457
 
 Total buffer size (must be power of 2)
 
@@ -28,7 +28,7 @@ Total buffer size (must be power of 2)
 optional slotCount?: number;
 ```
 
-Defined in: src/newer/next/transport/AtomicsTransport.ts:461
+Defined in: uniform.ts/src/newer/next/transport/AtomicsTransport.ts:461
 
 Number of slots
 
@@ -40,6 +40,6 @@ Number of slots
 optional slotSize?: number;
 ```
 
-Defined in: src/newer/next/transport/AtomicsTransport.ts:459
+Defined in: uniform.ts/src/newer/next/transport/AtomicsTransport.ts:459
 
 Individual slot size

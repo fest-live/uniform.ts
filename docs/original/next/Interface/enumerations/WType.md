@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Enumeration: WType
 
-Defined in: src/original/next/Interface.ts:6
+Defined in: uniform.ts/src/original/next/Interface.ts:6
 
 ## Enumeration Members
 
@@ -16,7 +16,7 @@ Defined in: src/original/next/Interface.ts:6
 ARRAY: "array";
 ```
 
-Defined in: src/original/next/Interface.ts:16
+Defined in: uniform.ts/src/original/next/Interface.ts:16
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: src/original/next/Interface.ts:16
 BIGINT: "bigint";
 ```
 
-Defined in: src/original/next/Interface.ts:11
+Defined in: uniform.ts/src/original/next/Interface.ts:11
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/original/next/Interface.ts:11
 BOOLEAN: "boolean";
 ```
 
-Defined in: src/original/next/Interface.ts:10
+Defined in: uniform.ts/src/original/next/Interface.ts:10
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: src/original/next/Interface.ts:10
 FUNCTION: "function";
 ```
 
-Defined in: src/original/next/Interface.ts:15
+Defined in: uniform.ts/src/original/next/Interface.ts:15
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: src/original/next/Interface.ts:15
 MAP: "map";
 ```
 
-Defined in: src/original/next/Interface.ts:17
+Defined in: uniform.ts/src/original/next/Interface.ts:17
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: src/original/next/Interface.ts:17
 NULL: "null";
 ```
 
-Defined in: src/original/next/Interface.ts:13
+Defined in: uniform.ts/src/original/next/Interface.ts:13
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: src/original/next/Interface.ts:13
 NUMBER: "number";
 ```
 
-Defined in: src/original/next/Interface.ts:8
+Defined in: uniform.ts/src/original/next/Interface.ts:8
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: src/original/next/Interface.ts:8
 OBJECT: "object";
 ```
 
-Defined in: src/original/next/Interface.ts:14
+Defined in: uniform.ts/src/original/next/Interface.ts:14
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: src/original/next/Interface.ts:14
 PRIMITIVE: "primitive";
 ```
 
-Defined in: src/original/next/Interface.ts:7
+Defined in: uniform.ts/src/original/next/Interface.ts:7
 
 ***
 
@@ -106,7 +106,7 @@ Defined in: src/original/next/Interface.ts:7
 PROMISE: "promise";
 ```
 
-Defined in: src/original/next/Interface.ts:21
+Defined in: uniform.ts/src/original/next/Interface.ts:21
 
 ***
 
@@ -116,7 +116,7 @@ Defined in: src/original/next/Interface.ts:21
 SET: "set";
 ```
 
-Defined in: src/original/next/Interface.ts:18
+Defined in: uniform.ts/src/original/next/Interface.ts:18
 
 ***
 
@@ -126,7 +126,7 @@ Defined in: src/original/next/Interface.ts:18
 STRING: "string";
 ```
 
-Defined in: src/original/next/Interface.ts:9
+Defined in: uniform.ts/src/original/next/Interface.ts:9
 
 ***
 
@@ -136,7 +136,7 @@ Defined in: src/original/next/Interface.ts:9
 SYMBOL: "symbol";
 ```
 
-Defined in: src/original/next/Interface.ts:19
+Defined in: uniform.ts/src/original/next/Interface.ts:19
 
 ***
 
@@ -146,7 +146,7 @@ Defined in: src/original/next/Interface.ts:19
 UNDEFINED: "undefined";
 ```
 
-Defined in: src/original/next/Interface.ts:12
+Defined in: uniform.ts/src/original/next/Interface.ts:12
 
 ***
 
@@ -156,7 +156,7 @@ Defined in: src/original/next/Interface.ts:12
 UNKNOWN: "unknown";
 ```
 
-Defined in: src/original/next/Interface.ts:22
+Defined in: uniform.ts/src/original/next/Interface.ts:22
 
 ***
 
@@ -166,4 +166,4 @@ Defined in: src/original/next/Interface.ts:22
 WEAK_REF: "weakRef";
 ```
 
-Defined in: src/original/next/Interface.ts:20
+Defined in: uniform.ts/src/original/next/Interface.ts:20

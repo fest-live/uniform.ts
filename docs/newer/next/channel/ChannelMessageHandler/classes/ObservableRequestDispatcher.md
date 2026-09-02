@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ObservableRequestDispatcher
 
-Defined in: src/newer/next/channel/ChannelMessageHandler.ts:171
+Defined in: uniform.ts/src/newer/next/channel/ChannelMessageHandler.ts:171
 
 ## Constructors
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/channel/ChannelMessageHandler.ts:171
 new ObservableRequestDispatcher(_channelName, _targetChannel): ObservableRequestDispatcher;
 ```
 
-Defined in: src/newer/next/channel/ChannelMessageHandler.ts:175
+Defined in: uniform.ts/src/newer/next/channel/ChannelMessageHandler.ts:175
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: src/newer/next/channel/ChannelMessageHandler.ts:175
 connect(subscriber): void;
 ```
 
-Defined in: src/newer/next/channel/ChannelMessageHandler.ts:177
+Defined in: uniform.ts/src/newer/next/channel/ChannelMessageHandler.ts:177
 
 #### Parameters
 
@@ -60,7 +60,7 @@ Defined in: src/newer/next/channel/ChannelMessageHandler.ts:177
 disconnect(): void;
 ```
 
-Defined in: src/newer/next/channel/ChannelMessageHandler.ts:179
+Defined in: uniform.ts/src/newer/next/channel/ChannelMessageHandler.ts:179
 
 #### Returns
 
@@ -77,7 +77,7 @@ dispatch(
 args): Promise<any>;
 ```
 
-Defined in: src/newer/next/channel/ChannelMessageHandler.ts:192
+Defined in: uniform.ts/src/newer/next/channel/ChannelMessageHandler.ts:192
 
 #### Parameters
 
@@ -105,7 +105,7 @@ Defined in: src/newer/next/channel/ChannelMessageHandler.ts:192
 handleMessage(data): void;
 ```
 
-Defined in: src/newer/next/channel/ChannelMessageHandler.ts:185
+Defined in: uniform.ts/src/newer/next/channel/ChannelMessageHandler.ts:185
 
 #### Parameters
 

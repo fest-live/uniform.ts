@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: SocketIOLike
 
-Defined in: src/newer/next/observable/SocketIOObservable.ts:15
+Defined in: uniform.ts/src/newer/next/observable/SocketIOObservable.ts:15
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/observable/SocketIOObservable.ts:15
 optional connected?: boolean;
 ```
 
-Defined in: src/newer/next/observable/SocketIOObservable.ts:21
+Defined in: uniform.ts/src/newer/next/observable/SocketIOObservable.ts:21
 
 ## Methods
 
@@ -26,7 +26,7 @@ Defined in: src/newer/next/observable/SocketIOObservable.ts:21
 optional connect(): void;
 ```
 
-Defined in: src/newer/next/observable/SocketIOObservable.ts:19
+Defined in: uniform.ts/src/newer/next/observable/SocketIOObservable.ts:19
 
 #### Returns
 
@@ -40,7 +40,7 @@ Defined in: src/newer/next/observable/SocketIOObservable.ts:19
 optional disconnect(): void;
 ```
 
-Defined in: src/newer/next/observable/SocketIOObservable.ts:20
+Defined in: uniform.ts/src/newer/next/observable/SocketIOObservable.ts:20
 
 #### Returns
 
@@ -54,7 +54,7 @@ Defined in: src/newer/next/observable/SocketIOObservable.ts:20
 emit(event, ...args): void;
 ```
 
-Defined in: src/newer/next/observable/SocketIOObservable.ts:18
+Defined in: uniform.ts/src/newer/next/observable/SocketIOObservable.ts:18
 
 #### Parameters
 
@@ -78,7 +78,7 @@ Defined in: src/newer/next/observable/SocketIOObservable.ts:18
 off(event, listener): void;
 ```
 
-Defined in: src/newer/next/observable/SocketIOObservable.ts:17
+Defined in: uniform.ts/src/newer/next/observable/SocketIOObservable.ts:17
 
 #### Parameters
 
@@ -102,7 +102,7 @@ Defined in: src/newer/next/observable/SocketIOObservable.ts:17
 on(event, listener): void;
 ```
 
-Defined in: src/newer/next/observable/SocketIOObservable.ts:16
+Defined in: uniform.ts/src/newer/next/observable/SocketIOObservable.ts:16
 
 #### Parameters
 

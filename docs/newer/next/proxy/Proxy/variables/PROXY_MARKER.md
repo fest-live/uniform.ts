@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,6 +10,6 @@
 const PROXY_MARKER: typeof PROXY_MARKER;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:89
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:89
 
 Symbol to identify proxy objects

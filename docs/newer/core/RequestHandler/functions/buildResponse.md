@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -20,7 +20,7 @@ function buildResponse(
 }>;
 ```
 
-Defined in: src/newer/core/RequestHandler.ts:274
+Defined in: uniform.ts/src/newer/core/RequestHandler.ts:274
 
 Build response object with descriptor
 

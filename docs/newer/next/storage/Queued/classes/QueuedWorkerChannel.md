@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: QueuedWorkerChannel
 
-Defined in: src/newer/next/storage/Queued.ts:56
+Defined in: uniform.ts/src/newer/next/storage/Queued.ts:56
 
 Queued worker channel that buffers requests until the channel is available
 
@@ -22,7 +22,7 @@ Queued worker channel that buffers requests until the channel is available
 new QueuedWorkerChannel(config, onChannelReady?): QueuedWorkerChannel;
 ```
 
-Defined in: src/newer/next/storage/Queued.ts:64
+Defined in: uniform.ts/src/newer/next/storage/Queued.ts:64
 
 #### Parameters
 
@@ -46,7 +46,7 @@ Defined in: src/newer/next/storage/Queued.ts:64
 close(): void;
 ```
 
-Defined in: src/newer/next/storage/Queued.ts:150
+Defined in: uniform.ts/src/newer/next/storage/Queued.ts:150
 
 #### Returns
 
@@ -64,7 +64,7 @@ Defined in: src/newer/next/storage/Queued.ts:150
 connect(underlyingChannel?): Promise<void>;
 ```
 
-Defined in: src/newer/next/storage/Queued.ts:74
+Defined in: uniform.ts/src/newer/next/storage/Queued.ts:74
 
 Initialize the underlying channel
 
@@ -86,7 +86,7 @@ Initialize the underlying channel
 getQueueStatus(): object;
 ```
 
-Defined in: src/newer/next/storage/Queued.ts:142
+Defined in: uniform.ts/src/newer/next/storage/Queued.ts:142
 
 Get queue status
 
@@ -120,7 +120,7 @@ queuedRequests: number;
 request(method, args?): Promise<any>;
 ```
 
-Defined in: src/newer/next/storage/Queued.ts:81
+Defined in: uniform.ts/src/newer/next/storage/Queued.ts:81
 
 Queue a request if channel isn't ready, otherwise send immediately
 

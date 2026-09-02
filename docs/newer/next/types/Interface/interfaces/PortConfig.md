@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: PortConfig
 
-Defined in: src/newer/next/types/Interface.ts:233
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:233
 
 MessagePort configuration
 
@@ -18,7 +18,7 @@ MessagePort configuration
 optional autoStart?: boolean;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:234
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:234
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: src/newer/next/types/Interface.ts:234
 optional keepAlive?: boolean;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:238
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:238
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: src/newer/next/types/Interface.ts:238
 optional keepAliveInterval?: number;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:239
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:239
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: src/newer/next/types/Interface.ts:239
 optional maxRetries?: number;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:237
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:237
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: src/newer/next/types/Interface.ts:237
 optional retryOnError?: boolean;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:236
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:236
 
 ***
 
@@ -68,4 +68,4 @@ Defined in: src/newer/next/types/Interface.ts:236
 optional timeout?: number;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:235
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:235

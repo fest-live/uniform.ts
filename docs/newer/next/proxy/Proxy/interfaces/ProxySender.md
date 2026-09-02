@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: ProxySender
 
-Defined in: src/newer/next/proxy/Proxy.ts:411
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:411
 
 Sender interface for port-based proxy
 
@@ -18,7 +18,7 @@ Sender interface for port-based proxy
 readonly channelName: string;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:413
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:413
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: src/newer/next/proxy/Proxy.ts:413
 readonly optional senderId?: string;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:414
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:414
 
 ## Methods
 
@@ -38,7 +38,7 @@ Defined in: src/newer/next/proxy/Proxy.ts:414
 request(msg): Promise<any>;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:412
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:412
 
 #### Parameters
 

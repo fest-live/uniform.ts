@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function getUnifiedMessaging(config?): UnifiedMessagingManager;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:745
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:745
 
 Get the default UnifiedMessagingManager instance
 

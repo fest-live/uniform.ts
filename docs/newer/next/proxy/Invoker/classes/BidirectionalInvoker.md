@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: BidirectionalInvoker
 
-Defined in: src/newer/next/proxy/Invoker.ts:234
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:234
 
 ## Constructors
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:234
 new BidirectionalInvoker(config): BidirectionalInvoker;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:239
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:239
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:239
 readonly requestor: Requestor;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:235
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:235
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:235
 readonly responder: Responder;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:236
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:236
 
 ## Accessors
 
@@ -58,7 +58,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:236
 get contextType(): ContextType;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:254
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:254
 
 ##### Returns
 
@@ -72,7 +72,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:254
 close(): void;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:255
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:255
 
 #### Returns
 
@@ -86,7 +86,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:255
 connect(target): this;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:245
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:245
 
 #### Parameters
 
@@ -106,7 +106,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:245
 createProxy<T>(targetChannel, basePath?): T;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:252
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:252
 
 #### Type Parameters
 
@@ -136,7 +136,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:252
 expose(name, obj): this;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:251
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:251
 
 #### Parameters
 
@@ -160,7 +160,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:251
 importModule<T>(targetChannel, url): Promise<T>;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:253
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:253
 
 #### Type Parameters
 

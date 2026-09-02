@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: BroadcastChannelObservable
 
-Defined in: src/newer/next/transport/TransportObservable.ts:120
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:120
 
 BroadcastChannel Observable
 
@@ -22,7 +22,7 @@ BroadcastChannel Observable
 new BroadcastChannelObservable(_name): BroadcastChannelObservable;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:124
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:124
 
 #### Parameters
 
@@ -48,7 +48,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:124
 get isListening(): boolean;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:71
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:71
 
 ##### Returns
 
@@ -68,7 +68,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:71
 get subscriberCount(): number;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:70
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:70
 
 ##### Returns
 
@@ -86,7 +86,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:70
 close(): void;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:140
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:140
 
 #### Returns
 
@@ -104,7 +104,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:140
 next(value): void;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:130
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:130
 
 #### Parameters
 
@@ -128,7 +128,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:130
 subscribe(observerOrNext): Subscription;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:28
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:28
 
 #### Parameters
 

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Abstract Class: AbstractTransport
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:66
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:66
 
 ## Implements
 
@@ -23,7 +23,7 @@ new AbstractTransport(
    _config): AbstractTransport;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:72
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:72
 
 #### Parameters
 
@@ -53,7 +53,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:72
 get channelName(): string;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:132
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:132
 
 ##### Returns
 
@@ -73,7 +73,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:132
 get isReady(): boolean;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:133
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:133
 
 ##### Returns
 
@@ -93,7 +93,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:133
 get state(): ChannelSubject<"error" | "connected" | "disconnected" | "connecting">;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:134
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:134
 
 ##### Returns
 
@@ -109,7 +109,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:134
 get type(): TransportType;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:131
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:131
 
 ##### Returns
 
@@ -127,7 +127,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:131
 close(): void;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:124
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:124
 
 #### Returns
 
@@ -145,7 +145,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:124
 request(msg): Promise<any>;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:80
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:80
 
 #### Parameters
 
@@ -169,7 +169,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:80
 abstract send(msg, transfer?): void;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:78
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:78
 
 #### Parameters
 
@@ -197,7 +197,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:78
 subscribe(observer): Subscription;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:98
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:98
 
 #### Parameters
 

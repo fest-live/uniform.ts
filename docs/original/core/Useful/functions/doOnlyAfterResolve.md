@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function doOnlyAfterResolve<T>(meta, cb): any;
 ```
 
-Defined in: src/original/core/Useful.ts:45
+Defined in: uniform.ts/src/original/core/Useful.ts:45
 
 ## Type Parameters
 

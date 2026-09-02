@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: TransportInstance
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:52
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:52
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:52
 readonly channelName: string;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:58
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:58
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:58
 readonly isReady: boolean;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:59
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:59
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:59
 readonly type: TransportType;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:57
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:57
 
 ## Methods
 
@@ -46,7 +46,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:57
 close(): void;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:56
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:56
 
 #### Returns
 
@@ -60,7 +60,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:56
 request(msg): Promise<any>;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:54
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:54
 
 #### Parameters
 
@@ -80,7 +80,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:54
 send(msg, transfer?): void;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:53
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:53
 
 #### Parameters
 
@@ -104,7 +104,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:53
 subscribe(observer): Subscription;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:55
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:55
 
 #### Parameters
 

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function registerWorkerAPI(api, channelName?): ChannelHandler | null;
 ```
 
-Defined in: src/original/next/Queued.ts:218
+Defined in: uniform.ts/src/original/next/Queued.ts:218
 
 Simplified worker registration for common patterns
 

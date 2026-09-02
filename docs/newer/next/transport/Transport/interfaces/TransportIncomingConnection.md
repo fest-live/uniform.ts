@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: TransportIncomingConnection
 
-Defined in: src/newer/next/transport/Transport.ts:30
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:30
 
 Incoming channel connection event
 
@@ -18,7 +18,7 @@ Incoming channel connection event
 channel: string;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:34
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:34
 
 Channel name being requested
 
@@ -30,7 +30,7 @@ Channel name being requested
 optional data?: any;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:42
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:42
 
 Original message data
 
@@ -42,7 +42,7 @@ Original message data
 id: string;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:32
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:32
 
 Connection ID
 
@@ -54,7 +54,7 @@ Connection ID
 optional port?: MessagePort;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:40
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:40
 
 MessagePort if applicable
 
@@ -66,7 +66,7 @@ MessagePort if applicable
 sender: string;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:36
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:36
 
 Sender identifier
 
@@ -78,7 +78,7 @@ Sender identifier
 timestamp: number;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:44
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:44
 
 Timestamp
 
@@ -90,6 +90,6 @@ Timestamp
 transportType: TransportType;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:38
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:38
 
 Transport type

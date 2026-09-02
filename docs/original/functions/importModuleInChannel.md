@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../README.md)
 
 ***
 
@@ -14,7 +14,7 @@ function importModuleInChannel(
 broadcast?): Promise<any>;
 ```
 
-Defined in: src/original/index.ts:30
+Defined in: uniform.ts/src/original/index.ts:30
 
 ## Parameters
 

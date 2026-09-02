@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ConnectionRegistry\<TTransport\>
 
-Defined in: src/newer/next/channel/internal/ConnectionModel.ts:78
+Defined in: uniform.ts/src/newer/next/channel/internal/ConnectionModel.ts:78
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: src/newer/next/channel/internal/ConnectionModel.ts:78
 new ConnectionRegistry<TTransport>(_createId, _emitEvent?): ConnectionRegistry<TTransport>;
 ```
 
-Defined in: src/newer/next/channel/internal/ConnectionModel.ts:81
+Defined in: uniform.ts/src/newer/next/channel/internal/ConnectionModel.ts:81
 
 #### Parameters
 
@@ -46,7 +46,7 @@ Defined in: src/newer/next/channel/internal/ConnectionModel.ts:81
 clear(): void;
 ```
 
-Defined in: src/newer/next/channel/internal/ConnectionModel.ts:169
+Defined in: uniform.ts/src/newer/next/channel/internal/ConnectionModel.ts:169
 
 #### Returns
 
@@ -60,7 +60,7 @@ Defined in: src/newer/next/channel/internal/ConnectionModel.ts:169
 closeAll(): void;
 ```
 
-Defined in: src/newer/next/channel/internal/ConnectionModel.ts:147
+Defined in: uniform.ts/src/newer/next/channel/internal/ConnectionModel.ts:147
 
 #### Returns
 
@@ -74,7 +74,7 @@ Defined in: src/newer/next/channel/internal/ConnectionModel.ts:147
 closeByChannel(channel): void;
 ```
 
-Defined in: src/newer/next/channel/internal/ConnectionModel.ts:132
+Defined in: uniform.ts/src/newer/next/channel/internal/ConnectionModel.ts:132
 
 #### Parameters
 
@@ -94,7 +94,7 @@ Defined in: src/newer/next/channel/internal/ConnectionModel.ts:132
 markNotified(connection, payload?): void;
 ```
 
-Defined in: src/newer/next/channel/internal/ConnectionModel.ts:120
+Defined in: uniform.ts/src/newer/next/channel/internal/ConnectionModel.ts:120
 
 #### Parameters
 
@@ -118,7 +118,7 @@ Defined in: src/newer/next/channel/internal/ConnectionModel.ts:120
 query(query?): ConnectionInfo<TTransport>[];
 ```
 
-Defined in: src/newer/next/channel/internal/ConnectionModel.ts:161
+Defined in: uniform.ts/src/newer/next/channel/internal/ConnectionModel.ts:161
 
 #### Parameters
 
@@ -138,7 +138,7 @@ Defined in: src/newer/next/channel/internal/ConnectionModel.ts:161
 register(params): ConnectionInfo<TTransport>;
 ```
 
-Defined in: src/newer/next/channel/internal/ConnectionModel.ts:86
+Defined in: uniform.ts/src/newer/next/channel/internal/ConnectionModel.ts:86
 
 #### Parameters
 
@@ -158,7 +158,7 @@ Defined in: src/newer/next/channel/internal/ConnectionModel.ts:86
 values(): ConnectionInfo<TTransport>[];
 ```
 
-Defined in: src/newer/next/channel/internal/ConnectionModel.ts:165
+Defined in: uniform.ts/src/newer/next/channel/internal/ConnectionModel.ts:165
 
 #### Returns
 

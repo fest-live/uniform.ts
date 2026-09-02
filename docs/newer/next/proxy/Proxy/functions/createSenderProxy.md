@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function createSenderProxy<T>(sender, basePath?): ProxyMethods<T>;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:423
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:423
 
 Create a proxy for remote object over a sender (MessagePort, etc.)
 

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function remoteFromUnified<T>(moduleName, targetChannel?): T;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:1181
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:1181
 
 Create a proxy to a remote channel from the worker
 

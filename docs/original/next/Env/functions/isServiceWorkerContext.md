@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function isServiceWorkerContext(): boolean;
 ```
 
-Defined in: src/original/next/Env.ts:7
+Defined in: uniform.ts/src/original/next/Env.ts:7
 
 ## Returns
 

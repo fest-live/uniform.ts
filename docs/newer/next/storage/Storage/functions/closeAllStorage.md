@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function closeAllStorage(): void;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:1030
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:1030
 
 Close all storage instances
 

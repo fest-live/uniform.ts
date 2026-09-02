@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: SharedWorkerOptions
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:22
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:22
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/transport/SharedWorkerTransport.ts:22
 optional autoConnect?: boolean;
 ```
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:26
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:26
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: src/newer/next/transport/SharedWorkerTransport.ts:26
 optional credentials?: RequestCredentials;
 ```
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:24
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:24
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/newer/next/transport/SharedWorkerTransport.ts:24
 optional name?: string;
 ```
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:23
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:23
 
 ***
 
@@ -46,4 +46,4 @@ Defined in: src/newer/next/transport/SharedWorkerTransport.ts:23
 optional type?: WorkerType;
 ```
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:25
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:25

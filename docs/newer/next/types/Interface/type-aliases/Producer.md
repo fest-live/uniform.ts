@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 type Producer<T> = (subscriber) => (() => void) | void;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:118
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:118
 
 Observable producer function
 

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: MessageQueueOptions
 
-Defined in: src/newer/messaging/MessageQueue.ts:26
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:26
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/messaging/MessageQueue.ts:26
 optional dbName?: string;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:27
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:27
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: src/newer/messaging/MessageQueue.ts:27
 optional defaultExpirationMs?: number;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:30
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:30
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/newer/messaging/MessageQueue.ts:30
 optional fallbackStorageKey?: string;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:31
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:31
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: src/newer/messaging/MessageQueue.ts:31
 optional maxRetries?: number;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:29
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:29
 
 ***
 
@@ -56,4 +56,4 @@ Defined in: src/newer/messaging/MessageQueue.ts:29
 optional storeName?: string;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:28
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:28

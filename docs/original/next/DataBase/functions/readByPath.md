@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function readByPath(path): any;
 ```
 
-Defined in: src/original/next/DataBase.ts:194
+Defined in: uniform.ts/src/original/next/DataBase.ts:194
 
 ## Parameters
 

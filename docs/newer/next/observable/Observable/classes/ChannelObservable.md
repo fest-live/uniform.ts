@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ChannelObservable
 
-Defined in: src/newer/next/observable/Observable.ts:144
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:144
 
 Channel Observable with bidirectional communication
 
@@ -22,7 +22,7 @@ Channel Observable with bidirectional communication
 new ChannelObservable(_transport, _channelName): ChannelObservable;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:151
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:151
 
 #### Parameters
 
@@ -48,7 +48,7 @@ Defined in: src/newer/next/observable/Observable.ts:151
 get channelName(): string;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:199
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:199
 
 ##### Returns
 
@@ -64,7 +64,7 @@ Defined in: src/newer/next/observable/Observable.ts:199
 get isListening(): boolean;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:200
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:200
 
 ##### Returns
 
@@ -78,7 +78,7 @@ Defined in: src/newer/next/observable/Observable.ts:200
 close(): void;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:198
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:198
 
 #### Returns
 
@@ -92,7 +92,7 @@ Defined in: src/newer/next/observable/Observable.ts:198
 next(msg, transfer?): void;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:155
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:155
 
 #### Parameters
 
@@ -116,7 +116,7 @@ Defined in: src/newer/next/observable/Observable.ts:155
 request(msg): Promise<any>;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:167
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:167
 
 #### Parameters
 
@@ -136,7 +136,7 @@ Defined in: src/newer/next/observable/Observable.ts:167
 subscribe(observer): Subscription;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:157
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:157
 
 #### Parameters
 

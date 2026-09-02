@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: UnifiedMessagingConfig
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:88
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:88
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:88
 optional channelMappings?: Record<string, string>;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:90
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:90
 
 Custom channel mappings (destination -> channel name)
 
@@ -28,7 +28,7 @@ Custom channel mappings (destination -> channel name)
 optional pendingStoreOptions?: object;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:99
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:99
 
 Pending message store options
 
@@ -58,7 +58,7 @@ optional storageKey?: string;
 optional queueOptions?: object;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:92
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:92
 
 Message queue options
 

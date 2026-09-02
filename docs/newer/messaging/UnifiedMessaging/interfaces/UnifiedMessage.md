@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: UnifiedMessage\<T\>
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:30
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:30
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:30
 optional contentType?: string;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:35
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:35
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:35
 data: T;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:36
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:36
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:36
 optional destination?: string;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:34
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:34
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:34
 id: string;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:31
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:31
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:31
 optional metadata?: MessageMetadata;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:37
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:37
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:37
 source: string;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:33
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:33
 
 ***
 
@@ -82,4 +82,4 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:33
 type: string;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:32
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:32

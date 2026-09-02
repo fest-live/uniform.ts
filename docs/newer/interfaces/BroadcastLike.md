@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: BroadcastLike
 
-Defined in: src/newer/index.ts:452
+Defined in: uniform.ts/src/newer/index.ts:452
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/index.ts:452
 addEventListener: (type, listener) => void;
 ```
 
-Defined in: src/newer/index.ts:453
+Defined in: uniform.ts/src/newer/index.ts:453
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: src/newer/index.ts:453
 optional close?: () => void;
 ```
 
-Defined in: src/newer/index.ts:456
+Defined in: uniform.ts/src/newer/index.ts:456
 
 #### Returns
 
@@ -54,7 +54,7 @@ Defined in: src/newer/index.ts:456
 postMessage: (message, transfer?) => void;
 ```
 
-Defined in: src/newer/index.ts:455
+Defined in: uniform.ts/src/newer/index.ts:455
 
 #### Parameters
 
@@ -78,7 +78,7 @@ Defined in: src/newer/index.ts:455
 optional removeEventListener?: (type, listener) => void;
 ```
 
-Defined in: src/newer/index.ts:454
+Defined in: uniform.ts/src/newer/index.ts:454
 
 #### Parameters
 
@@ -102,7 +102,7 @@ Defined in: src/newer/index.ts:454
 optional start?: () => void;
 ```
 
-Defined in: src/newer/index.ts:457
+Defined in: uniform.ts/src/newer/index.ts:457
 
 #### Returns
 

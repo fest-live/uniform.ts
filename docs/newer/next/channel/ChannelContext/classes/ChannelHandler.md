@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ChannelHandler
 
-Defined in: src/newer/next/channel/ChannelContext.ts:221
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:221
 
 ## Constructors
 
@@ -19,7 +19,7 @@ new ChannelHandler(
    _options?): ChannelHandler;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:242
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:242
 
 #### Parameters
 
@@ -49,7 +49,7 @@ Defined in: src/newer/next/channel/ChannelContext.ts:242
 get connection(): ChannelConnection;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:318
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:318
 
 ##### Returns
 
@@ -65,7 +65,7 @@ Defined in: src/newer/next/channel/ChannelContext.ts:318
 get unified(): UnifiedChannel;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:391
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:391
 
 ##### Returns
 
@@ -79,7 +79,7 @@ Defined in: src/newer/next/channel/ChannelContext.ts:391
 close(): void;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:383
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:383
 
 #### Returns
 
@@ -96,7 +96,7 @@ createRemoteChannel(
    broadcast?): RemoteChannelHelper;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:255
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:255
 
 #### Parameters
 
@@ -126,7 +126,7 @@ Defined in: src/newer/next/channel/ChannelContext.ts:255
 getChannel(): string;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:317
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:317
 
 #### Returns
 
@@ -140,7 +140,7 @@ Defined in: src/newer/next/channel/ChannelContext.ts:317
 getConnectedChannels(): string[];
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:379
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:379
 
 #### Returns
 
@@ -157,7 +157,7 @@ notifyChannel(
    type?): boolean;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:366
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:366
 
 #### Parameters
 
@@ -190,7 +190,7 @@ request(
    toChannel?): Promise<any> | null;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:320
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:320
 
 #### Parameters
 

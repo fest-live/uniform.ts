@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -21,4 +21,4 @@ type UniformProtocolName =
   | string & object;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:18
+Defined in: uniform.ts/src/newer/messaging/Protocol.ts:18

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: TransportBinding\<TTransport\>
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:1051
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:1051
 
 Transport binding info
 
@@ -24,7 +24,7 @@ Transport binding info
 optional addEventListener?: (type, listener) => void;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:1058
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:1058
 
 #### Parameters
 
@@ -48,7 +48,7 @@ Defined in: src/newer/next/channel/UnifiedChannel.ts:1058
 optional cleanup?: () => void;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:1056
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:1056
 
 #### Returns
 
@@ -62,7 +62,7 @@ Defined in: src/newer/next/channel/UnifiedChannel.ts:1056
 optional close?: () => void;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:1061
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:1061
 
 #### Returns
 
@@ -76,7 +76,7 @@ Defined in: src/newer/next/channel/UnifiedChannel.ts:1061
 postMessage: (message, options?) => void;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:1057
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:1057
 
 #### Parameters
 
@@ -100,7 +100,7 @@ Defined in: src/newer/next/channel/UnifiedChannel.ts:1057
 optional removeEventListener?: (type, listener) => void;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:1059
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:1059
 
 #### Parameters
 
@@ -124,7 +124,7 @@ Defined in: src/newer/next/channel/UnifiedChannel.ts:1059
 sender: (msg, transfer?) => void;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:1055
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:1055
 
 #### Parameters
 
@@ -148,7 +148,7 @@ Defined in: src/newer/next/channel/UnifiedChannel.ts:1055
 optional start?: () => void;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:1060
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:1060
 
 #### Returns
 
@@ -162,7 +162,7 @@ Defined in: src/newer/next/channel/UnifiedChannel.ts:1060
 target: TTransport;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:1052
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:1052
 
 ***
 
@@ -172,7 +172,7 @@ Defined in: src/newer/next/channel/UnifiedChannel.ts:1052
 targetChannel: string;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:1053
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:1053
 
 ***
 
@@ -182,4 +182,4 @@ Defined in: src/newer/next/channel/UnifiedChannel.ts:1053
 transportType: TransportType;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:1054
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:1054

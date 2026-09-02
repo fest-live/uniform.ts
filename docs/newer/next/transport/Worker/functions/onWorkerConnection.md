@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function onWorkerConnection(handler): Subscription;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:461
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:461
 
 Subscribe to incoming connections in the global worker context
 

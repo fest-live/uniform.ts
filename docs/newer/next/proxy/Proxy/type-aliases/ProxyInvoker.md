@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 type ProxyInvoker = (action, path, args) => Promise<any>;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:26
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:26
 
 Proxy invoker function - sends requests to remote
 

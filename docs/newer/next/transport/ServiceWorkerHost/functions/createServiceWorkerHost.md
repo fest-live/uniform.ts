@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function createServiceWorkerHost(config): ServiceWorkerHost;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:766
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:766
 
 Create SW host (call in service worker)
 

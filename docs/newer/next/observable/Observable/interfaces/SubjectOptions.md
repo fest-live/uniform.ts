@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: SubjectOptions
 
-Defined in: src/newer/next/observable/Observable.ts:88
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:88
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/observable/Observable.ts:88
 optional bufferSize?: number;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:88
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:88
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: src/newer/next/observable/Observable.ts:88
 optional replayOnSubscribe?: boolean;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:88
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:88

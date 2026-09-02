@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function createChannelsInContext(channelNames, contextOptions?): object;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:1300
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:1300
 
 Quick helper: Create channels in a new context
 

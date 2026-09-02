@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../README.md)
+[**@fest-lib/uniform v0.1.23**](../README.md)
 
 ***
 
@@ -6,12 +6,26 @@
 
 # index
 
+## Type Aliases
+
+- [MountedFsOp](type-aliases/MountedFsOp.md)
+
+## Variables
+
+- [MOUNTED\_FS\_EVENT](variables/MOUNTED_FS_EVENT.md)
+- [MOUNTED\_FS\_HTTP\_PATH](variables/MOUNTED_FS_HTTP_PATH.md)
+- [MOUNTED\_FS\_WS\_PATH](variables/MOUNTED_FS_WS_PATH.md)
+
 ## Functions
 
 - [createChannelContext](functions/createChannelContext.md)
 - [createChannelsInContext](functions/createChannelsInContext.md)
+- [createMountedFsId](functions/createMountedFsId.md)
 - [getOrCreateContext](functions/getOrCreateContext.md)
 - [importModuleInContext](functions/importModuleInContext.md)
+- [isMountedFsRequest](functions/isMountedFsRequest.md)
+- [isMountedFsResponse](functions/isMountedFsResponse.md)
+- [parseMountedFsMessage](functions/parseMountedFsMessage.md)
 
 ## References
 
@@ -1368,6 +1382,36 @@ Re-exports [MessageStatus](../newer/next/storage/Storage/type-aliases/MessageSta
 ### MessagingQueuedMessage
 
 Renames and re-exports [QueuedMessage](../newer/messaging/MessageQueue/interfaces/QueuedMessage.md)
+
+***
+
+### MountedFsEntry
+
+Renames and re-exports [MountedFsOp](type-aliases/MountedFsOp.md)
+
+***
+
+### MountedFsFileBody
+
+Renames and re-exports [MountedFsOp](type-aliases/MountedFsOp.md)
+
+***
+
+### MountedFsKind
+
+Renames and re-exports [MountedFsOp](type-aliases/MountedFsOp.md)
+
+***
+
+### MountedFsRequest
+
+Renames and re-exports [MountedFsOp](type-aliases/MountedFsOp.md)
+
+***
+
+### MountedFsResponse
+
+Renames and re-exports [MountedFsOp](type-aliases/MountedFsOp.md)
 
 ***
 

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 type ProxyMethods<T> = { [K in keyof T]: T[K] extends (args: infer A) => infer R ? (args: A) => Promise<Awaited<R>> : Promise<T[K]> };
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:59
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:59
 
 Convert object methods to Promise-returning versions
 

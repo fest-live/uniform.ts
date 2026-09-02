@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function detectContextType(): ContextType;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:78
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:78
 
 ## Returns
 

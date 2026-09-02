@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 const makeProxy: <T>(invoker, config) => RemoteProxy<T> = createRemoteProxy;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:519
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:519
 
 Create a remote proxy for transparent RPC
 

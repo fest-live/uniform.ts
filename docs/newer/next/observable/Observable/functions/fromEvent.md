@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function fromEvent<K>(target, event): Observable<HTMLElementEventMap[K]>;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:275
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:275
 
 ## Type Parameters
 

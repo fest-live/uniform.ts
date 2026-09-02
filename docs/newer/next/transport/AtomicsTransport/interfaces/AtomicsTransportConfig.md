@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: AtomicsTransportConfig
 
-Defined in: src/newer/next/transport/AtomicsTransport.ts:95
+Defined in: uniform.ts/src/newer/next/transport/AtomicsTransport.ts:95
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/transport/AtomicsTransport.ts:95
 optional bufferSize?: number;
 ```
 
-Defined in: src/newer/next/transport/AtomicsTransport.ts:97
+Defined in: uniform.ts/src/newer/next/transport/AtomicsTransport.ts:97
 
 Size of shared buffer in bytes (default: 64KB)
 
@@ -28,7 +28,7 @@ Size of shared buffer in bytes (default: 64KB)
 optional compression?: boolean;
 ```
 
-Defined in: src/newer/next/transport/AtomicsTransport.ts:101
+Defined in: uniform.ts/src/newer/next/transport/AtomicsTransport.ts:101
 
 Enable message compression (requires CBOR-X)
 
@@ -40,7 +40,7 @@ Enable message compression (requires CBOR-X)
 optional maxMessageSize?: number;
 ```
 
-Defined in: src/newer/next/transport/AtomicsTransport.ts:99
+Defined in: uniform.ts/src/newer/next/transport/AtomicsTransport.ts:99
 
 Maximum message size (default: 60KB)
 
@@ -52,7 +52,7 @@ Maximum message size (default: 60KB)
 optional useAsyncWait?: boolean;
 ```
 
-Defined in: src/newer/next/transport/AtomicsTransport.ts:105
+Defined in: uniform.ts/src/newer/next/transport/AtomicsTransport.ts:105
 
 Use Atomics.waitAsync when available (non-blocking)
 
@@ -64,6 +64,6 @@ Use Atomics.waitAsync when available (non-blocking)
 optional waitTimeout?: number;
 ```
 
-Defined in: src/newer/next/transport/AtomicsTransport.ts:103
+Defined in: uniform.ts/src/newer/next/transport/AtomicsTransport.ts:103
 
 Timeout for atomic wait operations (ms)

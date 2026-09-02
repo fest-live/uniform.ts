@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: MessageEnvelope
 
-Defined in: src/optimized-protocol.ts:5
+Defined in: uniform.ts/src/optimized-protocol.ts:5
 
 Lightweight message envelope shape used by worker entrypoints (e.g. OPFS).
 Kept separate from Queued.ts to avoid pulling channel/storage runtime into workers.
@@ -19,7 +19,7 @@ Kept separate from Queued.ts to avoid pulling channel/storage runtime into worke
 optional id?: string;
 ```
 
-Defined in: src/optimized-protocol.ts:6
+Defined in: uniform.ts/src/optimized-protocol.ts:6
 
 ***
 
@@ -29,7 +29,7 @@ Defined in: src/optimized-protocol.ts:6
 payload: any;
 ```
 
-Defined in: src/optimized-protocol.ts:8
+Defined in: uniform.ts/src/optimized-protocol.ts:8
 
 ***
 
@@ -39,7 +39,7 @@ Defined in: src/optimized-protocol.ts:8
 optional replyTo?: string;
 ```
 
-Defined in: src/optimized-protocol.ts:10
+Defined in: uniform.ts/src/optimized-protocol.ts:10
 
 ***
 
@@ -49,7 +49,7 @@ Defined in: src/optimized-protocol.ts:10
 optional timestamp?: number;
 ```
 
-Defined in: src/optimized-protocol.ts:9
+Defined in: uniform.ts/src/optimized-protocol.ts:9
 
 ***
 
@@ -59,4 +59,4 @@ Defined in: src/optimized-protocol.ts:9
 type: string;
 ```
 
-Defined in: src/optimized-protocol.ts:7
+Defined in: uniform.ts/src/optimized-protocol.ts:7

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: TransferableStorage\<T\>
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:62
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:62
 
 ## Extended by
 
@@ -26,7 +26,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:62
 new TransferableStorage<T>(config): TransferableStorage<T>;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:69
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:69
 
 #### Parameters
 
@@ -48,7 +48,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:69
 get changes(): ChannelSubject<StorageChange<T>>;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:508
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:508
 
 ##### Returns
 
@@ -64,7 +64,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:508
 get isOpen(): boolean;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:506
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:506
 
 ##### Returns
 
@@ -80,7 +80,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:506
 get state(): ChannelSubject<"error" | "closed" | "opening" | "open">;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:507
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:507
 
 ##### Returns
 
@@ -94,7 +94,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:507
 batch(operations): Promise<void>;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:382
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:382
 
 Batch operations in single transaction
 
@@ -126,7 +126,7 @@ Batch operations in single transaction
 cleanupExpired(): Promise<number>;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:476
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:476
 
 Cleanup expired records
 
@@ -142,7 +142,7 @@ Cleanup expired records
 clear(): Promise<void>;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:419
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:419
 
 Clear all records
 
@@ -158,7 +158,7 @@ Clear all records
 close(): void;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:130
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:130
 
 Close database connection
 
@@ -174,7 +174,7 @@ Close database connection
 count(query?): Promise<number>;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:445
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:445
 
 Count records
 
@@ -202,7 +202,7 @@ Count records
 delete(id): Promise<boolean>;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:299
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:299
 
 Delete record
 
@@ -226,7 +226,7 @@ get(id): Promise<
 | null>;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:238
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:238
 
 Get record by ID
 
@@ -250,7 +250,7 @@ Get record by ID
 getBuffer(id, transfer?): Promise<ArrayBuffer | null>;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:265
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:265
 
 Get ArrayBuffer and optionally transfer ownership
 
@@ -276,7 +276,7 @@ Get ArrayBuffer and optionally transfer ownership
 getTypedArray<A>(id): Promise<A | null>;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:285
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:285
 
 Reconstruct TypedArray from stored data
 
@@ -304,7 +304,7 @@ Reconstruct TypedArray from stored data
 onChanges(handler): Subscription;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:462
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:462
 
 Subscribe to changes
 
@@ -326,7 +326,7 @@ Subscribe to changes
 onState(handler): Subscription;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:469
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:469
 
 Subscribe to state changes
 
@@ -348,7 +348,7 @@ Subscribe to state changes
 open(): Promise<void>;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:84
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:84
 
 Open database connection
 
@@ -367,7 +367,7 @@ put(
 options?): Promise<TransferableRecord<T>>;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:143
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:143
 
 Store data with optional ArrayBuffer transfer
 
@@ -414,7 +414,7 @@ putBuffer(
 options?): Promise<TransferableRecord<ArrayBuffer>>;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:208
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:208
 
 Store ArrayBuffer directly with zero-copy semantics
 
@@ -460,7 +460,7 @@ putTypedArray<A>(
 }>>;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:219
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:219
 
 Store TypedArray
 
@@ -509,7 +509,7 @@ Store TypedArray
 query(query?): Promise<TransferableRecord<T>[]>;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:328
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:328
 
 Query records with cursor
 

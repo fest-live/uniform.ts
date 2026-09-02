@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: PortMessage\<T\>
 
-Defined in: src/newer/next/transport/PortTransport.ts:20
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:20
 
 Channel message envelope
 
@@ -28,7 +28,7 @@ Channel message envelope
 channel: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:127
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:127
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ Defined in: src/newer/next/types/Interface.ts:127
 id: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:126
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:126
 
 #### Inherited from
 
@@ -56,7 +56,7 @@ Defined in: src/newer/next/types/Interface.ts:126
 optional payload?: any;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:130
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:130
 
 #### Inherited from
 
@@ -70,7 +70,7 @@ Defined in: src/newer/next/types/Interface.ts:130
 optional portId?: string;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:21
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:21
 
 ***
 
@@ -80,7 +80,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:21
 optional reqId?: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:131
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:131
 
 #### Inherited from
 
@@ -94,7 +94,7 @@ Defined in: src/newer/next/types/Interface.ts:131
 sender: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:128
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:128
 
 #### Inherited from
 
@@ -108,7 +108,7 @@ Defined in: src/newer/next/types/Interface.ts:128
 optional sourceContext?: "worker" | "window" | "main" | "iframe";
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:22
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:22
 
 ***
 
@@ -118,7 +118,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:22
 optional timestamp?: number;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:132
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:132
 
 #### Inherited from
 
@@ -132,7 +132,7 @@ Defined in: src/newer/next/types/Interface.ts:132
 optional transferable?: Transferable[];
 ```
 
-Defined in: src/newer/next/types/Interface.ts:133
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:133
 
 #### Inherited from
 
@@ -146,7 +146,7 @@ Defined in: src/newer/next/types/Interface.ts:133
 type: "request" | "response" | "event" | "signal" | "exchange";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:129
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:129
 
 #### Inherited from
 

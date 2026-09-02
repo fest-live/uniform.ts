@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: BidirectionalChannel\<T\>
 
-Defined in: src/newer/next/observable/Observable.ts:325
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:325
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: src/newer/next/observable/Observable.ts:325
 inbound: Observable<T>;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:326
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:326
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: src/newer/next/observable/Observable.ts:326
 outbound: object;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:327
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:327
 
 #### next()
 
@@ -62,7 +62,7 @@ next(value, transfer?): void;
 send(value, transfer?): void;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:329
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:329
 
 #### Parameters
 
@@ -86,7 +86,7 @@ Defined in: src/newer/next/observable/Observable.ts:329
 subscribe(observer): Subscription;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:328
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:328
 
 #### Parameters
 

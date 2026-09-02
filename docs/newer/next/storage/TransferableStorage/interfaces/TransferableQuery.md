@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: TransferableQuery\<T\>
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:29
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:29
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:29
 optional direction?: IDBCursorDirection;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:32
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:32
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:32
 optional filter?: (record) => boolean;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:35
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:35
 
 #### Parameters
 
@@ -52,7 +52,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:35
 optional index?: string;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:30
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:30
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:30
 optional limit?: number;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:33
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:33
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:33
 optional offset?: number;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:34
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:34
 
 ***
 
@@ -82,4 +82,4 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:34
 optional range?: IDBKeyRange;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:31
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:31

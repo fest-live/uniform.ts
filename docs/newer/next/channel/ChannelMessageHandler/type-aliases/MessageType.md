@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,4 +10,4 @@
 type MessageType = "request" | "response" | "event" | "ping" | "pong";
 ```
 
-Defined in: src/newer/next/channel/ChannelMessageHandler.ts:23
+Defined in: uniform.ts/src/newer/next/channel/ChannelMessageHandler.ts:23

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function closeUnifiedChannel(name): boolean;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:1141
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:1141
 
 Close and remove a channel from registry
 

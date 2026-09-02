@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: Observer\<T\>
 
-Defined in: src/newer/next/types/Interface.ts:91
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:91
 
 Observer interface (WICG-like)
 
@@ -24,7 +24,7 @@ Observer interface (WICG-like)
 optional complete?: () => void;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:94
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:94
 
 #### Returns
 
@@ -38,7 +38,7 @@ Defined in: src/newer/next/types/Interface.ts:94
 optional error?: (err) => void;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:93
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:93
 
 #### Parameters
 
@@ -58,7 +58,7 @@ Defined in: src/newer/next/types/Interface.ts:93
 optional next?: (value) => void;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:92
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:92
 
 #### Parameters
 

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function getServiceChannelManager(config?): ServiceChannelManager;
 ```
 
-Defined in: src/newer/messaging/ServiceChannelManager.ts:335
+Defined in: uniform.ts/src/newer/messaging/ServiceChannelManager.ts:335
 
 Get or create the default ServiceChannelManager
 

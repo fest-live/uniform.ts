@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: AtomicsConfig
 
-Defined in: src/newer/next/types/Interface.ts:208
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:208
 
 SharedArrayBuffer configuration
 
@@ -18,7 +18,7 @@ SharedArrayBuffer configuration
 optional bufferSize?: number;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:209
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:209
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: src/newer/next/types/Interface.ts:209
 optional compression?: boolean;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:211
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:211
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: src/newer/next/types/Interface.ts:211
 optional maxMessageSize?: number;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:210
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:210
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: src/newer/next/types/Interface.ts:210
 optional useAsyncWait?: boolean;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:213
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:213
 
 ***
 
@@ -58,4 +58,4 @@ Defined in: src/newer/next/types/Interface.ts:213
 optional waitTimeout?: number;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:212
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:212

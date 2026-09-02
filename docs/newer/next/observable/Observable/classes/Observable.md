@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: Observable\<T\>
 
-Defined in: src/newer/next/observable/Observable.ts:50
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:50
 
 Core Observable with producer function
 
@@ -28,7 +28,7 @@ Core Observable with producer function
 new Observable<T>(_producer): Observable<T>;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:51
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:51
 
 #### Parameters
 
@@ -48,7 +48,7 @@ Defined in: src/newer/next/observable/Observable.ts:51
 pipe<R>(...ops): Observable<R>;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:79
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:79
 
 #### Type Parameters
 
@@ -74,7 +74,7 @@ Defined in: src/newer/next/observable/Observable.ts:79
 subscribe(observerOrNext?, opts?): Subscription;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:53
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:53
 
 #### Parameters
 

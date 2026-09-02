@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -15,7 +15,7 @@ function createTransportListener(
    options?): () => void;
 ```
 
-Defined in: src/newer/core/TransportCore.ts:282
+Defined in: uniform.ts/src/newer/core/TransportCore.ts:282
 
 Create listener setup for any transport type
 Returns cleanup function

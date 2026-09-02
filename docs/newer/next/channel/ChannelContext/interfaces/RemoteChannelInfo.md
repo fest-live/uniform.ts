@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: RemoteChannelInfo
 
-Defined in: src/newer/next/channel/ChannelContext.ts:126
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:126
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/channel/ChannelContext.ts:126
 channel: string;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:127
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:127
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: src/newer/next/channel/ChannelContext.ts:127
 context: ChannelContext;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:128
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:128
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/newer/next/channel/ChannelContext.ts:128
 optional messageChannel?: MessageChannel;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:129
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:129
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: src/newer/next/channel/ChannelContext.ts:129
 remote: Promise<RemoteChannelHelper>;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:130
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:130
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: src/newer/next/channel/ChannelContext.ts:130
 optional transport?: Worker | MessagePort | BroadcastChannel | WebSocket;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:131
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:131
 
 ***
 
@@ -66,4 +66,4 @@ Defined in: src/newer/next/channel/ChannelContext.ts:131
 optional transportType?: DynamicTransportType;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:132
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:132

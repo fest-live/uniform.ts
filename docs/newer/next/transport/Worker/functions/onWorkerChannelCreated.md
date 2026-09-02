@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function onWorkerChannelCreated(handler): Subscription;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:470
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:470
 
 Subscribe to channel creation in the global worker context
 

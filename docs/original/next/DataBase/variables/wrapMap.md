@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,4 +10,4 @@
 const wrapMap: WeakMap<Function, WReflectDescriptor<any>>;
 ```
 
-Defined in: src/original/next/DataBase.ts:96
+Defined in: uniform.ts/src/original/next/DataBase.ts:96

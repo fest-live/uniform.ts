@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: ProxyConfig
 
-Defined in: src/newer/next/proxy/Proxy.ts:45
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:45
 
 Proxy configuration
 
@@ -18,7 +18,7 @@ Proxy configuration
 optional basePath?: string[];
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:49
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:49
 
 Base path for property access
 
@@ -30,7 +30,7 @@ Base path for property access
 optional cache?: boolean;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:53
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:53
 
 Cache created proxies
 
@@ -42,7 +42,7 @@ Cache created proxies
 channel: string;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:47
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:47
 
 Target channel for requests
 
@@ -54,7 +54,7 @@ Target channel for requests
 optional invoker?: ProxyInvoker;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:51
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:51
 
 Custom invoker function
 
@@ -66,6 +66,6 @@ Custom invoker function
 optional timeout?: number;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:55
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:55
 
 Timeout for requests (ms)

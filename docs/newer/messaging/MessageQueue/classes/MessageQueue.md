@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: MessageQueue
 
-Defined in: src/newer/messaging/MessageQueue.ts:46
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:46
 
 ## Constructors
 
@@ -16,7 +16,7 @@ Defined in: src/newer/messaging/MessageQueue.ts:46
 new MessageQueue(options?): MessageQueue;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:51
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:51
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: src/newer/messaging/MessageQueue.ts:51
 clearAll(): Promise<void>;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:249
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:249
 
 Clear all messages
 
@@ -52,7 +52,7 @@ Clear all messages
 clearExpiredMessages(): Promise<number>;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:223
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:223
 
 Clear all expired messages
 
@@ -68,7 +68,7 @@ Clear all expired messages
 getQueuedMessages<T>(destination?): Promise<QueuedMessage<T>[]>;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:163
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:163
 
 Get all queued messages
 
@@ -101,7 +101,7 @@ getStats(): Promise<{
 }>;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:266
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:266
 
 Get queue statistics
 
@@ -125,7 +125,7 @@ queueMessage<T>(
 options?): Promise<string>;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:126
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:126
 
 Queue a message for later processing
 
@@ -161,7 +161,7 @@ Queue a message for later processing
 removeMessage(messageId): Promise<void>;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:191
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:191
 
 Remove a message from the queue
 
@@ -183,7 +183,7 @@ Remove a message from the queue
 updateMessageRetry(messageId, retryCount): Promise<void>;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:207
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:207
 
 Update message retry count
 
@@ -209,7 +209,7 @@ Update message retry count
 static isIndexedDBAvailable(): boolean;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:406
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:406
 
 Check if IndexedDB is available
 

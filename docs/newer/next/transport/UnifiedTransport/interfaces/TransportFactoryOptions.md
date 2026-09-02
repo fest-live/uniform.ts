@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: TransportFactoryOptions
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:179
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:179
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:179
 optional atomics?: object;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:232
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:232
 
 #### config?
 
@@ -44,7 +44,7 @@ sendBuffer: SharedArrayBuffer;
 optional broadcast?: object;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:201
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:201
 
 #### name?
 
@@ -60,7 +60,7 @@ optional name?: string;
 optional chrome?: object;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:212
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:212
 
 #### mode
 
@@ -94,7 +94,7 @@ optional tabId?: number;
 optional port?: object;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:206
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:206
 
 #### config?
 
@@ -116,7 +116,7 @@ optional port?: MessagePort;
 optional rtc?: object;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:239
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:239
 
 #### config?
 
@@ -138,7 +138,7 @@ mode: "peer" | "manager";
 optional serviceWorker?: object;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:226
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:226
 
 #### config?
 
@@ -160,7 +160,7 @@ mode: "host" | "client";
 optional sharedWorker?: object;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:188
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:188
 
 #### options?
 
@@ -182,7 +182,7 @@ optional scriptUrl?: string | URL;
 optional socketio?: object;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:220
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:220
 
 #### options?
 
@@ -204,7 +204,7 @@ socket: SocketIOLike;
 optional websocket?: object;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:194
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:194
 
 #### protocols?
 
@@ -232,7 +232,7 @@ url: string;
 optional worker?: object;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:181
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:181
 
 #### existing?
 

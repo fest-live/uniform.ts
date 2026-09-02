@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: RequestProxyHandlerV2
 
-Defined in: src/original/next/RequestProxy.ts:10
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:10
 
 ## Constructors
 
@@ -16,7 +16,7 @@ Defined in: src/original/next/RequestProxy.ts:10
 new RequestProxyHandlerV2(hostChannelInstance?, options?): RequestProxyHandlerV2;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:11
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:11
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: src/original/next/RequestProxy.ts:11
 hostChannelInstance: ChannelHandler | null = SELF_CHANNEL.instance;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:11
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:11
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: src/original/next/RequestProxy.ts:11
 options: any = {};
 ```
 
-Defined in: src/original/next/RequestProxy.ts:11
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:11
 
 ## Methods
 
@@ -60,7 +60,7 @@ Defined in: src/original/next/RequestProxy.ts:11
 dispatch(action, args): any;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:15
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:15
 
 #### Parameters
 

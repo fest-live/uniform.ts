@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: ChannelMessage\<T\>
 
-Defined in: src/newer/next/types/Interface.ts:125
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:125
 
 Channel message envelope
 
@@ -33,7 +33,7 @@ Channel message envelope
 channel: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:127
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:127
 
 ***
 
@@ -43,7 +43,7 @@ Defined in: src/newer/next/types/Interface.ts:127
 id: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:126
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:126
 
 ***
 
@@ -53,7 +53,7 @@ Defined in: src/newer/next/types/Interface.ts:126
 optional payload?: T;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:130
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:130
 
 ***
 
@@ -63,7 +63,7 @@ Defined in: src/newer/next/types/Interface.ts:130
 optional reqId?: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:131
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:131
 
 ***
 
@@ -73,7 +73,7 @@ Defined in: src/newer/next/types/Interface.ts:131
 sender: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:128
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:128
 
 ***
 
@@ -83,7 +83,7 @@ Defined in: src/newer/next/types/Interface.ts:128
 optional timestamp?: number;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:132
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:132
 
 ***
 
@@ -93,7 +93,7 @@ Defined in: src/newer/next/types/Interface.ts:132
 optional transferable?: Transferable[];
 ```
 
-Defined in: src/newer/next/types/Interface.ts:133
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:133
 
 ***
 
@@ -103,4 +103,4 @@ Defined in: src/newer/next/types/Interface.ts:133
 type: "request" | "response" | "event" | "signal" | "exchange";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:129
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:129

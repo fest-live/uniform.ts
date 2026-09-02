@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -13,7 +13,7 @@ function createSocketObservable(
    options?): SocketIOObservable;
 ```
 
-Defined in: src/newer/next/observable/SocketIOObservable.ts:246
+Defined in: uniform.ts/src/newer/next/observable/SocketIOObservable.ts:246
 
 ## Parameters
 

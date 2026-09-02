@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: WReflectDescriptor\<T\>
 
-Defined in: src/original/next/Interface.ts:46
+Defined in: uniform.ts/src/original/next/Interface.ts:46
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: src/original/next/Interface.ts:46
 argumentCount: number;
 ```
 
-Defined in: src/original/next/Interface.ts:54
+Defined in: uniform.ts/src/original/next/Interface.ts:54
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: src/original/next/Interface.ts:54
 channel: string;
 ```
 
-Defined in: src/original/next/Interface.ts:48
+Defined in: uniform.ts/src/original/next/Interface.ts:48
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: src/original/next/Interface.ts:48
 configurable: boolean;
 ```
 
-Defined in: src/original/next/Interface.ts:53
+Defined in: uniform.ts/src/original/next/Interface.ts:53
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: src/original/next/Interface.ts:53
 enumerable: boolean;
 ```
 
-Defined in: src/original/next/Interface.ts:52
+Defined in: uniform.ts/src/original/next/Interface.ts:52
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: src/original/next/Interface.ts:52
 owner: string;
 ```
 
-Defined in: src/original/next/Interface.ts:49
+Defined in: uniform.ts/src/original/next/Interface.ts:49
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: src/original/next/Interface.ts:49
 path: string[];
 ```
 
-Defined in: src/original/next/Interface.ts:47
+Defined in: uniform.ts/src/original/next/Interface.ts:47
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: src/original/next/Interface.ts:47
 primitive: boolean;
 ```
 
-Defined in: src/original/next/Interface.ts:50
+Defined in: uniform.ts/src/original/next/Interface.ts:50
 
 ***
 
@@ -92,4 +92,4 @@ Defined in: src/original/next/Interface.ts:50
 writable: boolean;
 ```
 
-Defined in: src/original/next/Interface.ts:51
+Defined in: uniform.ts/src/original/next/Interface.ts:51

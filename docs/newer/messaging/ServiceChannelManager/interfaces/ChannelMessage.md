@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: ChannelMessage\<T\>
 
-Defined in: src/newer/messaging/ServiceChannelManager.ts:26
+Defined in: uniform.ts/src/newer/messaging/ServiceChannelManager.ts:26
 
 Channel message format
 
@@ -24,7 +24,7 @@ Channel message format
 optional correlationId?: string;
 ```
 
-Defined in: src/newer/messaging/ServiceChannelManager.ts:32
+Defined in: uniform.ts/src/newer/messaging/ServiceChannelManager.ts:32
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: src/newer/messaging/ServiceChannelManager.ts:32
 data: T;
 ```
 
-Defined in: src/newer/messaging/ServiceChannelManager.ts:30
+Defined in: uniform.ts/src/newer/messaging/ServiceChannelManager.ts:30
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: src/newer/messaging/ServiceChannelManager.ts:30
 source: string;
 ```
 
-Defined in: src/newer/messaging/ServiceChannelManager.ts:28
+Defined in: uniform.ts/src/newer/messaging/ServiceChannelManager.ts:28
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: src/newer/messaging/ServiceChannelManager.ts:28
 target: string;
 ```
 
-Defined in: src/newer/messaging/ServiceChannelManager.ts:29
+Defined in: uniform.ts/src/newer/messaging/ServiceChannelManager.ts:29
 
 ***
 
@@ -64,7 +64,7 @@ Defined in: src/newer/messaging/ServiceChannelManager.ts:29
 timestamp: number;
 ```
 
-Defined in: src/newer/messaging/ServiceChannelManager.ts:31
+Defined in: uniform.ts/src/newer/messaging/ServiceChannelManager.ts:31
 
 ***
 
@@ -74,4 +74,4 @@ Defined in: src/newer/messaging/ServiceChannelManager.ts:31
 type: string;
 ```
 
-Defined in: src/newer/messaging/ServiceChannelManager.ts:27
+Defined in: uniform.ts/src/newer/messaging/ServiceChannelManager.ts:27

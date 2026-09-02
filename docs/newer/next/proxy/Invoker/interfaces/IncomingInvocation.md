@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: IncomingInvocation
 
-Defined in: src/newer/next/proxy/Invoker.ts:52
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:52
 
 Incoming invocation event
 
@@ -18,7 +18,7 @@ Incoming invocation event
 action: string;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:56
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:56
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:56
 args: any[];
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:58
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:58
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:58
 channel: string;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:54
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:54
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:54
 optional contextType?: ContextType;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:60
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:60
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:60
 id: string;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:53
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:53
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:53
 path: string[];
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:57
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:57
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:57
 sender: string;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:55
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:55
 
 ***
 
@@ -88,4 +88,4 @@ Defined in: src/newer/next/proxy/Invoker.ts:55
 timestamp: number;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:59
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:59

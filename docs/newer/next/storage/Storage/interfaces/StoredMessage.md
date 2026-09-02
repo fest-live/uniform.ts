@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: StoredMessage\<T\>
 
-Defined in: src/newer/next/storage/Storage.ts:23
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:23
 
 Stored message envelope
 
@@ -24,7 +24,7 @@ Stored message envelope
 channel: string;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:25
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:25
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: src/newer/next/storage/Storage.ts:25
 createdAt: number;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:32
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:32
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: src/newer/next/storage/Storage.ts:32
 expiresAt: number | null;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:34
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:34
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: src/newer/next/storage/Storage.ts:34
 id: string;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:24
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:24
 
 ***
 
@@ -64,7 +64,7 @@ Defined in: src/newer/next/storage/Storage.ts:24
 maxRetries: number;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:36
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:36
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: src/newer/next/storage/Storage.ts:36
 optional metadata?: Record<string, any>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:37
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:37
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: src/newer/next/storage/Storage.ts:37
 payload: T;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:29
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:29
 
 ***
 
@@ -94,7 +94,7 @@ Defined in: src/newer/next/storage/Storage.ts:29
 priority: number;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:31
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:31
 
 ***
 
@@ -104,7 +104,7 @@ Defined in: src/newer/next/storage/Storage.ts:31
 recipient: string;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:27
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:27
 
 ***
 
@@ -114,7 +114,7 @@ Defined in: src/newer/next/storage/Storage.ts:27
 retryCount: number;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:35
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:35
 
 ***
 
@@ -124,7 +124,7 @@ Defined in: src/newer/next/storage/Storage.ts:35
 sender: string;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:26
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:26
 
 ***
 
@@ -134,7 +134,7 @@ Defined in: src/newer/next/storage/Storage.ts:26
 status: MessageStatus;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:30
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:30
 
 ***
 
@@ -144,7 +144,7 @@ Defined in: src/newer/next/storage/Storage.ts:30
 type: "request" | "response" | "event" | "signal" | "exchange";
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:28
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:28
 
 ***
 
@@ -154,4 +154,4 @@ Defined in: src/newer/next/storage/Storage.ts:28
 updatedAt: number;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:33
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:33

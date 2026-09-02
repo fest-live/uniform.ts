@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: ChannelEndpoint
 
-Defined in: src/newer/next/channel/ChannelContext.ts:105
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:105
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/channel/ChannelContext.ts:105
 connection: ChannelConnection;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:111
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:111
 
 Channel connection
 
@@ -28,7 +28,7 @@ Channel connection
 optional deferredInit?: () => Promise<RemoteChannelHelper | null>;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:121
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:121
 
 Deferred initialization function
 
@@ -44,7 +44,7 @@ Deferred initialization function
 handler: ChannelHandler;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:109
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:109
 
 Channel handler instance
 
@@ -56,7 +56,7 @@ Channel handler instance
 name: string;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:107
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:107
 
 Channel name
 
@@ -68,7 +68,7 @@ Channel name
 ready: Promise<RemoteChannelHelper | null>;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:119
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:119
 
 Ready promise
 
@@ -80,7 +80,7 @@ Ready promise
 subscriptions: Subscription[];
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:113
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:113
 
 Subscriptions for cleanup
 
@@ -92,7 +92,7 @@ Subscriptions for cleanup
 optional transport?: TransportAdapter;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:115
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:115
 
 Associated transport if any
 
@@ -104,7 +104,7 @@ Associated transport if any
 optional transportType?: DynamicTransportType;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:117
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:117
 
 Transport type
 
@@ -116,6 +116,6 @@ Transport type
 optional unified?: UnifiedChannel;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:123
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:123
 
 Backing unified channel engine (vNext core)

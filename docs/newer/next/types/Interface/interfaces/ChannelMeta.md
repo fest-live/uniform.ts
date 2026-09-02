@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: ChannelMeta
 
-Defined in: src/newer/next/types/Interface.ts:140
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:140
 
 Channel metadata
 
@@ -18,7 +18,7 @@ Channel metadata
 optional connectedChannels?: Set<string>;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:148
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:148
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: src/newer/next/types/Interface.ts:148
 optional id?: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:141
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:141
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: src/newer/next/types/Interface.ts:141
 optional isHost?: boolean;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:144
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:144
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: src/newer/next/types/Interface.ts:144
 name: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:142
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:142
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: src/newer/next/types/Interface.ts:142
 optional options?: Record<string, any>;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:147
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:147
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: src/newer/next/types/Interface.ts:147
 optional state?: ChannelState;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:143
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:143
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: src/newer/next/types/Interface.ts:143
 optional target?: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:146
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:146
 
 ***
 
@@ -88,4 +88,4 @@ Defined in: src/newer/next/types/Interface.ts:146
 optional transport?: TransportType;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:145
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:145

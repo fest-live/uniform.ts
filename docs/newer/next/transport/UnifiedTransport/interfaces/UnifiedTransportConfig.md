@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: UnifiedTransportConfig
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:44
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:44
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:44
 optional autoConnect?: boolean;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:48
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:48
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:48
 channelName: string;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:45
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:45
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:45
 optional metadata?: Record<string, any>;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:49
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:49
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:49
 optional timeout?: number;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:47
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:47
 
 ***
 
@@ -56,4 +56,4 @@ Defined in: src/newer/next/transport/UnifiedTransport.ts:47
 optional type?: TransportType;
 ```
 
-Defined in: src/newer/next/transport/UnifiedTransport.ts:46
+Defined in: uniform.ts/src/newer/next/transport/UnifiedTransport.ts:46

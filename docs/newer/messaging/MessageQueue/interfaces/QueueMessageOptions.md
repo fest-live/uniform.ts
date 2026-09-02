@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: QueueMessageOptions
 
-Defined in: src/newer/messaging/MessageQueue.ts:34
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:34
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/messaging/MessageQueue.ts:34
 optional destination?: string;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:38
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:38
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: src/newer/messaging/MessageQueue.ts:38
 optional expiresAt?: number;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:37
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:37
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/newer/messaging/MessageQueue.ts:37
 optional maxRetries?: number;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:36
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:36
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: src/newer/messaging/MessageQueue.ts:36
 optional metadata?: Record<string, unknown>;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:39
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:39
 
 ***
 
@@ -56,4 +56,4 @@ Defined in: src/newer/messaging/MessageQueue.ts:39
 optional priority?: MessagePriority;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:35
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:35

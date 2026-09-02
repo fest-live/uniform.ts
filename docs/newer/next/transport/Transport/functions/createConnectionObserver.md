@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function createConnectionObserver(transports): object;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:768
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:768
 
 Create a connection observer that aggregates incoming connections
 from multiple transports

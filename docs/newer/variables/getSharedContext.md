@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 const getSharedContext: (name, options) => ChannelContext = getOrCreateContext;
 ```
 
-Defined in: src/newer/index.ts:477
+Defined in: uniform.ts/src/newer/index.ts:477
 
 Get or create a shared context by name
 

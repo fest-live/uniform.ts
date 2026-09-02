@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 const SharedWorkerObservableFactory: object;
 ```
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:371
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:371
 
 ## Type Declaration
 

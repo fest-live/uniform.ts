@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: Subscription
 
-Defined in: src/newer/next/types/Interface.ts:98
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:98
 
 Subscription handle
 
@@ -18,7 +18,7 @@ Subscription handle
 readonly closed: boolean;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:100
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:100
 
 ## Methods
 
@@ -28,7 +28,7 @@ Defined in: src/newer/next/types/Interface.ts:100
 unsubscribe(): void;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:99
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:99
 
 #### Returns
 

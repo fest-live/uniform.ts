@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: PortTransport
 
-Defined in: src/newer/next/transport/PortTransport.ts:43
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:43
 
 ## Constructors
 
@@ -19,7 +19,7 @@ new PortTransport(
    _config?): PortTransport;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:53
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:53
 
 #### Parameters
 
@@ -49,7 +49,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:53
 get channelName(): string;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:183
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:183
 
 ##### Returns
 
@@ -65,7 +65,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:183
 get isListening(): boolean;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:181
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:181
 
 ##### Returns
 
@@ -81,7 +81,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:181
 get port(): MessagePort;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:179
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:179
 
 ##### Returns
 
@@ -97,7 +97,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:179
 get portId(): string;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:180
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:180
 
 ##### Returns
 
@@ -113,7 +113,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:180
 get state(): ChannelSubject<"error" | "closed" | "ready">;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:182
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:182
 
 ##### Returns
 
@@ -127,7 +127,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:182
 close(): void;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:167
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:167
 
 #### Returns
 
@@ -141,7 +141,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:167
 request(msg): Promise<any>;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:128
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:128
 
 #### Parameters
 
@@ -161,7 +161,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:128
 send(msg, transfer?): void;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:123
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:123
 
 #### Parameters
 
@@ -185,7 +185,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:123
 start(): void;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:112
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:112
 
 #### Returns
 
@@ -199,7 +199,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:112
 subscribe(observer): Subscription;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:146
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:146
 
 #### Parameters
 

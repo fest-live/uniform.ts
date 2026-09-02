@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ChromePortObservable
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:177
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:177
 
 ## Extends
 
@@ -20,7 +20,7 @@ Defined in: src/newer/next/observable/ChromeObservable.ts:177
 new ChromePortObservable(_portName, _tabId?): ChromePortObservable;
 ```
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:181
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:181
 
 #### Parameters
 
@@ -52,7 +52,7 @@ BaseChromeObservable<ChromeMessage>.constructor
 get isConnected(): boolean;
 ```
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:209
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:209
 
 ##### Returns
 
@@ -68,7 +68,7 @@ Defined in: src/newer/next/observable/ChromeObservable.ts:209
 get portInfo(): PortInfo | null;
 ```
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:208
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:208
 
 ##### Returns
 
@@ -82,7 +82,7 @@ Defined in: src/newer/next/observable/ChromeObservable.ts:208
 close(): void;
 ```
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:66
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:66
 
 #### Returns
 
@@ -102,7 +102,7 @@ BaseChromeObservable.close
 connect(): void;
 ```
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:183
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:183
 
 #### Returns
 
@@ -116,7 +116,7 @@ Defined in: src/newer/next/observable/ChromeObservable.ts:183
 send(msg): void;
 ```
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:193
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:193
 
 #### Parameters
 
@@ -142,7 +142,7 @@ BaseChromeObservable.send
 subscribe(observer): Subscription;
 ```
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:45
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:45
 
 #### Parameters
 

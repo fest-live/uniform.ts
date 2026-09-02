@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ChromeRuntimeObservable
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:73
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:73
 
 ## Extends
 
@@ -20,7 +20,7 @@ Defined in: src/newer/next/observable/ChromeObservable.ts:73
 new ChromeRuntimeObservable(_handler?, _options?): ChromeRuntimeObservable;
 ```
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:76
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:76
 
 #### Parameters
 
@@ -50,7 +50,7 @@ BaseChromeObservable<ChromeMessage>.constructor
 close(): void;
 ```
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:66
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:66
 
 #### Returns
 
@@ -70,7 +70,7 @@ BaseChromeObservable.close
 request(msg): Promise<any>;
 ```
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:87
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:87
 
 #### Parameters
 
@@ -90,7 +90,7 @@ Defined in: src/newer/next/observable/ChromeObservable.ts:87
 send(msg): void;
 ```
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:81
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:81
 
 #### Parameters
 
@@ -116,7 +116,7 @@ BaseChromeObservable.send
 subscribe(observer): Subscription;
 ```
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:45
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:45
 
 #### Parameters
 

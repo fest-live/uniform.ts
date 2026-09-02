@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function createObjectHandler<T>(target, reflect?): (action, path, args) => Promise<any>;
 ```
 
-Defined in: src/newer/core/RequestHandler.ts:375
+Defined in: uniform.ts/src/newer/core/RequestHandler.ts:375
 
 Create a simple expose handler for an object
 

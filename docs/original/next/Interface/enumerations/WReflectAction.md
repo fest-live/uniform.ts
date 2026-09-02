@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Enumeration: WReflectAction
 
-Defined in: src/original/next/Interface.ts:25
+Defined in: uniform.ts/src/original/next/Interface.ts:25
 
 ## Enumeration Members
 
@@ -16,7 +16,7 @@ Defined in: src/original/next/Interface.ts:25
 APPLY: "apply";
 ```
 
-Defined in: src/original/next/Interface.ts:29
+Defined in: uniform.ts/src/original/next/Interface.ts:29
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: src/original/next/Interface.ts:29
 CALL: "call";
 ```
 
-Defined in: src/original/next/Interface.ts:28
+Defined in: uniform.ts/src/original/next/Interface.ts:28
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/original/next/Interface.ts:28
 CONSTRUCT: "construct";
 ```
 
-Defined in: src/original/next/Interface.ts:30
+Defined in: uniform.ts/src/original/next/Interface.ts:30
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: src/original/next/Interface.ts:30
 DELETE: "delete";
 ```
 
-Defined in: src/original/next/Interface.ts:31
+Defined in: uniform.ts/src/original/next/Interface.ts:31
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: src/original/next/Interface.ts:31
 DELETE_PROPERTY: "deleteProperty";
 ```
 
-Defined in: src/original/next/Interface.ts:32
+Defined in: uniform.ts/src/original/next/Interface.ts:32
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: src/original/next/Interface.ts:32
 DISPOSE: "dispose";
 ```
 
-Defined in: src/original/next/Interface.ts:43
+Defined in: uniform.ts/src/original/next/Interface.ts:43
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: src/original/next/Interface.ts:43
 GET: "get";
 ```
 
-Defined in: src/original/next/Interface.ts:26
+Defined in: uniform.ts/src/original/next/Interface.ts:26
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: src/original/next/Interface.ts:26
 GET_OWN_PROPERTY_DESCRIPTOR: "getOwnPropertyDescriptor";
 ```
 
-Defined in: src/original/next/Interface.ts:35
+Defined in: uniform.ts/src/original/next/Interface.ts:35
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: src/original/next/Interface.ts:35
 GET_PROPERTY_DESCRIPTOR: "getPropertyDescriptor";
 ```
 
-Defined in: src/original/next/Interface.ts:36
+Defined in: uniform.ts/src/original/next/Interface.ts:36
 
 ***
 
@@ -106,7 +106,7 @@ Defined in: src/original/next/Interface.ts:36
 GET_PROTOTYPE_OF: "getPrototypeOf";
 ```
 
-Defined in: src/original/next/Interface.ts:37
+Defined in: uniform.ts/src/original/next/Interface.ts:37
 
 ***
 
@@ -116,7 +116,7 @@ Defined in: src/original/next/Interface.ts:37
 HAS: "has";
 ```
 
-Defined in: src/original/next/Interface.ts:33
+Defined in: uniform.ts/src/original/next/Interface.ts:33
 
 ***
 
@@ -126,7 +126,7 @@ Defined in: src/original/next/Interface.ts:33
 IMPORT: "import";
 ```
 
-Defined in: src/original/next/Interface.ts:42
+Defined in: uniform.ts/src/original/next/Interface.ts:42
 
 ***
 
@@ -136,7 +136,7 @@ Defined in: src/original/next/Interface.ts:42
 IS_EXTENSIBLE: "isExtensible";
 ```
 
-Defined in: src/original/next/Interface.ts:39
+Defined in: uniform.ts/src/original/next/Interface.ts:39
 
 ***
 
@@ -146,7 +146,7 @@ Defined in: src/original/next/Interface.ts:39
 OWN_KEYS: "ownKeys";
 ```
 
-Defined in: src/original/next/Interface.ts:34
+Defined in: uniform.ts/src/original/next/Interface.ts:34
 
 ***
 
@@ -156,7 +156,7 @@ Defined in: src/original/next/Interface.ts:34
 PREVENT_EXTENSIONS: "preventExtensions";
 ```
 
-Defined in: src/original/next/Interface.ts:40
+Defined in: uniform.ts/src/original/next/Interface.ts:40
 
 ***
 
@@ -166,7 +166,7 @@ Defined in: src/original/next/Interface.ts:40
 SET: "set";
 ```
 
-Defined in: src/original/next/Interface.ts:27
+Defined in: uniform.ts/src/original/next/Interface.ts:27
 
 ***
 
@@ -176,7 +176,7 @@ Defined in: src/original/next/Interface.ts:27
 SET_PROTOTYPE_OF: "setPrototypeOf";
 ```
 
-Defined in: src/original/next/Interface.ts:38
+Defined in: uniform.ts/src/original/next/Interface.ts:38
 
 ***
 
@@ -186,4 +186,4 @@ Defined in: src/original/next/Interface.ts:38
 TRANSFER: "transfer";
 ```
 
-Defined in: src/original/next/Interface.ts:41
+Defined in: uniform.ts/src/original/next/Interface.ts:41

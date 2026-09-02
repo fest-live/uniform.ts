@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: RTCSignaling
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:44
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:44
 
 ## Methods
 
@@ -18,7 +18,7 @@ onMessage(handler):
   | (() => void);
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:48
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:48
 
 Subscribe to signaling messages
 
@@ -41,7 +41,7 @@ Subscribe to signaling messages
 send(peerId, message): void | Promise<void>;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:46
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:46
 
 Send signaling message to peer
 

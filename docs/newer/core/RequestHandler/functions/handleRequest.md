@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -19,7 +19,7 @@ function handleRequest(
 | null>;
 ```
 
-Defined in: src/newer/core/RequestHandler.ts:342
+Defined in: uniform.ts/src/newer/core/RequestHandler.ts:342
 
 Handle request and return response (unified handler)
 

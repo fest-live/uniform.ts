@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -12,7 +12,7 @@ function initMainChannel(name?):
   | null;
 ```
 
-Defined in: src/newer/next/utils/Utils.ts:98
+Defined in: uniform.ts/src/newer/next/utils/Utils.ts:98
 
 Initialize the main thread channel handler
 

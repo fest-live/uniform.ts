@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: DynamicTransportConfig
 
-Defined in: src/newer/next/channel/ChannelContext.ts:77
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:77
 
 Configuration for dynamic transport creation
 
@@ -18,7 +18,7 @@ Configuration for dynamic transport creation
 optional broadcast?: string | BroadcastChannel;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:85
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:85
 
 BroadcastChannel name or instance
 
@@ -30,7 +30,7 @@ BroadcastChannel name or instance
 optional options?: ConnectionOptions;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:89
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:89
 
 Additional options
 
@@ -42,7 +42,7 @@ Additional options
 optional port?: MessagePort;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:83
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:83
 
 MessagePort instance
 
@@ -54,7 +54,7 @@ MessagePort instance
 optional socket?: string | WebSocket;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:87
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:87
 
 WebSocket URL or instance
 
@@ -66,7 +66,7 @@ WebSocket URL or instance
 type: DynamicTransportType;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:79
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:79
 
 Transport type
 
@@ -78,6 +78,6 @@ Transport type
 optional worker?: string | Worker | SharedWorker | URL;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:81
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:81
 
 Worker URL or instance

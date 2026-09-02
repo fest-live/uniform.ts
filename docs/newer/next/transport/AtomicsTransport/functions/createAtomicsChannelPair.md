@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function createAtomicsChannelPair(channelName, config?): AtomicsChannelPair;
 ```
 
-Defined in: src/newer/next/transport/AtomicsTransport.ts:421
+Defined in: uniform.ts/src/newer/next/transport/AtomicsTransport.ts:421
 
 Create a bidirectional atomics channel for main<->worker communication
 

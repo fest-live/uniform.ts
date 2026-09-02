@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: ChannelMapping
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:83
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:83
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:83
 channel: string;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:85
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:85
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:85
 destination: string;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:84
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:84

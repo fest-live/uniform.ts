@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: ConnectionEvent
 
-Defined in: src/newer/next/channel/ChannelContext.ts:139
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:139
 
 ## Extends
 
@@ -23,7 +23,7 @@ Defined in: src/newer/next/channel/ChannelContext.ts:139
 connection: ContextConnectionInfo;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:141
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:141
 
 ***
 
@@ -33,7 +33,7 @@ Defined in: src/newer/next/channel/ChannelContext.ts:141
 optional payload?: any;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:143
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:143
 
 #### Overrides
 
@@ -49,7 +49,7 @@ Omit.payload
 timestamp: number;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:142
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:142
 
 #### Overrides
 
@@ -65,7 +65,7 @@ Omit.timestamp
 type: "connected" | "notified" | "disconnected";
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:140
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:140
 
 #### Overrides
 

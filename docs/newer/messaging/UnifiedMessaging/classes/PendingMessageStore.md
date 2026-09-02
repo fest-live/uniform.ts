@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: PendingMessageStore
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:116
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:116
 
 ## Constructors
 
@@ -16,7 +16,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:116
 new PendingMessageStore(options?): PendingMessageStore;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:121
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:121
 
 #### Parameters
 
@@ -46,7 +46,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:121
 clear(): void;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:207
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:207
 
 #### Returns
 
@@ -60,7 +60,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:207
 drain(destination): UnifiedMessage<unknown>[];
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:173
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:173
 
 #### Parameters
 
@@ -80,7 +80,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:173
 enqueue(destination, message): void;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:148
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:148
 
 #### Parameters
 
@@ -104,7 +104,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:148
 has(destination): boolean;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:196
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:196
 
 #### Parameters
 

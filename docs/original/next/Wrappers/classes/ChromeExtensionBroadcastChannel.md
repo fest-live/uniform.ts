@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ChromeExtensionBroadcastChannel
 
-Defined in: src/original/next/Wrappers.ts:46
+Defined in: uniform.ts/src/original/next/Wrappers.ts:46
 
 Chrome Extension Broadcast-like Channel
 Acts like a BroadcastChannel but uses chrome.runtime messaging
@@ -19,7 +19,7 @@ Acts like a BroadcastChannel but uses chrome.runtime messaging
 new ChromeExtensionBroadcastChannel(channelName): ChromeExtensionBroadcastChannel;
 ```
 
-Defined in: src/original/next/Wrappers.ts:49
+Defined in: uniform.ts/src/original/next/Wrappers.ts:49
 
 #### Parameters
 
@@ -39,7 +39,7 @@ Defined in: src/original/next/Wrappers.ts:49
 addEventListener(type, listener): void;
 ```
 
-Defined in: src/original/next/Wrappers.ts:53
+Defined in: uniform.ts/src/original/next/Wrappers.ts:53
 
 #### Parameters
 
@@ -63,7 +63,7 @@ Defined in: src/original/next/Wrappers.ts:53
 close(): void;
 ```
 
-Defined in: src/original/next/Wrappers.ts:81
+Defined in: uniform.ts/src/original/next/Wrappers.ts:81
 
 #### Returns
 
@@ -77,7 +77,7 @@ Defined in: src/original/next/Wrappers.ts:81
 postMessage(message): void;
 ```
 
-Defined in: src/original/next/Wrappers.ts:70
+Defined in: uniform.ts/src/original/next/Wrappers.ts:70
 
 #### Parameters
 
@@ -97,7 +97,7 @@ Defined in: src/original/next/Wrappers.ts:70
 removeEventListener(type, listener): void;
 ```
 
-Defined in: src/original/next/Wrappers.ts:64
+Defined in: uniform.ts/src/original/next/Wrappers.ts:64
 
 #### Parameters
 

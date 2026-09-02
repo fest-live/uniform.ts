@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,4 +10,4 @@
 const $descriptor: typeof $descriptor;
 ```
 
-Defined in: src/newer/next/storage/DataBase.ts:133
+Defined in: uniform.ts/src/newer/next/storage/DataBase.ts:133

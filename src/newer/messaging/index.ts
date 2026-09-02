@@ -55,6 +55,25 @@ export type {
     CreateEnvelopeInput
 } from './Protocol';
 
+export {
+    MOUNTED_FS_EVENT,
+    MOUNTED_FS_HTTP_PATH,
+    MOUNTED_FS_WS_PATH,
+    createMountedFsId,
+    isMountedFsRequest,
+    isMountedFsResponse,
+    parseMountedFsMessage
+} from './MountedFs';
+
+export type {
+    MountedFsOp,
+    MountedFsKind,
+    MountedFsEntry,
+    MountedFsFileBody,
+    MountedFsRequest,
+    MountedFsResponse
+} from './MountedFs';
+
 // ServiceChannelManager - BroadcastChannel-based service channels
 export {
     ServiceChannelManager,

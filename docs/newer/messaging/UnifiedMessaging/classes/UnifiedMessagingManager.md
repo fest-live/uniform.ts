@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: UnifiedMessagingManager
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:216
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:216
 
 ## Constructors
 
@@ -16,7 +16,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:216
 new UnifiedMessagingManager(config?): UnifiedMessagingManager;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:232
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:232
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:232
 destroy(): void;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:720
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:720
 
 Clean up resources
 
@@ -52,7 +52,7 @@ Clean up resources
 enqueuePendingMessage(destination, message): void;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:607
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:607
 
 Explicitly enqueue a pending message
 
@@ -78,7 +78,7 @@ Explicitly enqueue a pending message
 getBroadcastChannel(channelName): BroadcastChannel;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:435
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:435
 
 Create or get a broadcast channel
 
@@ -100,7 +100,7 @@ Create or get a broadcast channel
 getExecutionContext(): string;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:713
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:713
 
 Get execution context
 
@@ -118,7 +118,7 @@ getWorkerChannel(viewHash, workerName):
   | null;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:424
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:424
 
 Get a worker channel for a specific view and worker
 
@@ -145,7 +145,7 @@ Get a worker channel for a specific view and worker
 hasPendingMessages(destination): boolean;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:600
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:600
 
 Check if there are pending messages for a destination
 
@@ -167,7 +167,7 @@ Check if there are pending messages for a destination
 initializeComponent(componentId): UnifiedMessage<unknown>[];
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:586
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:586
 
 Initialize a component and return any pending messages
 
@@ -189,7 +189,7 @@ Initialize a component and return any pending messages
 initializeViewChannels(viewHash): Promise<void>;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:388
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:388
 
 Initialize channels when a view becomes active
 
@@ -211,7 +211,7 @@ Initialize channels when a view becomes active
 processMessage(message): Promise<void>;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:297
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:297
 
 Process a message through registered handlers
 
@@ -234,7 +234,7 @@ Process a message through registered handlers
 processQueuedMessages(destination?): Promise<void>;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:531
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:531
 
 Process queued messages for a destination
 
@@ -256,7 +256,7 @@ Process queued messages for a destination
 processThroughPipeline(pipelineName, message): Promise<UnifiedMessage<unknown>>;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:485
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:485
 
 Process a message through a pipeline
 
@@ -282,7 +282,7 @@ Process a message through a pipeline
 registerComponent(componentId, destination): void;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:573
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:573
 
 Register a component with a destination
 
@@ -308,7 +308,7 @@ Register a component with a destination
 registerHandler(destination, handler): void;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:248
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:248
 
 Register a message handler for a specific destination
 
@@ -334,7 +334,7 @@ Register a message handler for a specific destination
 registerPipeline(config): void;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:478
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:478
 
 Register a message processing pipeline
 
@@ -356,7 +356,7 @@ Register a message processing pipeline
 registerViewChannels(viewHash, configs): void;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:358
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:358
 
 Register worker channels for a specific view
 
@@ -382,7 +382,7 @@ Register worker channels for a specific view
 sendMessage(message): Promise<boolean>;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:271
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:271
 
 Send a message to a destination
 
@@ -404,7 +404,7 @@ Send a message to a destination
 setChannelMappings(mappings): void;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:620
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:620
 
 Set channel mappings
 
@@ -426,7 +426,7 @@ Set channel mappings
 unregisterHandler(destination, handler): void;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:258
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:258
 
 Unregister a message handler
 

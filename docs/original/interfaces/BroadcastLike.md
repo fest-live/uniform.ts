@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: BroadcastLike
 
-Defined in: src/original/index.ts:14
+Defined in: uniform.ts/src/original/index.ts:14
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/original/index.ts:14
 addEventListener: (type, listener) => void;
 ```
 
-Defined in: src/original/index.ts:15
+Defined in: uniform.ts/src/original/index.ts:15
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: src/original/index.ts:15
 optional close?: () => void;
 ```
 
-Defined in: src/original/index.ts:18
+Defined in: uniform.ts/src/original/index.ts:18
 
 #### Returns
 
@@ -54,7 +54,7 @@ Defined in: src/original/index.ts:18
 postMessage: (message, transfer?) => void;
 ```
 
-Defined in: src/original/index.ts:17
+Defined in: uniform.ts/src/original/index.ts:17
 
 #### Parameters
 
@@ -78,7 +78,7 @@ Defined in: src/original/index.ts:17
 optional removeEventListener?: (type, listener) => void;
 ```
 
-Defined in: src/original/index.ts:16
+Defined in: uniform.ts/src/original/index.ts:16
 
 #### Parameters
 
@@ -102,7 +102,7 @@ Defined in: src/original/index.ts:16
 optional start?: () => void;
 ```
 
-Defined in: src/original/index.ts:19
+Defined in: uniform.ts/src/original/index.ts:19
 
 #### Returns
 

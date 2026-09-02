@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function createChromeTabsListener(tabId, onMessage): () => void;
 ```
 
-Defined in: src/newer/core/TransportCore.ts:460
+Defined in: uniform.ts/src/newer/core/TransportCore.ts:460
 
 ## Parameters
 

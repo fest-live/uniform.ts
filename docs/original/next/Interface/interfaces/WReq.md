@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: WReq\<T\>
 
-Defined in: src/original/next/Interface.ts:57
+Defined in: uniform.ts/src/original/next/Interface.ts:57
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: src/original/next/Interface.ts:57
 action: WReflectAction;
 ```
 
-Defined in: src/original/next/Interface.ts:61
+Defined in: uniform.ts/src/original/next/Interface.ts:61
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: src/original/next/Interface.ts:61
 args: any;
 ```
 
-Defined in: src/original/next/Interface.ts:63
+Defined in: uniform.ts/src/original/next/Interface.ts:63
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: src/original/next/Interface.ts:63
 channel: string;
 ```
 
-Defined in: src/original/next/Interface.ts:58
+Defined in: uniform.ts/src/original/next/Interface.ts:58
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: src/original/next/Interface.ts:58
 data: any;
 ```
 
-Defined in: src/original/next/Interface.ts:67
+Defined in: uniform.ts/src/original/next/Interface.ts:67
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: src/original/next/Interface.ts:67
 params: Record<string, T>;
 ```
 
-Defined in: src/original/next/Interface.ts:66
+Defined in: uniform.ts/src/original/next/Interface.ts:66
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: src/original/next/Interface.ts:66
 path: string[];
 ```
 
-Defined in: src/original/next/Interface.ts:60
+Defined in: uniform.ts/src/original/next/Interface.ts:60
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: src/original/next/Interface.ts:60
 reqId: string;
 ```
 
-Defined in: src/original/next/Interface.ts:62
+Defined in: uniform.ts/src/original/next/Interface.ts:62
 
 ***
 
@@ -92,4 +92,4 @@ Defined in: src/original/next/Interface.ts:62
 sender: string;
 ```
 
-Defined in: src/original/next/Interface.ts:59
+Defined in: uniform.ts/src/original/next/Interface.ts:59

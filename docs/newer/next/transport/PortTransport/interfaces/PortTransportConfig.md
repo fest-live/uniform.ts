@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: PortTransportConfig
 
-Defined in: src/newer/next/transport/PortTransport.ts:25
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:25
 
 ## Extended by
 
@@ -20,7 +20,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:25
 optional autoStart?: boolean;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:26
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:26
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:26
 optional keepAlive?: boolean;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:30
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:30
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:30
 optional keepAliveInterval?: number;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:31
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:31
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:31
 optional maxRetries?: number;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:29
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:29
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:29
 optional retryOnError?: boolean;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:28
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:28
 
 ***
 
@@ -70,4 +70,4 @@ Defined in: src/newer/next/transport/PortTransport.ts:28
 optional timeout?: number;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:27
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:27

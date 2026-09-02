@@ -1,8 +1,8 @@
-**@fest-lib/uniform v0.1.22**
+**@fest-lib/uniform v0.1.23**
 
 ***
 
-# @fest-lib/uniform v0.1.22
+# @fest-lib/uniform v0.1.23
 
 ## Modules
 
@@ -15,6 +15,7 @@
 - [newer/core/Useful](newer/core/Useful/README.md)
 - [newer/messaging](newer/messaging/README.md)
 - [newer/messaging/MessageQueue](newer/messaging/MessageQueue/README.md)
+- [newer/messaging/MountedFs](newer/messaging/MountedFs/README.md)
 - [newer/messaging/Protocol](newer/messaging/Protocol/README.md)
 - [newer/messaging/ServiceChannelManager](newer/messaging/ServiceChannelManager/README.md)
 - [newer/messaging/UnifiedMessaging](newer/messaging/UnifiedMessaging/README.md)

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function resetUnifiedMessaging(): void;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:762
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:762
 
 Reset the default instance (useful for testing)
 

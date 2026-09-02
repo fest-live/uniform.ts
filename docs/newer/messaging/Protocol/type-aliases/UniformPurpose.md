@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 type UniformPurpose = "invoke" | "mail" | "attach" | "deliver" | "defer";
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:7
+Defined in: uniform.ts/src/newer/messaging/Protocol.ts:7
 
 Unified protocol envelope for transport/invocation/messaging.
 Keeps a single canonical payload while remaining backward compatible

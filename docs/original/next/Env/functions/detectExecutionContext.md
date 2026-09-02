@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function detectExecutionContext(): ExecutionContext;
 ```
 
-Defined in: src/original/next/Env.ts:31
+Defined in: uniform.ts/src/original/next/Env.ts:31
 
 Detect the current runtime context.
 

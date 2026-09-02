@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function registerHandler(destination, handler): void;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:783
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:783
 
 Register a handler using the default manager
 

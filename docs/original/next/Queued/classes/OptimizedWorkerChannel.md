@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: OptimizedWorkerChannel
 
-Defined in: src/original/next/Queued.ts:246
+Defined in: uniform.ts/src/original/next/Queued.ts:246
 
 ## Constructors
 
@@ -19,7 +19,7 @@ new OptimizedWorkerChannel(
    onChannelReady?): OptimizedWorkerChannel;
 ```
 
-Defined in: src/original/next/Queued.ts:260
+Defined in: uniform.ts/src/original/next/Queued.ts:260
 
 #### Parameters
 
@@ -47,7 +47,7 @@ Defined in: src/original/next/Queued.ts:260
 close(): void;
 ```
 
-Defined in: src/original/next/Queued.ts:438
+Defined in: uniform.ts/src/original/next/Queued.ts:438
 
 Close the channel
 
@@ -63,7 +63,7 @@ Close the channel
 notify(type, payload): void;
 ```
 
-Defined in: src/original/next/Queued.ts:354
+Defined in: uniform.ts/src/original/next/Queued.ts:354
 
 Send a one-way message (fire and forget)
 
@@ -92,7 +92,7 @@ request(
 options?): Promise<any>;
 ```
 
-Defined in: src/original/next/Queued.ts:290
+Defined in: uniform.ts/src/original/next/Queued.ts:290
 
 Send a request and wait for response
 
@@ -122,7 +122,7 @@ Send a request and wait for response
 setChannel(channel): void;
 ```
 
-Defined in: src/original/next/Queued.ts:280
+Defined in: uniform.ts/src/original/next/Queued.ts:280
 
 Set the underlying channel when it becomes available
 
@@ -144,7 +144,7 @@ Set the underlying channel when it becomes available
 stream(type, data): AsyncGenerator<any>;
 ```
 
-Defined in: src/original/next/Queued.ts:372
+Defined in: uniform.ts/src/original/next/Queued.ts:372
 
 Stream data with backpressure handling
 

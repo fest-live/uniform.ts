@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function isObject(obj): obj is object;
 ```
 
-Defined in: src/newer/core/RequestHandler.ts:84
+Defined in: uniform.ts/src/newer/core/RequestHandler.ts:84
 
 ## Parameters
 

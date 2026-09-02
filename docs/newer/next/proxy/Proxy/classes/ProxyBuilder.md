@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ProxyBuilder\<T\>
 
-Defined in: src/newer/next/proxy/Proxy.ts:458
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:458
 
 ProxyBuilder - Fluent API for creating proxies
 
@@ -47,7 +47,7 @@ new ProxyBuilder<T>(): ProxyBuilder<T>;
 build(): RemoteProxy<T>;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:493
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:493
 
 Build the proxy
 
@@ -63,7 +63,7 @@ Build the proxy
 cache(enabled): this;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:487
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:487
 
 Enable/disable caching
 
@@ -85,7 +85,7 @@ Enable/disable caching
 channel(name): this;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:463
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:463
 
 Set target channel
 
@@ -107,7 +107,7 @@ Set target channel
 invoker(fn): this;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:475
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:475
 
 Set invoker function
 
@@ -129,7 +129,7 @@ Set invoker function
 path(basePath): this;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:469
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:469
 
 Set base path
 
@@ -151,7 +151,7 @@ Set base path
 timeout(ms): this;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:481
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:481
 
 Set timeout
 

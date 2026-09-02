@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: QueuedMessage\<T\>
 
-Defined in: src/newer/messaging/MessageQueue.ts:11
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:11
 
 Generic Message Queue Utility
 Provides persistent queuing for cross-context communications using IndexedDB
@@ -26,7 +26,7 @@ Part of fest/uniform - no app-specific dependencies
 data: T;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:14
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:14
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/newer/messaging/MessageQueue.ts:14
 optional destination?: string;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:20
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:20
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: src/newer/messaging/MessageQueue.ts:20
 optional expiresAt?: number;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:19
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:19
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: src/newer/messaging/MessageQueue.ts:19
 id: string;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:12
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:12
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: src/newer/messaging/MessageQueue.ts:12
 maxRetries: number;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:18
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:18
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: src/newer/messaging/MessageQueue.ts:18
 optional metadata?: Record<string, unknown>;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:21
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:21
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: src/newer/messaging/MessageQueue.ts:21
 priority: MessagePriority;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:16
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:16
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: src/newer/messaging/MessageQueue.ts:16
 retryCount: number;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:17
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:17
 
 ***
 
@@ -106,7 +106,7 @@ Defined in: src/newer/messaging/MessageQueue.ts:17
 timestamp: number;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:15
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:15
 
 ***
 
@@ -116,4 +116,4 @@ Defined in: src/newer/messaging/MessageQueue.ts:15
 type: string;
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:13
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:13

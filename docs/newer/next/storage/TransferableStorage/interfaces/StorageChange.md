@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: StorageChange\<T\>
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:50
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:50
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:50
 key: string;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:52
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:52
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:52
 optional previousRecord?: TransferableRecord<T>;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:54
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:54
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:54
 optional record?: TransferableRecord<T>;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:53
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:53
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:53
 timestamp: number;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:55
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:55
 
 ***
 
@@ -62,4 +62,4 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:55
 type: ChangeType;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:51
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:51

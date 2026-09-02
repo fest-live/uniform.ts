@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: RTCTransportConfig
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:29
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:29
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:29
 optional autoNegotiate?: boolean;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:37
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:37
 
 Auto-negotiate on connect
 
@@ -28,7 +28,7 @@ Auto-negotiate on connect
 optional binaryFormat?: "json" | "cbor" | "msgpack";
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:39
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:39
 
 Binary serialization format
 
@@ -40,7 +40,7 @@ Binary serialization format
 optional connectionTimeout?: number;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:41
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:41
 
 Connection timeout (ms)
 
@@ -52,7 +52,7 @@ Connection timeout (ms)
 optional dataChannelOptions?: RTCDataChannelInit;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:33
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:33
 
 Data channel options
 
@@ -64,7 +64,7 @@ Data channel options
 optional iceServers?: RTCIceServer[];
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:31
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:31
 
 ICE servers for STUN/TURN
 
@@ -76,6 +76,6 @@ ICE servers for STUN/TURN
 optional signaling?: RTCSignaling;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:35
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:35
 
 Signaling method

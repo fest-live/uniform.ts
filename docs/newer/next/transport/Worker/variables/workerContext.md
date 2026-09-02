@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,4 +10,4 @@
 const workerContext: WorkerContext;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:555
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:555

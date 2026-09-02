@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../README.md)
 
 ***
 
@@ -14,7 +14,7 @@ function connectToChannelAsModule(
 hostChannel?): Promise<any>;
 ```
 
-Defined in: src/original/index.ts:46
+Defined in: uniform.ts/src/original/index.ts:46
 
 Connect to a uniform channel and expose it as a proxied module (reflect-based).
 

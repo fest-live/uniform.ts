@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function onWorkerInvocation(handler): Subscription;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:526
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:526
 
 Subscribe to incoming invocations in the worker
 

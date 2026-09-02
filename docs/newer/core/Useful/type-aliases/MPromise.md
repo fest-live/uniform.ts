@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 type MPromise<T> = Promise<T> | T | null;
 ```
 
-Defined in: src/newer/core/Useful.ts:8
+Defined in: uniform.ts/src/newer/core/Useful.ts:8
 
 ## Type Parameters
 

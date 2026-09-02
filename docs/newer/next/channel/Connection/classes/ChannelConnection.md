@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ChannelConnection
 
-Defined in: src/newer/next/channel/Connection.ts:40
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:40
 
 ## Constructors
 
@@ -19,7 +19,7 @@ new ChannelConnection(
    options?): ChannelConnection;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:55
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:55
 
 #### Parameters
 
@@ -49,7 +49,7 @@ Defined in: src/newer/next/channel/Connection.ts:55
 get connectedPeers(): string[];
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:186
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:186
 
 ##### Returns
 
@@ -65,7 +65,7 @@ Defined in: src/newer/next/channel/Connection.ts:186
 get id(): string;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:180
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:180
 
 ##### Returns
 
@@ -81,7 +81,7 @@ Defined in: src/newer/next/channel/Connection.ts:180
 get meta(): ChannelMeta;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:187
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:187
 
 ##### Returns
 
@@ -97,7 +97,7 @@ Defined in: src/newer/next/channel/Connection.ts:187
 get name(): string;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:181
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:181
 
 ##### Returns
 
@@ -113,7 +113,7 @@ Defined in: src/newer/next/channel/Connection.ts:181
 get state(): ChannelState;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:182
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:182
 
 ##### Returns
 
@@ -129,7 +129,7 @@ Defined in: src/newer/next/channel/Connection.ts:182
 get stateChanges(): ChannelSubject<ChannelState>;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:185
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:185
 
 ##### Returns
 
@@ -145,7 +145,7 @@ Defined in: src/newer/next/channel/Connection.ts:185
 get stats(): ConnectionStats;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:184
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:184
 
 ##### Returns
 
@@ -161,7 +161,7 @@ Defined in: src/newer/next/channel/Connection.ts:184
 get transportType(): TransportType;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:183
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:183
 
 ##### Returns
 
@@ -175,7 +175,7 @@ Defined in: src/newer/next/channel/Connection.ts:183
 close(): void;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:148
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:148
 
 #### Returns
 
@@ -189,7 +189,7 @@ Defined in: src/newer/next/channel/Connection.ts:148
 connect(): Promise<void>;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:133
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:133
 
 #### Returns
 
@@ -203,7 +203,7 @@ Defined in: src/newer/next/channel/Connection.ts:133
 disconnect(): void;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:141
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:141
 
 #### Returns
 
@@ -220,7 +220,7 @@ emit(
    data): void;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:115
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:115
 
 #### Parameters
 
@@ -248,7 +248,7 @@ Defined in: src/newer/next/channel/Connection.ts:115
 markConnected(): void;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:156
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:156
 
 #### Returns
 
@@ -262,7 +262,7 @@ Defined in: src/newer/next/channel/Connection.ts:156
 markDisconnected(): void;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:157
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:157
 
 #### Returns
 
@@ -276,7 +276,7 @@ Defined in: src/newer/next/channel/Connection.ts:157
 next(message): void;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:79
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:79
 
 #### Parameters
 
@@ -296,7 +296,7 @@ Defined in: src/newer/next/channel/Connection.ts:79
 pushInbound(message): void;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:123
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:123
 
 #### Parameters
 
@@ -319,7 +319,7 @@ request<T>(
 opts?): Promise<T>;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:90
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:90
 
 #### Type Parameters
 
@@ -363,7 +363,7 @@ Defined in: src/newer/next/channel/Connection.ts:90
 respond(original, payload): void;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:111
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:111
 
 #### Parameters
 
@@ -387,7 +387,7 @@ Defined in: src/newer/next/channel/Connection.ts:111
 subscribe(observer, fromChannel?): Subscription;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:74
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:74
 
 #### Parameters
 
@@ -412,7 +412,7 @@ Defined in: src/newer/next/channel/Connection.ts:74
 subscribeOutbound(observer): Subscription;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:119
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:119
 
 #### Parameters
 

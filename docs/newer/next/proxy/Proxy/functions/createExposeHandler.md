@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function createExposeHandler<T>(target, reflect?): ExposeHandler;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:399
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:399
 
 Create an expose handler for an object
 

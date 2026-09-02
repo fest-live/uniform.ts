@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function createBroadcastSignaling(channelName): RTCSignaling & object;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:519
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:519
 
 Simple signaling using BroadcastChannel (for same-origin peers)
 

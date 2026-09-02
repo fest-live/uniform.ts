@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ChromeExtensionPortChannel
 
-Defined in: src/original/next/Wrappers.ts:299
+Defined in: uniform.ts/src/original/next/Wrappers.ts:299
 
 Chrome Extension Port Channel
 Adapts chrome.runtime.Port into a BroadcastChannel-like interface.
@@ -19,7 +19,7 @@ Adapts chrome.runtime.Port into a BroadcastChannel-like interface.
 new ChromeExtensionPortChannel(port, channelName): ChromeExtensionPortChannel;
 ```
 
-Defined in: src/original/next/Wrappers.ts:302
+Defined in: uniform.ts/src/original/next/Wrappers.ts:302
 
 #### Parameters
 
@@ -43,7 +43,7 @@ Defined in: src/original/next/Wrappers.ts:302
 addEventListener(type, listener): void;
 ```
 
-Defined in: src/original/next/Wrappers.ts:316
+Defined in: uniform.ts/src/original/next/Wrappers.ts:316
 
 #### Parameters
 
@@ -67,7 +67,7 @@ Defined in: src/original/next/Wrappers.ts:316
 close(): void;
 ```
 
-Defined in: src/original/next/Wrappers.ts:334
+Defined in: uniform.ts/src/original/next/Wrappers.ts:334
 
 #### Returns
 
@@ -81,7 +81,7 @@ Defined in: src/original/next/Wrappers.ts:334
 postMessage(message): void;
 ```
 
-Defined in: src/original/next/Wrappers.ts:326
+Defined in: uniform.ts/src/original/next/Wrappers.ts:326
 
 #### Parameters
 
@@ -101,7 +101,7 @@ Defined in: src/original/next/Wrappers.ts:326
 removeEventListener(type, listener): void;
 ```
 
-Defined in: src/original/next/Wrappers.ts:321
+Defined in: uniform.ts/src/original/next/Wrappers.ts:321
 
 #### Parameters
 

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: TransferableStorageConfig
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:38
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:38
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:38
 optional autoCleanupExpired?: boolean;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:44
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:44
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:44
 optional cleanupInterval?: number;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:45
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:45
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:45
 dbName: string;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:39
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:39
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:39
 optional enableChangeTracking?: boolean;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:43
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:43
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:43
 optional indexes?: object[];
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:42
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:42
 
 #### keyPath
 
@@ -84,7 +84,7 @@ optional unique?: boolean;
 optional storeName?: string;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:40
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:40
 
 ***
 
@@ -94,4 +94,4 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:40
 optional version?: number;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:41
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:41

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: UnifiedChannel
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:127
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:127
 
 UnifiedChannel - Single entry point for all channel communication
 
@@ -25,7 +25,7 @@ Combines:
 new UnifiedChannel(config): UnifiedChannel;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:166
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:166
 
 #### Parameters
 
@@ -48,7 +48,7 @@ Defined in: src/newer/next/channel/UnifiedChannel.ts:166
 get config(): Readonly<Required<UnifiedChannelConfig>>;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:597
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:597
 
 Configuration
 
@@ -66,7 +66,7 @@ Configuration
 get connectedChannels(): string[];
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:600
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:600
 
 Connected transport names
 
@@ -84,7 +84,7 @@ Connected transport names
 get contextType(): ContextType;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:594
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:594
 
 Detected context type
 
@@ -102,7 +102,7 @@ Detected context type
 get exposedModules(): string[];
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:603
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:603
 
 Exposed module names
 
@@ -120,7 +120,7 @@ Exposed module names
 get name(): string;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:591
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:591
 
 Channel name
 
@@ -138,7 +138,7 @@ Channel name
 get onConnection(): ChannelSubject<UnifiedConnectionEvent>;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:556
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:556
 
 Observable: Connection events (connected/notified/disconnected)
 
@@ -156,7 +156,7 @@ Observable: Connection events (connected/notified/disconnected)
 get onInvocation(): ChannelSubject<IncomingInvocation>;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:550
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:550
 
 Observable: Incoming invocations
 
@@ -174,7 +174,7 @@ Observable: Incoming invocations
 get onMessage(): ChannelSubject<ChannelMessage<any>>;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:544
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:544
 
 Observable: Incoming messages
 
@@ -192,7 +192,7 @@ Observable: Incoming messages
 get onOutbound(): ChannelSubject<ChannelMessage<any>>;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:547
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:547
 
 Observable: Outgoing messages
 
@@ -210,7 +210,7 @@ Observable: Outgoing messages
 get onResponse(): ChannelSubject<InvocationResponse>;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:553
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:553
 
 Observable: Outgoing responses
 
@@ -226,7 +226,7 @@ Observable: Outgoing responses
 __getPrivate(key): any;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:158
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:158
 
 #### Parameters
 
@@ -246,7 +246,7 @@ Defined in: src/newer/next/channel/UnifiedChannel.ts:158
 __setPrivate(key, value): void;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:162
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:162
 
 #### Parameters
 
@@ -270,7 +270,7 @@ Defined in: src/newer/next/channel/UnifiedChannel.ts:162
 attach(target, options?): this;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:315
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:315
 
 Connect and listen on the same transport (bidirectional)
 
@@ -299,7 +299,7 @@ call<T>(
 args?): Promise<T>;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:436
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:436
 
 Call method on remote object
 
@@ -335,7 +335,7 @@ Call method on remote object
 close(): void;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:612
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:612
 
 Close all connections and cleanup
 
@@ -351,7 +351,7 @@ Close all connections and cleanup
 connect(target, options?): this;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:196
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:196
 
 Connect to a transport for sending requests
 
@@ -384,7 +384,7 @@ construct<T>(
 args?): Promise<T>;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:443
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:443
 
 Construct new instance on remote
 
@@ -423,7 +423,7 @@ emit(
    data): void;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:512
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:512
 
 Emit an event to a channel
 
@@ -453,7 +453,7 @@ Emit an event to a channel
 expose(name, obj): this;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:334
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:334
 
 Expose an object for remote invocation
 
@@ -483,7 +483,7 @@ Object to expose
 exposeAll(entries): this;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:344
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:344
 
 Expose multiple objects at once
 
@@ -508,7 +508,7 @@ get<T>(
 prop): Promise<T>;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:422
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:422
 
 Get property from remote object
 
@@ -544,7 +544,7 @@ Get property from remote object
 import<T>(url, targetChannel?): Promise<T>;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:357
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:357
 
 Import a module from a remote channel
 
@@ -584,7 +584,7 @@ invoke<T>(
 args?): Promise<T>;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:378
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:378
 
 Invoke a method on a remote object
 
@@ -632,7 +632,7 @@ Arguments
 listen(source, options?): this;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:232
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:232
 
 Listen on a transport for incoming requests
 
@@ -662,7 +662,7 @@ Connection options
 next(message): void;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:504
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:504
 
 Send a message (fire-and-forget)
 
@@ -687,7 +687,7 @@ notify(
    type?): boolean;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:528
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:528
 
 Emit connection-level signal to a specific connected channel.
 This is the canonical notify/connect API for facade layers.
@@ -718,7 +718,7 @@ This is the canonical notify/connect API for facade layers.
 notifyConnections(payload?, query?): number;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:566
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:566
 
 #### Parameters
 
@@ -742,7 +742,7 @@ Defined in: src/newer/next/channel/UnifiedChannel.ts:566
 proxy<T>(targetChannel?, basePath?): T;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:459
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:459
 
 Create a transparent proxy to a remote channel
 
@@ -780,7 +780,7 @@ Base path for the proxy
 queryConnections(query?): UnifiedConnectionInfo[];
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:562
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:562
 
 #### Parameters
 
@@ -800,7 +800,7 @@ Defined in: src/newer/next/channel/UnifiedChannel.ts:562
 remote<T>(moduleName, targetChannel?): T;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:470
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:470
 
 Create proxy for a specific exposed module on remote
 
@@ -840,7 +840,7 @@ set(
 value): Promise<boolean>;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:429
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:429
 
 Set property on remote object
 
@@ -874,7 +874,7 @@ Set property on remote object
 subscribe(handler): Subscription;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:497
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:497
 
 Subscribe to incoming messages
 
@@ -896,7 +896,7 @@ Subscribe to incoming messages
 subscribeConnections(handler): Subscription;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:558
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:558
 
 #### Parameters
 
@@ -916,7 +916,7 @@ Defined in: src/newer/next/channel/UnifiedChannel.ts:558
 wrapDescriptor(descriptor, targetChannel?): any;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:477
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:477
 
 Wrap a descriptor as a proxy
 

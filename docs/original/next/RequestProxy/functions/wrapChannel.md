@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function wrapChannel(connectChannel, hostChannelInstance?): any;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:112
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:112
 
 ## Parameters
 

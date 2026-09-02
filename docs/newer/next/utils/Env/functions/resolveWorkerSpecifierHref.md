@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function resolveWorkerSpecifierHref(spec): string;
 ```
 
-Defined in: src/newer/next/utils/Env.ts:83
+Defined in: uniform.ts/src/newer/next/utils/Env.ts:83
 
 Resolved absolute href for `./x`/`/x`/absolute worker specifiers (delegates trailing `/` normalization to callers).
 

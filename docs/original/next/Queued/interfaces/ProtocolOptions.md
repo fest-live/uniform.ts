@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: ProtocolOptions
 
-Defined in: src/original/next/Queued.ts:45
+Defined in: uniform.ts/src/original/next/Queued.ts:45
 
 Optimized communication protocol for fest/uniform
 Provides efficient message passing and state synchronization
@@ -19,7 +19,7 @@ Provides efficient message passing and state synchronization
 optional batching?: boolean;
 ```
 
-Defined in: src/original/next/Queued.ts:49
+Defined in: uniform.ts/src/original/next/Queued.ts:49
 
 ***
 
@@ -29,7 +29,7 @@ Defined in: src/original/next/Queued.ts:49
 optional compression?: boolean;
 ```
 
-Defined in: src/original/next/Queued.ts:48
+Defined in: uniform.ts/src/original/next/Queued.ts:48
 
 ***
 
@@ -39,7 +39,7 @@ Defined in: src/original/next/Queued.ts:48
 optional retries?: number;
 ```
 
-Defined in: src/original/next/Queued.ts:47
+Defined in: uniform.ts/src/original/next/Queued.ts:47
 
 ***
 
@@ -49,4 +49,4 @@ Defined in: src/original/next/Queued.ts:47
 optional timeout?: number;
 ```
 
-Defined in: src/original/next/Queued.ts:46
+Defined in: uniform.ts/src/original/next/Queued.ts:46

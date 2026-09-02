@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,4 +10,4 @@
 const clients: any;
 ```
 
-Defined in: src/newer/types/worker-globals.d.ts:4
+Defined in: uniform.ts/src/newer/types/worker-globals.d.ts:4

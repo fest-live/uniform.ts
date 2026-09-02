@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: MailboxStats
 
-Defined in: src/newer/next/storage/Storage.ts:64
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:64
 
 Mailbox statistics
 
@@ -18,7 +18,7 @@ Mailbox statistics
 delivered: number;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:68
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:68
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: src/newer/next/storage/Storage.ts:68
 expired: number;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:70
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:70
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: src/newer/next/storage/Storage.ts:70
 failed: number;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:69
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:69
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: src/newer/next/storage/Storage.ts:69
 pending: number;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:66
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:66
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: src/newer/next/storage/Storage.ts:66
 processing: number;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:67
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:67
 
 ***
 
@@ -68,4 +68,4 @@ Defined in: src/newer/next/storage/Storage.ts:67
 total: number;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:65
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:65

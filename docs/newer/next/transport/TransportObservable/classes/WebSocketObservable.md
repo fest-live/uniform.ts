@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: WebSocketObservable
 
-Defined in: src/newer/next/transport/TransportObservable.ts:144
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:144
 
 WebSocket Observable
 
@@ -22,7 +22,7 @@ WebSocket Observable
 new WebSocketObservable(_url, _protocols?): WebSocketObservable;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:149
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:149
 
 #### Parameters
 
@@ -52,7 +52,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:149
 get isListening(): boolean;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:71
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:71
 
 ##### Returns
 
@@ -72,7 +72,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:71
 get isOpen(): boolean;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:191
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:191
 
 ##### Returns
 
@@ -88,7 +88,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:191
 get state(): Subscribable<string>;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:190
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:190
 
 ##### Returns
 
@@ -104,7 +104,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:190
 get subscriberCount(): number;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:70
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:70
 
 ##### Returns
 
@@ -122,7 +122,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:70
 close(code?, reason?): void;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:183
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:183
 
 #### Parameters
 
@@ -150,7 +150,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:183
 connect(): void;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:151
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:151
 
 #### Returns
 
@@ -164,7 +164,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:151
 next(value): void;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:172
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:172
 
 #### Parameters
 
@@ -188,7 +188,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:172
 subscribe(observerOrNext): Subscription;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:28
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:28
 
 #### Parameters
 

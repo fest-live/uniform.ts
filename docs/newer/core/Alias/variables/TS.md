@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,4 +10,4 @@
 const TS: any;
 ```
 
-Defined in: src/newer/core/Alias.ts:3
+Defined in: uniform.ts/src/newer/core/Alias.ts:3

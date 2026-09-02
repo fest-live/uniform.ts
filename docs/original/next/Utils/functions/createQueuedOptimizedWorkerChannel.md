@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -13,7 +13,7 @@ function createQueuedOptimizedWorkerChannel(
    onChannelReady?): OptimizedWorkerChannel;
 ```
 
-Defined in: src/original/next/Utils.ts:219
+Defined in: uniform.ts/src/original/next/Utils.ts:219
 
 Create an optimized worker channel with queuing support
 

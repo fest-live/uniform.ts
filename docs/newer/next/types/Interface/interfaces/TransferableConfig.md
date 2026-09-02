@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: TransferableConfig
 
-Defined in: src/newer/next/types/Interface.ts:243
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:243
 
 Transferable storage configuration
 
@@ -18,7 +18,7 @@ Transferable storage configuration
 optional autoCleanupExpired?: boolean;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:248
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:248
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: src/newer/next/types/Interface.ts:248
 dbName: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:244
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:244
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: src/newer/next/types/Interface.ts:244
 optional enableChangeTracking?: boolean;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:247
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:247
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: src/newer/next/types/Interface.ts:247
 optional storeName?: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:245
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:245
 
 ***
 
@@ -58,4 +58,4 @@ Defined in: src/newer/next/types/Interface.ts:245
 optional version?: number;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:246
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:246

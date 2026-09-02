@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: RemoteProxyHandler
 
-Defined in: src/newer/next/proxy/Proxy.ts:103
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:103
 
 RemoteProxyHandler - Unified proxy handler for remote invocation
 
@@ -24,7 +24,7 @@ Handles all Reflect operations and forwards them to the invoker.
 new RemoteProxyHandler(_invoker, config): RemoteProxyHandler;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:107
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:107
 
 #### Parameters
 
@@ -51,7 +51,7 @@ apply(
    args): any;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:174
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:174
 
 Apply function
 
@@ -90,7 +90,7 @@ construct(
    newTarget): object;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:183
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:183
 
 Construct new instance
 
@@ -126,7 +126,7 @@ ProxyHandler.construct
 deleteProperty(target, prop): boolean;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:202
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:202
 
 Delete property
 
@@ -161,7 +161,7 @@ get(
    receiver): any;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:121
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:121
 
 Get property - returns nested proxy or invokes GET
 
@@ -197,7 +197,7 @@ ProxyHandler.get
 getOwnPropertyDescriptor(target, prop): PropertyDescriptor | undefined;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:217
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:217
 
 Get property descriptor
 
@@ -229,7 +229,7 @@ ProxyHandler.getOwnPropertyDescriptor
 getPrototypeOf(target): object | null;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:222
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:222
 
 Get prototype
 
@@ -257,7 +257,7 @@ ProxyHandler.getPrototypeOf
 has(target, prop): boolean;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:192
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:192
 
 Check if property exists
 
@@ -289,7 +289,7 @@ ProxyHandler.has
 isExtensible(target): boolean;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:236
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:236
 
 Check if extensible
 
@@ -317,7 +317,7 @@ ProxyHandler.isExtensible
 ownKeys(target): ArrayLike<string | symbol>;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:212
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:212
 
 Get own keys
 
@@ -345,7 +345,7 @@ ProxyHandler.ownKeys
 preventExtensions(target): boolean;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:241
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:241
 
 Prevent extensions
 
@@ -377,7 +377,7 @@ set(
    receiver): boolean;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:162
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:162
 
 Set property
 
@@ -417,7 +417,7 @@ ProxyHandler.set
 setPrototypeOf(target, proto): boolean;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:227
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:227
 
 Set prototype
 

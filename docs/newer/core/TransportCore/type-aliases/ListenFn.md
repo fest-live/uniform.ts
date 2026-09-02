@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 type ListenFn = (handler) => () => void;
 ```
 
-Defined in: src/newer/core/TransportCore.ts:62
+Defined in: uniform.ts/src/newer/core/TransportCore.ts:62
 
 ## Parameters
 

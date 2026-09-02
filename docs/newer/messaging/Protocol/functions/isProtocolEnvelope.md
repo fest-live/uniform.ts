@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function isProtocolEnvelope(value): value is UniformProtocolEnvelope<unknown>;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:209
+Defined in: uniform.ts/src/newer/messaging/Protocol.ts:209
 
 ## Parameters
 

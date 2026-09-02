@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: PortPool
 
-Defined in: src/newer/next/transport/PortTransport.ts:233
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:233
 
 ## Constructors
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:233
 new PortPool(_defaultConfig?): PortPool;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:238
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:238
 
 #### Parameters
 
@@ -38,7 +38,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:238
 get channelNames(): string[];
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:345
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:345
 
 ##### Returns
 
@@ -54,7 +54,7 @@ Defined in: src/newer/next/transport/PortTransport.ts:345
 get size(): number;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:346
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:346
 
 ##### Returns
 
@@ -71,7 +71,7 @@ add(
    config?): PortTransport;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:263
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:263
 
 Add existing port to pool
 
@@ -101,7 +101,7 @@ Add existing port to pool
 broadcast(msg, transfer?): void;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:295
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:295
 
 Broadcast to all channels
 
@@ -127,7 +127,7 @@ Broadcast to all channels
 close(): void;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:336
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:336
 
 Close all channels
 
@@ -143,7 +143,7 @@ Close all channels
 create(channelName, config?): ChannelPairResult;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:245
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:245
 
 Create new channel in pool
 
@@ -169,7 +169,7 @@ Create new channel in pool
 get(channelName): PortTransport | undefined;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:281
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:281
 
 Get channel by name
 
@@ -191,7 +191,7 @@ Get channel by name
 remove(channelName): void;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:325
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:325
 
 Remove channel
 
@@ -213,7 +213,7 @@ Remove channel
 request(channelName, msg): Promise<any>;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:304
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:304
 
 Request on specific channel
 
@@ -242,7 +242,7 @@ send(
    transfer?): void;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:288
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:288
 
 Send to specific channel
 
@@ -272,7 +272,7 @@ Send to specific channel
 subscribe(observer): Subscription;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:313
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:313
 
 Subscribe to all channels
 

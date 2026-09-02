@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: MessageEnvelope
 
-Defined in: src/original/next/Queued.ts:37
+Defined in: uniform.ts/src/original/next/Queued.ts:37
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/original/next/Queued.ts:37
 id: string;
 ```
 
-Defined in: src/original/next/Queued.ts:38
+Defined in: uniform.ts/src/original/next/Queued.ts:38
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: src/original/next/Queued.ts:38
 payload: any;
 ```
 
-Defined in: src/original/next/Queued.ts:40
+Defined in: uniform.ts/src/original/next/Queued.ts:40
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/original/next/Queued.ts:40
 optional replyTo?: string;
 ```
 
-Defined in: src/original/next/Queued.ts:42
+Defined in: uniform.ts/src/original/next/Queued.ts:42
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: src/original/next/Queued.ts:42
 timestamp: number;
 ```
 
-Defined in: src/original/next/Queued.ts:41
+Defined in: uniform.ts/src/original/next/Queued.ts:41
 
 ***
 
@@ -56,4 +56,4 @@ Defined in: src/original/next/Queued.ts:41
 type: string;
 ```
 
-Defined in: src/original/next/Queued.ts:39
+Defined in: uniform.ts/src/original/next/Queued.ts:39

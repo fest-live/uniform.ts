@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: ExchangeRecord\<T\>
 
-Defined in: src/newer/next/storage/Storage.ts:51
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:51
 
 Exchange record
 
@@ -24,7 +24,7 @@ Exchange record
 createdAt: number;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:58
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:58
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: src/newer/next/storage/Storage.ts:58
 id: string;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:52
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:52
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: src/newer/next/storage/Storage.ts:52
 key: string;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:53
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:53
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: src/newer/next/storage/Storage.ts:53
 optional lock?: object;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:60
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:60
 
 #### acquiredAt
 
@@ -82,7 +82,7 @@ holder: string;
 owner: string;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:55
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:55
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: src/newer/next/storage/Storage.ts:55
 sharedWith: string[];
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:56
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:56
 
 ***
 
@@ -102,7 +102,7 @@ Defined in: src/newer/next/storage/Storage.ts:56
 updatedAt: number;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:59
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:59
 
 ***
 
@@ -112,7 +112,7 @@ Defined in: src/newer/next/storage/Storage.ts:59
 value: T;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:54
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:54
 
 ***
 
@@ -122,4 +122,4 @@ Defined in: src/newer/next/storage/Storage.ts:54
 version: number;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:57
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:57

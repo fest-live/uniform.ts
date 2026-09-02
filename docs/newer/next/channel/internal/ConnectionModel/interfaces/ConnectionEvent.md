@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: ConnectionEvent\<TTransport\>
 
-Defined in: src/newer/next/channel/internal/ConnectionModel.ts:18
+Defined in: uniform.ts/src/newer/next/channel/internal/ConnectionModel.ts:18
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: src/newer/next/channel/internal/ConnectionModel.ts:18
 connection: ConnectionInfo<TTransport>;
 ```
 
-Defined in: src/newer/next/channel/internal/ConnectionModel.ts:20
+Defined in: uniform.ts/src/newer/next/channel/internal/ConnectionModel.ts:20
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: src/newer/next/channel/internal/ConnectionModel.ts:20
 optional payload?: any;
 ```
 
-Defined in: src/newer/next/channel/internal/ConnectionModel.ts:22
+Defined in: uniform.ts/src/newer/next/channel/internal/ConnectionModel.ts:22
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: src/newer/next/channel/internal/ConnectionModel.ts:22
 timestamp: number;
 ```
 
-Defined in: src/newer/next/channel/internal/ConnectionModel.ts:21
+Defined in: uniform.ts/src/newer/next/channel/internal/ConnectionModel.ts:21
 
 ***
 
@@ -52,4 +52,4 @@ Defined in: src/newer/next/channel/internal/ConnectionModel.ts:21
 type: "connected" | "notified" | "disconnected";
 ```
 
-Defined in: src/newer/next/channel/internal/ConnectionModel.ts:19
+Defined in: uniform.ts/src/newer/next/channel/internal/ConnectionModel.ts:19

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -14,7 +14,7 @@ function createWorkerAtomicsTransport(
    config?): AtomicsTransport;
 ```
 
-Defined in: src/newer/next/transport/AtomicsTransport.ts:442
+Defined in: uniform.ts/src/newer/next/transport/AtomicsTransport.ts:442
 
 Create worker-side atomics transport from buffers
 

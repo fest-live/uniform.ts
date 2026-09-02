@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: DataAssetEnvelope
 
-Defined in: src/newer/next/types/Interface.ts:77
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:77
 
 Compact cross-transport binary/text payload descriptor.
 Designed for File/Blob/base64/data-url/url values normalized to hash-named data.
@@ -19,7 +19,7 @@ Designed for File/Blob/base64/data-url/url values normalized to hash-named data.
 optional data?: string | ArrayBuffer;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:83
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:83
 
 ***
 
@@ -29,7 +29,7 @@ Defined in: src/newer/next/types/Interface.ts:83
 hash: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:78
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:78
 
 ***
 
@@ -39,7 +39,7 @@ Defined in: src/newer/next/types/Interface.ts:78
 mimeType: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:80
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:80
 
 ***
 
@@ -49,7 +49,7 @@ Defined in: src/newer/next/types/Interface.ts:80
 name: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:79
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:79
 
 ***
 
@@ -59,7 +59,7 @@ Defined in: src/newer/next/types/Interface.ts:79
 size: number;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:81
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:81
 
 ***
 
@@ -69,4 +69,4 @@ Defined in: src/newer/next/types/Interface.ts:81
 optional source?: "blob" | "url" | "file" | "data-url" | "base64" | "uri" | "text";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:82
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:82

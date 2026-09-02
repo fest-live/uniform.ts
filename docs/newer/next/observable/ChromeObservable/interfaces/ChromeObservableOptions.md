@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: ChromeObservableOptions
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:28
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:28
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/observable/ChromeObservable.ts:28
 optional asyncResponse?: boolean;
 ```
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:31
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:31
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: src/newer/next/observable/ChromeObservable.ts:31
 optional filterMessage?: (message) => boolean;
 ```
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:30
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:30
 
 #### Parameters
 
@@ -46,7 +46,7 @@ Defined in: src/newer/next/observable/ChromeObservable.ts:30
 optional filterSender?: (sender) => boolean;
 ```
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:29
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:29
 
 #### Parameters
 

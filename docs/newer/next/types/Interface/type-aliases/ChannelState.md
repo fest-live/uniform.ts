@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,6 +10,6 @@
 type ChannelState = "disconnected" | "connecting" | "connected" | "closed";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:137
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:137
 
 Channel state

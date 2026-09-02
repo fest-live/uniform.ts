@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ChannelHandler
 
-Defined in: src/original/next/Channels.ts:143
+Defined in: uniform.ts/src/original/next/Channels.ts:143
 
 ## Constructors
 
@@ -16,7 +16,7 @@ Defined in: src/original/next/Channels.ts:143
 new ChannelHandler(channel, options?): ChannelHandler;
 ```
 
-Defined in: src/original/next/Channels.ts:149
+Defined in: uniform.ts/src/original/next/Channels.ts:149
 
 #### Parameters
 
@@ -43,7 +43,7 @@ createRemoteChannel(
    broadcast?): any;
 ```
 
-Defined in: src/original/next/Channels.ts:156
+Defined in: uniform.ts/src/original/next/Channels.ts:156
 
 #### Parameters
 
@@ -71,7 +71,7 @@ Defined in: src/original/next/Channels.ts:156
 getChannel(): string | null;
 ```
 
-Defined in: src/original/next/Channels.ts:189
+Defined in: uniform.ts/src/original/next/Channels.ts:189
 
 #### Returns
 
@@ -88,7 +88,7 @@ handleAndResponse(
    response?): Promise<void> | undefined;
 ```
 
-Defined in: src/original/next/Channels.ts:236
+Defined in: uniform.ts/src/original/next/Channels.ts:236
 
 #### Parameters
 
@@ -121,7 +121,7 @@ request(
    toChannel?): Promise<any> | null | undefined;
 ```
 
-Defined in: src/original/next/Channels.ts:193
+Defined in: uniform.ts/src/original/next/Channels.ts:193
 
 #### Parameters
 
@@ -159,7 +159,7 @@ Defined in: src/original/next/Channels.ts:193
 resolveResponse(reqId, result): Promise<any> | undefined;
 ```
 
-Defined in: src/original/next/Channels.ts:229
+Defined in: uniform.ts/src/original/next/Channels.ts:229
 
 #### Parameters
 

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: SharedWorkerHost
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:214
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:214
 
 SharedWorker host - runs inside the shared worker context
 
@@ -18,7 +18,7 @@ SharedWorker host - runs inside the shared worker context
 new SharedWorkerHost(_channelName): SharedWorkerHost;
 ```
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:219
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:219
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: src/newer/next/transport/SharedWorkerTransport.ts:219
 get channelName(): string;
 ```
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:348
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:348
 
 ##### Returns
 
@@ -56,7 +56,7 @@ Defined in: src/newer/next/transport/SharedWorkerTransport.ts:348
 get portCount(): number;
 ```
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:346
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:346
 
 ##### Returns
 
@@ -72,7 +72,7 @@ Defined in: src/newer/next/transport/SharedWorkerTransport.ts:346
 get state(): ChannelSubject<"error" | "ready">;
 ```
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:347
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:347
 
 ##### Returns
 
@@ -86,7 +86,7 @@ Defined in: src/newer/next/transport/SharedWorkerTransport.ts:347
 broadcast(msg, excludePortId?): void;
 ```
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:308
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:308
 
 #### Parameters
 
@@ -110,7 +110,7 @@ Defined in: src/newer/next/transport/SharedWorkerTransport.ts:308
 getPorts(): Map<string, SharedWorkerPortInfo>;
 ```
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:338
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:338
 
 #### Returns
 
@@ -127,7 +127,7 @@ respond(
    transfer?): void;
 ```
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:317
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:317
 
 #### Parameters
 
@@ -158,7 +158,7 @@ send(
    transfer?): void;
 ```
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:301
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:301
 
 #### Parameters
 
@@ -186,7 +186,7 @@ Defined in: src/newer/next/transport/SharedWorkerTransport.ts:301
 subscribe(observer): Subscription;
 ```
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:329
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:329
 
 #### Parameters
 

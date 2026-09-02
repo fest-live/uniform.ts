@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function createOptimizedWorkerChannel(config, options?): Promise<OptimizedWorkerChannel>;
 ```
 
-Defined in: src/original/next/Utils.ts:208
+Defined in: uniform.ts/src/original/next/Utils.ts:208
 
 Create an optimized worker channel
 

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: WorkerContext
 
-Defined in: src/newer/next/transport/Worker.ts:77
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:77
 
 WorkerContext - Manages channels within a Worker
 
@@ -20,7 +20,7 @@ Supports observing new incoming connections from host/remote contexts.
 new WorkerContext(config?): WorkerContext;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:87
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:87
 
 #### Parameters
 
@@ -42,7 +42,7 @@ Defined in: src/newer/next/transport/Worker.ts:87
 get config(): Readonly<Required<WorkerContextConfig>>;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:253
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:253
 
 Get worker configuration
 
@@ -60,7 +60,7 @@ Get worker configuration
 get context(): ChannelContext;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:246
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:246
 
 Get the underlying context
 
@@ -81,7 +81,7 @@ get onChannelClosed(): ChannelSubject<{
 }>;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:131
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:131
 
 Observable: Channel closed events
 
@@ -102,7 +102,7 @@ Observable: Channel closed events
 get onChannelCreated(): ChannelSubject<ChannelCreatedEvent>;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:124
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:124
 
 Observable: Channel created events
 
@@ -120,7 +120,7 @@ Observable: Channel created events
 get onConnection(): ChannelSubject<IncomingConnection>;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:117
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:117
 
 Observable: New incoming connection requests
 
@@ -138,7 +138,7 @@ acceptConnection(connection):
   | null;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:160
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:160
 
 Accept an incoming connection and create the channel
 
@@ -161,7 +161,7 @@ Accept an incoming connection and create the channel
 close(): void;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:423
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:423
 
 #### Returns
 
@@ -175,7 +175,7 @@ Defined in: src/newer/next/transport/Worker.ts:423
 closeChannel(name): boolean;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:235
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:235
 
 Close a specific channel
 
@@ -197,7 +197,7 @@ Close a specific channel
 createChannel(name, options?): ChannelEndpoint;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:193
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:193
 
 Create a new channel in this worker context
 
@@ -225,7 +225,7 @@ getChannel(name):
   | undefined;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:200
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:200
 
 Get an existing channel
 
@@ -248,7 +248,7 @@ Get an existing channel
 getChannelNames(): string[];
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:214
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:214
 
 Get all channel names
 
@@ -264,7 +264,7 @@ Get all channel names
 hasChannel(name): boolean;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:207
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:207
 
 Check if channel exists
 
@@ -286,7 +286,7 @@ Check if channel exists
 notifyConnections(payload?, query?): number;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:228
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:228
 
 Notify active connections (useful for worker<->host sync).
 
@@ -312,7 +312,7 @@ Notify active connections (useful for worker<->host sync).
 queryConnections(query?): ContextConnectionInfo[];
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:221
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:221
 
 Query currently tracked channel connections in this worker.
 
@@ -334,7 +334,7 @@ Query currently tracked channel connections in this worker.
 subscribeChannelCreated(handler): Subscription;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:147
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:147
 
 Subscribe to channel creation
 
@@ -356,7 +356,7 @@ Subscribe to channel creation
 subscribeConnections(handler): Subscription;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:138
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:138
 
 Subscribe to incoming connections
 

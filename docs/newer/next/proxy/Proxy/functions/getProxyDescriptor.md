@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function getProxyDescriptor(value): ProxyDescriptor | null;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:366
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:366
 
 Get proxy descriptor if value is a proxy
 

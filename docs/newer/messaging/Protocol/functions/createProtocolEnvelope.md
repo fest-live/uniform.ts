@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function createProtocolEnvelope<T>(input): UniformProtocolEnvelope<T>;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:169
+Defined in: uniform.ts/src/newer/messaging/Protocol.ts:169
 
 ## Type Parameters
 

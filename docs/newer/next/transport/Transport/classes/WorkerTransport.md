@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: WorkerTransport
 
-Defined in: src/newer/next/transport/Transport.ts:147
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:147
 
 ## Extends
 
@@ -23,7 +23,7 @@ new WorkerTransport(
    options?): WorkerTransport;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:152
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:152
 
 #### Parameters
 
@@ -57,7 +57,7 @@ Defined in: src/newer/next/transport/Transport.ts:152
 get channelName(): string;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:137
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:137
 
 ##### Returns
 
@@ -77,7 +77,7 @@ Defined in: src/newer/next/transport/Transport.ts:137
 get inbound(): Subscribable<ChannelMessage<any>>;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:139
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:139
 
 ##### Returns
 
@@ -97,7 +97,7 @@ Defined in: src/newer/next/transport/Transport.ts:139
 get isAttached(): boolean;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:138
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:138
 
 ##### Returns
 
@@ -117,7 +117,7 @@ Defined in: src/newer/next/transport/Transport.ts:138
 get onIncomingConnection(): Subscribable<TransportIncomingConnection>;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:97
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:97
 
 Observable: Incoming connection requests
 
@@ -139,7 +139,7 @@ Observable: Incoming connection requests
 get outbound(): Subscribable<ChannelMessage<any>>;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:140
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:140
 
 ##### Returns
 
@@ -159,7 +159,7 @@ Defined in: src/newer/next/transport/Transport.ts:140
 get worker(): Worker | null;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:278
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:278
 
 ##### Returns
 
@@ -173,7 +173,7 @@ Defined in: src/newer/next/transport/Transport.ts:278
 attach(): void;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:160
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:160
 
 #### Returns
 
@@ -195,7 +195,7 @@ connectChannel(
    options?): void;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:206
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:206
 
 Connect to an existing channel in the worker
 
@@ -229,7 +229,7 @@ Connect to an existing channel in the worker
 detach(): void;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:176
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:176
 
 #### Returns
 
@@ -247,7 +247,7 @@ Defined in: src/newer/next/transport/Transport.ts:176
 listChannels(): Promise<string[]>;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:226
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:226
 
 List all channels in the worker
 
@@ -267,7 +267,7 @@ requestChannel(
    port?): void;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:186
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:186
 
 Request a new channel in the worker
 
@@ -301,7 +301,7 @@ Request a new channel in the worker
 send(msg, transfer?): void;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:86
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:86
 
 Send message
 
@@ -331,7 +331,7 @@ Send message
 setAcceptCallback(callback): void;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:113
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:113
 
 Set callback to auto-accept/reject connections
 
@@ -358,7 +358,7 @@ Set callback to auto-accept/reject connections
 subscribe(observer): Subscription;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:81
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:81
 
 Subscribe to incoming messages
 
@@ -385,7 +385,7 @@ Subscribe to incoming messages
 subscribeIncoming(handler): Subscription;
 ```
 
-Defined in: src/newer/next/transport/Transport.ts:104
+Defined in: uniform.ts/src/newer/next/transport/Transport.ts:104
 
 Subscribe to incoming connection requests
 

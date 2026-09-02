@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -12,7 +12,7 @@ function getWorkerChannel(viewHash, workerName):
   | null;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:790
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:790
 
 Get a worker channel using the default manager
 

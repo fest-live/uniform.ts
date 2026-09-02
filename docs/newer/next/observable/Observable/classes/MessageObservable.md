@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: MessageObservable
 
-Defined in: src/newer/next/observable/Observable.ts:238
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:238
 
 Subject - Observable that can be pushed to
 
@@ -22,7 +22,7 @@ Subject - Observable that can be pushed to
 new MessageObservable(source, messageType?): MessageObservable;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:239
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:239
 
 #### Parameters
 
@@ -52,7 +52,7 @@ Defined in: src/newer/next/observable/Observable.ts:239
 get subscriberCount(): number;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:130
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:130
 
 ##### Returns
 
@@ -70,7 +70,7 @@ Defined in: src/newer/next/observable/Observable.ts:130
 complete(): void;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:115
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:115
 
 #### Returns
 
@@ -88,7 +88,7 @@ Defined in: src/newer/next/observable/Observable.ts:115
 error(err): void;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:114
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:114
 
 #### Parameters
 
@@ -112,7 +112,7 @@ Defined in: src/newer/next/observable/Observable.ts:114
 getBuffer(): ChannelMessage<any>[];
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:129
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:129
 
 #### Returns
 
@@ -132,7 +132,7 @@ getValue():
   | undefined;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:128
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:128
 
 #### Returns
 
@@ -151,7 +151,7 @@ Defined in: src/newer/next/observable/Observable.ts:128
 next(value): void;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:104
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:104
 
 #### Parameters
 
@@ -175,7 +175,7 @@ Defined in: src/newer/next/observable/Observable.ts:104
 subscribe(observerOrNext): Subscription;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:117
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:117
 
 #### Parameters
 

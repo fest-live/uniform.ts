@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ChannelStorage
 
-Defined in: src/newer/next/storage/Storage.ts:91
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:91
 
 IndexedDB manager for channel storage
 
@@ -18,7 +18,7 @@ IndexedDB manager for channel storage
 new ChannelStorage(channelName): ChannelStorage;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:101
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:101
 
 #### Parameters
 
@@ -38,7 +38,7 @@ Defined in: src/newer/next/storage/Storage.ts:101
 awaitPending<T>(operationId, options?): Promise<T | null>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:536
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:536
 
 Await a pending operation (poll until complete or timeout)
 
@@ -76,7 +76,7 @@ Await a pending operation (poll until complete or timeout)
 beginTransaction(): Promise<ChannelTransaction>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:790
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:790
 
 Begin a transaction for batch operations
 
@@ -92,7 +92,7 @@ Begin a transaction for batch operations
 cleanupExpired(): Promise<number>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:866
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:866
 
 Clean up expired messages
 
@@ -108,7 +108,7 @@ Clean up expired messages
 clearMailbox(channel): Promise<number>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:442
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:442
 
 Clear mailbox for a channel
 
@@ -130,7 +130,7 @@ Clear mailbox for a channel
 close(): void;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:143
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:143
 
 Close database connection
 
@@ -146,7 +146,7 @@ Close database connection
 completePending(operationId): Promise<void>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:520
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:520
 
 Complete a pending operation
 
@@ -168,7 +168,7 @@ Complete a pending operation
 defer(message, options?): Promise<string>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:198
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:198
 
 Defer a message for later delivery
 
@@ -208,7 +208,7 @@ Defer a message for later delivery
 exchangeDelete(key): Promise<boolean>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:668
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:668
 
 Delete data from exchange
 
@@ -230,7 +230,7 @@ Delete data from exchange
 exchangeGet<T>(key): Promise<T | null>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:634
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:634
 
 Get data from exchange
 
@@ -258,7 +258,7 @@ Get data from exchange
 exchangeLock(key, options?): Promise<boolean>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:703
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:703
 
 Acquire lock on exchange key
 
@@ -289,7 +289,7 @@ exchangePut<T>(
 options?): Promise<string>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:583
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:583
 
 Put data in exchange (shared storage)
 
@@ -331,7 +331,7 @@ Put data in exchange (shared storage)
 exchangeUnlock(key): Promise<void>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:752
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:752
 
 Release lock on exchange key
 
@@ -353,7 +353,7 @@ Release lock on exchange key
 executeTransaction(operations): Promise<void>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:797
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:797
 
 Execute operations in transaction
 
@@ -375,7 +375,7 @@ Execute operations in transaction
 getDeferredMessages(channel, options?): Promise<StoredMessage<any>[]>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:246
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:246
 
 Get deferred messages for a channel
 
@@ -411,7 +411,7 @@ Get deferred messages for a channel
 getMailbox(channel, options?): Promise<StoredMessage<any>[]>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:382
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:382
 
 Get mailbox for a channel
 
@@ -443,7 +443,7 @@ Get mailbox for a channel
 getMailboxStats(channel): Promise<MailboxStats>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:415
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:415
 
 Get mailbox statistics
 
@@ -465,7 +465,7 @@ Get mailbox statistics
 getPendingOperations(): Promise<any[]>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:502
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:502
 
 Get all pending operations for channel
 
@@ -481,7 +481,7 @@ Get all pending operations for channel
 markDelivered(messageId): Promise<void>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:312
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:312
 
 Mark message as delivered
 
@@ -503,7 +503,7 @@ Mark message as delivered
 markFailed(messageId): Promise<boolean>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:319
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:319
 
 Mark message as failed and retry if possible
 
@@ -525,7 +525,7 @@ Mark message as failed and retry if possible
 onExchangeUpdate(handler): Subscription;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:855
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:855
 
 Subscribe to exchange updates
 
@@ -547,7 +547,7 @@ Subscribe to exchange updates
 onMessageUpdate(handler): Subscription;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:848
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:848
 
 Subscribe to message updates
 
@@ -569,7 +569,7 @@ Subscribe to message updates
 open(): Promise<IDBDatabase>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:112
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:112
 
 Open database connection
 
@@ -585,7 +585,7 @@ Open database connection
 processNextPending(channel): Promise<StoredMessage<any> | null>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:281
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:281
 
 Process next pending message
 
@@ -607,7 +607,7 @@ Process next pending message
 registerPending<T>(operation): Promise<string>;
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:474
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:474
 
 Register a pending operation
 

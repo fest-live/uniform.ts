@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: WorkerConfig
 
-Defined in: src/newer/next/storage/Queued.ts:14
+Defined in: uniform.ts/src/newer/next/storage/Queued.ts:14
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/storage/Queued.ts:14
 optional context?: "service-worker" | "main" | "chrome-extension";
 ```
 
-Defined in: src/newer/next/storage/Queued.ts:18
+Defined in: uniform.ts/src/newer/next/storage/Queued.ts:18
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: src/newer/next/storage/Queued.ts:18
 optional currentTabChannel?: boolean;
 ```
 
-Defined in: src/newer/next/storage/Queued.ts:21
+Defined in: uniform.ts/src/newer/next/storage/Queued.ts:21
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/newer/next/storage/Queued.ts:21
 optional currentTabOptions?: object;
 ```
 
-Defined in: src/newer/next/storage/Queued.ts:22
+Defined in: uniform.ts/src/newer/next/storage/Queued.ts:22
 
 #### tabIdGetter?
 
@@ -62,7 +62,7 @@ optional useVisibleTab?: boolean;
 name: string;
 ```
 
-Defined in: src/newer/next/storage/Queued.ts:15
+Defined in: uniform.ts/src/newer/next/storage/Queued.ts:15
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: src/newer/next/storage/Queued.ts:15
 optional options?: WorkerOptions;
 ```
 
-Defined in: src/newer/next/storage/Queued.ts:17
+Defined in: uniform.ts/src/newer/next/storage/Queued.ts:17
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: src/newer/next/storage/Queued.ts:17
 script: string | Worker | (() => Worker);
 ```
 
-Defined in: src/newer/next/storage/Queued.ts:16
+Defined in: uniform.ts/src/newer/next/storage/Queued.ts:16
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: src/newer/next/storage/Queued.ts:16
 optional tabsChannel?: boolean;
 ```
 
-Defined in: src/newer/next/storage/Queued.ts:19
+Defined in: uniform.ts/src/newer/next/storage/Queued.ts:19
 
 ***
 
@@ -102,7 +102,7 @@ Defined in: src/newer/next/storage/Queued.ts:19
 optional tabsOptions?: object;
 ```
 
-Defined in: src/newer/next/storage/Queued.ts:20
+Defined in: uniform.ts/src/newer/next/storage/Queued.ts:20
 
 #### tabFilter?
 

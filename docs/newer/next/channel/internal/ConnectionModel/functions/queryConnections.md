@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function queryConnections<TTransport>(connections, query?): ConnectionInfo<TTransport>[];
 ```
 
-Defined in: src/newer/next/channel/internal/ConnectionModel.ts:57
+Defined in: uniform.ts/src/newer/next/channel/internal/ConnectionModel.ts:57
 
 ## Type Parameters
 

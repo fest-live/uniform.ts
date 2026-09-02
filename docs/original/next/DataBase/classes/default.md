@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: default\<T\>
 
-Defined in: src/original/next/DataBase.ts:14
+Defined in: uniform.ts/src/original/next/DataBase.ts:14
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: src/original/next/DataBase.ts:14
 new default<T>(): UUIDMap<T>;
 ```
 
-Defined in: src/original/next/DataBase.ts:21
+Defined in: uniform.ts/src/original/next/DataBase.ts:21
 
 #### Returns
 
@@ -39,7 +39,7 @@ add(
    force?): string | undefined;
 ```
 
-Defined in: src/original/next/DataBase.ts:39
+Defined in: uniform.ts/src/original/next/DataBase.ts:39
 
 #### Parameters
 
@@ -67,7 +67,7 @@ Defined in: src/original/next/DataBase.ts:39
 count(obj?): dT | undefined;
 ```
 
-Defined in: src/original/next/DataBase.ts:68
+Defined in: uniform.ts/src/original/next/DataBase.ts:68
 
 #### Parameters
 
@@ -87,7 +87,7 @@ Defined in: src/original/next/DataBase.ts:68
 delete<R>(key): unknown;
 ```
 
-Defined in: src/original/next/DataBase.ts:31
+Defined in: uniform.ts/src/original/next/DataBase.ts:31
 
 #### Type Parameters
 
@@ -113,7 +113,7 @@ Defined in: src/original/next/DataBase.ts:31
 discount(obj?): dT | undefined;
 ```
 
-Defined in: src/original/next/DataBase.ts:57
+Defined in: uniform.ts/src/original/next/DataBase.ts:57
 
 #### Parameters
 
@@ -133,7 +133,7 @@ Defined in: src/original/next/DataBase.ts:57
 get<R>(key): unknown;
 ```
 
-Defined in: src/original/next/DataBase.ts:85
+Defined in: uniform.ts/src/original/next/DataBase.ts:85
 
 #### Type Parameters
 
@@ -159,7 +159,7 @@ Defined in: src/original/next/DataBase.ts:85
 has<R>(key): boolean;
 ```
 
-Defined in: src/original/next/DataBase.ts:77
+Defined in: uniform.ts/src/original/next/DataBase.ts:77
 
 #### Type Parameters
 

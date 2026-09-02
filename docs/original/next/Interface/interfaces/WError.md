@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: WError\<T\>
 
-Defined in: src/original/next/Interface.ts:70
+Defined in: uniform.ts/src/original/next/Interface.ts:70
 
 ## Type Parameters
 
@@ -22,4 +22,4 @@ Defined in: src/original/next/Interface.ts:70
 message: string;
 ```
 
-Defined in: src/original/next/Interface.ts:71
+Defined in: uniform.ts/src/original/next/Interface.ts:71

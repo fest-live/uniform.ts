@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,4 +10,4 @@
 type UniformDeferMode = "none" | "cache" | "idb" | "storage" | "promise" | "allowed";
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:16
+Defined in: uniform.ts/src/newer/messaging/Protocol.ts:16

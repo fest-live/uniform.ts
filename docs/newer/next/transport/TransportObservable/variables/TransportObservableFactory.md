@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 const TransportObservableFactory: object;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:303
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:303
 
 ## Type Declaration
 

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Abstract Class: TransportObservable\<T\>
 
-Defined in: src/newer/next/transport/TransportObservable.ts:21
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:21
 
 Subscribable interface
 
@@ -55,7 +55,7 @@ new TransportObservable<T>(): TransportObservable<T>;
 get isListening(): boolean;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:71
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:71
 
 ##### Returns
 
@@ -71,7 +71,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:71
 get subscriberCount(): number;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:70
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:70
 
 ##### Returns
 
@@ -85,7 +85,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:70
 close(): void;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:69
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:69
 
 #### Returns
 
@@ -99,7 +99,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:69
 abstract next(value, transfer?): void;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:26
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:26
 
 #### Parameters
 
@@ -123,7 +123,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:26
 subscribe(observerOrNext): Subscription;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:28
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:28
 
 #### Parameters
 

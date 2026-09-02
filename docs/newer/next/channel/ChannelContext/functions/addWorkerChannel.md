@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -13,7 +13,7 @@ function addWorkerChannel(
 options?): Promise<ChannelEndpoint>;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:1342
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:1342
 
 Add a worker channel to the default global context
 

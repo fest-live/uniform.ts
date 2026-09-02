@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function getTransportMeta(transport): TransportMeta;
 ```
 
-Defined in: src/newer/core/TransportCore.ts:116
+Defined in: uniform.ts/src/newer/core/TransportCore.ts:116
 
 ## Parameters
 

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # ~~Class: RequestProxyHandlerV2~~
 
-Defined in: src/newer/next/proxy/RequestProxy.ts:67
+Defined in: uniform.ts/src/newer/next/proxy/RequestProxy.ts:67
 
 ## Deprecated
 
@@ -24,7 +24,7 @@ Use createRemoteProxy from Proxy.ts instead
 new RequestProxyHandlerV2(hostChannelInstance?, options?): RequestProxyHandlerV2;
 ```
 
-Defined in: src/newer/next/proxy/RequestProxy.ts:70
+Defined in: uniform.ts/src/newer/next/proxy/RequestProxy.ts:70
 
 #### Parameters
 
@@ -48,7 +48,7 @@ Defined in: src/newer/next/proxy/RequestProxy.ts:70
 hostChannelInstance: any = null;
 ```
 
-Defined in: src/newer/next/proxy/RequestProxy.ts:71
+Defined in: uniform.ts/src/newer/next/proxy/RequestProxy.ts:71
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: src/newer/next/proxy/RequestProxy.ts:71
 options: any = {};
 ```
 
-Defined in: src/newer/next/proxy/RequestProxy.ts:72
+Defined in: uniform.ts/src/newer/next/proxy/RequestProxy.ts:72
 
 ## Methods
 
@@ -68,7 +68,7 @@ Defined in: src/newer/next/proxy/RequestProxy.ts:72
 dispatch(action, args): Promise<any>;
 ```
 
-Defined in: src/newer/next/proxy/RequestProxy.ts:77
+Defined in: uniform.ts/src/newer/next/proxy/RequestProxy.ts:77
 
 #### Parameters
 

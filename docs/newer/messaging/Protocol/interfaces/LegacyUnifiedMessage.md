@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: LegacyUnifiedMessage\<T\>
 
-Defined in: src/newer/messaging/Protocol.ts:45
+Defined in: uniform.ts/src/newer/messaging/Protocol.ts:45
 
 ## Extended by
 
@@ -26,7 +26,7 @@ Defined in: src/newer/messaging/Protocol.ts:45
 optional contentType?: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:50
+Defined in: uniform.ts/src/newer/messaging/Protocol.ts:50
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/newer/messaging/Protocol.ts:50
 optional data?: T;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:51
+Defined in: uniform.ts/src/newer/messaging/Protocol.ts:51
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: src/newer/messaging/Protocol.ts:51
 optional destination?: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:49
+Defined in: uniform.ts/src/newer/messaging/Protocol.ts:49
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: src/newer/messaging/Protocol.ts:49
 optional id?: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:46
+Defined in: uniform.ts/src/newer/messaging/Protocol.ts:46
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: src/newer/messaging/Protocol.ts:46
 optional metadata?: Record<string, unknown>;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:52
+Defined in: uniform.ts/src/newer/messaging/Protocol.ts:52
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: src/newer/messaging/Protocol.ts:52
 optional source?: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:48
+Defined in: uniform.ts/src/newer/messaging/Protocol.ts:48
 
 ***
 
@@ -86,4 +86,4 @@ Defined in: src/newer/messaging/Protocol.ts:48
 optional type?: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:47
+Defined in: uniform.ts/src/newer/messaging/Protocol.ts:47

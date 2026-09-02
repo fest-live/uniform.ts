@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function createChannelPair(channelName, config?): ChannelPairResult;
 ```
 
-Defined in: src/newer/next/transport/PortTransport.ts:199
+Defined in: uniform.ts/src/newer/next/transport/PortTransport.ts:199
 
 Create a MessageChannel pair with configured local transport
 

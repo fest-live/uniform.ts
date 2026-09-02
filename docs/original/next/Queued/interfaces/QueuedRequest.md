@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: QueuedRequest
 
-Defined in: src/original/next/Queued.ts:28
+Defined in: uniform.ts/src/original/next/Queued.ts:28
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/original/next/Queued.ts:28
 args: any[];
 ```
 
-Defined in: src/original/next/Queued.ts:31
+Defined in: uniform.ts/src/original/next/Queued.ts:31
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: src/original/next/Queued.ts:31
 id: string;
 ```
 
-Defined in: src/original/next/Queued.ts:29
+Defined in: uniform.ts/src/original/next/Queued.ts:29
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/original/next/Queued.ts:29
 method: string;
 ```
 
-Defined in: src/original/next/Queued.ts:30
+Defined in: uniform.ts/src/original/next/Queued.ts:30
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: src/original/next/Queued.ts:30
 reject: (error) => void;
 ```
 
-Defined in: src/original/next/Queued.ts:33
+Defined in: uniform.ts/src/original/next/Queued.ts:33
 
 #### Parameters
 
@@ -66,7 +66,7 @@ Defined in: src/original/next/Queued.ts:33
 resolve: (value) => void;
 ```
 
-Defined in: src/original/next/Queued.ts:32
+Defined in: uniform.ts/src/original/next/Queued.ts:32
 
 #### Parameters
 
@@ -86,4 +86,4 @@ Defined in: src/original/next/Queued.ts:32
 timestamp: number;
 ```
 
-Defined in: src/original/next/Queued.ts:34
+Defined in: uniform.ts/src/original/next/Queued.ts:34

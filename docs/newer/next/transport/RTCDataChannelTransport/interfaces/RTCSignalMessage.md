@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: RTCSignalMessage
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:51
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:51
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:51
 optional candidate?: RTCIceCandidateInit;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:56
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:56
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:56
 fromPeerId: string;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:53
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:53
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:53
 optional sdp?: string;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:55
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:55
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:55
 toPeerId: string;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:54
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:54
 
 ***
 
@@ -56,4 +56,4 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:54
 type: "offer" | "answer" | "ice-candidate" | "disconnect";
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:52
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:52

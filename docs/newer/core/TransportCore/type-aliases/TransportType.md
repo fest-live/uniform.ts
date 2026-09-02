@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -25,4 +25,4 @@ type TransportType =
   | "internal";
 ```
 
-Defined in: src/newer/core/TransportCore.ts:44
+Defined in: uniform.ts/src/newer/core/TransportCore.ts:44

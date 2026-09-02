@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: RTCPeerTransport
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:82
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:82
 
 ## Constructors
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:82
 new RTCPeerTransport(_channelName, _config?): RTCPeerTransport;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:94
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:94
 
 #### Parameters
 
@@ -42,7 +42,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:94
 get channelName(): string;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:326
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:326
 
 ##### Returns
 
@@ -58,7 +58,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:326
 get channelState(): RTCDataChannelState | null;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:322
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:322
 
 ##### Returns
 
@@ -74,7 +74,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:322
 get channelStateObservable(): ChannelSubject<RTCDataChannelState>;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:324
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:324
 
 ##### Returns
 
@@ -90,7 +90,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:324
 get connectionState(): RTCPeerConnectionState;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:321
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:321
 
 ##### Returns
 
@@ -106,7 +106,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:321
 get iceCandidates(): RTCIceCandidateInit[];
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:325
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:325
 
 ##### Returns
 
@@ -122,7 +122,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:325
 get localId(): string;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:319
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:319
 
 ##### Returns
 
@@ -138,7 +138,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:319
 get remoteId(): string | null;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:320
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:320
 
 ##### Returns
 
@@ -154,7 +154,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:320
 get state(): ChannelSubject<RTCPeerConnectionState>;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:323
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:323
 
 ##### Returns
 
@@ -168,7 +168,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:323
 addIceCandidate(signal): Promise<void>;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:242
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:242
 
 Handle incoming ICE candidate
 
@@ -190,7 +190,7 @@ Handle incoming ICE candidate
 close(): void;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:303
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:303
 
 #### Returns
 
@@ -204,7 +204,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:303
 createOffer(remoteId): Promise<RTCSignalMessage>;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:188
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:188
 
 Create offer to initiate connection
 
@@ -226,7 +226,7 @@ Create offer to initiate connection
 handleAnswer(signal): Promise<void>;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:232
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:232
 
 Handle incoming answer
 
@@ -248,7 +248,7 @@ Handle incoming answer
 handleOffer(signal): Promise<RTCSignalMessage>;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:210
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:210
 
 Handle incoming offer
 
@@ -270,7 +270,7 @@ Handle incoming offer
 request(msg): Promise<any>;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:266
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:266
 
 Send request and wait for response
 
@@ -292,7 +292,7 @@ Send request and wait for response
 send(msg, binary?): void;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:251
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:251
 
 Send message to peer
 
@@ -318,7 +318,7 @@ Send message to peer
 subscribe(observer): Subscription;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:284
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:284
 
 #### Parameters
 

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: PipelineConfig
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:69
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:69
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:69
 optional errorHandler?: (error, stage, message) => void;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:72
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:72
 
 #### Parameters
 
@@ -44,7 +44,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:72
 name: string;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:70
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:70
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:70
 stages: PipelineStage[];
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:71
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:71
 
 ***
 
@@ -64,4 +64,4 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:71
 optional timeout?: number;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:73
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:73

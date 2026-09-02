@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ChannelContext
 
-Defined in: src/newer/next/channel/ChannelContext.ts:411
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:411
 
 Channel Context - Manages multiple channels in a single context
 
@@ -26,7 +26,7 @@ Supports:
 new ChannelContext(_options?): ChannelContext;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:428
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:428
 
 #### Parameters
 
@@ -48,7 +48,7 @@ Defined in: src/newer/next/channel/ChannelContext.ts:428
 get closed(): boolean;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:1113
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:1113
 
 Check if context is closed
 
@@ -66,7 +66,7 @@ Check if context is closed
 get globalSelf(): typeof globalThis | null;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:918
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:918
 
 Get the global self reference
 
@@ -84,7 +84,7 @@ Get the global self reference
 get hostName(): string;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:482
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:482
 
 Get host name
 
@@ -102,7 +102,7 @@ Get host name
 get id(): string;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:489
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:489
 
 Get context ID
 
@@ -120,7 +120,7 @@ Get context ID
 get onConnection(): ChannelSubject<ConnectionEvent>;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:496
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:496
 
 Observable: connection events in this context
 
@@ -138,7 +138,7 @@ Observable: connection events in this context
 get size(): number;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:628
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:628
 
 Get total number of channels
 
@@ -157,7 +157,7 @@ $createOrUseExistingRemote(
    broadcast): RemoteChannelInfo | null;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:954
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:954
 
 Internal: Create or use existing remote channel
 
@@ -189,7 +189,7 @@ Internal: Create or use existing remote channel
 $forwardUnifiedConnectionEvent(channel, event): void;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:1044
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:1044
 
 #### Parameters
 
@@ -213,7 +213,7 @@ Defined in: src/newer/next/channel/ChannelContext.ts:1044
 $markNotified(params): void;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:1007
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:1007
 
 #### Parameters
 
@@ -271,7 +271,7 @@ Defined in: src/newer/next/channel/ChannelContext.ts:1007
 $observeSignal(params): void;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:1025
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:1025
 
 #### Parameters
 
@@ -325,7 +325,7 @@ Defined in: src/newer/next/channel/ChannelContext.ts:1025
 $registerConnection(params): ContextConnectionInfo;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:993
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:993
 
 #### Parameters
 
@@ -386,7 +386,7 @@ addBroadcast(
 options?): Promise<ChannelEndpoint>;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:769
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:769
 
 Add a BroadcastChannel dynamically
 
@@ -425,7 +425,7 @@ addPort(
 options?): Promise<ChannelEndpoint>;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:729
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:729
 
 Add a MessagePort channel dynamically
 
@@ -461,7 +461,7 @@ Connection options
 addSelfChannel(name, options?): ChannelEndpoint;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:808
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:808
 
 Add a channel using self/globalThis (for same-context communication)
 
@@ -491,7 +491,7 @@ Connection options
 addTransport(name, config): Promise<ChannelEndpoint>;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:836
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:836
 
 Add channel with dynamic transport configuration
 
@@ -524,7 +524,7 @@ addWorker(
 options?): Promise<ChannelEndpoint>;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:686
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:686
 
 Add a Worker channel dynamically
 
@@ -560,7 +560,7 @@ Connection options
 close(): void;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:1093
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:1093
 
 Close all channels and cleanup
 
@@ -576,7 +576,7 @@ Close all channels and cleanup
 closeChannel(name): boolean;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:1068
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:1068
 
 Close a specific channel
 
@@ -601,7 +601,7 @@ connectRemote(
 broadcast?): Promise<RemoteChannelHelper>;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:929
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:929
 
 Connect to a remote channel (e.g., in a Worker)
 
@@ -633,7 +633,7 @@ Connect to a remote channel (e.g., in a Worker)
 createChannel(name, options?): ChannelEndpoint;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:562
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:562
 
 Create a new channel endpoint in this context
 
@@ -668,7 +668,7 @@ createChannelPair(
    options?): object;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:871
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:871
 
 Create a MessageChannel pair for bidirectional communication
 
@@ -722,7 +722,7 @@ messageChannel: MessageChannel;
 createChannels(names, options?): Map<string, ChannelEndpoint>;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:589
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:589
 
 Create multiple channel endpoints at once
 
@@ -754,7 +754,7 @@ Map of channel names to endpoints
 defer(name, initFn): void;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:642
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:642
 
 Register a deferred channel that will be initialized on first use
 
@@ -784,7 +784,7 @@ Function to initialize the channel
 getChannel(name): ChannelEndpoint | undefined;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:600
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:600
 
 Get an existing channel endpoint
 
@@ -806,7 +806,7 @@ Get an existing channel endpoint
 getChannelAsync(name): Promise<ChannelEndpoint | null>;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:669
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:669
 
 Get channel, initializing deferred if needed
 
@@ -828,7 +828,7 @@ Get channel, initializing deferred if needed
 getChannelNames(): string[];
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:621
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:621
 
 Get all channel names in this context
 
@@ -844,7 +844,7 @@ Get all channel names in this context
 getHost(): ChannelHandler | null;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:475
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:475
 
 Get the host channel
 
@@ -860,7 +860,7 @@ Get the host channel
 getOrCreateChannel(name, options?): ChannelEndpoint;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:607
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:607
 
 Get or create a channel endpoint
 
@@ -886,7 +886,7 @@ Get or create a channel endpoint
 hasChannel(name): boolean;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:614
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:614
 
 Check if channel exists in this context
 
@@ -912,7 +912,7 @@ importModuleInChannel(
 broadcast?): Promise<any>;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:941
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:941
 
 Import a module in a remote channel
 
@@ -954,7 +954,7 @@ Import a module in a remote channel
 initDeferred(name): Promise<ChannelEndpoint | null>;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:649
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:649
 
 Initialize a previously deferred channel
 
@@ -976,7 +976,7 @@ Initialize a previously deferred channel
 initHost(name?): ChannelHandler;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:446
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:446
 
 Initialize/get the host channel for this context
 
@@ -998,7 +998,7 @@ Initialize/get the host channel for this context
 isDeferred(name): boolean;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:662
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:662
 
 Check if channel is deferred (not yet initialized)
 
@@ -1020,7 +1020,7 @@ Check if channel is deferred (not yet initialized)
 notifyConnections(payload?, query?): number;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:511
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:511
 
 Notify all currently known active connections.
 Useful for service worker / cross-tab handshakes.
@@ -1047,7 +1047,7 @@ Useful for service worker / cross-tab handshakes.
 queryConnections(query?): ContextConnectionInfo[];
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:542
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:542
 
 Query tracked connections with filters
 
@@ -1069,7 +1069,7 @@ Query tracked connections with filters
 subscribeConnections(handler): Subscription;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:503
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:503
 
 Subscribe to connection events
 

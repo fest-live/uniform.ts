@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function initWorkerContext(config?): WorkerContext;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:452
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:452
 
 Initialize worker context with config
 

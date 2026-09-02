@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: WorkerContextConfig
 
-Defined in: src/newer/next/transport/Worker.ts:57
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:57
 
 Worker context configuration
 
@@ -22,7 +22,7 @@ Worker context configuration
 optional allowedChannels?: string[];
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:63
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:63
 
 Channel whitelist (if set, only these channels are accepted)
 
@@ -34,7 +34,7 @@ Channel whitelist (if set, only these channels are accepted)
 optional autoAcceptChannels?: boolean;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:61
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:61
 
 Auto-accept incoming channels
 
@@ -46,7 +46,7 @@ Auto-accept incoming channels
 optional autoConnect?: boolean;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:96
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:96
 
 Auto-connect channels on creation
 
@@ -62,7 +62,7 @@ Auto-connect channels on creation
 optional defaultOptions?: ConnectionOptions;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:98
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:98
 
 Default connection options for channels
 
@@ -78,7 +78,7 @@ Default connection options for channels
 optional isolatedStorage?: boolean;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:100
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:100
 
 Enable isolated storage per context
 
@@ -94,7 +94,7 @@ Enable isolated storage per context
 optional maxChannels?: number;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:65
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:65
 
 Maximum concurrent channels
 
@@ -106,7 +106,7 @@ Maximum concurrent channels
 optional name?: string;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:94
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:94
 
 Context name for identification
 
@@ -122,7 +122,7 @@ Context name for identification
 optional useGlobalSelf?: boolean;
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:102
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:102
 
 Use globalThis/self as default broadcast target
 
@@ -138,6 +138,6 @@ Use globalThis/self as default broadcast target
 optional workerName?: string;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:59
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:59
 
 Worker name/identifier

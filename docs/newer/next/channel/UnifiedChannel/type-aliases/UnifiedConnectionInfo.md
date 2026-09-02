@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,4 +10,4 @@
 type UnifiedConnectionInfo = ConnectionInfo<TransportType>;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:102
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:102

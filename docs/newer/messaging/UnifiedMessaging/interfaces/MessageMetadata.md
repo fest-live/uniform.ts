@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: MessageMetadata
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:42
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:42
 
 ## Indexable
 
@@ -22,7 +22,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:42
 optional correlationId?: string;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:44
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:44
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:44
 optional expiresAt?: number;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:46
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:46
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:46
 optional maxRetries?: number;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:48
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:48
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:48
 optional priority?: MessagePriority;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:45
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:45
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:45
 optional retryCount?: number;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:47
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:47
 
 ***
 
@@ -72,4 +72,4 @@ Defined in: src/newer/messaging/UnifiedMessaging.ts:47
 optional timestamp?: number;
 ```
 
-Defined in: src/newer/messaging/UnifiedMessaging.ts:43
+Defined in: uniform.ts/src/newer/messaging/UnifiedMessaging.ts:43

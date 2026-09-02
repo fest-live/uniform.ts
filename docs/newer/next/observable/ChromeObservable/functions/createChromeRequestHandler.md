@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function createChromeRequestHandler(channelName, handlers): InvokerHandler<ChromeMessage<any>>;
 ```
 
-Defined in: src/newer/next/observable/ChromeObservable.ts:243
+Defined in: uniform.ts/src/newer/next/observable/ChromeObservable.ts:243
 
 ## Parameters
 

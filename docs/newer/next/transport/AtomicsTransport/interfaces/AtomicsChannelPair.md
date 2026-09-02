@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: AtomicsChannelPair
 
-Defined in: src/newer/next/transport/AtomicsTransport.ts:413
+Defined in: uniform.ts/src/newer/next/transport/AtomicsTransport.ts:413
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/transport/AtomicsTransport.ts:413
 main: AtomicsTransport;
 ```
 
-Defined in: src/newer/next/transport/AtomicsTransport.ts:414
+Defined in: uniform.ts/src/newer/next/transport/AtomicsTransport.ts:414
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: src/newer/next/transport/AtomicsTransport.ts:414
 worker: object;
 ```
 
-Defined in: src/newer/next/transport/AtomicsTransport.ts:415
+Defined in: uniform.ts/src/newer/next/transport/AtomicsTransport.ts:415
 
 #### recvBuffer
 

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function getVisibleTabId(): Promise<number>;
 ```
 
-Defined in: src/newer/next/storage/Queued.ts:178
+Defined in: uniform.ts/src/newer/next/storage/Queued.ts:178
 
 Tab ID getter for visible tab (may be different from active)
 

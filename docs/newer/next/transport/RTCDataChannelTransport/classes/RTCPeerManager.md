@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: RTCPeerManager
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:333
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:333
 
 ## Constructors
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:333
 new RTCPeerManager(_channelName, _config?): RTCPeerManager;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:344
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:344
 
 #### Parameters
 
@@ -42,7 +42,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:344
 get channelName(): string;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:509
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:509
 
 ##### Returns
 
@@ -58,7 +58,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:509
 get localId(): string;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:507
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:507
 
 ##### Returns
 
@@ -74,7 +74,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:507
 get peerCount(): number;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:508
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:508
 
 ##### Returns
 
@@ -88,7 +88,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:508
 broadcast(msg): void;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:456
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:456
 
 Broadcast to all peers
 
@@ -110,7 +110,7 @@ Broadcast to all peers
 close(): void;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:497
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:497
 
 #### Returns
 
@@ -124,7 +124,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:497
 connect(peerId): Promise<RTCPeerTransport>;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:435
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:435
 
 Connect to a peer
 
@@ -146,7 +146,7 @@ Connect to a peer
 getPeers(): Map<string, RTCPeerInfo>;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:484
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:484
 
 #### Returns
 
@@ -160,7 +160,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:484
 onPeerEvent(handler): Subscription;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:480
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:480
 
 #### Parameters
 
@@ -180,7 +180,7 @@ Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:480
 request(peerId, msg): Promise<any>;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:465
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:465
 
 Request from specific peer
 
@@ -206,7 +206,7 @@ Request from specific peer
 send(peerId, msg): void;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:449
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:449
 
 Send to specific peer
 
@@ -232,7 +232,7 @@ Send to specific peer
 subscribe(observer): Subscription;
 ```
 
-Defined in: src/newer/next/transport/RTCDataChannelTransport.ts:471
+Defined in: uniform.ts/src/newer/next/transport/RTCDataChannelTransport.ts:471
 
 #### Parameters
 

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../README.md)
+[**@fest-lib/uniform v0.1.23**](../README.md)
 
 ***
 
@@ -582,6 +582,12 @@ Re-exports [createMessageQueue](messaging/MessageQueue/functions/createMessageQu
 
 ***
 
+### createMountedFsId
+
+Re-exports [createMountedFsId](../index/functions/createMountedFsId.md)
+
+***
+
 ### createObservableChannel
 
 Re-exports [createObservableChannel](next/proxy/RequestProxy/functions/createObservableChannel.md)
@@ -1152,6 +1158,18 @@ Re-exports [isChromeExtensionContext](next/utils/Env/functions/isChromeExtension
 
 ***
 
+### isMountedFsRequest
+
+Re-exports [isMountedFsRequest](../index/functions/isMountedFsRequest.md)
+
+***
+
+### isMountedFsResponse
+
+Re-exports [isMountedFsResponse](../index/functions/isMountedFsResponse.md)
+
+***
+
 ### isProtocolEnvelope
 
 Re-exports [isProtocolEnvelope](messaging/Protocol/functions/isProtocolEnvelope.md)
@@ -1338,6 +1356,60 @@ Renames and re-exports [QueuedMessage](messaging/MessageQueue/interfaces/QueuedM
 
 ***
 
+### MOUNTED\_FS\_EVENT
+
+Re-exports [MOUNTED_FS_EVENT](../index/variables/MOUNTED_FS_EVENT.md)
+
+***
+
+### MOUNTED\_FS\_HTTP\_PATH
+
+Re-exports [MOUNTED_FS_HTTP_PATH](../index/variables/MOUNTED_FS_HTTP_PATH.md)
+
+***
+
+### MOUNTED\_FS\_WS\_PATH
+
+Re-exports [MOUNTED_FS_WS_PATH](../index/variables/MOUNTED_FS_WS_PATH.md)
+
+***
+
+### MountedFsEntry
+
+Renames and re-exports [MountedFsOp](../index/type-aliases/MountedFsOp.md)
+
+***
+
+### MountedFsFileBody
+
+Renames and re-exports [MountedFsOp](../index/type-aliases/MountedFsOp.md)
+
+***
+
+### MountedFsKind
+
+Renames and re-exports [MountedFsOp](../index/type-aliases/MountedFsOp.md)
+
+***
+
+### MountedFsOp
+
+Re-exports [MountedFsOp](../index/type-aliases/MountedFsOp.md)
+
+***
+
+### MountedFsRequest
+
+Renames and re-exports [MountedFsOp](../index/type-aliases/MountedFsOp.md)
+
+***
+
+### MountedFsResponse
+
+Renames and re-exports [MountedFsOp](../index/type-aliases/MountedFsOp.md)
+
+***
+
 ### normalizeProtocolEnvelope
 
 Re-exports [normalizeProtocolEnvelope](messaging/Protocol/functions/normalizeProtocolEnvelope.md)
@@ -1407,6 +1479,12 @@ Re-exports [onWorkerInvocation](next/transport/Worker/functions/onWorkerInvocati
 ### OptimizedWorkerChannel
 
 Re-exports [OptimizedWorkerChannel](next/storage/Queued/classes/OptimizedWorkerChannel.md)
+
+***
+
+### parseMountedFsMessage
+
+Re-exports [parseMountedFsMessage](../index/functions/parseMountedFsMessage.md)
 
 ***
 

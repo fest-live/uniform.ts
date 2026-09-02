@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function getCurrentTabId(): Promise<number>;
 ```
 
-Defined in: src/original/next/Queued.ts:164
+Defined in: uniform.ts/src/original/next/Queued.ts:164
 
 Default tab ID getter - gets current active tab
 

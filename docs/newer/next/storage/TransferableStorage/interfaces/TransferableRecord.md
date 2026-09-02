@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: TransferableRecord\<T\>
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:19
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:19
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:19
 optional buffers?: ArrayBuffer[];
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:22
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:22
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:22
 createdAt: number;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:24
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:24
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:24
 data: T;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:21
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:21
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:21
 optional expiresAt?: number;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:26
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:26
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:26
 id: string;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:20
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:20
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:20
 optional metadata?: Record<string, any>;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:23
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:23
 
 ***
 
@@ -82,4 +82,4 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:23
 updatedAt: number;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:25
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:25

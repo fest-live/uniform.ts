@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function createSimpleRequestHandler(channelName, handlers): InvokerHandler<any>;
 ```
 
-Defined in: src/newer/next/observable/NativeObservable.ts:69
+Defined in: uniform.ts/src/newer/next/observable/NativeObservable.ts:69
 
 ## Parameters
 

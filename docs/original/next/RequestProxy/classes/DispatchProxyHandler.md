@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: DispatchProxyHandler
 
-Defined in: src/original/next/RequestProxy.ts:39
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:39
 
 ## Implements
 
@@ -20,7 +20,7 @@ Defined in: src/original/next/RequestProxy.ts:39
 new DispatchProxyHandler(dispatcher): DispatchProxyHandler;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:40
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:40
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: src/original/next/RequestProxy.ts:40
 dispatcher: any;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:40
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:40
 
 ## Methods
 
@@ -50,7 +50,7 @@ Defined in: src/original/next/RequestProxy.ts:40
 apply(...args): any;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:84
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:84
 
 A trap method for a function call.
 
@@ -78,7 +78,7 @@ ProxyHandler.apply
 call(...args): any;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:88
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:88
 
 #### Parameters
 
@@ -98,7 +98,7 @@ Defined in: src/original/next/RequestProxy.ts:88
 construct(...args): any;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:92
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:92
 
 A trap for the `new` operator.
 
@@ -126,7 +126,7 @@ ProxyHandler.construct
 deleteProperty(...args): any;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:56
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:56
 
 A trap for the `delete` operator.
 
@@ -156,7 +156,7 @@ ProxyHandler.deleteProperty
 get(...args): any;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:44
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:44
 
 A trap for getting a property value.
 
@@ -184,7 +184,7 @@ ProxyHandler.get
 getOwnPropertyDescriptor(...args): any;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:60
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:60
 
 A trap for `Object.getOwnPropertyDescriptor()`.
 
@@ -212,7 +212,7 @@ ProxyHandler.getOwnPropertyDescriptor
 getPrototypeOf(...args): any;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:64
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:64
 
 A trap for the `[[GetPrototypeOf]]` internal method.
 
@@ -240,7 +240,7 @@ ProxyHandler.getPrototypeOf
 has(...args): any;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:52
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:52
 
 A trap for the `in` operator.
 
@@ -268,7 +268,7 @@ ProxyHandler.has
 isExtensible(...args): any;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:72
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:72
 
 A trap for `Object.isExtensible()`.
 
@@ -296,7 +296,7 @@ ProxyHandler.isExtensible
 ownKeys(...args): any;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:80
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:80
 
 A trap for `Reflect.ownKeys()`.
 
@@ -324,7 +324,7 @@ ProxyHandler.ownKeys
 preventExtensions(...args): any;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:76
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:76
 
 A trap for `Object.preventExtensions()`.
 
@@ -352,7 +352,7 @@ ProxyHandler.preventExtensions
 set(...args): any;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:48
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:48
 
 A trap for setting a property value.
 
@@ -382,7 +382,7 @@ ProxyHandler.set
 setPrototypeOf(...args): any;
 ```
 
-Defined in: src/original/next/RequestProxy.ts:68
+Defined in: uniform.ts/src/original/next/RequestProxy.ts:68
 
 A trap for `Object.setPrototypeOf()`.
 

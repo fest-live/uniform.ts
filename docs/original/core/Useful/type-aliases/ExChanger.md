@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,4 +10,4 @@
 type ExChanger = any;
 ```
 
-Defined in: src/original/core/Useful.ts:14
+Defined in: uniform.ts/src/original/core/Useful.ts:14

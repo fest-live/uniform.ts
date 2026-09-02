@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function merge<T>(...sources): Observable<T>;
 ```
 
-Defined in: src/newer/next/observable/Observable.ts:287
+Defined in: uniform.ts/src/newer/next/observable/Observable.ts:287
 
 ## Type Parameters
 

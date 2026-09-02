@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -13,7 +13,7 @@ function createSharedWorkerObservable(
    options?): SharedWorkerClient;
 ```
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:355
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:355
 
 ## Parameters
 

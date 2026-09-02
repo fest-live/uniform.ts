@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function unwrapDescriptorFromProxy(target): any;
 ```
 
-Defined in: src/newer/next/storage/DataBase.ts:145
+Defined in: uniform.ts/src/newer/next/storage/DataBase.ts:145
 
 ## Parameters
 

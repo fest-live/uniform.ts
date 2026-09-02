@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # ~~Class: ChannelHandler~~
 
-Defined in: src/newer/next/channel/Channels.ts:83
+Defined in: uniform.ts/src/newer/next/channel/Channels.ts:83
 
 ## Deprecated
 
@@ -20,7 +20,7 @@ Use UnifiedChannel instead
 new ChannelHandler(channel, options?): ChannelHandler;
 ```
 
-Defined in: src/newer/next/channel/Channels.ts:87
+Defined in: uniform.ts/src/newer/next/channel/Channels.ts:87
 
 #### Parameters
 
@@ -44,7 +44,7 @@ Defined in: src/newer/next/channel/Channels.ts:87
 close(): void;
 ```
 
-Defined in: src/newer/next/channel/Channels.ts:120
+Defined in: uniform.ts/src/newer/next/channel/Channels.ts:120
 
 #### Returns
 
@@ -61,7 +61,7 @@ createRemoteChannel(
 broadcast?): Promise<RemoteChannelHelper>;
 ```
 
-Defined in: src/newer/next/channel/Channels.ts:93
+Defined in: uniform.ts/src/newer/next/channel/Channels.ts:93
 
 #### Parameters
 
@@ -89,7 +89,7 @@ Defined in: src/newer/next/channel/Channels.ts:93
 getChannel(): string;
 ```
 
-Defined in: src/newer/next/channel/Channels.ts:101
+Defined in: uniform.ts/src/newer/next/channel/Channels.ts:101
 
 #### Returns
 
@@ -106,7 +106,7 @@ handleAndResponse(
 responseFn?): Promise<void>;
 ```
 
-Defined in: src/newer/next/channel/Channels.ts:114
+Defined in: uniform.ts/src/newer/next/channel/Channels.ts:114
 
 #### Parameters
 
@@ -139,7 +139,7 @@ request(
    toChannel?): Promise<any> | null;
 ```
 
-Defined in: src/newer/next/channel/Channels.ts:103
+Defined in: uniform.ts/src/newer/next/channel/Channels.ts:103
 
 #### Parameters
 
@@ -177,7 +177,7 @@ Defined in: src/newer/next/channel/Channels.ts:103
 resolveResponse(reqId, result): Promise<any>;
 ```
 
-Defined in: src/newer/next/channel/Channels.ts:112
+Defined in: uniform.ts/src/newer/next/channel/Channels.ts:112
 
 #### Parameters
 

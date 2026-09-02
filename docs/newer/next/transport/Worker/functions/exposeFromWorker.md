@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function exposeFromWorker(name, obj): void;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:519
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:519
 
 Expose an object for remote invocation from the worker
 

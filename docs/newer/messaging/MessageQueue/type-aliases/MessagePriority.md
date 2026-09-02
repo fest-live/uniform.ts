@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -10,4 +10,4 @@
 type MessagePriority = "low" | "normal" | "high";
 ```
 
-Defined in: src/newer/messaging/MessageQueue.ts:24
+Defined in: uniform.ts/src/newer/messaging/MessageQueue.ts:24

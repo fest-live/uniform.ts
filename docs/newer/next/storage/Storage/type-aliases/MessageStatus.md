@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,6 +10,6 @@
 type MessageStatus = "pending" | "processing" | "delivered" | "failed" | "expired";
 ```
 
-Defined in: src/newer/next/storage/Storage.ts:20
+Defined in: uniform.ts/src/newer/next/storage/Storage.ts:20
 
 Message status in storage

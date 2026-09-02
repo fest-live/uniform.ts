@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: UnifiedChannelConfig
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:69
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:69
 
 Unified channel configuration
 
@@ -18,7 +18,7 @@ Unified channel configuration
 optional autoDetect?: boolean;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:73
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:73
 
 Auto-detect context type
 
@@ -30,7 +30,7 @@ Auto-detect context type
 optional autoListen?: boolean;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:81
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:81
 
 Auto-start listening
 
@@ -42,7 +42,7 @@ Auto-start listening
 optional bufferSize?: number;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:79
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:79
 
 Buffer size for observables
 
@@ -54,7 +54,7 @@ Buffer size for observables
 name: string;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:71
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:71
 
 Channel name
 
@@ -66,7 +66,7 @@ Channel name
 optional reflect?: ReflectLike;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:77
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:77
 
 Custom Reflect implementation
 
@@ -78,6 +78,6 @@ Custom Reflect implementation
 optional timeout?: number;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:75
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:75
 
 Request timeout (ms)

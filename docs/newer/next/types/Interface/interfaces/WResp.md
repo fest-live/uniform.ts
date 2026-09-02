@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: WResp\<T\>
 
-Defined in: src/newer/next/types/Interface.ts:62
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:62
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: src/newer/next/types/Interface.ts:62
 optional descriptor?: WReflectDescriptor<any> | null;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:68
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:68
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: src/newer/next/types/Interface.ts:68
 optional error?: string | null;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:70
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:70
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: src/newer/next/types/Interface.ts:70
 optional message?: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:65
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:65
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: src/newer/next/types/Interface.ts:65
 optional reason?: WError<T> | WSuccess<T>;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:64
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:64
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: src/newer/next/types/Interface.ts:64
 optional received?: T | null;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:67
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:67
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: src/newer/next/types/Interface.ts:67
 optional result?: T | null;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:66
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:66
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: src/newer/next/types/Interface.ts:66
 optional status?: number;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:63
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:63
 
 ***
 
@@ -92,4 +92,4 @@ Defined in: src/newer/next/types/Interface.ts:63
 optional type?: string | null;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:69
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:69

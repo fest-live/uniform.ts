@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: WSuccess\<T\>
 
-Defined in: src/original/next/Interface.ts:74
+Defined in: uniform.ts/src/original/next/Interface.ts:74
 
 ## Type Parameters
 
@@ -22,4 +22,4 @@ Defined in: src/original/next/Interface.ts:74
 message: string;
 ```
 
-Defined in: src/original/next/Interface.ts:75
+Defined in: uniform.ts/src/original/next/Interface.ts:75

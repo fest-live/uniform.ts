@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ServiceWorkerHost
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:86
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:86
 
 ServiceWorkerHost - The host channel that runs inside Service Worker.
 
@@ -21,7 +21,7 @@ This is the reverse of normal worker pattern.
 new ServiceWorkerHost(config): ServiceWorkerHost;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:102
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:102
 
 #### Parameters
 
@@ -41,7 +41,7 @@ Defined in: src/newer/next/transport/ServiceWorkerHost.ts:102
 broadcastToAll(message): Promise<number>;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:267
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:267
 
 Broadcast to all connected clients
 
@@ -63,7 +63,7 @@ Broadcast to all connected clients
 broadcastToChannel(channel, message): Promise<number>;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:249
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:249
 
 Broadcast message to all clients subscribed to a channel
 
@@ -89,7 +89,7 @@ Broadcast message to all clients subscribed to a channel
 getChannelSubscribers(channel): Set<string>;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:221
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:221
 
 Get clients subscribed to a channel
 
@@ -111,7 +111,7 @@ Get clients subscribed to a channel
 getClients(): Map<string, SWClientInfo>;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:214
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:214
 
 Get all connected clients
 
@@ -127,7 +127,7 @@ Get all connected clients
 handleClientMessage(clientId, data): Promise<void>;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:281
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:281
 
 Handle incoming message from client
 
@@ -153,7 +153,7 @@ Handle incoming message from client
 onClientEvent(handler): Subscription;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:340
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:340
 
 Subscribe to client events
 
@@ -175,7 +175,7 @@ Subscribe to client events
 onMessage(handler): Subscription;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:349
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:349
 
 Subscribe to messages from clients
 
@@ -197,7 +197,7 @@ Subscribe to messages from clients
 onMessageType(type, handler): Subscription;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:356
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:356
 
 Subscribe to messages of specific type
 
@@ -223,7 +223,7 @@ Subscribe to messages of specific type
 registerClient(clientId, clientInfo?): Promise<void>;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:136
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:136
 
 Register a client connection
 
@@ -249,7 +249,7 @@ Register a client connection
 sendToClient(clientId, message): Promise<boolean>;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:232
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:232
 
 Send message to specific client
 
@@ -275,7 +275,7 @@ Send message to specific client
 start(): Promise<void>;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:420
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:420
 
 Start the host (call in SW activate)
 
@@ -291,7 +291,7 @@ Start the host (call in SW activate)
 stop(): void;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:431
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:431
 
 Stop the host
 
@@ -307,7 +307,7 @@ Stop the host
 subscribeClientToChannel(clientId, channel): void;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:185
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:185
 
 Subscribe client to a channel
 
@@ -333,7 +333,7 @@ Subscribe client to a channel
 unregisterClient(clientId): void;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:158
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:158
 
 Unregister a client
 
@@ -355,7 +355,7 @@ Unregister a client
 unsubscribeClientFromChannel(clientId, channel): void;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:202
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:202
 
 Unsubscribe client from a channel
 
@@ -381,7 +381,7 @@ Unsubscribe client from a channel
 updateClient(clientId, updates): void;
 ```
 
-Defined in: src/newer/next/transport/ServiceWorkerHost.ts:174
+Defined in: uniform.ts/src/newer/next/transport/ServiceWorkerHost.ts:174
 
 Update client info
 

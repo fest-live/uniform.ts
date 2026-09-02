@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../README.md)
 
 ***
 
@@ -16,7 +16,7 @@ function sync(
 | null>;
 ```
 
-Defined in: src/newer/index.ts:461
+Defined in: uniform.ts/src/newer/index.ts:461
 
 Sync with a remote channel
 

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function exposeFromUnified(name, obj): void;
 ```
 
-Defined in: src/newer/next/channel/UnifiedChannel.ts:1174
+Defined in: uniform.ts/src/newer/next/channel/UnifiedChannel.ts:1174
 
 Expose an object from the worker channel
 

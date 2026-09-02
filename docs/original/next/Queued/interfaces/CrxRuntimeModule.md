@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: CrxRuntimeModule
 
-Defined in: src/original/next/Queued.ts:196
+Defined in: uniform.ts/src/original/next/Queued.ts:196
 
 Chrome Extension Runtime Module Interface
 
@@ -18,7 +18,7 @@ Chrome Extension Runtime Module Interface
 capture(rect?, mode?): Promise<any>;
 ```
 
-Defined in: src/original/next/Queued.ts:198
+Defined in: uniform.ts/src/original/next/Queued.ts:198
 
 #### Parameters
 
@@ -56,7 +56,7 @@ Defined in: src/original/next/Queued.ts:198
 captureScreenshot(rect?): Promise<any>;
 ```
 
-Defined in: src/original/next/Queued.ts:201
+Defined in: uniform.ts/src/original/next/Queued.ts:201
 
 #### Parameters
 
@@ -90,7 +90,7 @@ Defined in: src/original/next/Queued.ts:201
 captureWithRect(mode?): Promise<any>;
 ```
 
-Defined in: src/original/next/Queued.ts:209
+Defined in: uniform.ts/src/original/next/Queued.ts:209
 
 #### Parameters
 
@@ -110,7 +110,7 @@ Defined in: src/original/next/Queued.ts:209
 close(): void;
 ```
 
-Defined in: src/original/next/Queued.ts:212
+Defined in: uniform.ts/src/original/next/Queued.ts:212
 
 #### Returns
 
@@ -124,7 +124,7 @@ Defined in: src/original/next/Queued.ts:212
 doCopy(data, options?): Promise<any>;
 ```
 
-Defined in: src/original/next/Queued.ts:207
+Defined in: uniform.ts/src/original/next/Queued.ts:207
 
 #### Parameters
 
@@ -156,7 +156,7 @@ Defined in: src/original/next/Queued.ts:207
 getCurrentTab(): Promise<Tab | null>;
 ```
 
-Defined in: src/original/next/Queued.ts:210
+Defined in: uniform.ts/src/original/next/Queued.ts:210
 
 #### Returns
 
@@ -170,7 +170,7 @@ Defined in: src/original/next/Queued.ts:210
 loadMarkdown(src): Promise<any>;
 ```
 
-Defined in: src/original/next/Queued.ts:208
+Defined in: uniform.ts/src/original/next/Queued.ts:208
 
 #### Parameters
 
@@ -190,7 +190,7 @@ Defined in: src/original/next/Queued.ts:208
 processImage(imageData, mode?): Promise<any>;
 ```
 
-Defined in: src/original/next/Queued.ts:204
+Defined in: uniform.ts/src/original/next/Queued.ts:204
 
 #### Parameters
 
@@ -214,7 +214,7 @@ Defined in: src/original/next/Queued.ts:204
 processText(text, options?): Promise<any>;
 ```
 
-Defined in: src/original/next/Queued.ts:206
+Defined in: uniform.ts/src/original/next/Queued.ts:206
 
 #### Parameters
 
@@ -240,7 +240,7 @@ Defined in: src/original/next/Queued.ts:206
 sendMessage(type, data?): Promise<any>;
 ```
 
-Defined in: src/original/next/Queued.ts:211
+Defined in: uniform.ts/src/original/next/Queued.ts:211
 
 #### Parameters
 

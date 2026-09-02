@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -13,7 +13,7 @@ function getConnection(
    options?): ChannelConnection;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:223
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:223
 
 ## Parameters
 

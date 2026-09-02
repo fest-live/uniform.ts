@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: InvokerConfig
 
-Defined in: src/newer/next/proxy/Invoker.ts:27
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:27
 
 Invoker configuration
 
@@ -18,7 +18,7 @@ Invoker configuration
 optional autoDetect?: boolean;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:29
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:29
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:29
 optional cacheResponses?: boolean;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:31
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:31
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:31
 channel: string;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:28
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:28
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:28
 optional reflectImpl?: ReflectLike;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:32
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:32
 
 ***
 
@@ -58,4 +58,4 @@ Defined in: src/newer/next/proxy/Invoker.ts:32
 optional timeout?: number;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:30
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:30

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: SharedWorkerMessage\<T\>
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:17
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:17
 
 Channel message envelope
 
@@ -28,7 +28,7 @@ Channel message envelope
 optional broadcast?: boolean;
 ```
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:19
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:19
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: src/newer/next/transport/SharedWorkerTransport.ts:19
 channel: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:127
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:127
 
 #### Inherited from
 
@@ -52,7 +52,7 @@ Defined in: src/newer/next/types/Interface.ts:127
 id: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:126
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:126
 
 #### Inherited from
 
@@ -66,7 +66,7 @@ Defined in: src/newer/next/types/Interface.ts:126
 optional payload?: any;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:130
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:130
 
 #### Inherited from
 
@@ -80,7 +80,7 @@ Defined in: src/newer/next/types/Interface.ts:130
 optional portId?: string;
 ```
 
-Defined in: src/newer/next/transport/SharedWorkerTransport.ts:18
+Defined in: uniform.ts/src/newer/next/transport/SharedWorkerTransport.ts:18
 
 ***
 
@@ -90,7 +90,7 @@ Defined in: src/newer/next/transport/SharedWorkerTransport.ts:18
 optional reqId?: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:131
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:131
 
 #### Inherited from
 
@@ -104,7 +104,7 @@ Defined in: src/newer/next/types/Interface.ts:131
 sender: string;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:128
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:128
 
 #### Inherited from
 
@@ -118,7 +118,7 @@ Defined in: src/newer/next/types/Interface.ts:128
 optional timestamp?: number;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:132
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:132
 
 #### Inherited from
 
@@ -132,7 +132,7 @@ Defined in: src/newer/next/types/Interface.ts:132
 optional transferable?: Transferable[];
 ```
 
-Defined in: src/newer/next/types/Interface.ts:133
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:133
 
 #### Inherited from
 
@@ -146,7 +146,7 @@ Defined in: src/newer/next/types/Interface.ts:133
 type: "request" | "response" | "event" | "signal" | "exchange";
 ```
 
-Defined in: src/newer/next/types/Interface.ts:129
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:129
 
 #### Inherited from
 

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -22,6 +22,6 @@ type DynamicTransportType =
   | "self";
 ```
 
-Defined in: src/newer/next/channel/ChannelContext.ts:62
+Defined in: uniform.ts/src/newer/next/channel/ChannelContext.ts:62
 
 Supported transport types for dynamic channel creation

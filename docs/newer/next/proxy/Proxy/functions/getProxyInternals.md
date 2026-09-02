@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function getProxyInternals(value): ProxyConfig | null;
 ```
 
-Defined in: src/newer/next/proxy/Proxy.ts:374
+Defined in: uniform.ts/src/newer/next/proxy/Proxy.ts:374
 
 Get proxy internals (config)
 

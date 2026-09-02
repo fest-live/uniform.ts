@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: QueuedMessage\<T\>
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:515
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:515
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:515
 attempts: number;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:522
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:522
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:522
 channel: string;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:517
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:517
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:517
 createdAt: number;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:525
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:525
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:525
 optional error?: string;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:529
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:529
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:529
 optional expiresAt?: number;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:527
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:527
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:527
 id: string;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:516
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:516
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:516
 optional lastAttemptAt?: number;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:528
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:528
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:528
 maxAttempts: number;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:523
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:523
 
 ***
 
@@ -102,7 +102,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:523
 payload: T;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:520
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:520
 
 ***
 
@@ -112,7 +112,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:520
 priority: number;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:521
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:521
 
 ***
 
@@ -122,7 +122,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:521
 scheduledFor: number;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:526
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:526
 
 ***
 
@@ -132,7 +132,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:526
 sender: string;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:518
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:518
 
 ***
 
@@ -142,7 +142,7 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:518
 status: "pending" | "processing" | "failed" | "expired" | "completed";
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:524
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:524
 
 ***
 
@@ -152,4 +152,4 @@ Defined in: src/newer/next/storage/TransferableStorage.ts:524
 type: string;
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:519
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:519

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: IncomingConnection
 
-Defined in: src/newer/next/transport/Worker.ts:27
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:27
 
 Incoming connection event
 
@@ -18,7 +18,7 @@ Incoming connection event
 channel: string;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:31
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:31
 
 Channel name
 
@@ -30,7 +30,7 @@ Channel name
 id: string;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:29
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:29
 
 Connection ID
 
@@ -42,7 +42,7 @@ Connection ID
 optional options?: any;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:41
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:41
 
 Connection options
 
@@ -54,7 +54,7 @@ Connection options
 optional port?: MessagePort;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:37
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:37
 
 MessagePort if provided
 
@@ -66,7 +66,7 @@ MessagePort if provided
 sender: string;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:33
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:33
 
 Sender context name
 
@@ -78,7 +78,7 @@ Sender context name
 timestamp: number;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:39
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:39
 
 Timestamp
 
@@ -90,6 +90,6 @@ Timestamp
 type: "broadcast" | "socket" | "channel" | "port";
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:35
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:35
 
 Connection type

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: Responder
 
-Defined in: src/newer/next/proxy/Invoker.ts:199
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:199
 
 ## Constructors
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:199
 new Responder(config): Responder;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:203
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:203
 
 #### Parameters
 
@@ -38,7 +38,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:203
 get contextType(): ContextType;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:226
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:226
 
 ##### Returns
 
@@ -54,7 +54,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:226
 get onInvocation(): ChannelSubject<IncomingInvocation>;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:222
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:222
 
 ##### Returns
 
@@ -68,7 +68,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:222
 close(): void;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:227
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:227
 
 #### Returns
 
@@ -82,7 +82,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:227
 expose(name, obj): this;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:217
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:217
 
 #### Parameters
 
@@ -106,7 +106,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:217
 listen(source, options?): this;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:212
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:212
 
 #### Parameters
 
@@ -130,7 +130,7 @@ Defined in: src/newer/next/proxy/Invoker.ts:212
 subscribeInvocations(handler): Subscription;
 ```
 
-Defined in: src/newer/next/proxy/Invoker.ts:223
+Defined in: uniform.ts/src/newer/next/proxy/Invoker.ts:223
 
 #### Parameters
 

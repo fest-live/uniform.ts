@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ChromePortObservable
 
-Defined in: src/newer/next/transport/TransportObservable.ts:233
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:233
 
 Chrome Port Observable
 
@@ -22,7 +22,7 @@ Chrome Port Observable
 new ChromePortObservable(_portName, _tabId?): ChromePortObservable;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:236
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:236
 
 #### Parameters
 
@@ -52,7 +52,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:236
 get isListening(): boolean;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:71
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:71
 
 ##### Returns
 
@@ -72,7 +72,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:71
 get subscriberCount(): number;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:70
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:70
 
 ##### Returns
 
@@ -90,7 +90,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:70
 close(): void;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:69
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:69
 
 #### Returns
 
@@ -108,7 +108,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:69
 next(value): void;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:241
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:241
 
 #### Parameters
 
@@ -132,7 +132,7 @@ Defined in: src/newer/next/transport/TransportObservable.ts:241
 subscribe(observerOrNext): Subscription;
 ```
 
-Defined in: src/newer/next/transport/TransportObservable.ts:28
+Defined in: uniform.ts/src/newer/next/transport/TransportObservable.ts:28
 
 #### Parameters
 

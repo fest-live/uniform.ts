@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,7 +10,7 @@
 function getWorkerInvoker(channel?): BidirectionalInvoker;
 ```
 
-Defined in: src/newer/next/transport/Worker.ts:508
+Defined in: uniform.ts/src/newer/next/transport/Worker.ts:508
 
 Get the worker's bidirectional Invoker
 

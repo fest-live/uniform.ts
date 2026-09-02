@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: ConnectionStats
 
-Defined in: src/newer/next/channel/Connection.ts:27
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:27
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/channel/Connection.ts:27
 bytesTransferred: number;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:30
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:30
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: src/newer/next/channel/Connection.ts:30
 latencyMs: number;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:31
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:31
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/newer/next/channel/Connection.ts:31
 messagesReceived: number;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:29
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:29
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: src/newer/next/channel/Connection.ts:29
 messagesSent: number;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:28
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:28
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: src/newer/next/channel/Connection.ts:28
 reconnectCount: number;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:33
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:33
 
 ***
 
@@ -66,4 +66,4 @@ Defined in: src/newer/next/channel/Connection.ts:33
 uptime: number;
 ```
 
-Defined in: src/newer/next/channel/Connection.ts:32
+Defined in: uniform.ts/src/newer/next/channel/Connection.ts:32

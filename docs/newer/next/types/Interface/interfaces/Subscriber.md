@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: Subscriber\<T\>
 
-Defined in: src/newer/next/types/Interface.ts:109
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:109
 
 Subscriber (passed to Observable producer)
 
@@ -28,7 +28,7 @@ Subscriber (passed to Observable producer)
 readonly active: boolean;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:114
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:114
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: src/newer/next/types/Interface.ts:114
 signal: AbortSignal;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:113
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:113
 
 ## Methods
 
@@ -48,7 +48,7 @@ Defined in: src/newer/next/types/Interface.ts:113
 complete(): void;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:112
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:112
 
 #### Returns
 
@@ -62,7 +62,7 @@ Defined in: src/newer/next/types/Interface.ts:112
 error(err): void;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:111
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:111
 
 #### Parameters
 
@@ -82,7 +82,7 @@ Defined in: src/newer/next/types/Interface.ts:111
 next(value): void;
 ```
 
-Defined in: src/newer/next/types/Interface.ts:110
+Defined in: uniform.ts/src/newer/next/types/Interface.ts:110
 
 #### Parameters
 

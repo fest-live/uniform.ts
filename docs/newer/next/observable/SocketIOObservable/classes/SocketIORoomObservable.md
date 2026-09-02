@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: SocketIORoomObservable
 
-Defined in: src/newer/next/observable/SocketIOObservable.ts:168
+Defined in: uniform.ts/src/newer/next/observable/SocketIOObservable.ts:168
 
 ## Constructors
 
@@ -16,7 +16,7 @@ Defined in: src/newer/next/observable/SocketIOObservable.ts:168
 new SocketIORoomObservable(_parent, _roomName): SocketIORoomObservable;
 ```
 
-Defined in: src/newer/next/observable/SocketIOObservable.ts:172
+Defined in: uniform.ts/src/newer/next/observable/SocketIOObservable.ts:172
 
 #### Parameters
 
@@ -42,7 +42,7 @@ Defined in: src/newer/next/observable/SocketIOObservable.ts:172
 get roomName(): string;
 ```
 
-Defined in: src/newer/next/observable/SocketIOObservable.ts:210
+Defined in: uniform.ts/src/newer/next/observable/SocketIOObservable.ts:210
 
 ##### Returns
 
@@ -56,7 +56,7 @@ Defined in: src/newer/next/observable/SocketIOObservable.ts:210
 send(msg): void;
 ```
 
-Defined in: src/newer/next/observable/SocketIOObservable.ts:177
+Defined in: uniform.ts/src/newer/next/observable/SocketIOObservable.ts:177
 
 #### Parameters
 
@@ -76,7 +76,7 @@ Defined in: src/newer/next/observable/SocketIOObservable.ts:177
 subscribe(observer): Subscription;
 ```
 
-Defined in: src/newer/next/observable/SocketIOObservable.ts:181
+Defined in: uniform.ts/src/newer/next/observable/SocketIOObservable.ts:181
 
 #### Parameters
 

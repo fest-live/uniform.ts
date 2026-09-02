@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Class: ChromeExtensionTabsChannel
 
-Defined in: src/newer/next/utils/Wrappers.ts:94
+Defined in: uniform.ts/src/newer/next/utils/Wrappers.ts:94
 
 Unified Chrome Extension Tabs Channel
 Acts like a BroadcastChannel but uses chrome.tabs messaging to communicate with content scripts
@@ -20,7 +20,7 @@ Supports both broadcast-to-multiple-tabs and current-tab-only targeting
 new ChromeExtensionTabsChannel(channelName, options?): ChromeExtensionTabsChannel;
 ```
 
-Defined in: src/newer/next/utils/Wrappers.ts:102
+Defined in: uniform.ts/src/newer/next/utils/Wrappers.ts:102
 
 #### Parameters
 
@@ -54,7 +54,7 @@ Defined in: src/newer/next/utils/Wrappers.ts:102
 addEventListener(type, listener): void;
 ```
 
-Defined in: src/newer/next/utils/Wrappers.ts:121
+Defined in: uniform.ts/src/newer/next/utils/Wrappers.ts:121
 
 #### Parameters
 
@@ -78,7 +78,7 @@ Defined in: src/newer/next/utils/Wrappers.ts:121
 broadcastToTabs(message, options?): Promise<any[]>;
 ```
 
-Defined in: src/newer/next/utils/Wrappers.ts:210
+Defined in: uniform.ts/src/newer/next/utils/Wrappers.ts:210
 
 Broadcast message to all matching tabs (only works in broadcast mode)
 
@@ -110,7 +110,7 @@ Broadcast message to all matching tabs (only works in broadcast mode)
 close(): void;
 ```
 
-Defined in: src/newer/next/utils/Wrappers.ts:286
+Defined in: uniform.ts/src/newer/next/utils/Wrappers.ts:286
 
 #### Returns
 
@@ -124,7 +124,7 @@ Defined in: src/newer/next/utils/Wrappers.ts:286
 getCurrentTabId(): Promise<number>;
 ```
 
-Defined in: src/newer/next/utils/Wrappers.ts:279
+Defined in: uniform.ts/src/newer/next/utils/Wrappers.ts:279
 
 Get current tab ID (convenience method)
 
@@ -140,7 +140,7 @@ Get current tab ID (convenience method)
 postMessage(message): Promise<void>;
 ```
 
-Defined in: src/newer/next/utils/Wrappers.ts:263
+Defined in: uniform.ts/src/newer/next/utils/Wrappers.ts:263
 
 Send message via chrome runtime (for service worker communication)
 
@@ -162,7 +162,7 @@ Send message via chrome runtime (for service worker communication)
 removeEventListener(type, listener): void;
 ```
 
-Defined in: src/newer/next/utils/Wrappers.ts:159
+Defined in: uniform.ts/src/newer/next/utils/Wrappers.ts:159
 
 #### Parameters
 
@@ -186,7 +186,7 @@ Defined in: src/newer/next/utils/Wrappers.ts:159
 sendToActiveTab(message): Promise<any>;
 ```
 
-Defined in: src/newer/next/utils/Wrappers.ts:192
+Defined in: uniform.ts/src/newer/next/utils/Wrappers.ts:192
 
 Send message to active/current tab
 
@@ -208,7 +208,7 @@ Send message to active/current tab
 sendToTab(tabId, message): Promise<any>;
 ```
 
-Defined in: src/newer/next/utils/Wrappers.ts:171
+Defined in: uniform.ts/src/newer/next/utils/Wrappers.ts:171
 
 Send message to specific tab
 

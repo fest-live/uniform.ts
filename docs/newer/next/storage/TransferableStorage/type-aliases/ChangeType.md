@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -10,4 +10,4 @@
 type ChangeType = "add" | "put" | "delete" | "clear";
 ```
 
-Defined in: src/newer/next/storage/TransferableStorage.ts:48
+Defined in: uniform.ts/src/newer/next/storage/TransferableStorage.ts:48

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # ~~Class: RemoteChannelHelper~~
 
-Defined in: src/newer/next/channel/Channels.ts:57
+Defined in: uniform.ts/src/newer/next/channel/Channels.ts:57
 
 ## Deprecated
 
@@ -20,7 +20,7 @@ Use UnifiedChannel.remote() instead
 new RemoteChannelHelper(channelName, options?): RemoteChannelHelper;
 ```
 
-Defined in: src/newer/next/channel/Channels.ts:60
+Defined in: uniform.ts/src/newer/next/channel/Channels.ts:60
 
 #### Parameters
 
@@ -44,7 +44,7 @@ Defined in: src/newer/next/channel/Channels.ts:60
 doImportModule(url, options): Promise<any> | null;
 ```
 
-Defined in: src/newer/next/channel/Channels.ts:73
+Defined in: uniform.ts/src/newer/next/channel/Channels.ts:73
 
 #### Parameters
 
@@ -72,7 +72,7 @@ request(
    options?): Promise<any> | null;
 ```
 
-Defined in: src/newer/next/channel/Channels.ts:64
+Defined in: uniform.ts/src/newer/next/channel/Channels.ts:64
 
 #### Parameters
 

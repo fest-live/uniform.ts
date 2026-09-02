@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.22**](../../../../README.md)
+[**@fest-lib/uniform v0.1.23**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: ServiceChannelConfig
 
-Defined in: src/newer/messaging/ServiceChannelManager.ts:16
+Defined in: uniform.ts/src/newer/messaging/ServiceChannelManager.ts:16
 
 Channel configuration
 
@@ -18,7 +18,7 @@ Channel configuration
 broadcastName: string;
 ```
 
-Defined in: src/newer/messaging/ServiceChannelManager.ts:17
+Defined in: uniform.ts/src/newer/messaging/ServiceChannelManager.ts:17
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: src/newer/messaging/ServiceChannelManager.ts:17
 optional component?: string;
 ```
 
-Defined in: src/newer/messaging/ServiceChannelManager.ts:19
+Defined in: uniform.ts/src/newer/messaging/ServiceChannelManager.ts:19
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: src/newer/messaging/ServiceChannelManager.ts:19
 optional description?: string;
 ```
 
-Defined in: src/newer/messaging/ServiceChannelManager.ts:20
+Defined in: uniform.ts/src/newer/messaging/ServiceChannelManager.ts:20
 
 ***
 
@@ -48,4 +48,4 @@ Defined in: src/newer/messaging/ServiceChannelManager.ts:20
 optional routeHash?: string;
 ```
 
-Defined in: src/newer/messaging/ServiceChannelManager.ts:18
+Defined in: uniform.ts/src/newer/messaging/ServiceChannelManager.ts:18
