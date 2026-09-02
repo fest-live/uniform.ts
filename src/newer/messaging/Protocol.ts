@@ -5,7 +5,14 @@
  */
 
 export type UniformPurpose = "invoke" | "mail" | "attach" | "deliver" | "defer";
-export type UniformEnvelopeType = "request" | "response" | "invoke" | "ack" | "act" | "ask";
+export type UniformEnvelopeType =
+    | "request"
+    | "response"
+    | "invoke"
+    | "ack"
+    | "act"
+    | "ask"
+    | (string & {});
 export type UniformDeferMode = "none" | "cache" | "idb" | "storage" | "promise" | "allowed";
 
 export type UniformProtocolName =
@@ -98,7 +105,6 @@ export interface CreateEnvelopeInput<T = unknown> extends LegacyUnifiedMessage<T
 }
 
 const PURPOSES = new Set<UniformPurpose>(["invoke", "mail", "attach", "deliver", "defer"]);
-const TYPES = new Set<UniformEnvelopeType>(["request", "response", "invoke", "ack", "act", "ask"]);
 const DEFAULT_PURPOSE: UniformPurpose = "mail";
 
 const asString = (value: unknown): string => String(value ?? "").trim();
@@ -131,7 +137,9 @@ const normalizePurpose = (purpose?: UniformPurpose | UniformPurpose[]): UniformP
 
 const inferType = (input: CreateEnvelopeInput): UniformEnvelopeType => {
     const explicit = asString(input.type);
-    if (TYPES.has(explicit as UniformEnvelopeType)) return explicit as UniformEnvelopeType;
+    /* COMPAT: app mail uses type as the verb (share-target-result, ai-result).
+     * Coercing those to "request" dropped results in Work Center / PWA. */
+    if (explicit) return explicit as UniformEnvelopeType;
     const op = asString(input.op);
     if (op === "get" || op === "set" || op === "apply" || op === "import") return "invoke";
     if (input.error) return "response";

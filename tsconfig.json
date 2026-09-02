@@ -51,7 +51,6 @@
         "declarationMap": true,
         "inlineSources": true,
         "inlineSourceMap": true,
-        "sourceMap": true,
         "experimentalDecorators": true,
         "moduleDetection": "force",
         "verbatimModuleSyntax": true,
