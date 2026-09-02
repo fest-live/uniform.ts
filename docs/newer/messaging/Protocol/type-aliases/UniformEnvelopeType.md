@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.19**](../../../../README.md)
+[**@fest-lib/uniform v0.1.20**](../../../../README.md)
 
 ***
 
@@ -7,7 +7,14 @@
 # Type Alias: UniformEnvelopeType
 
 ```ts
-type UniformEnvelopeType = "request" | "response" | "invoke" | "ack" | "act" | "ask";
+type UniformEnvelopeType = 
+  | "request"
+  | "response"
+  | "invoke"
+  | "ack"
+  | "act"
+  | "ask"
+  | string & object;
 ```
 
 Defined in: src/newer/messaging/Protocol.ts:8

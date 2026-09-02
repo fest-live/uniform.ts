@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.19**](../../../../README.md)
+[**@fest-lib/uniform v0.1.20**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: CreateEnvelopeInput\<T\>
 
-Defined in: src/newer/messaging/Protocol.ts:78
+Defined in: src/newer/messaging/Protocol.ts:85
 
 ## Extends
 
@@ -26,7 +26,7 @@ Defined in: src/newer/messaging/Protocol.ts:78
 optional args?: unknown;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:85
+Defined in: src/newer/messaging/Protocol.ts:92
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: src/newer/messaging/Protocol.ts:85
 optional bridges?: string[];
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:91
+Defined in: src/newer/messaging/Protocol.ts:98
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: src/newer/messaging/Protocol.ts:91
 optional contentType?: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:43
+Defined in: src/newer/messaging/Protocol.ts:50
 
 #### Inherited from
 
@@ -60,7 +60,7 @@ Defined in: src/newer/messaging/Protocol.ts:43
 optional data?: T;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:44
+Defined in: src/newer/messaging/Protocol.ts:51
 
 #### Inherited from
 
@@ -74,7 +74,7 @@ Defined in: src/newer/messaging/Protocol.ts:44
 optional defer?: UniformDeferMode;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:95
+Defined in: src/newer/messaging/Protocol.ts:102
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: src/newer/messaging/Protocol.ts:95
 optional destination?: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:42
+Defined in: src/newer/messaging/Protocol.ts:49
 
 #### Inherited from
 
@@ -98,7 +98,7 @@ Defined in: src/newer/messaging/Protocol.ts:42
 optional dstChannel?: string | string[];
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:97
+Defined in: src/newer/messaging/Protocol.ts:104
 
 ***
 
@@ -108,7 +108,7 @@ Defined in: src/newer/messaging/Protocol.ts:97
 optional error?: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:87
+Defined in: src/newer/messaging/Protocol.ts:94
 
 ***
 
@@ -118,7 +118,7 @@ Defined in: src/newer/messaging/Protocol.ts:87
 optional extension?: unknown;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:94
+Defined in: src/newer/messaging/Protocol.ts:101
 
 ***
 
@@ -128,7 +128,7 @@ Defined in: src/newer/messaging/Protocol.ts:94
 optional flags?: Record<string, unknown>;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:82
+Defined in: src/newer/messaging/Protocol.ts:89
 
 ***
 
@@ -138,7 +138,7 @@ Defined in: src/newer/messaging/Protocol.ts:82
 optional id?: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:39
+Defined in: src/newer/messaging/Protocol.ts:46
 
 #### Inherited from
 
@@ -152,7 +152,7 @@ Defined in: src/newer/messaging/Protocol.ts:39
 optional metadata?: Record<string, unknown>;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:45
+Defined in: src/newer/messaging/Protocol.ts:52
 
 #### Inherited from
 
@@ -166,7 +166,7 @@ Defined in: src/newer/messaging/Protocol.ts:45
 optional op?: UniformOperation;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:86
+Defined in: src/newer/messaging/Protocol.ts:93
 
 ***
 
@@ -176,7 +176,7 @@ Defined in: src/newer/messaging/Protocol.ts:86
 optional path?: string | string[];
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:83
+Defined in: src/newer/messaging/Protocol.ts:90
 
 ***
 
@@ -186,7 +186,7 @@ Defined in: src/newer/messaging/Protocol.ts:83
 optional payload?: T;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:92
+Defined in: src/newer/messaging/Protocol.ts:99
 
 ***
 
@@ -196,7 +196,7 @@ Defined in: src/newer/messaging/Protocol.ts:92
 optional protocol?: UniformProtocolName;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:80
+Defined in: src/newer/messaging/Protocol.ts:87
 
 ***
 
@@ -208,7 +208,7 @@ optional purpose?:
   | UniformPurpose[];
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:79
+Defined in: src/newer/messaging/Protocol.ts:86
 
 ***
 
@@ -218,7 +218,7 @@ Defined in: src/newer/messaging/Protocol.ts:79
 optional redirect?: boolean;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:81
+Defined in: src/newer/messaging/Protocol.ts:88
 
 ***
 
@@ -228,7 +228,7 @@ Defined in: src/newer/messaging/Protocol.ts:81
 optional result?: unknown;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:84
+Defined in: src/newer/messaging/Protocol.ts:91
 
 ***
 
@@ -238,7 +238,7 @@ Defined in: src/newer/messaging/Protocol.ts:84
 optional source?: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:41
+Defined in: src/newer/messaging/Protocol.ts:48
 
 #### Inherited from
 
@@ -252,7 +252,7 @@ Defined in: src/newer/messaging/Protocol.ts:41
 optional srcChannel?: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:96
+Defined in: src/newer/messaging/Protocol.ts:103
 
 ***
 
@@ -262,7 +262,7 @@ Defined in: src/newer/messaging/Protocol.ts:96
 optional timestamp?: number;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:88
+Defined in: src/newer/messaging/Protocol.ts:95
 
 ***
 
@@ -272,7 +272,7 @@ Defined in: src/newer/messaging/Protocol.ts:88
 optional transfer?: unknown;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:93
+Defined in: src/newer/messaging/Protocol.ts:100
 
 ***
 
@@ -282,7 +282,7 @@ Defined in: src/newer/messaging/Protocol.ts:93
 optional type?: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:40
+Defined in: src/newer/messaging/Protocol.ts:47
 
 #### Inherited from
 
@@ -296,7 +296,7 @@ Defined in: src/newer/messaging/Protocol.ts:40
 optional uuid?: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:90
+Defined in: src/newer/messaging/Protocol.ts:97
 
 ***
 
@@ -306,4 +306,4 @@ Defined in: src/newer/messaging/Protocol.ts:90
 optional where?: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:89
+Defined in: src/newer/messaging/Protocol.ts:96

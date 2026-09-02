@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.19**](../../../../README.md)
+[**@fest-lib/uniform v0.1.20**](../../../../README.md)
 
 ***
 
@@ -6,7 +6,7 @@
 
 # Interface: UniformProtocolEnvelope\<T\>
 
-Defined in: src/newer/messaging/Protocol.ts:48
+Defined in: src/newer/messaging/Protocol.ts:55
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: src/newer/messaging/Protocol.ts:48
 optional args?: unknown[];
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:56
+Defined in: src/newer/messaging/Protocol.ts:63
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: src/newer/messaging/Protocol.ts:56
 bridges: string[];
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:62
+Defined in: src/newer/messaging/Protocol.ts:69
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: src/newer/messaging/Protocol.ts:62
 optional contentType?: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:74
+Defined in: src/newer/messaging/Protocol.ts:81
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: src/newer/messaging/Protocol.ts:74
 data: T;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:73
+Defined in: src/newer/messaging/Protocol.ts:80
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: src/newer/messaging/Protocol.ts:73
 optional defer?: UniformDeferMode;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:66
+Defined in: src/newer/messaging/Protocol.ts:73
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: src/newer/messaging/Protocol.ts:66
 optional destination?: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:72
+Defined in: src/newer/messaging/Protocol.ts:79
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: src/newer/messaging/Protocol.ts:72
 optional dstChannel?: string | string[];
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:68
+Defined in: src/newer/messaging/Protocol.ts:75
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: src/newer/messaging/Protocol.ts:68
 optional error?: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:58
+Defined in: src/newer/messaging/Protocol.ts:65
 
 ***
 
@@ -102,7 +102,7 @@ Defined in: src/newer/messaging/Protocol.ts:58
 optional extension?: unknown;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:65
+Defined in: src/newer/messaging/Protocol.ts:72
 
 ***
 
@@ -112,7 +112,7 @@ Defined in: src/newer/messaging/Protocol.ts:65
 flags: Record<string, unknown>;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:52
+Defined in: src/newer/messaging/Protocol.ts:59
 
 ***
 
@@ -122,7 +122,7 @@ Defined in: src/newer/messaging/Protocol.ts:52
 id: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:70
+Defined in: src/newer/messaging/Protocol.ts:77
 
 ***
 
@@ -132,7 +132,7 @@ Defined in: src/newer/messaging/Protocol.ts:70
 metadata: Record<string, unknown>;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:75
+Defined in: src/newer/messaging/Protocol.ts:82
 
 ***
 
@@ -142,7 +142,7 @@ Defined in: src/newer/messaging/Protocol.ts:75
 optional op?: UniformOperation;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:57
+Defined in: src/newer/messaging/Protocol.ts:64
 
 ***
 
@@ -152,7 +152,7 @@ Defined in: src/newer/messaging/Protocol.ts:57
 optional path?: string[];
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:54
+Defined in: src/newer/messaging/Protocol.ts:61
 
 ***
 
@@ -162,7 +162,7 @@ Defined in: src/newer/messaging/Protocol.ts:54
 optional payload?: T;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:63
+Defined in: src/newer/messaging/Protocol.ts:70
 
 ***
 
@@ -172,7 +172,7 @@ Defined in: src/newer/messaging/Protocol.ts:63
 protocol: UniformProtocolName;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:50
+Defined in: src/newer/messaging/Protocol.ts:57
 
 ***
 
@@ -182,7 +182,7 @@ Defined in: src/newer/messaging/Protocol.ts:50
 purpose: UniformPurpose[];
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:49
+Defined in: src/newer/messaging/Protocol.ts:56
 
 ***
 
@@ -192,7 +192,7 @@ Defined in: src/newer/messaging/Protocol.ts:49
 redirect: boolean;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:51
+Defined in: src/newer/messaging/Protocol.ts:58
 
 ***
 
@@ -202,7 +202,7 @@ Defined in: src/newer/messaging/Protocol.ts:51
 optional result?: unknown;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:55
+Defined in: src/newer/messaging/Protocol.ts:62
 
 ***
 
@@ -212,7 +212,7 @@ Defined in: src/newer/messaging/Protocol.ts:55
 source: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:71
+Defined in: src/newer/messaging/Protocol.ts:78
 
 ***
 
@@ -222,7 +222,7 @@ Defined in: src/newer/messaging/Protocol.ts:71
 srcChannel: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:67
+Defined in: src/newer/messaging/Protocol.ts:74
 
 ***
 
@@ -232,7 +232,7 @@ Defined in: src/newer/messaging/Protocol.ts:67
 timestamp: number;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:59
+Defined in: src/newer/messaging/Protocol.ts:66
 
 ***
 
@@ -242,7 +242,7 @@ Defined in: src/newer/messaging/Protocol.ts:59
 optional transfer?: unknown[];
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:64
+Defined in: src/newer/messaging/Protocol.ts:71
 
 ***
 
@@ -252,7 +252,7 @@ Defined in: src/newer/messaging/Protocol.ts:64
 type: UniformEnvelopeType;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:53
+Defined in: src/newer/messaging/Protocol.ts:60
 
 ***
 
@@ -262,7 +262,7 @@ Defined in: src/newer/messaging/Protocol.ts:53
 uuid: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:61
+Defined in: src/newer/messaging/Protocol.ts:68
 
 ***
 
@@ -272,4 +272,4 @@ Defined in: src/newer/messaging/Protocol.ts:61
 optional where?: string;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:60
+Defined in: src/newer/messaging/Protocol.ts:67

@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.19**](../../../../README.md)
+[**@fest-lib/uniform v0.1.20**](../../../../README.md)
 
 ***
 
@@ -22,4 +22,4 @@ type UniformOperation =
   | string & object;
 ```
 
-Defined in: src/newer/messaging/Protocol.ts:24
+Defined in: src/newer/messaging/Protocol.ts:31
