@@ -1,4 +1,4 @@
-[**@fest-lib/uniform v0.1.23**](../../../../../../README.md)
+[**@fest-lib/uniform v0.1.24**](../../../../../../README.md)
 
 ***
 
