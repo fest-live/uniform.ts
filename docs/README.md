@@ -1,8 +1,8 @@
-**@fest-lib/uniform v0.1.24**
+**@fest-lib/uniform v0.1.25**
 
 ***
 
-# @fest-lib/uniform v0.1.24
+# @fest-lib/uniform v0.1.25
 
 ## Modules
 
