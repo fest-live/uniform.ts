@@ -4792,7 +4792,7 @@ var bi = {
 async function Ut() {
   if (V) return V;
   try {
-    const e = await import("./cbor-x-BK-2ctFi.js");
+    const e = await import("./cbor-x-D5rH7Sty.js");
     V = {
       encode: (t) => e.encode(t),
       decode: (t) => e.decode(t)
