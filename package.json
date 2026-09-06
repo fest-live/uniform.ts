@@ -68,17 +68,17 @@
         "docs:md:clean": "rm -rf ./docs-md && typedoc --options ./typedoc.md.json"
     },
     "devDependencies": {
-        "@puppeteer/browsers": "^3.2.0",
-        "@types/chrome": ">=0.1.32",
-        "@types/node": ">=24.7.2",
-        "cbor-x": ">=1.6.0",
-        "puppeteer": "^25.7.0",
+        "@puppeteer/browsers": "^3.2.2",
+        "@types/chrome": ">=0.2.9",
+        "@types/node": ">=26.4.1",
+        "cbor-x": ">=1.6.6",
+        "puppeteer": "^25.10.0",
         "typedoc": "^0.28.20",
-        "typedoc-plugin-markdown": "^4.12.0",
-        "typescript": ">=6.0.0-beta",
-        "vite": "^8.0.7",
+        "typedoc-plugin-markdown": "^4.13.0",
+        "typescript": "^6.0.3",
+        "vite": "^8.2.2",
         "vite-plugin-dynamic-import": ">=1.6.0",
-        "vite-plugin-external": ">=6.2.2",
+        "vite-plugin-external": ">=8.0.3",
         "vite-plugin-optimizer": ">=1.4.3"
     }
 }
